@@ -1,0 +1,6 @@
+site_name: 124c41
+nav:
+    - Home: index.md
+    - About: about.md
+
+theme: readthedocs
