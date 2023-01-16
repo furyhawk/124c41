@@ -117,8 +117,6 @@ from hydra.core.hydra_config import HydraConfig
 def main(cfg: DictConfig) -&gt; None:
     logger.info(OmegaConf.to_yaml(cfg))
     logger.info(f&quot;runtime.output_dir{HydraConfig.get().runtime.output_dir}&quot;)
-    run(cfg)
-
 
 if __name__ == &quot;__main__&quot;:
     main()
