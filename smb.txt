@@ -1,0 +1,1139 @@
+[[Category:Network sharing]]
+[[Category:Servers]]
+[[de:Samba]]
+[[ja:Samba]]
+[[ru:Samba]]
+[[pt:Samba]]
+{{Related articles start}}
+{{Related|Active Directory Integration}}
+{{Related|Samba/Active Directory domain controller}}
+{{Related|NFS}}
+{{Related articles end}}
+[https://www.samba.org/ Samba] is the standard Windows interoperability suite of programs for Linux and Unix. Since 1992, Samba has provided secure, stable and fast file and print services for all clients using the [[wikipedia:Server_Message_Block|SMB/CIFS]] protocol, such as all versions of DOS and Windows, OS/2, Linux and many others.
+
+To share files through Samba, see [[#Server]] section; to access files shared through Samba on other machines, please see [[#Client]] section.
+
+== Server ==
+
+=== Installation ===
+
+[[Install]] the {{Pkg|samba}} package.
+
+Samba is configured in the {{ic|/etc/samba/smb.conf}} configuration file, which is extensively documented in {{man|5|smb.conf}}.
+
+Because the {{Pkg|samba}} package does not provide this file, one needs to create it '''before''' starting {{ic|smb.service}}.
+
+A documented example as in {{ic|smb.conf.default}} from the [https://git.samba.org/samba.git/?p=samba.git;a=blob_plain;f=examples/smb.conf.default;hb=HEAD Samba git repository] may be used to setup {{ic|/etc/samba/smb.conf}}. 
+
+{{Note|
+* The default configuration sets {{ic|log file}} to a non-writable location, which will cause errors - apply one of the following workarounds:
+** Change the log file location to a writable path: {{ic|1=log file = /var/log/samba/%m.log}}
+** Change logging to a non-file backend solution: {{ic|1=logging = syslog}} with {{ic|1=syslog only = yes}}, or use {{ic|1=logging = systemd}}
+* If required; the {{ic|workgroup}} specified in the {{ic|[global]}} section has to match the Windows workgroup (default {{ic|WORKGROUP}}).
+}}
+
+{{Tip|Whenever you modify the {{ic|smb.conf}} file, run the {{man|1|testparm}} command to check for syntactic errors.}}
+
+==== Enabling and starting services ====
+
+To provide basic file sharing through SMB, [[enable/start]] {{ic|smb.service}}. See {{man|8|smbd}} for details.
+
+If you want to make your server accessible via NetBIOS host name, set the desired name in the {{ic|netbios name}} option in {{ic|smb.conf}} and [[enable/start]] {{ic|nmb.service}}. See {{man|8|nmbd}} for details.
+
+{{Note|{{ic|nmb.service}} is not required. However, it is needed to access Samba servers by hostname (e.g. {{ic|smb://hostname/}}) for some hosts. If your network is only composed of machines running Windows 10 or later, consider [[#Windows 1709 or up does not discover the samba server in Network view|installing a WSD daemon as well]] for your server to appear in the "Network" view.}}
+
+==== Make the server discoverable ====
+
+[[Install]] the {{Pkg|avahi}} package, then [[enable/start]] {{ic|avahi-daemon.service}} to make the samba server discoverable with [[Zeroconf]]. It should work for most non-Windows file managers (macOS Finder, various GUI-based file managers on Linux & BSD etc.)
+
+If {{ic|avahi-daemon.service}} is not running, the server will still be accessible, just not discoverable, i.e. it will not show up in file managers, but you can still connect to the server directly by IP or domain.
+
+Windows Explorer relies on the WS-Discovery protocol instead; see [[#Windows 1709 or up does not discover the samba server in Network view]].
+
+==== Configure firewall ====
+
+If you are using a [[firewall]], do not forget to open required ports (usually 137-139 + 445). For a complete list, see [https://www.samba.org/~tpot/articles/firewall.html Samba port usage].
+
+===== UFW Rule =====
+
+A [[Ufw]] App Profile for SMB/CIFS is included by default with the default installation of UFW in {{ic|ufw-fileserver}}.
+
+Allow Samba by running {{ic|ufw allow CIFS}} as root.
+
+If you deleted the profile, create/edit {{ic|/etc/ufw/applications.d/samba}} and add the following content:
+
+ [Samba]
+ title=LanManager-like file and printer server for Unix
+ description=The Samba software suite is a collection of programs that implements the SMB/CIFS protocol for unix systems, allowing you to serve files and printers to Windows, NT, OS/2 and DOS clients. This protocol is sometimes also referred to as the LanManager or NetBIOS protocol.
+ ports=137,138/udp|139,445/tcp
+
+Then load the profile into UFW run {{ic|ufw app update Samba}} as root.
+
+Then finally, allow Samba by running {{ic|ufw allow Samba}} as root.
+
+===== firewalld service =====
+
+To configure [[firewalld]] to allow Samba in the '''home''' zone, run:
+
+ # firewall-cmd --permanent --add-service={samba,samba-client,samba-dc} --zone=home
+
+The three services listed are:
+
+* {{ic|samba}}: for sharing files with others.
+* {{ic|samba-client}}: to browse shares on other machines on the network.
+* {{ic|samba-dc}}: for [[Samba/Active Directory domain controller]].
+
+{{ic|--permanent}} ensures the changes remain after {{ic|firewalld.service}} is [[restart]]ed.
+
+=== Basic configuration ===
+
+==== User management ====
+
+The following section describes creating a local (tdbsam) database of Samba users. For user authentication and other purposes, Samba can also be bound to an Active Directory domain, can itself serve as an Active Directory domain controller, or can be used with an LDAP server.
+
+===== Adding a user =====
+
+Samba requires a Linux user account - you may use an existing user account or create a [[Users and groups#User management|new one]].
+
+{{Note|The [[user]]/[[user group]] ''nobody'' should already exist on the system, it is used as the default {{ic|guest account}} and may be used for shares containing {{ic|1=guest ok = yes}}, thus preventing the need of user login on that share.}}
+
+Although the user name is shared with Linux system, Samba uses a password separate from that of the Linux user accounts. Replace {{ic|samba_user}} with the chosen Samba user account:
+
+ # smbpasswd -a ''samba_user''
+
+Depending on the [https://www.samba.org/samba/docs/man/manpages-3/smb.conf.5.html#SERVERROLE server role], existing [[File permissions and attributes]] may need to be altered for the Samba user account.
+
+If you want the new user only to be allowed to remotely access the file server shares through Samba, you can restrict other login options：
+
+* disabling shell - {{ic|usermod --shell /usr/bin/nologin --lock ''samba_user''}}
+* disabling SSH logons - edit {{ic|/etc/ssh/sshd_config}}, change option {{ic|AllowUsers}}
+
+Also see [[Security]] for hardening your system.
+
+===== Listing users =====
+
+Samba users can be listed using the {{man|8|pdbedit}} command:
+
+ # pdbedit -L -v
+
+===== Changing user password =====
+
+To change a user password, use {{ic|smbpasswd}}:
+
+ # smbpasswd ''samba_user''
+
+==== Creating an anonymous share ====
+
+1. Create a Linux user which anonymous Samba users will be mapped to.
+
+ # useradd guest -s /bin/nologin
+
+{{Note|The username can be any valid Linux username, not just "guest". This user does not need to be a Samba user.}}
+
+2. Add the following to {{ic|/etc/samba/smb.conf}}:
+
+{{hc|/etc/samba/smb.conf|2=
+...
+[global]
+security = user
+map to guest = bad user
+guest account = guest
+
+[guest_share]
+    comment = guest share
+    path = /tmp/
+    public = yes
+    only guest = yes
+    writable = yes
+    printable = no
+}}
+
+Anonymous users will now be mapped to the Linux user {{ic|guest}} and have the ability to access any directories defined in {{ic|guest_share.path}}, which is configured to be {{ic|/tmp/}} in the example above.
+
+{{Note|The share name does not have to have "guest" in it. It can be any valid Samba share name.}}
+
+Make sure that the Linux user {{ic|guest}} has the proper permissions to access files in {{ic|guest_share.path}}.
+
+Also, make sure shares have been properly defined as per the ''Share Definitions'' section of [https://git.samba.org/samba.git/?p=samba.git;a=blob_plain;f=examples/smb.conf.default;hb=HEAD smb.conf.default].
+
+=== Advanced configuration ===
+
+==== Enable symlink following ====
+
+{{Warning|Enabling the {{ic|follow symlinks}} option can be a security risk.}}
+
+{{hc|/etc/samba/smb.conf|2=
+...
+[global]
+   follow symlinks = yes
+   wide links = yes
+   unix extensions = no
+}}
+
+Then, [[restart]] {{ic|smb.service}}.
+
+{{Note|When using [[AppArmor]], if the symlink points to a directory outside the user's home or the [[#Enable Usershares|usershare]] directory, then you need to [[#Permission issues on AppArmor|modify the AppArmor profile permissions]].}}
+
+==== Enable server-side copy for macOS clients ====
+
+Server-side copy eliminates the need to transfer data between the server and the client when copying files on the server. This is enabled by default, but it doesn't work with macOS clients. If you have macOS clients, you need to add the following configuration to {{ic|smb.conf}} and then [[restart]] {{ic|smb.service}}.
+
+{{hc|/etc/samba/smb.conf|2=
+...
+[global]
+   fruit:copyfile = yes
+}}
+
+==== Enable Usershares ====
+
+{{Note|This is an optional feature. Skip this section if you do not need it.}}
+
+Usershares is a feature that gives non-root users the capability to add, modify, and delete their own share definitions. See {{man|5|smb.conf|USERSHARES}}.
+
+# Create a directory for usershares: {{bc|# mkdir /var/lib/samba/usershares}}
+# Create a [[user group]]: {{bc|# groupadd -r sambashare}}
+# Change the owner of the directory to {{ic|root}} and the group to {{ic|sambashare}}: {{bc|# chown root:sambashare /var/lib/samba/usershares}}
+# Change the permissions of the {{ic|usershares}} directory so that users in the group {{ic|sambashare}} can create files. This command also sets [[Wikipedia:Sticky bit|sticky bit]], which is important to prevent users from deleting usershares of other users: {{bc|# chmod 1770 /var/lib/samba/usershares}}
+
+Set the following parameters in the {{ic|smb.conf}} configuration file: 
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  usershare path = /var/lib/samba/usershares
+  usershare max shares = 100
+  usershare allow guests = yes
+  usershare owner only = yes
+}}
+
+Add the user to the ''sambashare'' group. Replace {{ic|''your_username''}} with the name of your user:
+
+ # gpasswd sambashare -a ''your_username''
+
+[[Restart]] {{ic|smb.service}} and {{ic|nmb.service}} services.
+
+Log out and log back in.
+
+If you want to share paths inside your home directory you must make it accessible for the group ''others''.
+
+{{Accuracy|Is this requirement correct? Not clear about which path is said: is it about a 'usershare path' option in smb.conf or an actual shared folder path?|section=permissions}}
+
+In the GUI, you can use [[Thunar]] or [[Dolphin]] - right click on any directory and share it on the network. 
+
+In the CLI, use one of the following commands, replacing italic ''sharename'', ''user'', ... :
+
+ # net usershare add ''sharename'' ''abspath'' [''comment''] [''user'':{R|D|F}] [guest_ok={y|n}]
+ # net usershare delete ''sharename''
+ # net usershare list ''wildcard-sharename''
+ # net usershare info ''wildcard-sharename''
+
+==== Set and forcing permissions ====
+
+Permissions may be applied to both the server and shares:
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  ;inherit owner = unix only ; Inherit ownership of the parent directory for new files and directories
+  ;inherit permissions = yes ; Inherit permissions of the parent directory for new files and directories
+  create mask = 0664
+  directory mask = 2755
+  force create mode = 0644
+  force directory mode = 2755
+  ...
+
+[media]
+  comment = Media share accessible by ''greg'' and ''pcusers''
+  path = ''/path/to/media''
+  valid users = ''greg @pcusers''
+  force group = ''+pcusers''
+  public = no
+  writable = yes
+  create mask = 0664
+  directory mask = 2775
+  force create mode = 0664
+  force directory mode = 2775
+
+[public]
+  comment = Public share where ''archie'' has write access
+  path = ''/path/to/public''
+  public = yes
+  read only = yes
+  write list = ''archie''
+  printable = no
+
+[guests]
+  comment = Allow all users to read/write
+  path = ''/path/to/guests''
+  public = yes
+  only guest = yes
+  writable = yes
+  printable = no
+}}
+
+See {{man|5|smb.conf}} for a full overview of possible permission flags and settings.
+
+==== Restrict protocols for better security ====
+
+{{Warning|By default, Samba versions prior to 4.11 allow connections using the outdated and insecure SMB1 protocol. When using one these Samba versions, it is highly recommended to set {{ic|1=server min protocol = SMB2_02}} to protect yourself from ransomware attacks. In Samba 4.11 and newer, SMB2 is the default min protocol, so no changes are required there.}}
+
+[[Append]] {{ic|server min protocol}} and {{ic|server max protocol}} in {{ic|/etc/samba/smb.conf}} to force usage of a minimum and maximum protocol:
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  server min protocol = SMB2_02
+  ; server max protocol = SMB3
+}}
+
+See {{ic|server max protocol}} in {{man|5|smb.conf}} for an overview of supported protocols.
+
+For compatibility with older clients and/or servers, you might need to set {{ic|1=client min protocol = CORE}} or {{ic|1=server min protocol = CORE}}, but please note that this makes you vulnerable to exploits in SMB1 including ransomware attacks.
+
+{{Tip|Use {{ic|1=server min protocol = SMB3_00}} when clients should only connect using the latest SMB3 protocol, e.g. on clients running Windows 8 and later.}}
+
+[[#Manual mounting|Clients]] using {{ic|mount.cifs}} may need to specify the correct {{ic|1=vers=*}}, e.g.:
+
+ # mount -t cifs //''SERVER''/''sharename'' /mnt/''mountpoint'' -o username=''username'',password=''password'',iocharset=''utf8'',vers=''3.1.1''
+
+See {{man|8|mount.cifs}} for more information.
+
+==== Use native SMB transport encryption ====
+
+Native SMB transport encryption is available in SMB version 3.0 or newer. Clients supporting this type of encryption include Windows 8 and newer, Windows server 2012 and newer, and smbclient of Samba 4.1 and newer.
+
+To use native SMB transport encryption by default, set the {{ic|server smb encrypt}} parameter globally and/or by share. Possible values are {{ic|off}}, {{ic|enabled}} (default value), {{ic|desired}}, or {{ic|required}}:
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  server smb encrypt = desired
+}}
+
+To configure encryption for on the client side, use the option {{ic|client smb encrypt}}.
+
+See {{man|5|smb.conf}} for more information, especially the paragraphs ''Effects for SMB1'' and ''Effects for SMB2''.
+
+{{Tip|When [[#Manual mounting|mounting]] a share, specify the {{ic|seal}} mount option to force usage of encryption.}}
+
+==== Disable printer sharing ====
+
+By default Samba shares printers configured using [[CUPS]].
+
+If you do not want printers to be shared, use the following settings:
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  load printers = no
+  printing = bsd
+  printcap name = /dev/null
+  disable spoolss = yes
+  show add printer wizard = no
+}}
+
+==== Block certain file extensions on Samba share ====
+
+{{Note|Setting this parameter will affect the performance of Samba, as it will be forced to check all files and directories for a match as they are scanned.}}
+
+Samba offers an option to block files with certain patterns, like file extensions. This option can be used to prevent dissemination of viruses or to dissuade users from wasting space with certain files. More information about this option can be found in {{man|5|smb.conf}}.
+
+{{hc|/etc/samba/smb.conf|2=
+...
+[myshare]
+  comment = Private
+  path = /mnt/data
+  read only = no
+  veto files = /*.exe/*.com/*.dll/*.bat/*.vbs/*.tmp/*.mp3/*.avi/*.mp4/*.wmv/*.wma/
+}}
+
+==== Improve throughput ====
+
+{{Warning|Beware this may lead to corruption/connection issues and potentially cripple your TCP/IP stack.}}
+
+The default settings should be sufficient for most users. However setting the 'socket options' correct can improve performance, but getting them wrong can degrade it by just as much. Test the effect before making any large changes.
+
+Read the {{man|5|smb.conf}} man page before applying any of the options listed below.
+
+The following settings should be [[Append|appended]] to the {{ic|[global]}} section of {{ic|/etc/samba/smb.conf}}.
+
+Setting a deadtime is useful to stop a server's resources from being exhausted by a large number of inactive connections:
+
+ deadtime = 30
+
+The usage of sendfile may make more efficient use of the system CPU's and cause Samba to be faster:
+
+ use sendfile = yes
+
+Setting min receivefile size allows zero-copy writes directly from network socket buffers into the filesystem buffer cache (if available). It may improve performance but user testing is recommended:
+
+ min receivefile size = 16384
+
+Increasing the receive/send buffers size and socket optimize flags might be useful to improve throughput. It is recommended to test each flag separately as it may cause issues on some networks:
+
+ socket options = IPTOS_LOWDELAY TCP_NODELAY IPTOS_THROUGHPUT SO_RCVBUF=131072 SO_SNDBUF=131072
+
+{{Note|Network-interface adjustments may be needed for some options to work, see [[Sysctl#Networking]].}}
+
+==== Enable access for old clients/devices ====
+
+Latest versions of Samba no longer offer older authentication methods and protocols which are still used by some older clients (IP cameras, etc). These devices usually require Samba server to allow NTMLv1 authentication and NT1 version of the protocol, known as CIFS. For these devices to work with latest Samba, you need to add these two configuration parameters into {{ic|[global]}} section:
+
+ server min protocol = NT1
+ ntlm auth = yes
+
+Anonymous/guest access to a share requires just the first parameter. If the old device will access with username and password, you also need the add the second line too.
+
+==== Enable Spotlight searching ====
+
+Spotlight allows supporting clients (e.g. MacOS Finder) to quickly search shared files.
+
+Install and start/enable [[OpenSearch]]. Install {{aur|fs2es-indexer}}, configure the directories you want to index in {{ic|/etc/fs2es-indexer/config.yml}}, and start/enable {{ic|fs2es-indexer.service}} for periodic indexing.
+
+Edit {{ic|smb.conf}} as described in the [https://wiki.samba.org/index.php/Spotlight_with_Elasticsearch_Backend#Samba Samba wiki] to enable Spotlight per share, and restart {{ic|smb.service}} to apply the changes.
+
+== Client ==
+
+Install {{Pkg|smbclient}} for an {{ic|ftp}}-like command line interface. See {{man|1|smbclient}} for commonly used commands.
+
+For a lightweight alternative (without support for listing public shares, etc.), [[install]] {{Pkg|cifs-utils}} that provides {{ic|/usr/bin/mount.cifs}}.
+
+Depending on the [[desktop environment]], GUI methods may be available. See [[#File manager configuration]] for use with a file manager.
+
+{{Note|
+* {{Pkg|smbclient}} requires a {{ic|/etc/samba/smb.conf}} file (see [[#Installation]]), which you can create as an empty file using the {{ic|touch}} utility.
+* After installing {{Pkg|cifs-utils}} or {{Pkg|smbclient}}, load the {{ic|cifs}} [[kernel module]] or reboot to prevent mount fails.
+}}
+
+=== List public shares ===
+
+The following command lists public shares on a server:
+
+ $ smbclient -L ''hostname'' -U%
+
+Alternatively, running {{ic|$ smbtree -N}} will show a tree diagram of all the shares. It uses broadcast queries and is therefore not advisable on a network with a lot of computers, but can be helpful for diagnosing if you have the correct sharename. The {{ic|-N}} ({{ic|-no-pass}}) option suppresses the password prompt.
+
+{{Note|{{ic|smbtree}} uses SMB1 and NetBIOS, which means they must be enabled on the servers and you need to set {{ic|1=client min protocol = NT1}} in {{ic|smb.conf}} on the client. Otherwise, {{ic|smbtree}} will show empty output.}}
+
+=== NetBIOS/WINS host names ===
+
+Samba clients handle NetBIOS host names automatically by default (the behavior is controlled by the {{ic|name resolve order}} option in {{ic|smb.conf}}). Other programs (including {{ic|mount.cifs}}) typically use [[Name Service Switch]], which does not handle NetBIOS by default.
+
+The {{Pkg|smbclient}} package provides a libnss driver to resolve NetBIOS host names. To use it, [[install]] it along with the {{Pkg|samba}} package (which provides the ''winbindd'' daemon), [[start/enable]] {{ic|winbind.service}} and add {{ic|wins}} to the {{ic|hosts}} line in {{man|5|nsswitch.conf}}:
+
+{{hc|/etc/nsswitch.conf|2=
+...
+hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns '''wins'''
+...
+}}
+
+{{Note|Due to a current mistake in {{ic|winbind.service}}, you may have to modify the unit file as described in this [https://bugs.launchpad.net/ubuntu/+source/samba/+bug/1789097 bug-report]}}
+
+Now, during host resolving (e.g. when using {{ic|mount.cifs}} or just {{ic|ping ''netbios-name''}}), ''winbindd'' will resolve the host name by sending queries using NetBIOS Name Service (NBNS, also known as WINS) protocol.
+
+By default it sends a broadcast query to your local network. If you have a WINS server, you can add {{ic|1=wins server = ''wins-server-ip''}} to {{ic|smb.conf}} and [[restart]] {{ic|winbind.service}}, then ''winbindd'' and other Samba clients will send unicast queries to the specified IP.
+
+If you want to resolve your local host name (specified in the {{ic|netbios name}} option in {{ic|smb.conf}}), [[start/enable]] {{ic|nmb.service}}, which will handle incoming queries.
+
+You can test WINS resolution with {{ic|nmblookup}}. By default it sends broadcast queries to your local network regardless of the {{ic|wins server}} option.
+
+Note that WINS resolution requires incoming traffic originating from port 137.
+
+==== Disable NetBIOS/WINS support ====
+
+When not using NetBIOS/WINS host name resolution, it may be preferred to disable this protocol:
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  disable netbios = yes
+  dns proxy = no
+}}
+
+Finally [[disable]]/[[stop]] {{ic|winbind.service}}.
+
+=== Manual mounting ===
+
+Mount the share using {{ic|mount.cifs}} as {{ic|type}}. Not all the options listed below are needed or desirable:
+
+ # mount --mkdir -t cifs //''SERVER''/''sharename'' /mnt/''mountpoint'' -o username=''username'',password=''password'',workgroup=''workgroup'',iocharset=''utf8'',uid=''username'',gid=''group''
+
+The options {{ic|uid}} and {{ic|gid}} corresponds to the local (e.g. client) [[user]]/[[user group]] to have read/write access on the given path.
+
+{{Note|
+* If the {{ic|uid}} and {{ic|gid}} being used does not match the user of the server, the {{ic|forceuid}} and {{ic|forcegid}} options may be helpful. However note permissions assigned to a file when {{ic|forceuid}} or {{ic|forcegid}} are in effect may not reflect the the real (server) permissions. See the ''File And Directory Ownership And Permissions'' section in {{man|8|mount.cifs|FILE AND DIRECTORY OWNERSHIP AND PERMISSIONS}} for more information.
+* To mount a Windows share without authentication, use {{ic|1="username=*"}}.
+}}
+
+{{Warning|Using {{ic|uid}} and/or {{ic|gid}} as mount options may cause I/O errors, it is recommended to set/check correct [[File permissions and attributes]] instead.}}
+
+* {{ic|''SERVER''}} — The server name.
+* {{ic|''sharename''}} — The shared directory.
+* {{ic|''mountpoint''}} — The local directory where the share will be mounted.
+* {{ic|[-o ''options'']}} — See {{man|8|mount.cifs}} for more information.
+
+{{Note|
+* Abstain from using a trailing {{ic|/}}. {{ic|//''SERVER''/''sharename'''''/'''}} will not work.
+* If your mount does not work stable, stutters or freezes, try to enable different SMB protocol version with {{ic|1=vers=}} option. For example, {{ic|1=vers=2.0}} for Windows Vista mount.
+* If having timeouts on a mounted network share with cifs on a shutdown, see [[wpa_supplicant#Problem with mounted network shares (cifs) and shutdown]].
+}}
+
+==== Storing share passwords ====
+
+Storing passwords in a world readable file is not recommended. A safer method is to use a credentials file instead, e.g. inside {{ic|/etc/samba/credentials}}:
+
+{{hc|/etc/samba/credentials/share|2=
+username=''myuser''
+password=''mypass''
+}}
+
+For the mount command replace {{ic|1=username=myuser,password=mypass}} with {{ic|1=credentials=/etc/samba/credentials/share}}.
+
+The credential file should explicitly readable/writeable to root:
+
+ # chown root:root /etc/samba/credentials
+ # chmod 700 /etc/samba/credentials
+ # chmod 600 /etc/samba/credentials/share
+
+=== Automatic mounting ===
+
+{{Note|You may need to [[enable]] {{ic|systemd-networkd-wait-online.service}} or {{ic| NetworkManager-wait-online.service}} (depending on your setup) to proper enable booting on start-up.}}
+
+==== Using NetworkManager and GIO/gvfs ====
+
+[[NetworkManager#Network services with NetworkManager dispatcher|NetworkManager]] can be configured to run a script on network status change. This script uses the ''gio'' command so that it mounts the Samba shares automatically, the same way your file manager does, as explained [[#File manager configuration|below]]. The script also safely unmounts the Samba shares before the relevant network connection is disabled by listening for the {{ic|pre-down}} and {{ic|vpn-pre-down}} events. Make the script is [[executable]] after creating it.
+
+{{hc|/etc/NetworkManager/dispatcher.d/30-samba.sh|<nowiki>
+#!/bin/sh
+
+# Find the connection UUID with "nmcli con show" in terminal.
+# All NetworkManager connection types are supported: wireless, VPN, wired...
+WANTED_CON_UUID="CHANGE-ME-NOW-9c7eff15-010a-4b1c-a786-9b4efa218ba9"
+
+# The user the share will be mounted under
+USER="yourusername"
+# The path that appears in your file manager when you manually mount the share you want
+SMB_URL="smb://servername/share"
+
+# Get runtime user directory. If it does not exist, do nothing and just exit
+XDG_RUNTIME_DIR=$(loginctl show-user --property=RuntimePath --value "$USER") || exit 0
+
+if [ "$CONNECTION_UUID" = "$WANTED_CON_UUID" ]; then
+    
+    # Script parameter $1: network interface name, not used
+    # Script parameter $2: dispatched event
+    
+    case "$2" in
+        "up"|"vpn-up")
+            su $USER -c "DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus gio mount $SMB_URL"
+            ;;
+        "pre-down"|"vpn-pre-down")
+            su $USER -c "DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus gio mount -uf $SMB_URL"
+            ;;
+    esac
+fi
+</nowiki>}}
+
+Create a symlink inside {{ic|/etc/NetworkManager/dispatcher.d/pre-down}} to catch the {{ic|pre-down}} events:
+
+ # ln -s /etc/NetworkManager/dispatcher.d/30-samba.sh /etc/NetworkManager/dispatcher.d/pre-down.d/30-samba.sh
+
+{{Note|Since this script uses the user bus, it will only work if the user has active sessions. This means that the share will not mount automatically after boot if the connection is established before you are logged in.}}
+
+==== As mount entry ====
+
+This is a simple example of a {{ic|cifs}} [[fstab|mount entry]] that requires authentication:
+
+{{hc|/etc/fstab|2=
+//''SERVER''/''sharename'' /mnt/''mountpoint'' cifs _netdev,nofail,username=''myuser'',password=''mypass'' 0 0
+}}
+
+{{Note|
+* Spaces in sharename should be replaced by {{ic|\040}} (ASCII code for space in octal). For example, {{ic|//''SERVER''/share name}} on the command line should be {{ic|//''SERVER''/share\040name}} in {{ic|/etc/fstab}}.
+* To allow users to mount it as long as the mount point resides in a directory controllable by the user; i.e. the user's home, append the {{ic|users}} mount option. The option is user'''s''' (plural). For other filesystem types handled by mount, this option is usually ''user''; sans the "'''s'''".
+}}
+
+{{Tip|Use {{ic|x-systemd.automount}} if you want them to be mounted only upon access. See [[Fstab#Remote file system]] for details.}}
+
+==== As systemd unit ====
+
+Create a new {{ic|.mount}} file inside {{ic|/etc/systemd/system}}, e.g. {{ic|mnt-myshare.mount}}. See {{man|5|systemd.mount}} for details.
+
+{{Note|Make sure the filename corresponds to the mountpoint you want to use.
+E.g. the unit name {{ic|mnt-myshare.mount}} can only be used if are going to mount the share under {{ic|/mnt/myshare}}. Otherwise the following error might occur: {{ic|1=systemd[1]: mnt-myshare.mount: Where= setting does not match unit name. Refusing.}}.}}
+
+{{ic|1=What=}} path to share
+
+{{ic|1=Where=}} path to mount the share
+
+{{ic|1=Options=}} share mounting options
+
+{{Note|
+* Network mount units automatically acquire {{ic|After}} dependencies on {{ic|remote-fs-pre.target}}, {{ic|network.target}} and {{ic|network-online.target}}, and gain a {{ic|Before}} dependency on {{ic|remote-fs.target}} unless {{ic|nofail}} mount option is set. Towards the latter a {{ic|Wants}} unit is added as well.
+* [[Append]] {{ic|noauto}} to {{ic|Options}} preventing automatically mount during boot (unless it is pulled in by some other unit).
+* If you want to use a hostname for the server you want to share (instead of an IP address), add {{ic|1=nss-lookup.target}} to {{ic|1=After}}. This might avoid mount errors at boot time that do not arise when testing the unit.
+}} 
+
+{{hc|/etc/systemd/system/mnt-myshare.mount|2=
+[Unit]
+Description=Mount Share at boot
+
+[Mount]
+What=//server/share
+Where=/mnt/myshare
+Options=_netdev,credentials=/etc/samba/credentials/myshare,iocharset=utf8,rw
+Type=cifs
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target
+}}
+
+{{Tip|
+* In case of an unreachable system, [[append]] {{ic|1=ForceUnmount=true}} to {{ic|[Mount]}}, allowing the share to be (force-)unmounted.
+* If your share has groups with read-only access, [[append]] {{ic|1=uid=''username''}} or {{ic|1=gid=''group''}} to {{ic|1=Options=}}, to specify your user / group allowing writing to the share.
+}}
+
+To use {{ic|mnt-myshare.mount}}, [[start]] the unit and [[enable]] it to run on system boot.
+
+===== automount =====
+
+To automatically mount a share (when accessed, like autofs), one may use the following automount unit:
+
+{{hc|/etc/systemd/system/mnt-myshare.automount|2=
+[Unit]
+Description=Automount myshare
+
+[Automount]
+Where=/mnt/myshare
+
+[Install]
+WantedBy=multi-user.target
+}}
+
+[[Disable]]/[[stop]] the {{ic|mnt-myshare.mount}} unit, and [[enable]]/[[start]] {{ic|mnt-myshare.automount}} to automount the share when the mount path is being accessed.
+
+{{Tip|[[Append]] {{ic|TimeoutIdleSec}} to enable auto unmount. See {{man|5|systemd.automount}} for details.}}
+
+==== smbnetfs ====
+
+{{Note|1=smbnetfs needs an intact Samba server setup.
+
+See above on how to do that.}}
+
+First, check if you can see all the shares you are interested in mounting:
+
+ $ smbtree -U ''remote_user''
+
+If that does not work, find and modify the following line
+in {{ic|/etc/samba/smb.conf}} accordingly:
+
+ domain master = auto
+
+Now [[restart]] {{ic|smb.service}} and {{ic|nmb.service}}.
+
+If everything works as expected, [[install]] {{Pkg|smbnetfs}}.
+
+Then, add the following line to {{ic|/etc/fuse.conf}}:
+
+ user_allow_other
+
+Now copy the directory {{ic|/etc/smbnetfs/.smb}} to your home directory:
+
+ $ cp -a /etc/smbnetfs/.smb ~
+
+Then create a link to {{ic|smb.conf}}:
+
+ $ ln -sf /etc/samba/smb.conf ~/.smb/smb.conf
+
+If a username and a password are required to access some of the shared folders, edit {{ic|~/.smb/smbnetfs.auth}}
+to include one or more entries like this:
+
+{{hc|~/.smb/smbnetfs.auth|
+auth			"hostname" "username" "password"
+}}
+
+It is also possible to add entries for specific hosts to be mounted by smbnetfs, if necessary.
+More details can be found in {{ic|~/.smb/smbnetfs.conf}}.
+
+If you are using the [[Dolphin]] or [[GNOME Files]], you may want to add the following to {{ic|~/.smb/smbnetfs.conf}} to avoid "Disk full" errors as smbnetfs by default will report 0 bytes of free space:
+
+{{hc|~/.smb/smbnetfs.conf|
+free_space_size 1073741824
+}}
+
+When you are done with the configuration, you need to run
+
+ $ chmod 600 ~/.smb/smbnetfs.*
+
+Otherwise, smbnetfs complains about 'insecure config file permissions'.
+
+Finally, to mount your Samba network neighbourhood to a directory of your choice, call
+
+ $ smbnetfs ''mount_point''
+
+===== Daemon =====
+
+The Arch Linux package also maintains an additional system-wide operation mode for smbnetfs. To enable it, you need to make the
+said modifications in the directory {{ic|/etc/smbnetfs/.smb}}.
+
+Then, you can start and/or enable the {{ic|smbnetfs}} [[daemon]] as usual. The system-wide mount point is at {{ic|/mnt/smbnet/}}.
+
+==== autofs ====
+
+See [[Autofs]] for information on the kernel-based automounter for Linux.
+
+=== File manager configuration ===
+
+==== GNOME Files, Nemo, Caja, Thunar and PCManFM ====
+
+In order to access samba shares through GNOME Files, Nemo, Caja, Thunar or PCManFM, install the {{Pkg|gvfs-smb}} package.
+
+Press {{ic|Ctrl+l}} and enter {{ic|smb://''servername''/''share''}} in the location bar to access your share.
+
+The mounted share is likely to be present at {{ic|/run/user/''your_UID''/gvfs}} or {{ic|~/.gvfs}} in the filesystem.
+
+==== KDE ====
+
+KDE applications (like Dolphin) has the ability to browse Samba shares built in. Use the path {{ic|smb://''servername''/''share''}} to browse the files. If you want to access files from on non-KDE application, you can install {{Pkg|kio-fuse}}.
+
+To use a GUI in the KDE System Settings, you will need to install the {{Pkg|kdenetwork-filesharing}} package.
+
+==== Other graphical environments ====
+
+There are a number of useful programs, but they may need to have packages created for them. This can be done with the Arch package build system. The good thing about these others is that they do not require a particular environment to be installed to support them, and so they bring along less baggage.
+
+* {{AUR|pyneighborhood}}
+* LinNeighborhood, RUmba, xffm-samba plugin for Xffm are not available in the official repositories or the AUR. As they are not officially (or even unofficially supported), they may be obsolete and may not work at all.
+
+== Tips and tricks ==
+
+=== Discovering network shares ===
+
+If nothing is known about other systems on the local network, and automated tools such as [[#smbnetfs|smbnetfs]] are not available, you can manually probe for Samba shares.
+
+First, [[install]] the {{Pkg|nmap}} and {{Pkg|smbclient}} packages.
+
+Use [[nmap]] to scan your local network to find systems with TCP port 445 open, which is the port used by the SMB protocol. Note that you may need to use {{ic|-Pn}} or set a custom [[nmap#Ping scan types|ping scan type]] (e.g. {{ic|-PS445}}) because Windows systems are usually firewalled.
+
+{{hc|$ nmap -p 445 "192.168.1.*"|<nowiki>
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-13 12:00 UTC
+Nmap scan report for 192.168.1.1
+Host is up (0.0011s latency).
+
+PORT    STATE  SERVICE
+445/tcp open  microsoft-ds
+
+Nmap scan report for 192.168.1.2
+Host is up (0.00011s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Nmap done: 256 IP addresses (2 hosts up) scanned in 2.45 seconds
+</nowiki>}}
+
+The first result is another system; the second happens to be the client from where this scan was performed.
+
+Now you can connect to there IP addresses directly, but if you want to use NetBIOS host names, you can use {{man|1|nmblookup}} to check for NetBIOS names. Note that this will not work if NetBIOS is disabled on the server.
+
+{{hc|$ nmblookup -A 192.168.1.1|
+Looking up status of 192.168.1.1
+        PUTER           <00> -         B <ACTIVE>
+        HOMENET         <00> - <GROUP> B <ACTIVE>
+        PUTER           <03> -         B <ACTIVE>
+        '''PUTER           <20> -         B <ACTIVE>'''
+        HOMENET         <1e> - <GROUP> B <ACTIVE>
+        USERNAME        <03> -         B <ACTIVE>
+        HOMENET         <1d> -         B <ACTIVE>
+        MSBROWSE        <01> - <GROUP> B <ACTIVE>
+}}
+
+Regardless of the output, look for '''<20>''', which shows the host with open services.
+
+Use {{man|1|smbclient}} to list which services are shared on these systems. You can use NetBIOS host name ({{ic|PUTER}} in this example) instead of IP when available. If prompted for a password, pressing enter should still display the list:
+
+{{hc|$ smbclient -L \\192.168.1.1|<nowiki>
+Sharename       Type      Comment
+---------       ----      -------
+MY_MUSIC        Disk
+SHAREDDOCS      Disk
+PRINTER$        Disk
+PRINTER         Printer
+IPC$            IPC       Remote Inter Process Communication
+
+Server               Comment
+---------            -------
+PUTER
+
+Workgroup            Master
+---------            -------
+HOMENET               PUTER
+</nowiki>}}
+
+=== Remote control of Windows computer ===
+
+Samba offers a set of tools for communication with Windows. These can be handy if access to a Windows computer through remote desktop is not an option, as shown by some examples.
+
+Send shutdown command with a comment:
+ 
+ $ net rpc shutdown -C "comment" -I IPADDRESS -U USERNAME%PASSWORD
+
+A forced shutdown instead can be invoked by changing -C with comment to a single -f. For a restart, only add -r, followed by a -C or -f.
+
+Stop and start services:
+ 
+ $ net rpc service stop SERVICENAME -I IPADDRESS -U USERNAME%PASSWORD
+
+To see all possible net rpc command:
+
+ $ net rpc
+
+== Troubleshooting ==
+
+=== Failed to start Samba SMB/CIFS server ===
+
+Possible solutions:
+
+* Check {{ic|smb.conf}} on syntactic errors with {{man|1|testparm}}.
+* Set correct permissions for {{ic|/var/cache/samba/}} and [[restart]] {{ic|smb.service}}:
+
+ # chmod 0755 /var/cache/samba/msg
+
+=== Permission issues on SELinux ===
+
+[[SELinux]] not allow samba to access user home directories by default, to solve this, run:
+
+ # setsebool -P samba_enable_home_dirs 1
+
+Similarly, {{ic|samba_export_all_ro}} and {{ic|samba_export_all_rw}} make Samba has the ability to read or "read and write" all files.
+
+=== Permission issues on AppArmor ===
+
+If using a [[#Creating an anonymous share|share path]] located outside of a home or usershares directory, whitelist it in {{ic|/etc/apparmor.d/local/usr.sbin.smbd}}. E.g.:
+
+{{hc|/etc/apparmor.d/local/usr.sbin.smbd|
+"/data/" rk,
+"/data/**" lrwk,
+}}
+
+=== No dialect specified on mount ===
+
+The client is using an unsupported SMB/CIFS version that is required by the server.
+
+See [[#Restrict protocols for better security]] for more information.
+
+=== Unable to overwrite files, permissions errors ===
+
+{{Accuracy|An user should set/check for server/client permissions, instead of using incorrect/possible insecure flags.}}
+
+Possible solutions:
+
+* Append the mount option {{ic|nodfs}} to the {{ic|/etc/fstab}} [[#As mount entry|entry]].
+* Add {{ic|1=msdfs root = no}} to the {{ic|[global]}} section of the server's {{ic|/etc/samba/smb.conf}}.
+
+=== Windows clients keep asking for password even if Samba shares are created with guest permissions ===
+
+Set {{ic|map to guest}} inside the {{ic|global}} section of {{ic|/etc/samba/smb.conf}}:
+
+ map to guest = Bad Password
+
+If you are still using Samba < 4.10.10, use {{ic|Bad User}} instead of {{ic|Bad Password}}.
+
+=== Windows 7 connectivity problems - mount error(12): cannot allocate memory ===
+
+A known Windows 7 bug that causes "mount error(12): cannot allocate memory" on an otherwise perfect cifs share on the Linux end can be fixed by setting a few registry keys on the Windows box as follows:
+
+* {{ic|HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\LargeSystemCache}} (set to {{ic|1}})
+* {{ic|HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\Size}} (set to {{ic|3}})
+
+Alternatively, start Command Prompt in Admin Mode and execute the following:
+
+ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d 1 /f
+ reg add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v "Size" /t REG_DWORD /d 3 /f
+
+Do one of the following for the settings to take effect:
+
+* Restart Windows
+* Restart the Server service via services.msc
+* From the Command Prompt run: 'net stop lanmanserver' and 'net start lanmanserver' - The server may automatically restart after stopping it.
+
+{{Note|Googling will reveal another tweak recommending users to add a key modifying the "IRPStackSize" size.  This is incorrect for fixing this issue under Windows 7.  Do not attempt it.}}
+
+[https://web.archive.org/web/20150819153712/http://alan.lamielle.net/2009/09/03/windows-7-nonpaged-pool-srv-error-2017/ Original article].
+
+=== Windows 10 1709 and up connectivity problems - "Windows cannot access" 0x80004005 ===
+
+This error affects some machines running Windows 10 version 1709 and later. It is not related to SMB1 being disabled in this version but to the fact that Microsoft disabled insecure logons for guests on this version for some, but not others.
+
+To fix, open Group Policy Editor ({{ic|gpedit.msc}}). Navigate to ''Computer configuration\administrative templates\network\Lanman Workstation > Enable insecure guest logons'' and enable it.
+Alternatively,change the following value in the registry:
+
+ [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]
+ "AllowInsecureGuestAuth"=dword:1
+
+=== Error: Failed to retrieve printer list: NT_STATUS_UNSUCCESSFUL ===
+
+If you are a home user and using samba purely for file sharing from a server or NAS, you are probably not interested in sharing printers through it. If so, you can prevent this error from occurring by adding the following lines to your {{ic|/etc/samba/smb.conf}}:
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  load printers = No
+  printing = bsd
+  printcap name = /dev/null
+  disable spoolss = Yes
+}}
+
+[[Restart]] the samba service, {{ic|smb.service}}, and then check your logs:
+
+ # cat /var/log/samba/smbd.log
+
+and the error should now no longer be appearing.
+
+=== Sharing a folder fails ===
+
+It means that while you are sharing a folder from ''Dolphin'' (file manager) and everything seems ok at first, after restarting ''Dolphin'' the share icon is gone from the shared folder, and also some output like this in terminal (''Konsole'') output:
+
+ ‘net usershare’ returned error 255: net usershare: usershares are currently disabled
+
+To fix it, enable usershare as described in [[#Enable Usershares]].
+
+=== "Browsing" network fails with "Failed to retrieve share list from server" ===
+
+And you are using a firewall (iptables) because you do not trust your local (school, university, hotel) network.  This may be due to the following: When the smbclient is browsing the local network it sends out a broadcast request on udp port 137.  The servers on the network then reply to your client but as the source address of this reply is different from the destination address iptables saw when sending the request for the listing out, iptables will not recognize the reply as being "ESTABLISHED" or "RELATED", and hence the packet is dropped.  A possible solution is to add:
+
+ iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
+
+to your iptables setup.
+
+For [[Uncomplicated Firewall]], you need to add {{ic|nf_conntrack_netbios_ns}} to the end of the following line in {{ic|/etc/default/ufw}}
+
+ IPT_MODULES="nf_conntrack_ftp nf_nat_ftp nf_conntrack_irc nf_nat_irc"
+
+and then run the following commands as root:
+
+ echo 1 > /proc/sys/net/netfilter/nf_conntrack_helper
+ ufw allow CIFS
+ ufw reload
+
+To make this change persistent across reboots, add the following line at the end of {{ic|/etc/ufw/sysctl.conf}}:
+
+ net.netfilter.nf_conntrack_helper=1
+
+=== Protocol negotiation failed: NT_STATUS_INVALID_NETWORK_RESPONSE ===
+
+The client probably does not have access to shares.  Make sure clients' IP address is in {{ic|1=hosts allow =}} line in {{ic|/etc/samba/smb.conf}}.
+
+Another problem could be, that the client uses an invalid protocol version. To check this try to connect with the {{ic|smbclient}} where you specify the maximum protocol version manually:
+
+ $ smbclient -U <user name> -L //<server name> -m <protocol version: e. g. SMB2> -W <domain name>
+
+If the command was successful then create a configuration file:
+
+{{hc|~/.smb/smb.conf|output=
+[global]
+  workgroup = <domain name>
+  client max protocol = SMB2
+}}
+
+=== Connection to SERVER failed: (Error NT_STATUS_UNSUCCESSFUL) ===
+
+You are probably passing a wrong server name to {{ic|smbclient}}.  To find out the server name, run {{ic|hostnamectl}} on the server and look at "Transient hostname" line
+
+=== Connection to SERVER failed: (Error NT_STATUS_CONNECTION_REFUSED) ===
+
+Make sure that the server has started. The shared directories should exist and be accessible.
+
+=== Protocol negotiation failed: NT_STATUS_CONNECTION_RESET ===
+
+Probably the server is configured not to accept protocol SMB1. Add option {{ic|1=client max protocol = SMB2}} in {{ic|/etc/samba/smb.conf}}.
+Or just pass argument {{ic|-m SMB2}} to {{ic|smbclient}}.
+
+=== Password Error when correct credentials are given (error 1326) ===
+
+[https://www.samba.org/samba/history/samba-4.5.0.html Samba 4.5] has NTLMv1 authentication disabled by default. It is recommend to install the latest available upgrades on clients and deny access for unsupported clients.
+ 
+If you still need support for very old clients without NTLMv2 support (e.g. Windows XP), it is possible force enable NTLMv1, although this is '''not recommend''' for security reasons:
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  lanman auth = yes
+  ntlm auth = yes
+}}
+
+If NTLMv2 clients are unable to authenticate when NTLMv1 has been enabled, create the following file on the client:
+{{hc|/home/user/.smb/smb.conf|2=
+[global]
+  sec = ntlmv2
+  client ntlmv2 auth = yes
+}}
+
+This change also affects samba shares mounted with '''mount.cifs'''. If after upgrade to Samba 4.5 your mount fails, add the '''sec=ntlmssp''' option to your mount command, e.g.
+
+ mount.cifs //server/share /mnt/point -o sec=ntlmssp,...
+
+See the {{man|8|mount.cifs}} man page: '''ntlmssp''' - Use NTLMv2 password hashing encapsulated in Raw NTLMSSP message. The default in mainline kernel versions prior to v3.8 was '''sec=ntlm'''. In v3.8, the default was changed to '''sec=ntlmssp'''.
+
+=== Mapping reserved Windows characters ===
+
+Starting with kernel 3.18, the cifs module uses the [https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=2baa2682531ff02928e2d3904800696d9e7193db "mapposix" option by default].
+When mounting a share using unix extensions and a default Samba configuration, files and directories containing one of the seven reserved Windows characters {{ic|: \ * < > ? |}} are listed but cannot be accessed.
+
+Possible solutions are:
+
+* Use the undocumented {{ic|nomapposix}} mount option for cifs
+
+ # mount.cifs //server/share /mnt/point -o nomapposix
+
+* Configure Samba to remap {{ic|mapposix}} ("SFM", Services for Mac) style characters to the correct native ones using [https://www.mankier.com/8/vfs_fruit fruit]
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  vfs objects = catia fruit
+  fruit:encoding = native
+}}
+
+* Manually remap forbidden characters using [https://www.mankier.com/8/vfs_catia catia]
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+  vfs objects = catia
+  catia:mappings = 0x22:0xf022, 0x2a:0xf02a, 0x2f:0xf02f, 0x3a:0xf03a, 0x3c:0xf03c, 0x3e:0xf03e, 0x3f:0xf03f, 0x5c:0xf05c, 0x7c:0xf07c, 0x20:0xf020
+}}
+
+The latter approach (using catia or fruit) has the drawback of filtering files with unprintable characters.
+
+=== Folder shared inside graphical environment is not available to guests ===
+
+This section presupposes:
+
+# Usershares are configured following [[#Enable Usershares|previous section]]
+# A shared folder has been created as a non-root user from GUI
+# Guests access has been set to shared folder during creation
+# Samba service has been restarted at least once since last {{ic|/etc/samba/smb.conf}} file modification
+
+For clarification purpose only, in the following sub-sections is assumed:
+
+* Shared folder is located inside user home directory path ({{ic|/home/yourUser/Shared}})
+* Shared folder name is ''MySharedFiles''
+* Guest access is read-only.
+* Windows users will access shared folder content without login prompt
+
+==== Verify correct samba configuration ====
+
+Run the following command from a terminal to test configuration file correctness:
+
+ $ testparm
+
+==== Verify correct shared folder creation ====
+
+Run the following commands from a terminal:
+
+ $ cd /var/lib/samba/usershares
+ $ ls
+
+If everything is fine, you will notice a file named {{ic|mysharedfiles}}
+
+Read the file contents using the following command:
+
+ $ cat mysharedfiles
+
+The terminal output should display something like this:
+
+{{hc|/var/lib/samba/usershares/mysharedfiles|2=
+path=/home/yourUser/Shared
+comment=
+usershare_acl=S-1-1-0:r
+guest_ok=y
+sharename=MySharedFiles
+}}
+
+==== Verify folder access by guest ====
+
+Run the following command from a terminal. If prompted for a password, just press Enter:
+
+ $ smbclient -L localhost
+
+If everything is fine, MySharedFiles should be displayed under {{ic|Sharename}} column
+
+Run the following command in order to access the shared folder as guest (anonymous login)
+
+ $ smbclient -N //localhost/MySharedFiles
+
+If everything is fine samba client prompt will be displayed:
+
+ smb: \>
+
+From samba prompt verify guest can list directory contents:
+
+ smb: \> ls
+
+If the {{ic|NTFS_STATUS_ACCESS_DENIED}} error is displayed, the issue is likely to be with Unix directory permissions. Ensure that your samba user has access to the folder and all parent folders. You can test this by sudoing to the user and attempting to list the mount directory, and all of its parents.
+
+=== Mount error: Host is down ===
+
+This error might be seen when mounting shares of Synology NAS servers. Use the mount option {{ic|1=vers=1.0}} to solve it.
+
+{{Note|SMB version 1 is known to have security vulnerabilities and was used in successful ransomware attacks.}}
+
+=== Software caused connection abort ===
+
+File managers that utilizes {{Pkg|gvfs-smb}} can show the error {{ic|Software caused connection abort}} when writing a file to a share/server. This may be due to the server running SMB/CIFS version 1, which many routers use for USB drive sharing (e.g. Belkin routers). To write to these shares specify the CIFS version with the option {{ic|1=vers=1.0}}. E.g.:
+
+{{hc|/etc/fstab|2=
+//SERVER/sharename /mnt/mountpoint cifs _netdev,guest,file_mode=0777,dir_mode=0777,vers=1.0 0 0
+}}
+
+This can also happen after updating Samba to version 4.11, which deactivates SMB1 as default, and accessing any Samba share. You can reenable it by adding
+
+{{hc|/etc/samba/smb.conf|2=
+[global]
+client min protocol = CORE
+}}
+
+=== Connection problem (due to authentification error) ===
+
+Be sure that you do not leave any space characters before your username in Samba client configuration file as follows:
+
+{{hc|~/.samba|2=
+username= user
+password=pass
+}}
+
+The correct format is:
+
+{{hc|~/.samba|2=
+username=user
+password=pass
+}}
+
+=== Windows 1709 or up does not discover the samba server in Network view ===
+
+With Windows 10 version 1511, support for SMBv1 and thus NetBIOS device discovery was disabled by default. Depending on the actual edition, later versions of Windows starting from version 1709 ("Fall Creators Update") do not allow the installation of the SMBv1 client anymore. This causes hosts running Samba not to be listed in the Explorer's "Network (Neighborhood)" views. While there is no connectivity problem and Samba will still run fine, users might want to have their Samba hosts to be listed by Windows automatically. {{AUR|wsdd}} implements a Web Service Discovery host daemon. This enables (Samba) hosts, like your local NAS device, to be found by Web Service Discovery Clients like Windows. The default settings should work for most installations, all you need to do is start enable {{ic|wsdd.service}}.
+
+If the default configuration (advertise itself as the machine hostname in group "WORKGROUP") should be all you need in most cases. If you need, you can change configuration options by passing additional arguments to wsdd by adding them in {{ic|/etc/conf.d/wsdd}} (see the manual page for wsdd for details).
+
+{{AUR|wsdd2}} does the same thing, but is written in C instead of Python. By default, it will look for the {{ic|netbios name}} and {{ic|workgroup}} values in {{ic|smb.conf}}.
+
+=== IOS Files can no longer copy-to Samba share on Arch Linux beginning with IOS 14.5===
+
+Beginning with IOS 14.5 attempting to transfer from a device running IOS using the "Files" app to a samba share on Arch Linux will result in the error:
+
+ The operation couldn't be completed
+ Operation canceled
+
+To correct this problem, add add the following to the global section of your {{ic|smb.conf}} and [[restart]] {{ic|smb.service}}.
+Comment optional:
+
+ ## addition for IOS Files transfer-to server
+ vfs object = fruit streams_xattr
+
+See https://apple.stackexchange.com/q/424681 Apple.Stackexchange.com - "The operation couldn't be completed"/"Operation canceled" error message when saving to a Samba share via Files app.
+
+=== Slow initial connections from certain clients without other performance problems ===
+
+Some SMB clients, such as Solid Explorer for Android, take significantly longer to connect to Samba if they fail to resolve the NetBIOS name. Enabling {{ic|nmb.service}} will greatly speed up initial connections if this is the case. Since this is a bug in the client software, please report such cases to the authors of conflicting software.
+
+== See also ==
+
+* [https://www.samba.org/ Official website]
+* [https://www.samba.org/samba/docs/SambaIntro.html Samba: An Introduction]
+* [https://www.samba.org/samba/docs/Samba-HOWTO-Collection.pdf Samba 3.2.x HOWTO and Reference Guide] (outdated but still most extensive documentation)
+* [[Wikipedia:Samba (software)|Wikipedia]]
+* [[Gentoo:Samba/Guide]]
+* [[Debian:Samba/ServerSimple]]
+* [https://docs.kernel.org//filesystems/cifs/ksmbd.html KSMBD] - A linux kernel server which implements SMB3 protocol in kernel space for sharing files over network.
