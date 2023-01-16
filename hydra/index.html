@@ -102,6 +102,27 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="hydra">Hydra</h1>
+<pre><code class="language-python">
+import logging
+
+from omegaconf import OmegaConf, DictConfig
+import hydra
+from hydra.core.hydra_config import HydraConfig
+
+@hydra.main(
+    version_base=None,
+    config_path=&quot;configs&quot;,
+    config_name=&quot;config&quot;,
+)
+def main(cfg: DictConfig) -&gt; None:
+    logger.info(OmegaConf.to_yaml(cfg))
+    logger.info(f&quot;runtime.output_dir{HydraConfig.get().runtime.output_dir}&quot;)
+    run(cfg)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
 <pre><code class="language-python">from hydra import initialize, compose
 
 with initialize(version_base=None, config_path=&quot;configs&quot;):
