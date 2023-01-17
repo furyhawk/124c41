@@ -102,7 +102,10 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="dataframe">Dataframe</h1>
-<p><code>df["cancer"].value_counts().plot(kind='barh')</code></p>
+<p><code>df["cancer"].value_counts().plot(kind='barh')</code>
+<code>df[["patient_id", "image_id"]].astype(str).apply(lambda x: 'data/rsna/'+'/'.join(x)+'.png', axis=1)</code>
+<code>return list(mapping.keys())[list(mapping.values()).index(x)]</code>
+``</p>
               
             </div>
           </div><footer>
