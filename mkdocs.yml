@@ -2,6 +2,7 @@ site_name: 124c41
 nav:
     - Home: index.md
     - Conda: conda.md
+    - Framework: framework.md
     - Dataframe: dataframe.md
     - Hydra: hydra.md
     - Linux: linux.md

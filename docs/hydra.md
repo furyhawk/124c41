@@ -28,3 +28,8 @@ with initialize(version_base=None, config_path="configs"):
     # config is relative to a module
     cfg = compose(config_name="config")
 ```
+
+To check current defaults
+```sh
+python my_app.py --info defaults-tree
+```
