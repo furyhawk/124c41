@@ -49,6 +49,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../framework/">Framework</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../dataframe/">Dataframe</a>
                 </li>
               </ul>
@@ -126,6 +130,9 @@ if __name__ == &quot;__main__&quot;:
 with initialize(version_base=None, config_path=&quot;configs&quot;):
     # config is relative to a module
     cfg = compose(config_name=&quot;config&quot;)
+</code></pre>
+<p>To check current defaults</p>
+<pre><code class="language-sh">python my_app.py --info defaults-tree
 </code></pre>
               
             </div>

@@ -48,6 +48,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../conda/">Conda</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../framework/">Framework</a>
+                </li>
+              </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Dataframe</a>
     <ul class="current">
@@ -104,13 +108,17 @@
                 <h1 id="dataframe">Dataframe</h1>
 <p><code>df["cancer"].value_counts().plot(kind='barh')</code>
 <code>df[["patient_id", "image_id"]].astype(str).apply(lambda x: 'data/rsna/'+'/'.join(x)+'.png', axis=1)</code>
-<code>return list(mapping.keys())[list(mapping.values()).index(x)]</code>
+<code>list(mapping.keys())[list(mapping.values()).index(x)]</code>
 ``</p>
+<p>import logging
+from configs import LOGGER_NAME</p>
+<p>logger = logging.getLogger(LOGGER_NAME)  # pylint: disable=invalid-name</p>
+<p>logger.info</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../conda/" class="btn btn-neutral float-left" title="Conda"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../framework/" class="btn btn-neutral float-left" title="Framework"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../hydra/" class="btn btn-neutral float-right" title="Hydra">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -134,7 +142,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../conda/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../framework/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../hydra/" style="color: #fcfcfc">Next &raquo;</a></span>
