@@ -138,9 +138,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="samba">Samba</h1>
-<p>||\&lt;tablestyle="float:right; font-size: 0.9em; width:40%;
-background:#F1F1ED; margin: 0 0 1em 1em;"
-style="padding:0.5em;">\&lt;<TableOfContents>>||</p>
 <p>This document describes how to mount CIFS shares permanently. The shares
 might be hosted on a Windows computer/server, or on a Linux/UNIX server
 running <a href="https://help.ubuntu.com/community/Samba" title="wikilink">Samba</a>.
@@ -152,13 +149,13 @@ how to access shares that are hosted somewhere else. For hosting shares,
 use <a href="https://help.ubuntu.com/community/Samba" title="wikilink">Samba</a>.)</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>We're assuming that:</p>
-<p><code>* Network connections have been configured properly.</code><br />
-<code>* Your local (Ubuntu) username is</code><em><code>ubuntuusername</code></em><code>.</code><br />
-<code>* Share username on Windows computer is</code><em><code>msusername</code></em><code>.</code><br />
-<code>* Share password on Windows computer is</code><em><code>mspassword</code></em><code>.</code><br />
-<code>* The Windows computer's name is</code><em><code>servername</code></em><code>(this can be either an IP address or an assigned name).</code><br />
-<code>* The name of the share is</code><em><code>sharename</code></em><code>.</code><br />
-<code>* You want to mount the share in</code><em><code>/media/windowsshare</code></em><code>.</code></p>
+<p>* Network connections have been configured properly.
+* Your local (Ubuntu) username is <code>*</code>ubuntuusername<code>*</code>.
+* Share username on Windows computer is <code>*</code>msusername<code>*</code>.
+* Share password on Windows computer is <code>*</code>mspassword<code>*</code>.
+* The Windows computer's name is <code>*</code>servername<code>*</code> this can be either an IP address or an assigned name).
+* The name of the share is <code>*</code>sharename<code>*</code>.
+* You want to mount the share in <code>*</code>/media/windowsshare<code>*</code>.</p>
 <h2 id="cifs-installation">CIFS installation</h2>
 <p>On older systems:</p>
 <h2 id="mounting-unprotected-guest-network-folders">Mounting unprotected (guest) network folders</h2>
@@ -166,11 +163,10 @@ use <a href="https://help.ubuntu.com/community/Samba" title="wikilink">Samba</a>
 directory for each mount. </p>
 <p>Then edit your /etc/fstab file (with root privileges) to add this line: </p>
 <p>Where</p>
-<p><code>*</code><strong><code>guest</code></strong><code>indicates you don't need a password to access the share,</code><br />
-<code>*</code><strong><code>uid=1000</code></strong><code>makes the Linux user specified by the id the owner of the mounted share, allowing them to rename files,</code><br />
-<code>*</code><strong><code>iocharset=utf8</code></strong><code>allows access to files with names in non-English languages. This doesn't work with shares of devices like the Buffalo Tera Station, or Windows machines that export their shares using ISO8895-15.</code><br />
-<code>* If there is any</code><strong><code>space``   ``in``   ``the``   ``server`` 
- ``path</code></strong><code>, you need to replace it by \040, for example //servername/My\040Documents</code></p>
+<p>* <code>**</code>guest<code>**</code> indicates you don't need a password to access the share,
+* <code>**</code>uid=1000<code>**</code> makes the Linux user specified by the id the owner of the mounted share, allowing them to rename files,
+* <code>**</code>iocharset=utf8<code>**</code> allows access to files with names in non-English languages. This doesn't work with shares of devices like the Buffalo Tera Station, or Windows machines that export their shares using ISO8895-15.
+* If there is any <code>**</code>space<code></code>in<code></code>the<code></code>server<code></code>path<code>**</code>, you need to replace it by \040, for example //servername/My\040Documents`</p>
 <p>After you add the entry to /etc/fstab type:  This will (re)mount all
 entries listed in /etc/fstab.</p>
 <h2 id="mount-password-protected-network-folders">Mount password protected network folders</h2>
@@ -213,13 +209,11 @@ file when done. With this in place, users can create their own
 <h3 id="login-errors">Login errors</h3>
 <p>If you get the error "mount error(13) permission denied", then the
 server denied your access. Here are the first things to check:</p>
-<p><code>* Are you using a valid username and password? Does that account really have access to this folder?</code><br />
-<code>* Do you have whitespace in your credentials file? It should be ``, not ``.</code><br />
-<code>* Do you need a domain? For example, if you are told that your username is ``, then actually your username is `` and your domain is ``. The fstab entry should read: `` Or:</code><br />
-<code>* The security and version settings are interrelated. SMB1 is insecure and no longer supported by default. At first, try to not specify either security or version: do not specify `` or ``. If you still have authentication errors then you may need to specify either `` or `` or both. You can try the options listed at the</code><a href="http://manpages.ubuntu.com/manpages/raring/en/man8/mount.cifs.8.html" title="wikilink"><code>mount.cifs`` 
- ``man`` 
- ``page</code></a><code>. The man page list leaves out the option `` for some reason, but you should try that one as well (</code><a href="https://bugs.launchpad.net/ubuntu/+source/cifs-utils/+bug/1113395" title="wikilink"><code>see`` 
- ``discussion</code></a><code>).</code></p>
+<p>* Are you using a valid username and password? Does that account really have access to this folder?
+* Do you have whitespace in your credentials file? It should be <code>, not</code>.
+* Do you need a domain? For example, if you are told that your username is <code>, then actually your username is</code> and your domain is <code>. The fstab entry should read:</code> Or:
+* The security and version settings are interrelated. SMB1 is insecure and no longer supported by default. At first, try to not specify either security or version: do not specify <code>or</code>. If you still have authentication errors then you may need to specify either <code>or</code> or both. You can try the options listed at the <code>[</code>mount.cifs<code></code>man<code></code>page<code>](http://manpages.ubuntu.com/manpages/raring/en/man8/mount.cifs.8.html "wikilink")</code>. The man page list leaves out the option <code>for some reason, but you should try that one as well (`[`see</code> 
+ <code>`discussion</code>](https://bugs.launchpad.net/ubuntu/+source/cifs-utils/+bug/1113395 "wikilink")<code>).</code></p>
 <h3 id="unprotected-network-folder-wont-automount">Unprotected network folder won't automount</h3>
 <p>I've had a situation where an unprotected network folder wouldn't
 automount during bootup, but after manually entering "sudo mount -a" was
