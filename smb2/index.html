@@ -149,14 +149,13 @@ how to access shares that are hosted somewhere else. For hosting shares,
 use <a href="https://help.ubuntu.com/community/Samba" title="wikilink">Samba</a>.)</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>We're assuming that:</p>
-<pre><code>- Network connections have been configured properly.
-- Your local (Ubuntu) username is *ubuntuusername*.
-- Share username on Windows computer is `msusername`.
-- Share password on Windows computer is `*`mspassword`*`.
-- The Windows computer's name is `*`servername`*` this can be either an IP address or an assigned name).
-- The name of the share is `*`sharename`*`.
-- You want to mount the share in `*`/media/windowsshare`*`.
-</code></pre>
+<p>- Network connections have been configured properly.
+- Your local (Ubuntu) username is <em>ubuntuusername</em>.
+- Share username on Windows computer is <code>msusername</code>.
+- Share password on Windows computer is <code>mspassword</code>.
+- The Windows computer's name is <code>servername</code> this can be either an IP address or an assigned name).
+- The name of the share is <code>sharename</code>.
+- You want to mount the share in <code>/media/windowsshare</code>.</p>
 <h2 id="cifs-installation">CIFS installation</h2>
 <p>On older systems:</p>
 <h2 id="mounting-unprotected-guest-network-folders">Mounting unprotected (guest) network folders</h2>
@@ -164,10 +163,10 @@ use <a href="https://help.ubuntu.com/community/Samba" title="wikilink">Samba</a>
 directory for each mount. </p>
 <p>Then edit your /etc/fstab file (with root privileges) to add this line: </p>
 <p>Where</p>
-<p>* <code>**</code>guest<code>**</code> indicates you don't need a password to access the share,
-* <code>**</code>uid=1000<code>**</code> makes the Linux user specified by the id the owner of the mounted share, allowing them to rename files,
-* <code>**</code>iocharset=utf8<code>**</code> allows access to files with names in non-English languages. This doesn't work with shares of devices like the Buffalo Tera Station, or Windows machines that export their shares using ISO8895-15.
-* If there is any <code>**</code>space<code></code>in<code></code>the<code></code>server<code></code>path<code>**</code>, you need to replace it by \040, for example //servername/My\040Documents`</p>
+<p>- <strong>guest</strong> indicates you don't need a password to access the share,
+- <strong>uid=1000</strong> makes the Linux user specified by the id the owner of the mounted share, allowing them to rename files,
+- <strong>iocharset=utf8</strong> allows access to files with names in non-English languages. This doesn't work with shares of devices like the Buffalo Tera Station, or Windows machines that export their shares using ISO8895-15.
+- If there is any <code>**</code>space<code></code>in<code></code>the<code></code>server<code></code>path<code>**</code>, you need to replace it by \040, for example //servername/My\040Documents`</p>
 <p>After you add the entry to /etc/fstab type:  This will (re)mount all
 entries listed in /etc/fstab.</p>
 <h2 id="mount-password-protected-network-folders">Mount password protected network folders</h2>
