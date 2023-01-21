@@ -539,37 +539,55 @@ port 137.</p>
 <h4 id="disable-netbioswins-support">Disable NetBIOS/WINS support</h4>
 <p>When not using NetBIOS/WINS host name resolution, it may be preferred to
 disable this protocol:</p>
+<p><code>/etc/samba/smb.conf</code></p>
+<pre><code>[global]
+  disable netbios = yes
+  dns proxy = no
+</code></pre>
 <p>Finally <a href="disable" title="wikilink">disable</a>/<a href="stop" title="wikilink">stop</a> .</p>
 <h3 id="manual-mounting">Manual mounting</h3>
 <p>Mount the share using  as . Not all the options listed below are needed
 or desirable:</p>
 <p><code># mount --mkdir -t cifs //</code><em><code>SERVER</code></em><code>/</code><em><code>sharename</code></em><code>/mnt/</code><em><code>mountpoint</code></em><code>-o username=</code><em><code>username</code></em><code>,password=</code><em><code>password</code></em><code>,workgroup=</code><em><code>workgroup</code></em><code>,iocharset=</code><em><code>utf8</code></em><code>,uid=</code><em><code>username</code></em><code>,gid=</code><em><code>group</code></em></p>
-<p>The options  and  corresponds to the local (e.g. client)
+<p>The options <code>uid</code> and <code>gid</code> corresponds to the local (e.g. client)
 <a href="user" title="wikilink">user</a>/<a href="user_group" title="wikilink">user group</a> to have
 read/write access on the given path.</p>
+<p><strong>Note</strong>:
+If the uid and gid being used does not match the user of the server, the forceuid and forcegid options may be helpful. However note permissions assigned to a file when forceuid or forcegid are in effect may not reflect the the real (server) permissions. See the File And Directory Ownership And Permissions section in mount.cifs(8) § FILE AND DIRECTORY OWNERSHIP AND PERMISSIONS for more information.
+To mount a Windows share without authentication, use "username=*".</p>
+<p><strong>Warning</strong>: Using uid and/or gid as mount options may cause I/O errors, it is recommended to set/check correct File permissions and attributes instead.</p>
 <ul>
 <li>
-<p>— The server name.</p>
+<p><code>SERVER</code> — The server name.</p>
 </li>
 <li>
-<p>— The shared directory.</p>
+<p><code>sharename</code> — The shared directory.</p>
 </li>
 <li>
-<p>— The local directory where the share will be mounted.</p>
+<p><code>mountpoint</code> — The local directory where the share will be mounted.</p>
 </li>
 <li>
-<p>— See  for more information.</p>
+<p><code>[-o options]</code> — See  for more information.</p>
 </li>
 </ul>
+<p><strong>Note</strong>:
+Abstain from using a trailing /. //SERVER/sharename/ will not work.
+If your mount does not work stable, stutters or freezes, try to enable different SMB protocol version with vers= option. For example, vers=2.0 for Windows Vista mount.
+If having timeouts on a mounted network share with cifs on a shutdown, see wpa_supplicant#Problem with mounted network shares (cifs) and shutdown.</p>
 <h4 id="storing-share-passwords">Storing share passwords</h4>
 <p>Storing passwords in a world readable file is not recommended. A safer
-method is to use a credentials file instead, e.g. inside :</p>
-<p>For the mount command replace  with .</p>
+method is to use a credentials file instead, e.g. inside <code>/etc/samba/credentials</code>:</p>
+<p><code>/etc/samba/credentials/share</code></p>
+<pre><code>username=myuser
+password=mypass
+</code></pre>
+<p>For the mount command replace <code>username=myuser,password=mypass</code> with <code>credentials=/etc/samba/credentials/share</code>.</p>
 <p>The credential file should explicitly readable/writeable to root:</p>
 <p><code># chown root:root /etc/samba/credentials</code><br />
 <code># chmod 700 /etc/samba/credentials</code><br />
 <code># chmod 600 /etc/samba/credentials/share</code></p>
 <h3 id="automatic-mounting">Automatic mounting</h3>
+<p><strong>Note</strong>: You may need to enable systemd-networkd-wait-online.service or NetworkManager-wait-online.service (depending on your setup) to proper enable booting on start-up.</p>
 <h4 id="using-networkmanager-and-giogvfs">Using NetworkManager and GIO/gvfs</h4>
 <p><a href="NetworkManager#Network_services_with_NetworkManager_dispatcher" title="wikilink">NetworkManager</a>
 can be configured to run a script on network status change. This script
@@ -579,6 +597,36 @@ the same way your file manager does, as explained
 unmounts the Samba shares before the relevant network connection is
 disabled by listening for the  and  events. Make the script is
 <a href="executable" title="wikilink">executable</a> after creating it.</p>
+<p><code>/etc/NetworkManager/dispatcher.d/30-samba.sh</code></p>
+<pre><code class="language-shell">#!/bin/sh
+
+# Find the connection UUID with &quot;nmcli con show&quot; in terminal.
+# All NetworkManager connection types are supported: wireless, VPN, wired...
+WANTED_CON_UUID=&quot;CHANGE-ME-NOW-9c7eff15-010a-4b1c-a786-9b4efa218ba9&quot;
+
+# The user the share will be mounted under
+USER=&quot;yourusername&quot;
+# The path that appears in your file manager when you manually mount the share you want
+SMB_URL=&quot;smb://servername/share&quot;
+
+# Get runtime user directory. If it does not exist, do nothing and just exit
+XDG_RUNTIME_DIR=$(loginctl show-user --property=RuntimePath --value &quot;$USER&quot;) || exit 0
+
+if [ &quot;$CONNECTION_UUID&quot; = &quot;$WANTED_CON_UUID&quot; ]; then
+
+    # Script parameter $1: network interface name, not used
+    # Script parameter $2: dispatched event
+
+    case &quot;$2&quot; in
+        &quot;up&quot;|&quot;vpn-up&quot;)
+            su $USER -c &quot;DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus gio mount $SMB_URL&quot;
+            ;;
+        &quot;pre-down&quot;|&quot;vpn-pre-down&quot;)
+            su $USER -c &quot;DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus gio mount -uf $SMB_URL&quot;
+            ;;
+    esac
+fi
+</code></pre>
 <p>Create a symlink inside  to catch the  events:</p>
 <p><code># ln -s /etc/NetworkManager/dispatcher.d/30-samba.sh /etc/NetworkManager/dispatcher.d/pre-down.d/30-samba.sh</code></p>
 <h4 id="as-mount-entry">As mount entry</h4>
