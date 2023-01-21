@@ -71,6 +71,34 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Samba_ubuntu</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cifs-installation">CIFS installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mounting-unprotected-guest-network-folders">Mounting unprotected (guest) network folders</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mount-password-protected-network-folders">Mount password protected network folders</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#special-permissions">Special permissions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mount-password-protected-shares-using-libpam_mount-ubuntu-904">Mount password protected shares using libpam_mount (Ubuntu 9.04)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#login-errors">Login errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unprotected-network-folder-wont-automount">Unprotected network folder won't automount</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mount-during-login-instead-of-boot">Mount during login instead of boot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slow-shutdown-due-to-a-cifsnetwork-manager-bug">Slow shutdown due to a CIFS/Network Manager bug</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cifs-options-deprecated">CIFS Options Deprecated</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -109,13 +137,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <ol>
-<li>
-<ol>
-<li>page was renamed from Samba</li>
-</ol>
-</li>
-</ol>
+                <h1 id="samba">Samba</h1>
 <p>||\&lt;tablestyle="float:right; font-size: 0.9em; width:40%;
 background:#F1F1ED; margin: 0 0 1em 1em;"
 style="padding:0.5em;">\&lt;<TableOfContents>>||</p>
@@ -128,7 +150,7 @@ but are deprecated and should be avoided if possible
 <p>(This document does <em>not</em> describe how to host the shares yourself, only
 how to access shares that are hosted somewhere else. For hosting shares,
 use <a href="https://help.ubuntu.com/community/Samba" title="wikilink">Samba</a>.)</p>
-<h1 id="prerequisites">Prerequisites</h1>
+<h2 id="prerequisites">Prerequisites</h2>
 <p>We're assuming that:</p>
 <p><code>* Network connections have been configured properly.</code><br />
 <code>* Your local (Ubuntu) username is</code><em><code>ubuntuusername</code></em><code>.</code><br />
@@ -137,9 +159,9 @@ use <a href="https://help.ubuntu.com/community/Samba" title="wikilink">Samba</a>
 <code>* The Windows computer's name is</code><em><code>servername</code></em><code>(this can be either an IP address or an assigned name).</code><br />
 <code>* The name of the share is</code><em><code>sharename</code></em><code>.</code><br />
 <code>* You want to mount the share in</code><em><code>/media/windowsshare</code></em><code>.</code></p>
-<h1 id="cifs-installation">CIFS installation</h1>
+<h2 id="cifs-installation">CIFS installation</h2>
 <p>On older systems:</p>
-<h1 id="mounting-unprotected-guest-network-folders">Mounting unprotected (guest) network folders</h1>
+<h2 id="mounting-unprotected-guest-network-folders">Mounting unprotected (guest) network folders</h2>
 <p>First, let's create the mount directory. You will need a separate
 directory for each mount. </p>
 <p>Then edit your /etc/fstab file (with root privileges) to add this line: </p>
@@ -151,7 +173,7 @@ directory for each mount. </p>
  ``path</code></strong><code>, you need to replace it by \040, for example //servername/My\040Documents</code></p>
 <p>After you add the entry to /etc/fstab type:  This will (re)mount all
 entries listed in /etc/fstab.</p>
-<h1 id="mount-password-protected-network-folders">Mount password protected network folders</h1>
+<h2 id="mount-password-protected-network-folders">Mount password protected network folders</h2>
 <p>The quickest way to auto-mounting a password-protected share is to edit
 /etc/fstab (with root privileges), to add this line: </p>
 <p>This is not a good idea however: /etc/fstab is readable by everyone and
@@ -170,11 +192,11 @@ credentials:</p>
 <p>Finally, test the fstab entry by issuing:</p>
 <p>If there are no errors, you should test how it works after a reboot.
 Your remote share should mount automatically.</p>
-<h2 id="special-permissions">Special permissions</h2>
+<h3 id="special-permissions">Special permissions</h3>
 <p>If you need special permission (like chmod etc.), you'll need to add a
 <em>uid</em> (short for 'user id') or <em>gid</em> (for 'group id') parameter to the
 share's mount options.</p>
-<h2 id="mount-password-protected-shares-using-libpam_mount-ubuntu-904">Mount password protected shares using libpam_mount (Ubuntu 9.04)</h2>
+<h3 id="mount-password-protected-shares-using-libpam_mount-ubuntu-904">Mount password protected shares using libpam_mount (Ubuntu 9.04)</h3>
 <p>In addition to the initial assumptions, we're assuming that</p>
 <p><code>*</code><strong><code>Your``   ``username``   ``and``   ``password``   ``are`` 
  ``the``   ``same``   ``on``   ``the``   ``Ubuntu``   ``machine`` 
@@ -187,8 +209,8 @@ the section called <luserconf name=".pam_mount.conf.xml" />. Save the
 file when done. With this in place, users can create their own
 \~/.pam_mount.conf.xml.</p>
 <p>Add the following:</p>
-<h1 id="troubleshooting">Troubleshooting</h1>
-<h2 id="login-errors">Login errors</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="login-errors">Login errors</h3>
 <p>If you get the error "mount error(13) permission denied", then the
 server denied your access. Here are the first things to check:</p>
 <p><code>* Are you using a valid username and password? Does that account really have access to this folder?</code><br />
@@ -198,20 +220,20 @@ server denied your access. Here are the first things to check:</p>
  ``man`` 
  ``page</code></a><code>. The man page list leaves out the option `` for some reason, but you should try that one as well (</code><a href="https://bugs.launchpad.net/ubuntu/+source/cifs-utils/+bug/1113395" title="wikilink"><code>see`` 
  ``discussion</code></a><code>).</code></p>
-<h2 id="unprotected-network-folder-wont-automount">Unprotected network folder won't automount</h2>
+<h3 id="unprotected-network-folder-wont-automount">Unprotected network folder won't automount</h3>
 <p>I've had a situation where an unprotected network folder wouldn't
 automount during bootup, but after manually entering "sudo mount -a" was
 mounted correctly. I solved this by replacing the "guest" option by
 "username=guest,password=". If anyone has an explanation for this,
 please leave a comment.</p>
-<h2 id="mount-during-login-instead-of-boot">Mount during login instead of boot</h2>
+<h3 id="mount-during-login-instead-of-boot">Mount during login instead of boot</h3>
 <p>If for some reason/etc/rc0.d/S31umountnfs.sh (networking problems for
 example) the automatic mounting during boot doesn't work, you can add
 the "noauto" parameter to your smbfs fstab entry and then have the share
 mounted at login.</p>
 <p>In /etc/fstab: </p>
 <p>In /etc/rc.local: </p>
-<h2 id="slow-shutdown-due-to-a-cifsnetwork-manager-bug">Slow shutdown due to a CIFS/Network Manager bug</h2>
+<h3 id="slow-shutdown-due-to-a-cifsnetwork-manager-bug">Slow shutdown due to a CIFS/Network Manager bug</h3>
 <p>If you use Network Manager, and are getting really slow shutdowns, it's
 probably because NM shuts down before unmounting the network shares.
 That will cause CIFS to hang and wait for 60 seconds or so. Here's how
@@ -220,7 +242,7 @@ to fix it:/etc/rc0.d/S31umountnfs.sh</p>
 default (/etc/rc0.d/S31umountnfs.sh and /etc/rc6.d/S31umountnfs.sh) so
 this is no longer necessary.</p>
 <hr />
-<h2 id="cifs-options-deprecated">CIFS Options Deprecated</h2>
+<h3 id="cifs-options-deprecated">CIFS Options Deprecated</h3>
 <p>20 Feb 2008 TW</p>
 <p>Using dmask or fmask in the fstab file produces the following warnings:
 WARNING: CIFS mount option 'dmask' is deprecated. Use 'dir_mode'
