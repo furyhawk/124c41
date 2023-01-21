@@ -194,9 +194,7 @@ Your remote share should mount automatically.</p>
 share's mount options.</p>
 <h3 id="mount-password-protected-shares-using-libpam_mount-ubuntu-904">Mount password protected shares using libpam_mount (Ubuntu 9.04)</h3>
 <p>In addition to the initial assumptions, we're assuming that</p>
-<p><code>*</code><strong><code>Your``   ``username``   ``and``   ``password``   ``are`` 
- ``the``   ``same``   ``on``   ``the``   ``Ubuntu``   ``machine`` 
- ``and``   ``on``   ``the``   ``network``   ``drive.</code></strong></p>
+<p>- <strong>Your username and password are the same on the Ubuntu machine and on the network drive.</strong></p>
 <p>Install libpam-mount: </p>
 <p>Edit /etc/security/pam_mount.conf.xml using your preferred text editor.</p>
 <p>First, we're moving the user specific config bits to a file which users
@@ -209,10 +207,10 @@ file when done. With this in place, users can create their own
 <h3 id="login-errors">Login errors</h3>
 <p>If you get the error "mount error(13) permission denied", then the
 server denied your access. Here are the first things to check:</p>
-<p>* Are you using a valid username and password? Does that account really have access to this folder?
-* Do you have whitespace in your credentials file? It should be <code>, not</code>.
-* Do you need a domain? For example, if you are told that your username is <code>, then actually your username is</code> and your domain is <code>. The fstab entry should read:</code> Or:
-* The security and version settings are interrelated. SMB1 is insecure and no longer supported by default. At first, try to not specify either security or version: do not specify <code>or</code>. If you still have authentication errors then you may need to specify either <code>or</code> or both. You can try the options listed at the <code>[</code>mount.cifs<code></code>man<code></code>page<code>](http://manpages.ubuntu.com/manpages/raring/en/man8/mount.cifs.8.html "wikilink")</code>. The man page list leaves out the option <code>for some reason, but you should try that one as well (`[`see</code> 
+<p>- Are you using a valid username and password? Does that account really have access to this folder?
+- Do you have whitespace in your credentials file? It should be <code>, not</code>.
+- Do you need a domain? For example, if you are told that your username is <code>, then actually your username is</code> and your domain is <code>. The fstab entry should read:</code> Or:
+- The security and version settings are interrelated. SMB1 is insecure and no longer supported by default. At first, try to not specify either security or version: do not specify <code>or</code>. If you still have authentication errors then you may need to specify either <code>or</code> or both. You can try the options listed at the <code>[</code>mount.cifs<code></code>man<code></code>page<code>](http://manpages.ubuntu.com/manpages/raring/en/man8/mount.cifs.8.html "wikilink")</code>. The man page list leaves out the option <code>for some reason, but you should try that one as well (`[`see</code> 
  <code>`discussion</code>](https://bugs.launchpad.net/ubuntu/+source/cifs-utils/+bug/1113395 "wikilink")<code>).</code></p>
 <h3 id="unprotected-network-folder-wont-automount">Unprotected network folder won't automount</h3>
 <p>I've had a situation where an unprotected network folder wouldn't
