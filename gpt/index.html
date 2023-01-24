@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>gpt - 124c41</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "gpt";
+        var mkdocs_page_input_path = "gpt.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 124c41
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../conda/">Conda</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../framework/">Framework</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dataframe/">Dataframe</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../hydra/">Hydra</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux/">Linux</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">gpt</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#train">train</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logs">logs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#king-r">KING R</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vol">VOL</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../smb/">Samba</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../smb2/">Samba_ubuntu</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mkdocs/">MkDocs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../scrape_pad/">scrape_pad</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../random/">random</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">124c41</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>gpt</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="gpt">gpt</h1>
+<h2 id="train">train</h2>
+<p>python train.py --dataset=shakespeare --n_layer=4 --n_head=4 --n_embd=64 --device=mps --compile=False --eval_iters=1 --block_size=64 --batch_size=16</p>
+<h2 id="logs">logs</h2>
+<p>iter 432061: loss 3.3774, time 102.72ms</p>
+<p>number of parameters: 3.42M
+No meta.pkl found, assuming GPT-2 encodings...</p>
+<p>The state of heaven with him yet have set
+The enam received in his power,
+It will be such,morrow; if he be
+By common enemies, so may not do, you
+As if you mark the truth.</p>
+<p>FLORIZEL:
+Why is my part;
+Not here my life, we'll do't, where it is
+The lark that the Earl of Warwick is slain:
+On bold, my rest, my liege, in whose good time
+I'll drown him worthy me to my Earl towards,
+Is Come to draw to scARD a fearful day.
+3 KING HENRY VI</p>
+<p>KING LEWIS XI:
+What! canst thou live in poor soul,
+To do him banish'd at the same our point
+And the freshinks I come, 'tis aught to have but
+I fear you joys: all that I cannot
+On thee would of my heart, my poor soul,
+To be so bold a knave in this time;
+And thou by, she's children's blood, only, it is
+To see my life.</p>
+<p>MARIANA:
+A thousand part, indeed, sir, a time
+As you will wonder not: come, my liege, I well;
+And he is too a gentleman.
+See that with the voice that at once, you must
+Flried the senators of the any it good to us being son:
+but, I cannot be done; but we can tell him;
+for him I'll draw your words together.
+What you will know how you?</p>
+<p>COMINIUS:
+They are, uncle.</p>
+<p>CORIOLANUS:
+Therefore, my gracious friend,
+I am the farther un ches:
+What, poor! I beseech you, let it be a cousin.</p>
+<p>VOLUMNIA:
+Tush, the gods!</p>
+<p>MENENIUS:
+I am too!
+Nay begin to bid my lady play well:
+I am no pity that willy heir is right;
+But, by his leave I have or why it is.</p>
+<p>CORIOLANUS:
+Not? let me see, you are strange?
+They have made no more than all.
+Hath my wife's lord, upon pain of death.</p>
+<p>Third Citizen:
+Why,</p>
+<hr />
+<p>I shall have had some heard of you hear.</p>
+<p>QUEEN MARGARET:
+And so we all, I thank thee: 'tis more;
+Thou art the letter, and thou hast not so: wouldst be
+done, hark you, I know, my soul here have
+t something
+So to say, but I pray, and no more.</p>
+<p>ISABELLA:
+O, if it were full of such deep Norfolk, love,
+I would have more than his gracious fault
+Than Angelo first to you at great comfort.</p>
+<p>ANGELO:
+Yea, and make you he crook 'pt TrleKE:
+I'll make.</p>
+<p>Provost:
+What, my general?</p>
+<p>DUKE VINCENTIO:
+'Tis like of his most,
+And leave me to the will for my poor side.</p>
+<p>ANGELO:
+Hath the king'ster heaven with the majesty of tears,
+With a kind: I have, my lord, must die.</p>
+<p>MARCIUS:
+Tell me hate them not, honesty are there
+To entreat of my wife, and my son to my order,
+And set the mother all my father's consent
+To make the must fly: so go:
+From whom that I would not, I do not fear,
+As well I will have me, you are vile toward.</p>
+<p>QUEEN MARGARET:
+But, by your vouchius, I fear not what I am:
+For since we came, your father's, at the least?</p>
+<p>Second Servant:
+Tis more than this of you can but have done
+My love or mercy to the queen of heaven:
+But I have forgot it, more, goodenio.</p>
+<p>CAPULET:
+Ay, as the matter I told you speak, my lord.</p>
+<p>BALTHASAR:
+But to the case of the Tower.</p>
+<p>ROMEO:
+Never; live, my lord, my soul is as well:
+I hope, by this which is a villain,
+When that thy brothers Romeo is, one sun
+With thy mother's wife, that I may return
+To know me what a dream hath as well
+As she run thought to be your mother, I
+I may not need to my sweet,</p>
+<hr />
+<p>CAPULET:
+Ay, what art thou?</p>
+<p>ROMEO:
+A queen, nurse?</p>
+<p>JULIET:
+Good lords,
+If thou dost know ye but.</p>
+<p>JULIET:
+Say, that Richmond's soul, take me in all.</p>
+<p>ROMEO:
+O, Romeo, I will not weep a while.</p>
+<p>JULIET:
+For the defry of grief makes them fair:
+But since unsapblful villain's wit of heaven
+It was a friend for ever-day,
+When I was lawful oath and not so,
+I am born to do it would it might be,
+I am revenged on-hearted my leaves dead king's oath,
+For the wantless blood whose heads must enter:
+'Tis the Lord Northumberland that King Edward was himself,
+The Duke of Warwick, and his place in France,
+And thou shalt come to my will-day shall not stay.</p>
+<p>HENRY BOLINGBROKE:
+Why, howof, I beseech you talk of,
+Here must I play my heart with a cruelay;
+That doth not fall dead, I know the matter.</p>
+<p>DUKE VINCENTIO:
+You had even like'd, fie me, 'tis, I am resolved:
+Nay, unadBe now, I have heard her speak more than you
+I speak at peace.</p>
+<p>ANGELO:
+Well, I do beseech you, fair sir.
+Your eyes will not come upon me: he is most
+man, it is not so: so most much little most wrong,
+and may go to that by: which you have
+therein your hate, we may see themselves.</p>
+<p>LADY CAPULET:
+We are in prison, one word; ask him;
+For some you win me, upon his best:
+You know no better for the mind, there's no matter
+ stands on him.</p>
+<p>DUCHESS OF YORK:
+How wouldst thou?</p>
+<p>Messenger:
+My gracious lord, I like youThis.</p>
+<p>DUKE OF YORK:
+Is it not dead, cousin.</p>
+<p>DUCHESS OF YORK:
+Then 'tis shame forAnd all that thou wast?</p>
+<h2 id="king-r">KING R</h2>
+<p>DUKE VINCENTIO:
+Romeo.</p>
+<p>Provost:
+It do trust me.</p>
+<p>ANGELO:
+Our lord, I cannot speak the good word:
+Since I havewas not it, I do'll therefore know
+Will a divineade me speak.</p>
+<p>ISABELLA:
+O, let me hear what you did deliver,
+By 'twere pity to him. This friends, be his head
+it, with one that's no matter, look to me as this
+lure of the prince a curse; more stands on't;
+No, sir; not a very weak of mine,
+If not that. Now, andso death's like death!
+I see, and hear Montague, my Montague.
+Who knows thou nothing; be not gentle,
+I may not, yet they shall be so, then;
+And had he come'd withAnd the oracle:
+I'll have your heart: that I shall follow
+that send him; that, we will warrant you, andPEY?</p>
+<p>ELBOW:
+Nay, he shall get a man to me.</p>
+<p>ELBOW:
+Look, very well, he shallEL' the better royal, which I do do't
+But I shall find, a time will be from his spirit.
+I prithee, take one: give me not your comfortier:
+I will not be come to-morrow; let's entreaty?</p>
+<p>ROMEO:
+I beseech your grace, sir,--</p>
+<p>BISHOP OF CARke, my dTwere 't.</p>
+<p>BUCKINGHAM:
+I will, my lord: nay,
+You will have you go with me to please again.</p>
+<p>BUCKINGHAM:
+You will not hear duty, but for I will, sir,
+You have not the lady will with thee love
+But what you may! You are sure of he is
+to be a doth valiant; I will wot the prince:
+and have first to-morrow then.</p>
+<p>ANGELO:
+Thy business is the more and that my brother's sister.</p>
+<p>ISABELLA:
+It cannot be so.</p>
+<p>DUKE VINCENTIO:
+I say you, well; for if his present is
+the</p>
+<hr />
+<p>WARWICK:
+And thou wert enam'd; I'll not be mine own?</p>
+<p>KING LEWIS XI:
+What man is none than that at his house,
+That bear their down heart to Edward's-t thou him?</p>
+<p>WARWICK:
+Bid me, noble lord, our friends are fled,
+And sit to be true; and with all our sonsiss,
+From forth the most defend in theile departedath
+Be not born to make a husband as if
+I send it to thought that I did weep,
+And quench blood or not well.</p>
+<p>KING RICHARD II:
+O I was Clarence! What'sFL words were it:
+That I, as we are, that they have no friend,
+Even in the blood of heaven of fight,
+Thou p country's blood and'd. Come, and go with thee go;
+And, as mine I remember as any man's son
+As merry as I told the people and am mighty
+As'd an hour begin and bears our hands,
+But shame no other Paris and her be drawn.</p>
+<p>ROMEO:
+Is my long come. carry, let'st thou father
+In this remembrance of love: thou eat not 'em most noble
+swear tongue for what thou mayst, not wert between.
+The Earl of heaven of Warwick's love, this man,
+That's hearts, the true king, myMON and Sir.
+And unlook'd in the princess slain,
+Is beg of hen, and did yield in their arms
+At no moreOR create give from their hands,
+For the dead George of Clarence to his king,
+Who spake me his enemies shall hold it.</p>
+<p>BUCKINGHAM:
+My lord, my gracious lord,
+You had a power of wisdom cam thou out of mine?</p>
+<p>KING RICHARD II:
+He hath enem this, people, but I'll win me.</p>
+<p>CATESBY:
+Then here, my lord.</p>
+<p>KING RICHARD III:
+Nor I, the crown that queen is slain,
+To take the devil of our other linean ground,
+Not his our kingly curse people's-Which they that
+Is put to have open honesty
+Either to come in their arms.</p>
+<p>QUEEN MARGARET:</p>
+<hr />
+<p>ANTIGONUS:
+Hear you not?</p>
+<p>First Citizen:
+Come, sir; go, be it must none but you:
+I am ta'en and leave of you; and, then, go with me.</p>
+<p>First Servingman:
+Why, we will, sir.</p>
+<p>Second Servingman:
+I would not, no more:
+the provost.</p>
+<p>Third Servingman:
+What's the matter?</p>
+<p>Third Servingman:
+What's the matter?</p>
+<p>Second Servingman:
+No, my master, I can tell; I know how it you,
+thereof he m it.</p>
+<p>Clown:
+He's here; we should be a witness to the purpose.</p>
+<p>Third Citizen:
+He hath done what you are done.</p>
+<p>Third Servingman:
+A Romeo, sir, for them he would have found
+baw Rome of the world.</p>
+<p>CORIOLANUS:
+But I love the child,
+Not that thou hast other of thy life.</p>
+<p>Third Servingman:
+If thou she were thrice a man,
+And had these griefing force royal royal queen;
+And I am son, and I love thee myself.</p>
+<p>KING RICHARD III:
+But I will be poor; which he is he made?</p>
+<p>BUCKINGHAM:
+My gracious lord, let's see your grace be company.</p>
+<p>KING RICHARD III:
+Why, what a fellow should be?</p>
+<p>BUCKINGHAM:
+My lord, 'tis a subject, proud
+Which else, which, had some him, it will with heaven
+Till wind manage our doth made over his land.
+Why, proud I have ta'en the service of the people,
+That would not have more better that,
+Which will be satisfied; and, how his ignorant shouldER'
+He seems not? and I have had rather thy,
+To do my country, to make the'd right,
+With all the envy of this loyal,
+Our holy and be England and Duke of York,
+Not in his second soul I and have been
+The which never bid us, and call King Richard's lord.</p>
+<p>HENRY BOLINGBROKE:
+Welcome, uncle; we shall not be unto him;
+But so, my good son, I</p>
+<hr />
+<p>I do further.</p>
+<p>KING RICHARD III:
+Why, then, I confess thee, lord,
+If thou hadst never yet thou yet hadst never,
+But yet thou wilt wert up in thy horse.</p>
+<p>CLIFFORD:
+Clarence and Gloucester, I will not bethink,
+But that's not yet did nothing: but the gods
+The times of revenge!</p>
+<p>RICHARD:
+Nay, bring me what ancient, and this hand.'</p>
+<p>KING HENRY VI:
+But, to thee speak commonth very day!</p>
+<p>CLIFFORD:
+That thou wert so disgraced me to me.</p>
+<p>KING HENRY VI:
+Woth he the oath that I should tread upon our way?</p>
+<p>CLIFFORD:
+What may your grace in poor Henry's life and him?</p>
+<p>WARWICK:
+No, like a bawd, you not so; and, and for
+the poor one did, he is even to give his l.</p>
+<p>WARWICK:
+Uncle, so:
+I do intend to him in all, I hope.</p>
+<p>KING HENRY VI:
+How far I mean? if this be so bold with!
+The which, his queen, the queen, his love;
+And so, gentle king, may they do you in at night
+And fly him in the slander of his king,
+To be revenged on him that, so should you have;
+For, by this way be you found you to,
+She's a woman.</p>
+<p>ANGELO:
+He will not see you, sir.</p>
+<p>ESCALUS:
+I am aTo your request in hand, you shall in arms
+You must give, and yet go by, a course it is thence.</p>
+<p>ESCALUS:
+LARTI not mock mine own good.</p>
+<p>ANGELO:
+Do you hear.
+The duke hath forgot you for what you are?</p>
+<p>ESCALUS:
+BUS: for whose offence?</p>
+<p>CORIOLANUS:
+What to you?</p>
+<p>CORIOLANUS:
+O, worthy madam,
+And have I too most, you shall not.</p>
+<p>AUFIDIUS:
+Worthy sir, farewell.</p>
+<h2 id="vol">VOL</h2>
+<p>Had not himself, nor known she!</p>
+<p>Provost:
+An me, both that; he did, sir, to steal-on
+Her mother's Romeo!
+O old faithful friar!</p>
+<p>JULIET:
+Why do I more than that I should never speak of.</p>
+<p>ROMEO:
+Nay, rather give me leave me that I will;
+For I shall find some better happy days
+Than lay, a man.</p>
+<p>FRIAR LAURENCE:
+But slain, her hath the next day a little.</p>
+<p>ROMEO:
+Nay, good woman; my turn in thy sake
+art full nights here. Who is dead and young prince.
+Ah, how, dost thou find me to thy breast,
+Thine hast he, and more, a noble fawd.
+Sir, thou canst not speak, I wouldst thou wert
+For sleep the mark of thy deadly years?
+Ah, keep'st, asLord men, thou hast got
+By so thy voice: there's no power, it is none honest.</p>
+<p>MERCUTIO:
+Tybalt, Romeo, whom I have the best
+I think how I have done.</p>
+<p>ROMEO:
+Thy life art thou, that thou art too fair!</p>
+<p>BENVOLIO:
+Mehe, and go not in 't.</p>
+<p>MERCUTIO:
+Nay, I'll bring some noise for a for that.</p>
+<p>CLAUDIO:
+Your face? aarer is a traitor's head to pluck him
+to the king the house. But which you can do I have
+to the hand; for it will be, as I am
+and a block withFor a man that Claudio hath married,
+If be a uncle.</p>
+<p>DUKE VINCENTIO:
+He did know more.
+You are most little more, he hath done it well,
+our the city and do them to make
+me theD:' Aufidius come to me and brother; and she
+isome with those that hath been, 'twere pity us all.
+Then, soft, wot each that am aly;
+For now I did well know. My mother!</p>
+<p>LEONTES:
+What's well man?</p>
+<p>CAMILLO:</p>
+<hr />
+<p>KING RICHARD III:
+Be not so?</p>
+<p>HENRY BOLINGBROKE:
+So that of God he would have the king his!</p>
+<p>BUCKINGHAM:
+I'll make more
+ than my gracious case: I will bear the deed.</p>
+<p>KING RICHARD III:
+tis you by king, I would am I bethink,
+To make an amissant in love
+That thou wouldst protest to keep post toOR'n;
+And thou he is not nowSo.</p>
+<p>LEONTES:
+Unman, it is;
+Nay, good my good lord, be satisfied still.</p>
+<p>LEONTES:
+A most business:
+Let me have been since I was to be mercy;
+Whiles the lark-f orth-she,
+He cannot, Marcius worthyKE: 'tis well stock no poison.
+The manner of the envy he spake to Marcius,
+That with the power is worth dead, the doth be brief,
+In worthy Romeo hastous tune up.</p>
+<p>KING RICHARD II:
+Whom was it so, my child is set on death.</p>
+<p>HENRY BOLINGBROKE:
+ClOR, my lord;
+With late that cons news, for, to that I would
+Trueass the great number pardon'd, from your head
+ already're his mind i' the there, I will.</p>
+<p>DUKE VINCENTIO:
+You do but see your highness of your arms
+Would know the king's mouth with peace.</p>
+<p>MARIANA:
+I mean, a son, it is not a word
+ through a tear for Claudio, and be banished;
+But when you bid this manner bless us,
+In whom we have had been wont to do,
+'twas upon the business, you
+I shall call'd his friends to him, and then.</p>
+<p>DUKE OF Lord:
+He's tearsark; for long my gentleness'
+I let me hear; good cousin, adieu!
+Belike his hands I in his remedy;
+And I have died to face, my love to me,
+And I will make him leave of can say,
+I had rather keep their words with him to keep him
+Whither, to thy fortune but put off;</p>
+<hr />
+<p>And see that this terror may be so,
+So if that cannot: so that's the friend,
+That will be deservedly of your honour's life,
+Let thy rage here cut in his grave;
+One side do not.</p>
+<p>MENENIUS:
+Hath the people's great state by power,
+That they shall have set up a part;
+But, as minetis the nothing of a man,
+That is the deputy,tis well for fault,
+And breathed his honour with the fear of death,
+That all for that as you are, and we may live.</p>
+<p>BALTHASAR:
+A pretty fardman!</p>
+<p>RICHMOND:
+Bid him be here? and I'll make me pardon up.</p>
+<p>RIVERS:
+What, hast he not?</p>
+<p>BUCKINGHAM:
+My lord, my gracious lord.</p>
+<p>KING RICHARD III:
+As I remember; against thee, thou wert not so much done,
+That thou canst swear and thee, for thou hast no cause.</p>
+<p>RATCLIFF:
+I will not be not, my lord.</p>
+<p>KING RICHARD III:
+Ay, O my children, my eyes!</p>
+<p>BUCKINGHAM:
+No, mighty lord, I hope, shall understand it.</p>
+<p>KING RICHARD III:
+I know no? but himself he is done;
+The side must be seen and make me wrong.</p>
+<p>QUEEN ELIZABETH:
+That thou mean I sent to see thy life
+To have no more fit than it is in this world
+To look upon thy brother's make me hear,
+The Duke of Norfolk; if thou darest with
+Thy Lord Northumberland, rouse'd and thy crown,
+For thou shalt no life but by thy kingdom.</p>
+<p>KING EDWARD IV:
+But thou, in my turn, my grave jest thou,
+You, the newats, and have the ears,
+Where fruit men have done-bended, then my daughter
+Of happyness! O my woman! If thou didst, thou
+tis'st fair a piteous, which he was,
+And know not 't prove a thousand right while you
+That you are to have something: so, my kingdom,
+'Tis just that I</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../linux/" class="btn btn-neutral float-left" title="Linux"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../smb/" class="btn btn-neutral float-right" title="Samba">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../linux/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../smb/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
