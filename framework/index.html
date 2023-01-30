@@ -53,6 +53,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#pytorch-vs-tensorflow">Pytorch vs Tensorflow</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to-tf">To TF</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -82,6 +84,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../mkdocs/">MkDocs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../literatures/">Literatures</a>
                 </li>
               </ul>
               <ul>
@@ -122,6 +128,80 @@
                 <h1 id="framework">Framework</h1>
 <h2 id="pytorch-vs-tensorflow">Pytorch vs Tensorflow</h2>
 <p>The image range is different for each framework. In PyTorch, the image range is 0-1 while TensorFlow uses a range from 0 to 255. To use TensorFlow, we have to adapt the image range.</p>
+<h2 id="to-tf">To TF</h2>
+<pre><code class="language-py">def dataset_to_tf(
+    dataset,
+    cols_to_retain,
+    collate_fn,
+    collate_fn_args,
+    columns_to_np_types,
+    output_signature,
+    shuffle,
+    batch_size,
+    drop_remainder,
+):
+    &quot;&quot;&quot;Create a tf.data.Dataset from the underlying Dataset. This is a single-process method - the multiprocess
+    equivalent is multiprocess_dataset_to_tf.
+
+            Args:
+                dataset (`Dataset`): Dataset to wrap with tf.data.Dataset.
+                cols_to_retain (`List[str]`): Dataset column(s) to load in the
+                    tf.data.Dataset. It is acceptable to include column names that are created by the `collate_fn` and
+                    that do not exist in the original dataset.
+                collate_fn(`Callable`): A function or callable object (such as a `DataCollator`) that will collate
+                    lists of samples into a batch.
+                collate_fn_args (`Dict`): A  `dict` of keyword arguments to be passed to the
+                    `collate_fn`. Can be empty.
+                columns_to_np_types (`Dict[str, np.dtype]`): A `dict` mapping column names to numpy dtypes.
+                output_signature (`Dict[str, tf.TensorSpec]`): A `dict` mapping column names to
+                    `tf.TensorSpec` objects.
+                shuffle(`bool`): Shuffle the dataset order when loading. Recommended True for training, False for
+                    validation/evaluation.
+                batch_size (`int`): Size of batches to load from the dataset.
+                drop_remainder(`bool`, default `None`): Drop the last incomplete batch when loading. If not provided,
+                    defaults to the same setting as shuffle.
+
+            Returns:
+                `tf.data.Dataset`
+    &quot;&quot;&quot;
+    if config.TF_AVAILABLE:
+        import tensorflow as tf
+    else:
+        raise ImportError(&quot;Called a Tensorflow-specific function but Tensorflow is not installed.&quot;)
+
+    getter_fn = partial(
+        np_get_batch,
+        dataset=dataset,
+        cols_to_retain=cols_to_retain,
+        collate_fn=collate_fn,
+        collate_fn_args=collate_fn_args,
+        columns_to_np_types=columns_to_np_types,
+        return_dict=False,  # TF expects numpy_function to return a list and will not accept a dict
+    )
+
+    @tf.function(input_signature=[tf.TensorSpec(None, tf.int64)])
+    def fetch_function(indices):
+        output = tf.numpy_function(
+            getter_fn,
+            inp=[indices],
+            # This works because dictionaries always output in the same order
+            Tout=[tf.dtypes.as_dtype(dtype) for dtype in columns_to_np_types.values()],
+        )
+        return {key: output[i] for i, key in enumerate(columns_to_np_types.keys())}
+
+    tf_dataset = tf.data.Dataset.from_tensor_slices(np.arange(len(dataset), dtype=np.int64))
+
+    if shuffle:
+        tf_dataset = tf_dataset.shuffle(len(dataset))
+
+    tf_dataset = tf_dataset.batch(batch_size, drop_remainder=drop_remainder).map(fetch_function)
+
+    def ensure_shapes(input_dict):
+        return {key: tf.ensure_shape(val, output_signature[key].shape) for key, val in input_dict.items()}
+
+    return tf_dataset.map(ensure_shapes)
+
+</code></pre>
               
             </div>
           </div><footer>
