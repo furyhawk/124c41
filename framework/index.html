@@ -48,6 +48,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../conda/">Conda</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../machine_learning/">machine_learning</a>
+                </li>
+              </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Framework</a>
     <ul class="current">
@@ -202,11 +206,35 @@
     return tf_dataset.map(ensure_shapes)
 
 </code></pre>
+<pre><code class="language-py">import tensorflow as tf
+import torch
+
+# Assume that we have a PyTorch Dataset object called 'dataset'
+
+def pytorch_dataset_to_tensorflow_dataset(dataset):
+  def generator():
+    for data in dataset:
+      # Convert data from PyTorch tensors to TensorFlow tensors
+      data = [tf.convert_to_tensor(x) for x in data]
+      yield data
+
+  # Create a TensorFlow Dataset from the generator
+  dataset = tf.data.Dataset.from_generator(generator, output_types=data[0].dtype, output_shapes=data[0].shape)
+
+  return dataset
+
+# Create a TensorFlow Dataset from the PyTorch Dataset
+dataset = pytorch_dataset_to_tensorflow_dataset(dataset)
+
+# Create a TensorFlow DataLoader from the TensorFlow Dataset
+dataloader = tf.data.DataLoader(dataset, batch_size=32, num_parallel_calls=tf.data.AUTOTUNE)
+
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../conda/" class="btn btn-neutral float-left" title="Conda"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../machine_learning/" class="btn btn-neutral float-left" title="machine_learning"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../dataframe/" class="btn btn-neutral float-right" title="Dataframe">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -230,7 +258,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../conda/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../machine_learning/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../dataframe/" style="color: #fcfcfc">Next &raquo;</a></span>

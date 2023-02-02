@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Linux - 124c41</title>
+    <title>machine_learning - 124c41</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Linux";
-        var mkdocs_page_input_path = "linux.md";
+        var mkdocs_page_name = "machine_learning";
+        var mkdocs_page_input_path = "machine_learning.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -48,8 +48,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../conda/">Conda</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../machine_learning/">machine_learning</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">machine_learning</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -64,14 +66,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../hydra/">Hydra</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#docker">docker</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#brew">brew</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux/">Linux</a>
                 </li>
               </ul>
               <ul>
@@ -120,7 +116,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Linux</li>
+      <li>machine_learning</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -129,23 +125,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="test">test</h1>
-<pre><code class="language-shell">bash ./scripts/linter.sh
-
-bash ./scripts/check_type.sh
+                <h1 id="machine_learning">machine_learning</h1>
+<p>Based on what you said it sounds like you need a larger batch_size, and of course there are implications with that which could impact the steps_per_epoch and number of epochs.</p>
+<p><strong>To solve for jumping-around</strong></p>
+<pre><code>- A **larger batch size** will give you a better gradient and will help to prevent jumping around
+- You may also want to consider a smaller learning rate, or a learning rate scheduler (or decay) to allow the network to "settle in" as it trains
 </code></pre>
-<h2 id="docker">docker</h2>
-<p><a href="https://docs.docker.com/engine/security/rootless/">Run the Docker daemon as a non-root user (Rootless mode) | Docker Documentation</a></p>
-<p><a href="https://docs.docker.com/desktop/wasm/">Docker+Wasm (Beta) | Docker Documentation</a></p>
-<h2 id="brew">brew</h2>
-<pre><code class="language-sh">brew upgrade --cask --greedy
+<p><strong>Implications of a larger batch-size</strong></p>
+<pre><code>- Too large of a batch_size can produce memory problems, especially if you are using a GPU. Once you exceed the limit, dial it back until it works. This will help you find the max batch-size that your system can work with.
+- Too large of a batch size can get you stuck in a local minima, so if your training get stuck, I would reduce it some. Imagine here you are over-correcting the jumping-around and it's not jumping around enough to further minimize the loss function.
+</code></pre>
+<p><strong>When to reduce epochs</strong></p>
+<pre><code>- If your train error is very low, yet your test/validation is very high, then you have over-fit the model with too many epochs.
+- The best way to find the right balance is to use early-stopping with a validation test set. Here you can specify when to stop training, and save the weights for the network that gives you the best validation loss. (I highly recommend using this always)
+</code></pre>
+<p><strong>When to adjust steps-per-epoch</strong></p>
+<pre><code>- Traditionally, the steps per epoch is calculated as train_length // batch_size, since this will use all of the data points, one batch size worth at a time.
+- If you are augmenting the data, then you can stretch this a tad (sometimes I multiply that function above by 2 or 3 etc. But, if it's already training for too long, then I would just stick with the traditional approach.
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../hydra/" class="btn btn-neutral float-left" title="Hydra"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../gpt/" class="btn btn-neutral float-right" title="gpt">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../conda/" class="btn btn-neutral float-left" title="Conda"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../framework/" class="btn btn-neutral float-right" title="Framework">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -168,10 +171,10 @@ bash ./scripts/check_type.sh
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../hydra/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../conda/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../gpt/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../framework/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
