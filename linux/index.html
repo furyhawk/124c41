@@ -61,6 +61,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chart/">Chart</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../hydra/">Hydra</a>
                 </li>
               </ul>
@@ -70,6 +74,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#docker">docker</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#brew">brew</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#qemu">QEMU</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dockstarter">DockSTARTer</a>
     </li>
     </ul>
                 </li>
@@ -139,6 +147,14 @@ bash ./scripts/check_type.sh
 <p><a href="https://docs.docker.com/desktop/wasm/">Docker+Wasm (Beta) | Docker Documentation</a></p>
 <h2 id="brew">brew</h2>
 <pre><code class="language-sh">brew upgrade --cask --greedy
+</code></pre>
+<h2 id="qemu">QEMU</h2>
+<p>stty cols 120 rows 80</p>
+<h2 id="dockstarter">DockSTARTer</h2>
+<pre><code class="language-sh">sudo pacman -Sy curl docker git
+bash -c &quot;$(curl -fsSL https://get.dockstarter.com)&quot;
+sudo reboot
+ds
 </code></pre>
               
             </div>
