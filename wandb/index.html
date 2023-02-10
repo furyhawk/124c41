@@ -139,20 +139,20 @@ import pandas as pd
 
 
 class WeightsAndBiases:
-    def __init__(self, cfg: DictConfig):
+    def __init__(self, cfg: DictConfig) -&gt; None:
         self.cfg: DictConfig = cfg
         if cfg.debug:
             wandb.init(mode=&quot;disabled&quot;)
         else:
             wandb.init(project=cfg.project, entity=&quot;peekingduck&quot;, config=cfg)
 
-    def watch(self, model):
+    def watch(self, model) -&gt; None:
         wandb.watch(model)
 
-    def log(self, loss):
+    def log(self, loss) -&gt; None:
         wandb.log(loss)
 
-    def log_history(self, history):
+    def log_history(self, history) -&gt; None:
         selected_history = {
             key: history[key]
             for key in [
@@ -170,10 +170,10 @@ class WeightsAndBiases:
         for row_dict in df.to_dict(orient=&quot;records&quot;):
             wandb.log(row_dict)
 
-    def log_training_loss(self, loss):
+    def log_training_loss(self, loss) -&gt; None:
         wandb.log({&quot;train_loss&quot;: loss})
 
-    def log_validation_loss(self, loss):
+    def log_validation_loss(self, loss) -&gt; None:
         wandb.log({&quot;val_loss&quot;: loss})
 </code></pre>
 <p>Your personal account has 100 GB of free storage and artifacts.</p>
