@@ -56,12 +56,14 @@
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Framework</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#pytorch-vs-tensorflow">Pytorch vs Tensorflow</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#to-tf">To TF</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#mean-and-std">mean and std</a>
+    <li class="toctree-l3"><a class="reference internal" href="#to-tf">To TF</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tensorflow-macos-releases">tensorflow-macos Releases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mean-and-std">mean and std</a>
     </li>
     </ul>
                 </li>
@@ -144,7 +146,7 @@
                 <h1 id="framework">Framework</h1>
 <h2 id="pytorch-vs-tensorflow">Pytorch vs Tensorflow</h2>
 <p>The image range is different for each framework. In PyTorch, the image range is 0-1 while TensorFlow uses a range from 0 to 255. To use TensorFlow, we have to adapt the image range.</p>
-<h2 id="to-tf">To TF</h2>
+<h3 id="to-tf">To TF</h3>
 <pre><code class="language-py">def dataset_to_tf(
     dataset,
     cols_to_retain,
@@ -216,7 +218,6 @@
         return {key: tf.ensure_shape(val, output_signature[key].shape) for key, val in input_dict.items()}
 
     return tf_dataset.map(ensure_shapes)
-
 </code></pre>
 <pre><code class="language-py">import tensorflow as tf
 import torch
@@ -240,15 +241,50 @@ dataset = pytorch_dataset_to_tensorflow_dataset(dataset)
 
 # Create a TensorFlow DataLoader from the TensorFlow Dataset
 dataloader = tf.data.DataLoader(dataset, batch_size=32, num_parallel_calls=tf.data.AUTOTUNE)
-
 </code></pre>
-<p>Releases
-tensorflow-macos    tensorflow-metal    macOS version   Features
-v2.5    0.1.2   12.0+   Pluggable device
-v2.6    0.2.0   12.0+   Variable sequences for RNN layers
-v2.7    0.3.0   12.0+   Custom op support
-v2.8    0.4.0   12.0+   RNN performance improvements
-v2.9    0.5.0   12.1+   Distributed training</p>
+<h2 id="tensorflow-macos-releases">tensorflow-macos Releases</h2>
+<table>
+<thead>
+<tr>
+<th>tensorflow-macos</th>
+<th>tensorflow-metal</th>
+<th>macOS version</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.5</td>
+<td>0.1.2</td>
+<td>12.0+</td>
+<td>Pluggable device</td>
+</tr>
+<tr>
+<td>v2.6</td>
+<td>0.2.0</td>
+<td>12.0+</td>
+<td>Variable sequences for RNN layers</td>
+</tr>
+<tr>
+<td>v2.7</td>
+<td>0.3.0</td>
+<td>12.0+</td>
+<td>Custom op support</td>
+</tr>
+<tr>
+<td>v2.8</td>
+<td>0.4.0</td>
+<td>12.0+</td>
+<td>RNN performance improvements</td>
+</tr>
+<tr>
+<td>v2.9</td>
+<td>0.5.0</td>
+<td>12.1+</td>
+<td>Distributed training</td>
+</tr>
+</tbody>
+</table>
 <pre><code class="language-py">image = tf.io.read_file(filename=filepath)
 image = tf.image.decode_jpeg(image, channels=3) #or decode_png
 </code></pre>
@@ -330,7 +366,7 @@ image = tf.image.decode_jpeg(image, channels=3) #or decode_png
       x[..., 2] /= std[2]
   return x
 </code></pre>
-<h3 id="mean-and-std">mean and std</h3>
+<h2 id="mean-and-std">mean and std</h2>
 <pre><code class="language-py">mean = 0.0
 std = 0.0
 for images, _ in dl:
@@ -341,7 +377,6 @@ for images, _ in dl:
 
 mean /= len(dl.dataset)
 std /= len(dl.dataset)
-
 </code></pre>
               
             </div>
