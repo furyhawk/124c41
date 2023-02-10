@@ -2,13 +2,20 @@ site_name: 124c41
 nav:
     - Home: index.md
     - Conda: conda.md
+    - machine_learning: machine_learning.md
     - Framework: framework.md
+    - database: db.md
     - Dataframe: dataframe.md
+    - Chart: chart.md
     - Hydra: hydra.md
     - Linux: linux.md
+    - gpt: gpt.md
     - Samba: smb.md
+    - Samba_ubuntu: smb2.md
     - MkDocs: mkdocs.md
+    - Literatures: literatures.md
     - scrape_pad: scrape_pad.md
+    - random: random.md
     - About: about.md
 
 theme: readthedocs

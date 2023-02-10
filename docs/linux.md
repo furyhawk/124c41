@@ -16,3 +16,14 @@ bash ./scripts/check_type.sh
 ```sh
 brew upgrade --cask --greedy
 ```
+
+## QEMU
+stty cols 120 rows 80
+
+## DockSTARTer
+```sh
+sudo pacman -Sy curl docker git
+bash -c "$(curl -fsSL https://get.dockstarter.com)"
+sudo reboot
+ds
+```

@@ -388,6 +388,13 @@ port 137.
 When not using NetBIOS/WINS host name resolution, it may be preferred to
 disable this protocol:
 
+`/etc/samba/smb.conf`
+```
+[global]
+  disable netbios = yes
+  dns proxy = no
+```
+
 Finally [disable](disable "wikilink")/[stop](stop "wikilink") .
 
 ### Manual mounting
@@ -397,24 +404,40 @@ or desirable:
 
 `# mount --mkdir -t cifs //`*`SERVER`*`/`*`sharename`*` /mnt/`*`mountpoint`*` -o username=`*`username`*`,password=`*`password`*`,workgroup=`*`workgroup`*`,iocharset=`*`utf8`*`,uid=`*`username`*`,gid=`*`group`*
 
-The options  and  corresponds to the local (e.g. client)
+The options `uid` and `gid` corresponds to the local (e.g. client)
 [user](user "wikilink")/[user group](user_group "wikilink") to have
 read/write access on the given path.
 
-- — The server name.
+**Note**:
+If the uid and gid being used does not match the user of the server, the forceuid and forcegid options may be helpful. However note permissions assigned to a file when forceuid or forcegid are in effect may not reflect the the real (server) permissions. See the File And Directory Ownership And Permissions section in mount.cifs(8) § FILE AND DIRECTORY OWNERSHIP AND PERMISSIONS for more information.
+To mount a Windows share without authentication, use "username=*".
 
-- — The shared directory.
+**Warning**: Using uid and/or gid as mount options may cause I/O errors, it is recommended to set/check correct File permissions and attributes instead.
 
-- — The local directory where the share will be mounted.
+- `SERVER` — The server name.
 
-- — See  for more information.
+- `sharename` — The shared directory.
+
+- `mountpoint` — The local directory where the share will be mounted.
+
+- `[-o options]` — See  for more information.
+
+**Note**:
+Abstain from using a trailing /. //SERVER/sharename/ will not work.
+If your mount does not work stable, stutters or freezes, try to enable different SMB protocol version with vers= option. For example, vers=2.0 for Windows Vista mount.
+If having timeouts on a mounted network share with cifs on a shutdown, see wpa_supplicant#Problem with mounted network shares (cifs) and shutdown.
 
 #### Storing share passwords
 
 Storing passwords in a world readable file is not recommended. A safer
-method is to use a credentials file instead, e.g. inside :
+method is to use a credentials file instead, e.g. inside `/etc/samba/credentials`:
 
-For the mount command replace  with .
+`/etc/samba/credentials/share`
+```
+username=myuser
+password=mypass
+```
+For the mount command replace `username=myuser,password=mypass` with `credentials=/etc/samba/credentials/share`.
 
 The credential file should explicitly readable/writeable to root:
 
@@ -423,6 +446,7 @@ The credential file should explicitly readable/writeable to root:
 `# chmod 600 /etc/samba/credentials/share`
 
 ### Automatic mounting
+**Note**: You may need to enable systemd-networkd-wait-online.service or NetworkManager-wait-online.service (depending on your setup) to proper enable booting on start-up.
 
 #### Using NetworkManager and GIO/gvfs
 
@@ -434,6 +458,38 @@ the same way your file manager does, as explained
 unmounts the Samba shares before the relevant network connection is
 disabled by listening for the  and  events. Make the script is
 [executable](executable "wikilink") after creating it.
+
+`/etc/NetworkManager/dispatcher.d/30-samba.sh`
+```shell
+#!/bin/sh
+
+# Find the connection UUID with "nmcli con show" in terminal.
+# All NetworkManager connection types are supported: wireless, VPN, wired...
+WANTED_CON_UUID="CHANGE-ME-NOW-9c7eff15-010a-4b1c-a786-9b4efa218ba9"
+
+# The user the share will be mounted under
+USER="yourusername"
+# The path that appears in your file manager when you manually mount the share you want
+SMB_URL="smb://servername/share"
+
+# Get runtime user directory. If it does not exist, do nothing and just exit
+XDG_RUNTIME_DIR=$(loginctl show-user --property=RuntimePath --value "$USER") || exit 0
+
+if [ "$CONNECTION_UUID" = "$WANTED_CON_UUID" ]; then
+    
+    # Script parameter $1: network interface name, not used
+    # Script parameter $2: dispatched event
+    
+    case "$2" in
+        "up"|"vpn-up")
+            su $USER -c "DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus gio mount $SMB_URL"
+            ;;
+        "pre-down"|"vpn-pre-down")
+            su $USER -c "DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus gio mount -uf $SMB_URL"
+            ;;
+    esac
+fi
+```
 
 Create a symlink inside  to catch the  events:
 
