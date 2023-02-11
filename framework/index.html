@@ -65,6 +65,12 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#mean-and-std">mean and std</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#datageneratorkerasutilssequence">DataGenerator(keras.utils.Sequence):</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#unfreeze-specific-layers">Unfreeze specific layers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#compute-the-trainable-and-non-trainable-variables">Compute the trainable and non-trainable variables.</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#tensorflow-macos-releases">tensorflow-macos Releases</a>
     </li>
     </ul>
@@ -342,6 +348,63 @@ for images, _ in dl:
 mean /= len(dl.dataset)
 std /= len(dl.dataset)
 </code></pre>
+<h2 id="datageneratorkerasutilssequence">DataGenerator(keras.utils.Sequence):</h2>
+<pre><code class="language-py">import numpy as np
+import keras
+
+class DataGenerator(keras.utils.Sequence):
+    'Generates data for Keras'
+    def __init__(self, list_IDs, labels, batch_size=32, dim=(32,32,32), n_channels=1,
+                 n_classes=10, shuffle=True):
+        'Initialization'
+        self.dim = dim
+        self.batch_size = batch_size
+        self.labels = labels
+        self.list_IDs = list_IDs
+        self.n_channels = n_channels
+        self.n_classes = n_classes
+        self.shuffle = shuffle
+        self.on_epoch_end()
+
+    def __len__(self):
+        'Denotes the number of batches per epoch'
+        return int(np.floor(len(self.list_IDs) / self.batch_size))
+
+    def __getitem__(self, index):
+        'Generate one batch of data'
+        # Generate indexes of the batch
+        indexes = self.indexes[index*self.batch_size:(index+1)*self.batch_size]
+
+        # Find list of IDs
+        list_IDs_temp = [self.list_IDs[k] for k in indexes]
+
+        # Generate data
+        X, y = self.__data_generation(list_IDs_temp)
+
+        return X, y
+
+    def on_epoch_end(self):
+        'Updates indexes after each epoch'
+        self.indexes = np.arange(len(self.list_IDs))
+        if self.shuffle == True:
+            np.random.shuffle(self.indexes)
+
+    def __data_generation(self, list_IDs_temp):
+        'Generates data containing batch_size samples' # X : (n_samples, *dim, n_channels)
+        # Initialization
+        X = np.empty((self.batch_size, *self.dim, self.n_channels))
+        y = np.empty((self.batch_size), dtype=int)
+
+        # Generate data
+        for i, ID in enumerate(list_IDs_temp):
+            # Store sample
+            X[i,] = np.load('data/' + ID + '.npy')
+
+            # Store class
+            y[i] = self.labels[ID]
+
+        return X, keras.utils.to_categorical(y, num_classes=self.n_classes)
+</code></pre>
 <pre><code class="language-py">class ImageDataGenerator(tf.keras.preprocessing.image.ImageDataGenerator):
     def __init__(self):
         super().__init__(
@@ -472,6 +535,44 @@ class Generator(object):
         &quot;&quot;&quot; Preprocessed numpy.array or a tf.Tensor with type float32. The images are converted from RGB to BGR,
             then each color channel is zero-centered with respect to the ImageNet dataset, without scaling. &quot;&quot;&quot;
         return image
+</code></pre>
+<h2 id="unfreeze-specific-layers">Unfreeze specific layers</h2>
+<p>Here is one way to <strong>unfreeze</strong> specific layers. We pick the same model and some layers (e.g. <code>block14_sepconv2</code>). The purpose is to <strong>unfreeze</strong> these layers and make the rest of the layers <strong>freeze</strong>.</p>
+<pre><code class="language-py">from tensorflow import keras
+
+base_model = keras.applications.Xception(
+    weights='imagenet',
+    input_shape=(150,150,3),
+    include_top=False
+)
+
+# free all layer except the desired layers
+# which is in [ ... ]
+for layer in base_model.layers:
+    if layer.name not in ['block14_sepconv2', 'block13_sepconv1']:
+        layer.trainable = False
+
+    if layer.trainable:
+        print(layer.name)
+
+block14_sepconv2
+block13_sepconv1
+</code></pre>
+<h2 id="compute-the-trainable-and-non-trainable-variables">Compute the trainable and non-trainable variables.</h2>
+<pre><code class="language-py">import tensorflow.keras.backend as K
+import numpy as np 
+
+trainable_count = np.sum([K.count_params(w) \
+                          for w in base_model.trainable_weights])
+non_trainable_count = np.sum([K.count_params(w) \
+                              for w in base_model.non_trainable_weights])
+print('Total params: {:,}'.format(trainable_count + non_trainable_count))
+print('Trainable params: {:,}'.format(trainable_count))
+print('Non-trainable params: {:,}'.format(non_trainable_count))
+</code></pre>
+<pre><code class="language-log">Total params: 20,861,480
+Trainable params: 3,696,088
+Non-trainable params: 17,165,392
 </code></pre>
 <h2 id="tensorflow-macos-releases">tensorflow-macos Releases</h2>
 <table>
