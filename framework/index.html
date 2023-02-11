@@ -59,11 +59,13 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#to-tf">To TF</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pytorch-dataset-to-tf-dataset">pytorch dataset to tf dataset</a>
+    </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#tensorflow-macos-releases">tensorflow-macos Releases</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#mean-and-std">mean and std</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tensorflow-macos-releases">tensorflow-macos Releases</a>
     </li>
     </ul>
                 </li>
@@ -223,6 +225,7 @@
 
     return tf_dataset.map(ensure_shapes)
 </code></pre>
+<h3 id="pytorch-dataset-to-tf-dataset">pytorch dataset to tf dataset</h3>
 <pre><code class="language-py">import tensorflow as tf
 import torch
 
@@ -246,53 +249,10 @@ dataset = pytorch_dataset_to_tensorflow_dataset(dataset)
 # Create a TensorFlow DataLoader from the TensorFlow Dataset
 dataloader = tf.data.DataLoader(dataset, batch_size=32, num_parallel_calls=tf.data.AUTOTUNE)
 </code></pre>
-<h2 id="tensorflow-macos-releases">tensorflow-macos Releases</h2>
-<table>
-<thead>
-<tr>
-<th>tensorflow-macos</th>
-<th>tensorflow-metal</th>
-<th>macOS version</th>
-<th>Features</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>v2.5</td>
-<td>0.1.2</td>
-<td>12.0+</td>
-<td>Pluggable device</td>
-</tr>
-<tr>
-<td>v2.6</td>
-<td>0.2.0</td>
-<td>12.0+</td>
-<td>Variable sequences for RNN layers</td>
-</tr>
-<tr>
-<td>v2.7</td>
-<td>0.3.0</td>
-<td>12.0+</td>
-<td>Custom op support</td>
-</tr>
-<tr>
-<td>v2.8</td>
-<td>0.4.0</td>
-<td>12.0+</td>
-<td>RNN performance improvements</td>
-</tr>
-<tr>
-<td>v2.9</td>
-<td>0.5.0</td>
-<td>12.1+</td>
-<td>Distributed training</td>
-</tr>
-</tbody>
-</table>
 <pre><code class="language-py">image = tf.io.read_file(filename=filepath)
 image = tf.image.decode_jpeg(image, channels=3) #or decode_png
 </code></pre>
-<p>the opposite of <code>unsqueeze</code> and <code>squeeze</code> is <code>expand_dims</code>:</p>
+<p>The opposite of <code>unsqueeze</code> and <code>squeeze</code> is <code>expand_dims</code>:</p>
 <pre><code class="language-py">img = tf.expand_dims(img,axis=0)
 </code></pre>
 <p>yield the desired/necessary transformations.</p>
@@ -382,6 +342,180 @@ for images, _ in dl:
 mean /= len(dl.dataset)
 std /= len(dl.dataset)
 </code></pre>
+<pre><code class="language-py">class ImageDataGenerator(tf.keras.preprocessing.image.ImageDataGenerator):
+    def __init__(self):
+        super().__init__(
+            rescale=1.0 / 255.0,
+            rotation_range=10,
+            width_shift_range=0.2,
+            height_shift_range=0.2,
+            zoom_range=[0.95, 1.05],
+            shear_range=0.1,
+            fill_mode=&quot;wrap&quot;,
+            horizontal_flip=True,
+            vertical_flip=True,
+        )
+
+
+class Generator(object):
+    def __init__(self, batch_size, name_x, name_y):
+
+        data_f = None  # h5py.File(open_directory, &quot;r&quot;)
+
+        self.x = data_f[name_x]
+        self.y = data_f[name_y]
+
+        if len(self.x.shape) == 4:
+            self.shape_x = (None, self.x.shape[1], self.x.shape[2], self.x.shape[3])
+
+        if len(self.x.shape) == 3:
+            self.shape_x = (None, self.x.shape[1], self.x.shape[2])
+
+        if len(self.y.shape) == 4:
+            self.shape_y = (None, self.y.shape[1], self.y.shape[2], self.y.shape[3])
+
+        if len(self.y.shape) == 3:
+            self.shape_y = (None, self.y.shape[1], self.y.shape[2])
+
+        self.num_samples = self.x.shape[0]
+        self.batch_size = batch_size
+        self.epoch_size = self.num_samples // self.batch_size + 1 * (
+            self.num_samples % self.batch_size != 0
+        )
+
+        self.pointer = 0
+        self.sample_nums = np.arange(0, self.num_samples)
+        np.random.shuffle(self.sample_nums)
+
+    def data_generator(self):
+
+        for batch_num in range(self.epoch_size):
+
+            x = []
+            y = []
+
+            for elem_num in range(self.batch_size):
+
+                sample_num = self.sample_nums[self.pointer]
+
+                x += [self.x[sample_num]]
+                y += [self.y[sample_num]]
+
+                self.pointer += 1
+
+                if self.pointer == self.num_samples:
+                    self.pointer = 0
+                    np.random.shuffle(self.sample_nums)
+                    break
+
+            x = np.array(x, dtype=np.float32)
+            y = np.array(y, dtype=np.float32)
+
+            yield x, y
+
+    def get_dataset(self):
+        dataset = tf.data.Dataset.from_generator(
+            self.data_generator,
+            output_signature=(
+                tf.TensorSpec(shape=(), dtype=tf.int32),
+                tf.RaggedTensorSpec(shape=(2, None), dtype=tf.int32),
+            ),
+        )
+        dataset = dataset.prefetch(1)
+
+        return dataset
+</code></pre>
+<pre><code class="language-py">def _load_image(self, image_path):
+        image = cv2.imread(image_path)  # BGR
+        # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # image = tf.io.read_file(image_path)
+        # image = tf.io.decode_image(
+        #     image,
+        #     channels=self.num_channels,
+        #     dtype=tf.dtypes.uint8,
+        #     expand_animations=False,
+        # )
+        # image = tf.image.resize(
+        #     image,
+        #     self.dim,
+        #     method=tf.image.ResizeMethod.BILINEAR,
+        #     preserve_aspect_ratio=True,
+        #     antialias=False,
+        #     name=None,
+        # )
+        # if not issubclass(image.dtype.type, np.floating):
+        image = image.astype(np.float32)
+        # image = image.astype(tf.keras.backend.floatx(), copy=False)
+        image = self.apply_image_transforms(image)
+        # 'RGB'-&gt;'BGR'
+        # image = image[..., ::-1]
+        # image = tf.image.convert_image_dtype(image, dtype=tf.uint8, saturate=False)
+        # image = tf.cast(image, tf.float32)  # / 127.5
+        # image -= 1.0
+        mean = [103.939, 116.779, 123.68]
+        # mean_tensor = tf.keras.backend.constant(-np.array(mean))
+        # if tf.keras.backend.dtype(image) != tf.keras.backend.dtype(mean_tensor):
+        #     image = tf.keras.backend.bias_add(
+        #         image,
+        #         tf.keras.backend.cast(mean_tensor, tf.keras.backend.dtype(image)),
+        #         data_format=&quot;channels_last&quot;,
+        #     )
+        # else:
+        #     image = tf.keras.backend.bias_add(image, mean_tensor, &quot;channels_last&quot;)
+        # image[0, :, :] -= mean[0]
+        # image[1, :, :] -= mean[1]
+        # image[2, :, :] -= mean[2]
+        image[..., 0] -= mean[0]
+        image[..., 1] -= mean[1]
+        image[..., 2] -= mean[2]
+        # image = tf.keras.applications.vgg16.preprocess_input(image)
+        &quot;&quot;&quot; Preprocessed numpy.array or a tf.Tensor with type float32. The images are converted from RGB to BGR,
+            then each color channel is zero-centered with respect to the ImageNet dataset, without scaling. &quot;&quot;&quot;
+        return image
+</code></pre>
+<h2 id="tensorflow-macos-releases">tensorflow-macos Releases</h2>
+<table>
+<thead>
+<tr>
+<th>tensorflow-macos</th>
+<th>tensorflow-metal</th>
+<th>macOS version</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.5</td>
+<td>0.1.2</td>
+<td>12.0+</td>
+<td>Pluggable device</td>
+</tr>
+<tr>
+<td>v2.6</td>
+<td>0.2.0</td>
+<td>12.0+</td>
+<td>Variable sequences for RNN layers</td>
+</tr>
+<tr>
+<td>v2.7</td>
+<td>0.3.0</td>
+<td>12.0+</td>
+<td>Custom op support</td>
+</tr>
+<tr>
+<td>v2.8</td>
+<td>0.4.0</td>
+<td>12.0+</td>
+<td>RNN performance improvements</td>
+</tr>
+<tr>
+<td>v2.9</td>
+<td>0.5.0</td>
+<td>12.1+</td>
+<td>Distributed training</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div><footer>
