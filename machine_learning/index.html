@@ -53,6 +53,14 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#steps-per-epoch">Steps per Epoch</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#residual-connections">Residual connections</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#batch-normalization">Batch normalization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#batch-normalization-and-fine-tuning">Batch normalization and Fine tuning</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -158,6 +166,17 @@
 <pre><code>- Traditionally, the steps per epoch is calculated as train_length // batch_size, since this will use all of the data points, one batch size worth at a time.
 - If you are augmenting the data, then you can stretch this a tad (sometimes I multiply that function above by 2 or 3 etc. But, if it's already training for too long, then I would just stick with the traditional approach.
 </code></pre>
+<h2 id="residual-connections">Residual connections</h2>
+<p>When the network get too deep, to adjust the parameters for each function in the chain based on the error(loss) recorded on the output layer, each sucessful layers include more noise. The noise start to overwhelm gradient information. This is the <em>vanishing gradients</em> problem.</p>
+<h2 id="batch-normalization">Batch normalization</h2>
+<p>The paper stated that Batch normalization operates by "reducing internal covariate shift". Helps with gradient propagation, allowing for deeper networks.</p>
+<pre><code class="language-py"># Because the output of the Conv2D layer gets normalized, the layer doesn't need its own bias vector.
+x = layers.Conv2D(32,3,use_bias)(x) # do not include activation
+x = layers.BatchNormalization()(x)
+x = layers.Activation(&quot;relu&quot;)(x)    # place activation after BatchNormalization layer
+</code></pre>
+<h3 id="batch-normalization-and-fine-tuning">Batch normalization and Fine tuning</h3>
+<p>When fine-tuning a model that includes BatchNormalization layers, leave these layers frozen( <code>trainable=False</code>). Otherwise they will keep updating their internal mean and variance, which can interfere with the very small updates applied to the surrounding <em>Conv2D</em> layers.</p>
               
             </div>
           </div><footer>
