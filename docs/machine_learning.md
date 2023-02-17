@@ -1,5 +1,24 @@
 # machine_learning
 
+## Residual connections
+
+When the network get too deep, to adjust the parameters for each function in the chain based on the error(loss) recorded on the output layer, each sucessful layers include more noise. The noise start to overwhelm gradient information. This is the *vanishing gradients* problem.
+
+
+## Batch normalization
+
+The paper stated that Batch normalization operates by "reducing internal covariate shift". Helps with gradient propagation, allowing for deeper networks.
+
+```py
+# Because the output of the Conv2D layer gets normalized, the layer doesn't need its own bias vector.
+x = layers.Conv2D(32,3,use_bias)(x) # do not include activation
+x = layers.BatchNormalization()(x)
+x = layers.Activation("relu")(x)    # place activation after BatchNormalization layer
+```
+
+
+### Batch normalization and Fine tuning
+When fine-tuning a model that includes BatchNormalization layers, leave these layers frozen( `trainable=False`). Otherwise they will keep updating their internal mean and variance, which can interfere with the very small updates applied to the surrounding *Conv2D* layers.
 
 ## Steps per Epoch
 Based on what you said it sounds like you need a larger batch_size, and of course there are implications with that which could impact the steps_per_epoch and number of epochs.

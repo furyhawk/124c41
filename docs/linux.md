@@ -49,5 +49,9 @@ https://wiki.archlinux.org/title/sudo
 export WLR_NO_HARDWARE_CURSORS=1
 
 pacman -S spice-vdagent
-et $menu bemenu-run --no-exec | xargs swaymsg exec --
+set $menu bemenu-run --no-exec | xargs swaymsg exec --
 ```
+
+
+sudo apt-get install ubuntu-desktop
+sudo systemctl set-default graphical.target
