@@ -1,7 +1,7 @@
 site_name: 124c41
 nav:
     - Home: index.md
-    - CV: resume.md
+    - Resume: resume.md
     - Conda: conda.md
     - machine_learning: machine_learning.md
     - Framework: framework.md
