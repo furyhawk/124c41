@@ -99,6 +99,12 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gloabalpooling">GloabalPooling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#globalmaxpooling">GlobalMaxPooling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#use-of-globalavgpooling">Use of GlobalAvgPooling</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#tensorflow-macos-releases">tensorflow-macos Releases</a>
@@ -735,6 +741,12 @@ Feature reduction: [8, 8]
 torch.Size([2, 512, 40, 40])
 torch.Size([2, 2048, 40, 40])
 </code></pre>
+<h3 id="gloabalpooling">GloabalPooling</h3>
+<p>Reduce computation by 75%. Summarise features.</p>
+<h3 id="globalmaxpooling">GlobalMaxPooling</h3>
+<p>Feature extraction after covn layer.</p>
+<h3 id="use-of-globalavgpooling">Use of GlobalAvgPooling</h3>
+<p>One advantage of global average pooling over the fully connected layers is that it is more native to the convolution structure by enforcing correspondences between feature maps and categories. Thus the feature maps can be easily interpreted as categories confidence maps. Another advantage is that there is no parameter to optimize in the global average pooling thus overfitting is avoided at this layer. Futhermore, global average pooling sums out the spatial information, thus it is more robust to spatial translations of the input. We can see global average pooling as a structural regularizer that explicitly enforces feature maps to be confidence maps of concepts (categories). This is made possible by the mlpconv layers, as they makes better approximation to the confidence maps than GLMs.</p>
 <h2 id="tensorflow-macos-releases">tensorflow-macos Releases</h2>
 <table>
 <thead>
