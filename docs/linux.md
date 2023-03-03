@@ -1,4 +1,11 @@
-# test
+# linux
+
+## misc
+```shell
+ln -s original symlink
+```
+
+## test
 
 ```shell
 bash ./scripts/linter.sh

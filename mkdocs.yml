@@ -3,6 +3,7 @@ nav:
     - Home: index.md
     - Resume: resume.md
     - Conda: conda.md
+    - git: git.md
     - machine_learning: machine_learning.md
     - Framework: framework.md
     - database: db.md
