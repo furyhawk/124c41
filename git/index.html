@@ -58,10 +58,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#readmemd">README.md</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#commit-msg">commit msg</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#fetchpull-all-branches">Fetch/pull all branches</a>
     </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#fetchpull-all-branches">Fetch/pull all branches</a>
     </li>
     </ul>
                 </li>
@@ -172,7 +170,7 @@ $ git config --global user.email furyx@hotmail.com
   │
   └─⫸ Commit Type: build|cicd|docs|feat|fix|node|refactor|test
 </code></pre>
-<h3 id="fetchpull-all-branches">Fetch/pull all branches</h3>
+<h2 id="fetchpull-all-branches">Fetch/pull all branches</h2>
 <pre><code class="language-sh">git branch -r | grep -v '\-&gt;' | sed &quot;s,\x1B\[[0-9;]*[a-zA-Z],,g&quot; | while read remote; do git branch --track &quot;${remote#origin/}&quot; &quot;$remote&quot;; done
 git fetch --all
 git pull --all
