@@ -1,5 +1,9 @@
 # machine_learning
 
+## Neural Network Playground
+
+[https://furyhawk.github.io/playground/](https://furyhawk.github.io/playground/)
+
 ## Residual connections
 
 When the network get too deep, to adjust the parameters for each function in the chain based on the error(loss) recorded on the output layer, each sucessful layers include more noise. The noise start to overwhelm gradient information. This is the *vanishing gradients* problem.

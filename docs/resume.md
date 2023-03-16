@@ -1,5 +1,4 @@
 # [Resume](https://furyhawk.github.io/124c41/resume/)
-
 ```
 ▄▄▌ ▐ ▄▌       ▐ ▄  ▄▄ •     ▄▄▄▄▄▄▄▄ . ▄▄· ▄ •▄     • ▌ ▄ ·. ▄▄▄ . ▐ ▄  ▄▄ • 
 ██· █▌▐█▪     •█▌▐█▐█ ▀ ▪    •██  ▀▄.▀·▐█ ▌▪█▌▄▌▪    ·██ ▐███▪▀▄.▀·•█▌▐█▐█ ▀ ▪
@@ -7,10 +6,11 @@
 ▐█▌██▐█▌▐█▌.▐▌██▐█▌▐█▄▪▐█     ▐█▌·▐█▄▄▌▐███▌▐█.█▌    ██ ██▌▐█▌▐█▄▄▌██▐█▌▐█▄▪▐█
  ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪·▀▀▀▀      ▀▀▀  ▀▀▀ ·▀▀▀ ·▀  ▀    ▀▀  █▪▀▀▀ ▀▀▀ ▀▀ █▪·▀▀▀▀ 
 ```
-
 <mark>*Independent professional with strong learning attitude.*</mark>
 
 ## Particulars
+
+<img src="https://github.com/furyhawk/124c41/raw/main/docs/assets/107113815.jpg" data-canonical-src="https://github.com/furyhawk/124c41/raw/main/docs/assets/107113815.jpg" width="100" height="133" />
 
 - Full Name as per passport: **Wong Teck Meng**
 
@@ -23,7 +23,7 @@
 | [https://github.com/furyhawk](https://github.com/furyhawk)                 |
 | [https://www.kaggle.com/teckmengwong](https://www.kaggle.com/teckmengwong) |
 
-    
+
 
 ## Experiences
 
@@ -32,21 +32,24 @@
 | Period    | Employer          | Positions             | Responsibilities             |
 | --------- | ----------------- | --------------------- | ---------------------------- |
 | 2022-     | AI Singapore      | Associate AI Engineer | MLOps                        |
-| 2021-2022 | Career transition |                       |                              |
 | 2020-2021 | NCS               | Front-end Engineer    | SAP Edge Implementation      |
 | 2019-2020 | BHP               | Front-end Engineer    | Fiori Project Implementation |
 | 2006-2019 | NCS               | Senior Consultant     | SAP Consultant/ABAP/Fiori    |
 | 2000-2006 | Creative          | Associate Engineer    | Software QA                  |
 
+<p style="page-break-after: always;"> </p>
+
 ![](assets/ai_singapore.jpg)
 
 ### AI Singapore : 2022 - present
 
+*Associate AI Engineer*
+
+- Implement sustainable ***MLOps*** using ***Pytorch*** and ***Tensorflow*** framework. Easy configurable(***Hydra***) pipeline for tasks like `Image Classification`, `Object Detection` and `Segmentation`. [https://github.com/aisingapore/PeekingDuck](https://github.com/aisingapore/PeekingDuck)
+
 *AI Apprentice*
 
 - Out of hundreds applicants, one of the selected 19 in **batch 11**. 2 months of deepskilling in AI Engineering and 7 months of on-the-job training on a real-world AI problem from the industry.
-
-- Implement sustainable ***MLOps*** using ***Pytorch*** and ***Tensorflow*** framework. Easy configurable(***Hydra***) pipeline for tasks like `Image Classification`, `Object Detection` and `Segmentation`.
 
 - Deploy scalable distributed container platforms using Kubernetes.
 
@@ -90,16 +93,18 @@
 
 - Software/Hardware Quality Assurance for world first mp3 devices.
 
+<p style="page-break-after: always;"> </p>
+
 ## Education Qualifications
 
-| Period    | Discipline/University                                                                   |
-| --------- | --------------------------------------------------------------------------------------- |
-| 2011-2017 | BSc Information Technology and Business (ERP) / Singapore University of Social Sciences |
-| 1994-1997 | Diploma in Mechatronics (Machine Vision) / Singapore Polytechnic                        |
+| Period    | Discipline/University                                               |
+| --------- | ------------------------------------------------------------------- |
+| 2011-2017 | BSc IT and Business (ERP) / Singapore University of Social Sciences |
+| 1994-1997 | Diploma in Mechatronics (Machine Vision) / Singapore Polytechnic    |
 
 ## Professional Qualification
 
-- [Associate AI Engineer]([Certificate Verification &#8211; AI Professionals Association (AIP)](https://www.aip.org.sg/certificate-verification/2F363E7-2F36256-7B47D/))
+- [Certificate Verification &#8211; AI Professionals Association (AIP)](https://www.aip.org.sg/certificate-verification/2F363E7-2F36256-7B47D/)
 
 - **Udacity Nanodegree Program** - Machine Learning Engineer 
 

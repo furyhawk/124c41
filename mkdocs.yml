@@ -12,6 +12,7 @@ nav:
     - Hydra: hydra.md
     - Linux: linux.md
     - gpt: gpt.md
+    - stable_diffussion: stable_diffusion.md
     - Model Analysis: wandb.md
     - Samba: smb.md
     - Samba_ubuntu: smb2.md
