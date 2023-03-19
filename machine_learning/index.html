@@ -113,6 +113,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#when-to-scale">When to Scale</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pytorch-loss-function-cheatsheet">PyTorch Loss Function Cheatsheet</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -419,6 +421,14 @@ Some examples of algorithms where feature scaling matters are:</p>
 - Tree based models are not distance based models and can handle varying ranges of features. Hence, Scaling is not required while modelling trees.
 </code></pre>
 <p>Algorithms like Linear Discriminant Analysis(LDA), Naive Bayes are by design equipped to handle this and gives weights to the features accordingly. Performing a features scaling in these algorithms may not have much effect.</p>
+<h2 id="pytorch-loss-function-cheatsheet">PyTorch Loss Function Cheatsheet</h2>
+<p>PyTorch Loss-Input Confusion (Cheatsheet)</p>
+<ul>
+<li><a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.binary_cross_entropy.html"><code>torch.nn.functional.binary_cross_entropy</code></a> takes logistic sigmoid values as inputs</li>
+<li><a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.binary_cross_entropy_with_logits.html"><code>torch.nn.functional.binary_cross_entropy_with_logits</code></a> takes logits as inputs</li>
+<li><a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html#torch.nn.functional.cross_entropy"><code>torch.nn.functional.cross_entropy</code></a> takes logits as inputs (performs log_softmax internally)</li>
+<li><a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html"><code>torch.nn.functional.nll_loss</code></a> is like <code>cross_entropy</code> but takes log-probabilities (log-softmax) values as inputs</li>
+</ul>
               
             </div>
           </div><footer>
