@@ -1,4 +1,5 @@
 # [Resume](https://furyhawk.github.io/124c41/resume/)
+
 ```
 ▄▄▌ ▐ ▄▌       ▐ ▄  ▄▄ •     ▄▄▄▄▄▄▄▄ . ▄▄· ▄ •▄     • ▌ ▄ ·. ▄▄▄ . ▐ ▄  ▄▄ • 
 ██· █▌▐█▪     •█▌▐█▐█ ▀ ▪    •██  ▀▄.▀·▐█ ▌▪█▌▄▌▪    ·██ ▐███▪▀▄.▀·•█▌▐█▐█ ▀ ▪
@@ -6,17 +7,25 @@
 ▐█▌██▐█▌▐█▌.▐▌██▐█▌▐█▄▪▐█     ▐█▌·▐█▄▄▌▐███▌▐█.█▌    ██ ██▌▐█▌▐█▄▄▌██▐█▌▐█▄▪▐█
  ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪·▀▀▀▀      ▀▀▀  ▀▀▀ ·▀▀▀ ·▀  ▀    ▀▀  █▪▀▀▀ ▀▀▀ ▀▀ █▪·▀▀▀▀ 
 ```
+
 <mark>*Independent professional with strong learning attitude.*</mark>
 
 ## Particulars
 
-<img src="https://github.com/furyhawk/124c41/raw/main/docs/assets/107113815.jpg" data-canonical-src="https://github.com/furyhawk/124c41/raw/main/docs/assets/107113815.jpg" width="100" height="133" />
-
-- Full Name as per passport: **Wong Teck Meng**
-
-- Nationality: **Singaporean**
-
-- Email: [gfuryhawk@gmail.com](mailto:gfuryhawk@gmail.com)
+<table>
+    <tbody>
+        <tr>
+            <td>Full Name as per passport: <strong>Wong Teck Meng</strong></td>
+            <td rowspan=3><img src="https://github.com/furyhawk/124c41/raw/main/docs/assets/107113815.jpg" data-canonical-src="https://github.com/furyhawk/124c41/raw/main/docs/assets/107113815.jpg" width="100" height="133" /></td>
+        </tr>
+        <tr>
+            <td>Nationality: <strong>Singaporean</strong></td>
+        </tr>
+        <tr>
+            <td>"Email: "<a href="mailto:gfuryhawk@gmail.com">gfuryhawk@gmail.com</a></td>
+        </tr>
+    </tbody>
+</table>
 
 | Code repositories                                                          |
 | -------------------------------------------------------------------------- |
@@ -24,18 +33,17 @@
 | [https://www.kaggle.com/teckmengwong](https://www.kaggle.com/teckmengwong) |
 
 
-
 ## Experiences
 
 ### Employment history : *20+ years Software Engineering*
 
-| Period    | Employer          | Positions             | Responsibilities             |
-| --------- | ----------------- | --------------------- | ---------------------------- |
-| 2022-     | AI Singapore      | Associate AI Engineer | MLOps                        |
-| 2020-2021 | NCS               | Front-end Engineer    | SAP Edge Implementation      |
-| 2019-2020 | BHP               | Front-end Engineer    | Fiori Project Implementation |
-| 2006-2019 | NCS               | Senior Consultant     | SAP Consultant/ABAP/Fiori    |
-| 2000-2006 | Creative          | Associate Engineer    | Software QA                  |
+| Period    | Employer     | Positions             | Responsibilities             |
+| --------- | ------------ | --------------------- | ---------------------------- |
+| 2022-     | AI Singapore | Associate AI Engineer | MLOps                        |
+| 2020-2021 | NCS          | Front-end Engineer    | SAP Edge Implementation      |
+| 2019-2020 | BHP          | Front-end Engineer    | Fiori Project Implementation |
+| 2006-2019 | NCS          | Senior Consultant     | SAP Consultant/ABAP/Fiori    |
+| 2000-2006 | Creative     | Associate Engineer    | Software QA                  |
 
 <p style="page-break-after: always;"> </p>
 
@@ -64,7 +72,7 @@
 - Implement *Maintenance Dashboard* for Singapore Air force **F16/Apache** Squadron on *Edge* devices to improve turnaround reliability.
 
 ![](assets/bhp.jpg) 
-
+<p style="page-break-after: always;"> </p>
 ### BHP : 2019 - 2020 : *1 yr 2 mos*
 
 *Software Engineer*
@@ -79,11 +87,13 @@
 
 *Senior Consultant/Full Stack engineer*
 
-- Implement **11** end to end ***Enterprise Resource Planning***(*ERP*) projects total worth over 100 millions in wide range of business domains.
+- Successfully implemented **11** cycles of end to end ***Enterprise Resource Planning***(*SAP*) projects, total worth over 100 millions dollars in wide range of business domains.
 
 - Bolster **productivity** and add value after each project cycles using *Software Engineering* **best practice**.
 
-- Expertise in implementing projects using **Frontend** and **Backend** frameworks.
+- Expertise in implementing projects using **Frontend**(*Fiori*) and **Backend**(*ABAP*) frameworks.
+
+- Spearhead **Agile Scrum** methodology to project team members.
 
 ![](assets/creative.jpg)
 
