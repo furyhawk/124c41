@@ -14,6 +14,7 @@ nav:
     - gpt: gpt.md
     - stable_diffussion: stable_diffusion.md
     - Model Analysis: wandb.md
+    - ssh: ssh.md
     - Samba: smb.md
     - Samba_ubuntu: smb2.md
     - MkDocs: mkdocs.md
