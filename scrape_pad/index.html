@@ -97,6 +97,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ssh/">ssh</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../smb/">Samba</a>
                 </li>
               </ul>
@@ -116,6 +120,8 @@
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">scrape_pad</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#sway">sway</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#yolox">Yolox</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#question">question</a>
     </li>
@@ -185,7 +191,13 @@
         </tr>
     </tbody>
 </table>
-<p>python tools/train.py -f exps/example/custom/nano.py -d 1 -b 2 -c yolox_nano.pth</p>
+
+<h2 id="yolox">Yolox</h2>
+<p>python tools/train.py -f exps/example/custom/nano.py -d 1 -b 2 -c yolox_nano.pth
+targets.shape
+torch.Size([2, 120, 5])
+inps.shape
+torch.Size([2, 3, 416, 416])</p>
 <h3 id="question">question</h3>
 <ul>
 <li>org, dept, position level.</li>
