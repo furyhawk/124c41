@@ -323,6 +323,17 @@ as all versions of DOS and Windows, OS/2, Linux and many others.</p>
 section; to access files shared through Samba on other machines, please
 see <a href="#Client" title="wikilink">#Client</a> section.</p>
 <h2 id="server">Server</h2>
+<pre><code class="language-sh">cd /mnt/
+sudo mkdir media
+cd media
+sudo nano /root/.credentials
+sudo chmod 400 /root/.credentials
+sudo mount -t cifs -o rw,vers=3.0,credentials=/root/.credentials //coco/media/ /mnt/media
+sudo nano /etc/fstab
+smbclient -L hostname -U%
+
+//coco.local/media  /mnt/media  cifs    vers=3.0,credentials=/root/.credentials
+</code></pre>
 <h3 id="installation">Installation</h3>
 <p><a href="Install" title="wikilink">Install</a> the  package.</p>
 <p>Samba is configured in the  configuration file, which is extensively
