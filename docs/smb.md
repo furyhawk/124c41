@@ -12,6 +12,16 @@ see [\#Client](#Client "wikilink") section.
 
 ## Server
 
+```sh
+cd /mnt/
+sudo mkdir media
+cd media
+sudo nano /root/.credentials
+sudo chmod 400 /root/.credentials
+sudo mount -t cifs -o rw,vers=3.0,credentials=/root/.credentials //coco/media/ /mnt/media
+sudo nano /etc/fstab
+smbclient -L hostname -U%
+```
 ### Installation
 
 [Install](Install "wikilink") the  package.
