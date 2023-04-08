@@ -21,6 +21,8 @@ sudo chmod 400 /root/.credentials
 sudo mount -t cifs -o rw,vers=3.0,credentials=/root/.credentials //coco/media/ /mnt/media
 sudo nano /etc/fstab
 smbclient -L hostname -U%
+
+//coco.local/media	/mnt/media	cifs	vers=3.0,credentials=/root/.credentials
 ```
 ### Installation
 

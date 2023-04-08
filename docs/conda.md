@@ -40,6 +40,10 @@ sudo ./scripts/run_pipeline.sh -nrci
 
 cp /etc/i3status.conf ~/.config/i3status/config
 
+systemctl --user start docker-desktop
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
 ```
 
 
