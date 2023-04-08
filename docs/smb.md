@@ -15,14 +15,12 @@ see [\#Client](#Client "wikilink") section.
 ```sh
 cd /mnt/
 sudo mkdir media
-cd media
-sudo nano /root/.credentials
-sudo chmod 400 /root/.credentials
-sudo mount -t cifs -o rw,vers=3.0,credentials=/root/.credentials //coco/media/ /mnt/media
+nano /home/user/.credentials
+sudo chmod 400 /home/user/.credentials
+sudo mount -t cifs -o rw,vers=3.0,credentials=/home/user/.credentials //coco.local/media/ /mnt/media
 sudo nano /etc/fstab
-smbclient -L hostname -U%
-
-//coco.local/media	/mnt/media	cifs	vers=3.0,credentials=/root/.credentials
+# smbclient -L hostname -U%
+# //coco.local/media	/mnt/media	cifs	vers=3.0,credentials=/home/user/.credentials
 ```
 ### Installation
 

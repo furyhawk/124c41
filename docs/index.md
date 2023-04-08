@@ -42,6 +42,10 @@ Using https://developer.riotgames.com/ API.
 
 - Stats like *game_length*, *players_eliminated* are excluded. This is to prevent the model from learning obvious predictor.
 
+```sh
+sudo ./scripts/run_pipeline.sh -nrci
+```
+
 ## Web Scraping With Python
 
 ### Objective

@@ -26,23 +26,11 @@ conda clean -a
 conda install -y -c apple tensorflow-deps
 pip install tensorflow-macos tensorflow-metal
 
-bash Miniconda3-py310_22.11.1-1-Linux-x86_64.sh 
-conda list
 conda config --add channels conda-forge
 conda config --describe
 conda config --set auto_activate_base false
 conda update --all
 conda update conda
-conda install --file requirements.txt -c conda-forge
-pip install -r requirements.txt
-
-sudo ./scripts/run_pipeline.sh -nrci
-
-cp /etc/i3status.conf ~/.config/i3status/config
-
-systemctl --user start docker-desktop
-sudo groupadd docker
-sudo usermod -aG docker $USER
 
 ```
 

@@ -27,3 +27,11 @@ git branch -r | grep -v '\->' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | while read re
 git fetch --all
 git pull --all
 ```
+
+## How can I enable github notifications?
+
+install and authenticate with the github cli:
+```sh
+pacman -S github-cli
+gh auth login
+```

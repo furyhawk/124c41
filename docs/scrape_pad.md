@@ -67,3 +67,13 @@ I will really appreciate it if you make the first offer.
 #### after
 - follow up the next day on thank you note.
 
+
+### misc
+
+```sh
+cp /etc/i3status.conf ~/.config/i3status/config
+
+systemctl --user start docker-desktop
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```

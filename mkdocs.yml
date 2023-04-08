@@ -11,6 +11,7 @@ nav:
     - Chart: chart.md
     - Hydra: hydra.md
     - Linux: linux.md
+    - sway: sway.md
     - gpt: gpt.md
     - stable_diffussion: stable_diffusion.md
     - Model Analysis: wandb.md
