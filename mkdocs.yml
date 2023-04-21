@@ -8,6 +8,7 @@ nav:
     - Framework: framework.md
     - database: db.md
     - Dataframe: dataframe.md
+    - anomaly_detection: anomaly_detection.md
     - Chart: chart.md
     - Hydra: hydra.md
     - Linux: linux.md
