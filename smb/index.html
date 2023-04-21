@@ -73,6 +73,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../anomaly_detection/">anomaly_detection</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../chart/">Chart</a>
                 </li>
               </ul>
@@ -82,10 +86,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../linux/">Linux</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../sway/">sway</a>
                 </li>
               </ul>
               <ul>
@@ -329,12 +329,14 @@ see <a href="#Client" title="wikilink">#Client</a> section.</p>
 <h2 id="server">Server</h2>
 <pre><code class="language-sh">cd /mnt/
 sudo mkdir media
-nano /home/user/.credentials
-sudo chmod 400 /home/user/.credentials
-sudo mount -t cifs -o rw,vers=3.0,credentials=/home/user/.credentials //coco.local/media/ /mnt/media
+cd media
+sudo nano /root/.credentials
+sudo chmod 400 /root/.credentials
+sudo mount -t cifs -o rw,vers=3.0,credentials=/root/.credentials //coco/media/ /mnt/media
 sudo nano /etc/fstab
-# smbclient -L hostname -U%
-# //coco.local/media    /mnt/media  cifs    vers=3.0,credentials=/home/user/.credentials
+smbclient -L hostname -U%
+
+//coco.local/media  /mnt/media  cifs    vers=3.0,credentials=/root/.credentials
 </code></pre>
 <h3 id="installation">Installation</h3>
 <p><a href="Install" title="wikilink">Install</a> the  package.</p>

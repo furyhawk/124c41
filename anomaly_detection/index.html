@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>git - 124c41</title>
+    <title>anomaly_detection - 124c41</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "git";
-        var mkdocs_page_input_path = "git.md";
+        var mkdocs_page_name = "anomaly_detection";
+        var mkdocs_page_input_path = "anomaly_detection.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,16 +52,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../conda/">Conda</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">git</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#readmemd">README.md</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#commit-msg">commit msg</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#fetchpull-all-branches">Fetch/pull all branches</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../git/">git</a>
                 </li>
               </ul>
               <ul>
@@ -80,8 +72,20 @@
                 <li class="toctree-l1"><a class="reference internal" href="../dataframe/">Dataframe</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../anomaly_detection/">anomaly_detection</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">anomaly_detection</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#deep-learning-for-anomaly-detection-a-survey">Deep Learning for Anomaly Detection: A survey</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#type-of-anomaly">Type of Anomaly</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#diversity-measurable-anomaly-detection-papers-with-code">Diversity-Measurable Anomaly Detection | Papers With Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#attribute-based-representations-for-accurate-and-interpretable-video-anomaly-detection-papers-with-code">Attribute-based Representations for Accurate and Interpretable Video Anomaly Detection | Papers With Code</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -154,7 +158,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>git</li>
+      <li>anomaly_detection</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -163,36 +167,81 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="git">GIT</h1>
-<h2 id="readmemd">README.md</h2>
+                <h1 id="anomaly_detection">anomaly_detection</h1>
+<h2 id="deep-learning-for-anomaly-detection-a-survey">Deep Learning for Anomaly Detection: A survey</h2>
+<p>1901.03407.pdf (arxiv.org) https://arxiv.org/pdf/1901.03407.pdf</p>
+<h3 id="type-of-anomaly">Type of Anomaly</h3>
 <ul>
-<li>👋 Hi, I’m @furyhawk</li>
-<li>👀 I’m interested in AI</li>
-<li>🌱 I’m currently learning AI</li>
-<li>💞️ I’m looking to collaborate on AI</li>
-<li>📫 How to reach me ...</li>
+<li>
+<p>Point Anomalies</p>
+<ul>
+<li>represent an irregularity or deviation that happens randomly and may have no particular interpretation.</li>
 </ul>
-<pre><code class="language-sh">$ git config --global user.name &quot;furyhawk&quot;
-$ git config --global user.email furyx@hotmail.com
-</code></pre>
-<h2 id="commit-msg">commit msg</h2>
-<pre><code>&lt;type&gt;: &lt;short summary&gt;
-  │            │
-  │            └─⫸ Summary in present tense. Not capitalized. No period at the end.
-  │
-  └─⫸ Commit Type: build|cicd|docs|feat|fix|node|refactor|test
-</code></pre>
-<h2 id="fetchpull-all-branches">Fetch/pull all branches</h2>
-<pre><code class="language-sh">git branch -r | grep -v '\-&gt;' | sed &quot;s,\x1B\[[0-9;]*[a-zA-Z],,g&quot; | while read remote; do git branch --track &quot;${remote#origin/}&quot; &quot;$remote&quot;; done
-git fetch --all
-git pull --all
-</code></pre>
+</li>
+<li>
+<p>Contextual Anomaly Detection</p>
+<ul>
+<li>
+<p>conditional anomaly is a data instance that could be considered as anomalous in some specific context.</p>
+</li>
+<li>
+<p>Contextual anomaly is identified by considering both contextual and behavioural features. The contextual features, normally used are time and space. While the behavioral features may be a pattern of spending money, the occurrence of system log events or any feature used to describe the normal behavior.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Collective or Group Anomaly Detection.</p>
+<ul>
+<li>Anomalous collections of individual data points are known as collective or group anomalies, wherein each of the individual points in isolation appears as normal data instances while observed in a group exhibit unusual characteristics.</li>
+</ul>
+</li>
+<li>
+<p>Output of DAD Techniques</p>
+<ul>
+<li>
+<p>Anomaly Score</p>
+</li>
+<li>
+<p>Labels</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="diversity-measurable-anomaly-detection-papers-with-code">Diversity-Measurable Anomaly Detection | Papers With Code</h2>
+<p>https://paperswithcode.com/paper/diversity-measurable-anomaly-detection</p>
+<p>Improvement of Autoencoders and Generative Adversarial Networks.</p>
+<p><strong>Limitations</strong>. Focuses on anomaly with measurable geometrical diversity, the most common type in anomaly detection. However, as for anomaly with other kind of diversities, e.g. colors, the proposed diversity measure may not be positively correlated to anomaly severity.</p>
+<h2 id="attribute-based-representations-for-accurate-and-interpretable-video-anomaly-detection-papers-with-code">Attribute-based Representations for Accurate and Interpretable Video Anomaly Detection | Papers With Code</h2>
+<p>https://paperswithcode.com/paper/attribute-based-representations-for-accurate</p>
+<ul>
+<li>
+<p>Video anomaly detection</p>
+</li>
+<li>
+<p>Use object detection to extract features:</p>
+<ul>
+<li>
+<p>Velocity</p>
+</li>
+<li>
+<p>Pose</p>
+</li>
+<li>
+<p>Deep features(pre-trained CLIP)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Use kNN to detect anomaly on the extracted features.</p>
+</li>
+</ul>
+<p>Could use similar approach to extract detective features.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../conda/" class="btn btn-neutral float-left" title="Conda"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../machine_learning/" class="btn btn-neutral float-right" title="machine_learning">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../dataframe/" class="btn btn-neutral float-left" title="Dataframe"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../chart/" class="btn btn-neutral float-right" title="Chart">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -215,10 +264,10 @@ git pull --all
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../conda/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../dataframe/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../machine_learning/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../chart/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
