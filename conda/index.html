@@ -91,6 +91,14 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sway/">sway</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../gpt/">gpt</a>
                 </li>
               </ul>
@@ -193,13 +201,6 @@ conda update conda
 conda install --file requirements.txt -c conda-forge
 pip install -r requirements.txt
 
-sudo ./scripts/run_pipeline.sh -nrci
-
-cp /etc/i3status.conf ~/.config/i3status/config
-
-systemctl --user start docker-desktop
-sudo groupadd docker
-sudo usermod -aG docker $USER
 
 </code></pre>
               

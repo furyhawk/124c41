@@ -89,6 +89,14 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sway/">sway</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../gpt/">gpt</a>
                 </li>
               </ul>
@@ -138,6 +146,8 @@
     <li class="toctree-l4"><a class="reference internal" href="#after">after</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#misc">misc</a>
     </li>
         </ul>
     </li>
@@ -230,6 +240,13 @@ Smile before exit.</p>
 <ul>
 <li>follow up the next day on thank you note.</li>
 </ul>
+<h3 id="misc">misc</h3>
+<pre><code class="language-sh">cp /etc/i3status.conf ~/.config/i3status/config
+
+systemctl --user start docker-desktop
+sudo groupadd docker
+sudo usermod -aG docker $USER
+</code></pre>
               
             </div>
           </div><footer>

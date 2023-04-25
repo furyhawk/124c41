@@ -61,6 +61,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#fetchpull-all-branches">Fetch/pull all branches</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-can-i-enable-github-notifications">How can I enable github notifications?</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -94,6 +96,14 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../linux/">Linux</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sway/">sway</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
                 </li>
               </ul>
               <ul>
@@ -186,6 +196,11 @@ $ git config --global user.email furyx@hotmail.com
 <pre><code class="language-sh">git branch -r | grep -v '\-&gt;' | sed &quot;s,\x1B\[[0-9;]*[a-zA-Z],,g&quot; | while read remote; do git branch --track &quot;${remote#origin/}&quot; &quot;$remote&quot;; done
 git fetch --all
 git pull --all
+</code></pre>
+<h2 id="how-can-i-enable-github-notifications">How can I enable github notifications?</h2>
+<p>install and authenticate with the github cli:</p>
+<pre><code class="language-sh">pacman -S github-cli
+gh auth login
 </code></pre>
               
             </div>
