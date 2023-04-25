@@ -13,6 +13,7 @@ nav:
     - Hydra: hydra.md
     - Linux: linux.md
     - sway: sway.md
+    - Docker: docker.md
     - gpt: gpt.md
     - stable_diffussion: stable_diffusion.md
     - Model Analysis: wandb.md
