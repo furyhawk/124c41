@@ -50,3 +50,8 @@ https://paperswithcode.com/paper/attribute-based-representations-for-accurate
 
 Could use similar approach to extract detective features.
 
+## DSR -- A dual subspace re-projection network for surface anomaly detection | Papers With Code
+
+https://paperswithcode.com/paper/dsr-a-dual-subspace-re-projection-network-for
+
+Proposes an architecture based on quantized feature space representation with dual decoders, DSR, that avoids the image-level anomaly synthesis requirement. Without making any assumptions about the visual properties of anomalies, DSR generates the anomalies at the feature level by sampling the learned quantized feature space, which allows a controlled generation of near-in-distribution anomalies.
