@@ -36,7 +36,9 @@ conda update conda
 conda install --file requirements.txt -c conda-forge
 pip install -r requirements.txt
 
-
+# archlinux
+ echo "[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh" >> ~/.zshrc
+ 
 ```
 
 
