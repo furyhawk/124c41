@@ -13,6 +13,7 @@ nav:
     - Chart: chart.md
     - Hydra: hydra.md
     - Linux: linux.md
+    - macos: macos.md
     - sway: sway.md
     - Docker: docker.md
     - yolox: yolox.md
