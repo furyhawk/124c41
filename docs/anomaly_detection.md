@@ -1,5 +1,12 @@
 # anomaly_detection
 
+```sh
+pip install -e .
+pip install GitPython
+pip install onnx 
+pip install openvino-dev
+```
+
 ## Deep Learning for Anomaly Detection: A survey
 
 1901.03407.pdf (arxiv.org) https://arxiv.org/pdf/1901.03407.pdf
