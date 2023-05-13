@@ -60,5 +60,13 @@ set $menu bemenu-run --no-exec | xargs swaymsg exec --
 ```
 
 
+```sh
 sudo apt-get install ubuntu-desktop
 sudo systemctl set-default graphical.target
+```
+
+## WSL time not updated
+```sh
+apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update
+```
+
