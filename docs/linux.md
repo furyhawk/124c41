@@ -70,3 +70,7 @@ sudo systemctl set-default graphical.target
 apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update
 ```
 
+## find largest file in directory recursively using find
+```sh
+sudo du -a / | sort -n -r | head -n 20
+```
