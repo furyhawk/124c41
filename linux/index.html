@@ -34,7 +34,7 @@
           <a href=".." class="icon icon-home"> 124c41
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -106,6 +106,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#enabling-sudo">Enabling sudo</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#sway">sway</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wsl-time-not-updated">WSL time not updated</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#find-largest-file-in-directory-recursively-using-find">find largest file in directory recursively using find</a>
     </li>
     </ul>
                 </li>
@@ -187,7 +191,7 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
       <li>Linux</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -236,8 +240,15 @@ su -p
 pacman -S spice-vdagent
 set $menu bemenu-run --no-exec | xargs swaymsg exec --
 </code></pre>
-<p>sudo apt-get install ubuntu-desktop
-sudo systemctl set-default graphical.target</p>
+<pre><code class="language-sh">sudo apt-get install ubuntu-desktop
+sudo systemctl set-default graphical.target
+</code></pre>
+<h2 id="wsl-time-not-updated">WSL time not updated</h2>
+<pre><code class="language-sh">apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update
+</code></pre>
+<h2 id="find-largest-file-in-directory-recursively-using-find">find largest file in directory recursively using find</h2>
+<pre><code class="language-sh">sudo du -a / | sort -n -r | head -n 20
+</code></pre>
               
             </div>
           </div><footer>
