@@ -8,7 +8,7 @@
  ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪·▀▀▀▀      ▀▀▀  ▀▀▀ ·▀▀▀ ·▀  ▀    ▀▀  █▪▀▀▀ ▀▀▀ ▀▀ █▪·▀▀▀▀ 
 ```
 
-<mark>*Independent professional with strong learning attitude.*</mark>
+<mark>*20 years of software engineering experience. Reverse engineering codes with strong learning attitude.*</mark>
 
 ## Particulars
 
@@ -47,26 +47,43 @@
 <p style="page-break-after: always;"> </p>
 
 
-<table>
+<!-- <table>
     <tbody>
         <tr>
             <td><img src="https://github.com/furyhawk/124c41/raw/main/docs/assets/ai_singapore.jpg" data-canonical-src="https://github.com/furyhawk/124c41/raw/main/docs/assets/ai_singapore.jpg" /></td>
             <td rowspan=3><strong>AI Singapore</strong> : 2022 - present</td>
         </tr>
     </tbody>
-</table>
+</table> -->
+
+![](assets/ai_singapore.jpg)
+
+### AI Singapore : 2022 - present
 
 *Associate AI Engineer*
 
-- Implement sustainable ***MLOps*** using ***Pytorch*** and ***Tensorflow*** framework. Easy configurable(***Hydra***) pipeline for tasks like `Image Classification`, `Object Detection` and `Segmentation`. [https://github.com/aisingapore/PeekingDuck](https://github.com/aisingapore/PeekingDuck)
+- Implement sustainable ***MLOps*** using ***Pytorch*** and ***Tensorflow*** framework. Easy configurable(***Hydra***) pipeline for tasks like `Image Classification` and `Object Detection`. [https://github.com/aisingapore/PeekingDuck](https://github.com/aisingapore/PeekingDuck)
+
+- Research and design industrial defect detection POC for American multinational company using OpenVINO. Deploying to Nvidia Jetson Xavier NX Developer kit.
+
+- Mentor batch 12 and 13 on Computer Vision.
 
 *AI Apprentice*
 
 - Out of hundreds applicants, one of the selected 19 in **batch 11**. 2 months of deepskilling in AI Engineering and 7 months of on-the-job training on a real-world AI problem from the industry.
 
-- Deploy scalable distributed container platforms using Kubernetes.
+- Deploy scalable distributed container platforms using **Kubernetes** in **GCP**.
 
 ![](assets/ncs.jpg)
+
+### Career transition : 2021 - 2022 : *1 yrs*
+
+*Team Fight Tactics Strategy Application*
+
+[github.com/furyhawk/tftchamp](https://github.com/furyhawk/tftchamp)
+
+- Dockerized application to show gamers meta of current patch using feature importances.
+- Frontend implemented using **React** and **Zustand**.
 
 ### NCS : 2020 - 2021 : *1 yrs*
 
@@ -88,15 +105,15 @@
 
 *Senior Consultant*
 
-- Successfully implemented **11** cycles of end to end ***Enterprise Resource Planning***(*SAP*) projects, total worth over 100 millions dollars in wide range of business domains.
+- Successfully implemented **11** cycles of end to end ***Enterprise Resource Planning***(*SAP*) projects, total worth over 100 millions dollars in wide range of business domains(Material Planning, Procurement, Finance and Control, Human Resource and Plant Maintenance).
 
-- Bolstered **productivity** and add value after each project cycles using *Software Engineering* **best practice**.
+- Bolstered productivity and add value after each project cycles using *Software Engineering* **best practice**.
 
 - Expertise in implementing projects using **Frontend**(*Fiori*) and **Backend**(*ABAP*) frameworks.
 
 - Spearheaded **Agile Scrum** methodology to project team members.
 
-- Worked under time pressure to restore critical database issues and get the production system back online in time.
+- Restored critical production database outage under time pressure applying root **cause analysis techniques**.
 
 ![](assets/creative.jpg)
 
@@ -110,9 +127,10 @@
 
 ## Education Qualifications
 
-| Period    | Discipline/University                                               |
-| --------- | ------------------------------------------------------------------- |
-| 2011-2017 | BSc IT and Business (ERP) / Singapore University of Social Sciences |
+| Period    | Discipline/University                      |
+| --------- | ------------------------------------------ |
+| 2011-2017 | Bachelor of Science IT and Business (ERP)  |
+|           | Singapore University of Social Sciences    |
 
 ## Professional Qualification
 
