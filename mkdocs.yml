@@ -16,6 +16,7 @@ nav:
     - macos: macos.md
     - sway: sway.md
     - Docker: docker.md
+    - jetson: jetson.md
     - yolox: yolox.md
     - gpt: gpt.md
     - stable_diffussion: stable_diffusion.md
