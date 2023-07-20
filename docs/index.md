@@ -10,6 +10,14 @@ type: short summary
 
   └─⫸ Commit Type: build|cicd|docs|feat|fix|node|refactor|test
 
+## AGI
+
+- Humanity achieve AGI.
+- Basic computing skills lost.
+- NSFW content filtered for everyone.
+- 1 Human decide to learn computing skills.
+- NSFW content accessed.
+
 ## Team Fight Tactics Strategy Application
 
 http://tftchamp.duckdns.org:3000/
