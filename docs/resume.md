@@ -81,6 +81,8 @@ LSP: Objects in a program should be replaceable with instances of their subtypes
 ISP: A client should never be forced to implement an interface that it doesn’t use or clients shouldn’t be forced to depend on methods they do not use.
 DIP: High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
 
+- Scoping requirements for ***content generation*** of event planning for a government agency using ***Langchain*** with ***prompt engineering***.
+
 - Implement ***MLOps*** using ***Pytorch*** and ***Tensorflow*** framework. Easy configurable(***Hydra***) ML pipeline for tasks like `Image Classification` and `Object Detection` using **SOLID** engineering principles. [https://github.com/aisingapore/PeekingDuck](https://github.com/aisingapore/PeekingDuck)
 
 - Research and design industrial defect detection POC for American multinational company using OpenVINO. Deploying to Nvidia Jetson Xavier NX Developer kit.
@@ -124,7 +126,7 @@ DIP: High-level modules should not depend on low-level modules. Both should depe
 
 *Senior Consultant*
 
-- Successfully implemented **11** cycles of end to end ***Enterprise Resource Planning***(*SAP*) projects, total worth over 100 millions dollars in wide range of business domains(Material Planning, Procurement, Finance and Control, Human Resource and Plant Maintenance).
+- Successfully implemented **11** cycles of end to end ***Enterprise Resource Planning***(*SAP*) projects, total worth over 100 millions dollars in wide range of business domains(Material Planning, Procurement, Logistics, Finance and Control, Human Resource and Plant Maintenance).
 
 - Bolstered productivity and add value after each project cycles using *Software Engineering* **best practice**.
 
