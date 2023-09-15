@@ -74,3 +74,21 @@ apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update
 ```sh
 sudo du -a / | sort -n -r | head -n 20
 ```
+
+## edge
+
+```sh
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+sudo apt update
+sudo apt install microsoft-edge-stable
+```
+
+## zsh
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+autoload predict-on
+predict-on
+
+```
