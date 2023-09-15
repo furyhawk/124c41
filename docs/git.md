@@ -7,6 +7,8 @@
 - 💞️ I’m looking to collaborate on AI
 - 📫 How to reach me ...
 
+[https://github.com/furyhawk](https://github.com/furyhawk)
+
 ```sh
 $ git config --global user.name "furyhawk"
 $ git config --global user.email furyx@hotmail.com
