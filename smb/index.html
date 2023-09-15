@@ -8,7 +8,7 @@
     <title>Samba - 124c41</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,12 +17,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +33,7 @@
           <a href=".." class="icon icon-home"> 124c41
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -335,8 +334,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Samba</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li class="breadcrumb-item active">Samba</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -809,7 +808,7 @@ from where this scan was performed.</p>
 <p>Now you can connect to there IP addresses directly, but if you want to
 use NetBIOS host names, you can use  to check for NetBIOS names. Note
 that this will not work if NetBIOS is disabled on the server.</p>
-<p>Regardless of the output, look for <strong>\&lt;20></strong>, which shows the host with
+<p>Regardless of the output, look for <strong>\&lt;20&gt;</strong>, which shows the host with
 open services.</p>
 <p>Use  to list which services are shared on these systems. You can use
 NetBIOS host name ( in this example) instead of IP when available. If
@@ -892,7 +891,7 @@ later. It is not related to SMB1 being disabled in this version but to
 the fact that Microsoft disabled insecure logons for guests on this
 version for some, but not others.</p>
 <p>To fix, open Group Policy Editor (). Navigate to <em>Computer
-configuration\administrative templates\network\Lanman Workstation >
+configuration\administrative templates\network\Lanman Workstation &gt;
 Enable insecure guest logons</em> and enable it. Alternatively,change the
 following value in the registry:</p>
 <p><code>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]</code><br />
@@ -1148,14 +1147,15 @@ the authors of conflicting software.</p>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
