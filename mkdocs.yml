@@ -6,6 +6,7 @@ nav:
     - git: git.md
     - vscode: code.md
     - machine_learning: machine_learning.md
+    - llmama2: llmama2.md
     - Framework: framework.md
     - database: db.md
     - Dataframe: dataframe.md
