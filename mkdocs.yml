@@ -6,6 +6,8 @@ nav:
     - git: git.md
     - vscode: code.md
     - machine_learning: machine_learning.md
+    - llm: llm.md
+    - rag: rag.md
     - llmama2: llama2.md
     - Framework: framework.md
     - database: db.md
