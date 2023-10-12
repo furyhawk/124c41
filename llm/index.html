@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Dataframe - 124c41</title>
+    <title>llm - 124c41</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Dataframe";
-        var mkdocs_page_input_path = "dataframe.md";
+        var mkdocs_page_name = "llm";
+        var mkdocs_page_input_path = "llm.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -64,8 +64,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../machine_learning/">machine_learning</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../llm/">llm</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">llm</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -84,12 +86,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../db/">database</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Dataframe</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#rows-of-a-pandas-dataframe-df">Rows of a pandas dataframe df</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dataframe/">Dataframe</a>
                 </li>
               </ul>
               <ul>
@@ -190,7 +188,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Dataframe</li>
+      <li>llm</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -199,32 +197,155 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="dataframe">Dataframe</h1>
-<p><code>df["cancer"].value_counts().plot(kind='barh')</code>
-<code>df[["patient_id", "image_id"]].astype(str).apply(lambda x: 'data/rsna/'+'/'.join(x)+'.png', axis=1)</code>
-<code>list(mapping.keys())[list(mapping.values()).index(x)]</code>
-``</p>
-<p>import logging
-from configs import LOGGER_NAME</p>
-<p>logger = logging.getLogger(LOGGER_NAME)  # pylint: disable=invalid-name</p>
-<p>logger.info</p>
-<h2 id="rows-of-a-pandas-dataframe-df">Rows of a pandas dataframe df</h2>
-<pre><code class="language-py">def __len__(self) -&gt; int:
-        &quot;&quot;&quot;Return the length of the dataset.&quot;&quot;&quot;
-        return len(self.df.index)
-</code></pre>
-<pre><code class="language-sh">In [7]: timeit len(df.index)
-1000000 loops, best of 3: 248 ns per loop
+                <h1 id="llm">LLM</h1>
+<pre><code class="language-python">from langchain import PromptTemplate
+from langchain.chains import LLMChain
+from langchain.llms import HuggingFacePipeline
 
-In [8]: timeit len(df)
-1000000 loops, best of 3: 573 ns per loop
+import transformers
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline, AutoModelForSeq2SeqLM
+
+import torch
+from torch import cuda, bfloat16
+
+#In a MAC Silicon the device must be 'mps'
+# device = torch.device('mps') #to use with MAC Silicon
+device = f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
+
+#You can try with any llama model, but you will need more GPU and memory as you increase the size of the model.
+model_id = &quot;meta-llama/Llama-2-7b-chat-hf&quot;
+#model_id = &quot;meta-llama/Llama-2-7b-hf&quot;
+
+# begin initializing HF items, need auth token for these
+model_config = transformers.AutoConfig.from_pretrained(
+    model_id,
+    use_auth_token=hf_key
+)
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    trust_remote_code=True,
+    config=model_config,
+    device_map='auto',
+    use_auth_token=hf_key
+)
+model.eval()
+
+tokenizer = AutoTokenizer.from_pretrained(model_id,
+                                          use_aut_token=hf_key) 
+
+pipe = pipeline(
+    &quot;text-generation&quot;,
+    model=model,
+    tokenizer=tokenizer,
+    max_new_tokens=128,
+    temperature=0.3,
+    repetition_penalty=1.1,
+    return_full_text=True,
+    device_map='auto'
+)
+
+assistant_llm = HuggingFacePipeline(pipeline=pipe)
+
+# Instruction how the LLM must respond the comments,
+assistant_template = &quot;&quot;&quot;
+You are {sentiment} social media post commenter, you will respond to the following post
+Post: &quot;{customer_request}&quot;
+Comment:
+&quot;&quot;&quot;
+
+#Create the prompt template to use in the Chain for the first Model.
+assistant_prompt_template = PromptTemplate(
+    input_variables=[&quot;sentiment&quot;, &quot;customer_request&quot;],
+    template=assistant_template
+)
+
+assistant_chain = LLMChain(
+    llm=assistant_llm,
+    prompt=assistant_prompt_template,
+    output_key=&quot;assistant_response&quot;,
+    verbose=False
+)
+#the output of the formatted prompt will pass directly to the LLM.
+
+# This the customer comment in the forum moderated by the agent.
+# feel free to update it.
+customer_request = &quot;&quot;&quot;Your product is a piece of shit. I want my money back!&quot;&quot;&quot;
+
+# Our assistatnt working in 'nice' mode.
+assistant_response=create_dialog(customer_request, &quot;nice&quot;)
+print(f&quot;assistant response: {assistant_response}&quot;)
+
+#Our assistant running in rude mode.
+assistant_response = create_dialog(customer_request, &quot;rude&quot;)
+print(f&quot;assistant response: {assistant_response}&quot;)
+
+#The moderator prompt template
+moderator_template = &quot;&quot;&quot;
+You are the moderator of an online forum, you are strict and will not tolerate any negative comments.
+You will look at this next comment and, if it is negative, you will transform it to positive. Avoid any negative words.
+If it is nice, you will let it remain as is and repeat it word for word.
+###
+Original comment: {comment_to_moderate}
+###
+Edited comment:&quot;&quot;&quot;
+
+# We use the PromptTemplate class to create an instance of our template that will use the prompt from above and store variables we will need to input when we make the prompt.
+moderator_prompt_template = PromptTemplate(
+    input_variables=[&quot;comment_to_moderate&quot;],
+    template=moderator_template
+)
+
+moderator_llm = assistant_llm
+
+#We build the chain for the moderator.
+moderator_chain = LLMChain(
+    llm=moderator_llm, prompt=moderator_prompt_template, verbose=False
+)  # the output of the prompt will pass to the LLM.
+
+# To run our chain we use the .run() command
+moderator_says = moderator_chain.run({&quot;comment_to_moderate&quot;: assistant_response})
+
+print(f&quot;moderator_says: {moderator_says}&quot;)
+
+#The optput of the first chain must coincide with one of the parameters of the second chain.
+#The parameter is defined in the prompt_template.
+assistant_chain = LLMChain(
+    llm=assistant_llm,
+    prompt=assistant_prompt_template,
+    output_key=&quot;comment_to_moderate&quot;,
+    verbose=False,
+)
+
+#verbose True because we want to see the intermediate messages.
+moderator_chain = LLMChain(
+    llm=moderator_llm,
+    prompt=moderator_prompt_template,
+    verbose=True
+)
+
+from langchain.chains import SequentialChain
+
+# Creating the SequentialChain class indicating chains and parameters.
+assistant_moderated_chain = SequentialChain(
+    chains=[assistant_chain, moderator_chain],
+    input_variables=[&quot;sentiment&quot;, &quot;customer_request&quot;],
+    verbose=True,
+)
+
+# We can now run the chain.
+assistant_moderated_chain.run({&quot;sentiment&quot;: &quot;rude&quot;, &quot;customer_request&quot;: customer_request})
+
+
+
+
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../db/" class="btn btn-neutral float-left" title="database"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../anomaly_detection/" class="btn btn-neutral float-right" title="anomaly_detection">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../machine_learning/" class="btn btn-neutral float-left" title="machine_learning"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../rag/" class="btn btn-neutral float-right" title="rag">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -247,10 +368,10 @@ In [8]: timeit len(df)
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../db/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../machine_learning/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../anomaly_detection/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../rag/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
