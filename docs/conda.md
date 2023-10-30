@@ -32,6 +32,7 @@ conda config --add channels conda-forge
 conda config --describe
 conda config --set auto_activate_base false
 conda update --all
+pip --disable-pip-version-check list --outdated --format=json | python -c "import json, sys; print('\n'.join([x['name'] for x in json.load(sys.stdin)]))" | xargs -n1 pip install -U
 conda update conda
 conda install --file requirements.txt -c conda-forge
 pip install -r requirements.txt
