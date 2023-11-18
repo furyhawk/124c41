@@ -1,5 +1,11 @@
 # LLM
 
+## AGI
+
+- transformers cannot be used in AGI because it cannot learn and infer new tokens from unseen data. It generalize better from large datasets, and cannot generalize far from unexplored data.
+
+## LLMChain
+
 ```python
 from langchain import PromptTemplate
 from langchain.chains import LLMChain
