@@ -1,5 +1,7 @@
 # gpt
 
+https://github.com/furyhawk/nanoGPT
+
 ## train
 python train.py --dataset=shakespeare --n_layer=4 --n_head=4 --n_embd=64 --device=mps --compile=False --eval_iters=1 --block_size=64 --batch_size=16
 
