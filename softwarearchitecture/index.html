@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>stable_diffussion - 124c41</title>
+    <title>softwarearchitecture - 124c41</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "stable_diffussion";
-        var mkdocs_page_input_path = "stable_diffusion.md";
+        var mkdocs_page_name = "softwarearchitecture";
+        var mkdocs_page_input_path = "softwarearchitecture.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -56,8 +56,16 @@
                 <li class="toctree-l1"><a class="reference internal" href="../git/">git</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../softwarearchitecture/">softwarearchitecture</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">softwarearchitecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-importance-of-data-in-architecture">The Importance of Data in Architecture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#architectural-decisions-records">Architectural Decisions Records</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -132,14 +140,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../gpt/">gpt</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">stable_diffussion</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#negative-prompt">negative prompt</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../stable_diffusion/">stable_diffussion</a>
                 </li>
               </ul>
               <ul>
@@ -196,7 +198,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>stable_diffussion</li>
+      <li>softwarearchitecture</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -205,62 +207,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="stable-diffusion">stable diffusion</h1>
-<h3 id="negative-prompt">negative prompt</h3>
-<p>"longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality"</p>
-<h3 id="examples">Examples</h3>
-<table>
-<thead>
-<tr>
-<th align="center">Source</th>
-<th align="center">Input</th>
-<th align="center">Output</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">(no preprocessor)</td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/bal-source.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/bal-gen.png?raw=true"></td>
-</tr>
-<tr>
-<td align="center">(no preprocessor)</td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/dog_rel.jpg?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/dog_rel.png?raw=true"></td>
-</tr>
-<tr>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro_input.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro_canny.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro-out.png?raw=true"></td>
-</tr>
-<tr>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/evt_source.jpg?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/evt_hed.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/evt_gen.png?raw=true"></td>
-</tr>
-<tr>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/an-source.jpg?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/an-pose.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/an-gen.png?raw=true"></td>
-</tr>
-<tr>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/sk-b-src.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/sk-b-dep.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/sk-b-out.png?raw=true"></td>
-</tr>
-<tr>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/nm-src.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/nm-gen.png?raw=true"></td>
-<td align="center"><img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/nm-out.png?raw=true"></td>
-</tr>
-</tbody>
-</table>
+                <h1 id="software-architecture">software architecture</h1>
+<p>Software 
+ Architecture: 
+ The Hard Parts
+Modern Trade-Off Analyses for Distributed 
+Architectures</p>
+<h2 id="introduction">Introduction</h2>
+<p>There are no easy decisions in software architecture. Instead, there are many hard parts -- difficult problems or issues with no best practices -- that force you to choose among various compromises. The best design an architect can create is the least worst collection of trade-offs -- no single architecture characteristic excels as it would alone, but the balance of all the competing architecture characteristics promote project success.</p>
+<h2 id="the-importance-of-data-in-architecture">The Importance of Data in Architecture</h2>
+<p>It has been said that data is the most important asset in a company. Businesses want to extract value from the data that they have and are finding new ways to deploy data in decision making.</p>
+<ul>
+<li>
+<p>Operational data</p>
+<p>Data that is used to run the business. This data is defined as Online Transactional Processing (OLTP) data. Involves Create, Read, Update, Delete (CRUD) operations.</p>
+</li>
+<li>
+<p>Analytical data</p>
+<p>Data that is used to analyze the business. This data is defined as Online Analytical Processing (OLAP) data. Involves Read operations.</p>
+</li>
+</ul>
+<h2 id="architectural-decisions-records">Architectural Decisions Records</h2>
+<p><strong>ADR</strong>: A short noun phrase containing the architecture decision</p>
+<p><strong>Context</strong>
+In this section of the ADR we will add a short one- or two-sentence description of the problem, and list the alternative solutions.</p>
+<p><strong>Decision</strong>
+In this section we will state the architecture decision and provide a detailed justification of the decision.</p>
+<p><strong>Consequences</strong>
+In this section of the ADR we will describe any consequences after the decision is applied, and also discuss the trade-offs that were considered.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../gpt/" class="btn btn-neutral float-left" title="gpt"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../wandb/" class="btn btn-neutral float-right" title="Model Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../git/" class="btn btn-neutral float-left" title="git"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../code/" class="btn btn-neutral float-right" title="vscode">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -283,10 +263,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../gpt/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../git/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../wandb/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../code/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
