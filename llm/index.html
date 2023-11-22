@@ -67,6 +67,10 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">llm</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#agi">AGI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#llmchain">LLMChain</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -198,6 +202,11 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="llm">LLM</h1>
+<h2 id="agi">AGI</h2>
+<ul>
+<li>transformers cannot be used in AGI because it cannot learn and infer new tokens from unseen data. It generalize better from large datasets, and cannot generalize far from unexplored data.</li>
+</ul>
+<h2 id="llmchain">LLMChain</h2>
 <pre><code class="language-python">from langchain import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.llms import HuggingFacePipeline
