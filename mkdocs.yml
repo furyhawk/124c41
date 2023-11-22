@@ -4,6 +4,7 @@ nav:
     - Resume: resume.md
     - Conda: conda.md
     - git: git.md
+    - softwarearchitecture: softwarearchitecture.md
     - vscode: code.md
     - machine_learning: machine_learning.md
     - llm: llm.md
