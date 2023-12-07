@@ -146,6 +146,10 @@ assistant_moderated_chain = SequentialChain(
 assistant_moderated_chain.run({"sentiment": "rude", "customer_request": customer_request})
 
 
-
-
 ```
+
+## Optimizing Inference on Large Language Models with NVIDIA TensorRT-LLM
+
+https://developer.nvidia.com/blog/optimizing-inference-on-llms-with-tensorrt-llm-now-publicly-available/
+
+https://github.com/furyhawk/TensorRT-LLM
