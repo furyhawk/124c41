@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Training pipeline - 124c41</title>
+    <title>venv - 124c41</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Training pipeline";
-        var mkdocs_page_input_path = "training_pipeline.md";
+        var mkdocs_page_name = "venv";
+        var mkdocs_page_input_path = "venv.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,8 +52,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../conda/">Conda</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../venv/">venv</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">venv</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -194,7 +196,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Training pipeline</li>
+      <li>venv</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -203,14 +205,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>trainer.train</p>
-<p>trainer-stage
-train, valid, test</p>
-<p>dict_keys(['train_loss', 'valid_loss', 'valid_trues', 'valid_logits', 'valid_preds', 'valid_probs', 'valid_elapsed_time', 'val_MulticlassAccuracy', 'val_MulticlassPrecision', 'val_MulticlassRecall', 'val_MulticlassAUROC', 'val_MulticlassCalibrationError', ('val_MulticlassCalibrationError', 'train_loss')])</p>
-<p>python tools/train.py -f exps/example/custom/nano.py -d 1 -b 8 -c yolox_nano.pth</p>
+                <h1 id="venv">venv</h1>
+<pre><code class="language-bash">sudo apt install python3-venv
+python3 -m venv foobar
+source foobar/bin/activate
+deactivate
+</code></pre>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../conda/" class="btn btn-neutral float-left" title="Conda"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../git/" class="btn btn-neutral float-right" title="git">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -232,6 +239,10 @@ train, valid, test</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../conda/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../git/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
