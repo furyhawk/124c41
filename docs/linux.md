@@ -92,3 +92,9 @@ autoload predict-on
 predict-on
 
 ```
+
+
+```sh
+uname -a
+netstat -ltup
+```
