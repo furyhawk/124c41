@@ -5,28 +5,29 @@ nav:
     - Conda: conda.md
     - venv: venv.md
     - git: git.md
+    - ssh: ssh.md
     - softwarearchitecture: softwarearchitecture.md
     - vscode: code.md
     - machine_learning: machine_learning.md
     - llm: llm.md
-    - rag: rag.md
     - llmama2: llama2.md
+    - rag: rag.md
     - Framework: framework.md
     - database: db.md
     - Dataframe: dataframe.md
-    - anomaly_detection: anomaly_detection.md
     - Chart: chart.md
+    - anomaly_detection: anomaly_detection.md
     - Hydra: hydra.md
     - Linux: linux.md
     - macos: macos.md
     - sway: sway.md
     - Docker: docker.md
+    - mqtt: mqtt.md
     - jetson: jetson.md
     - yolox: yolox.md
     - gpt: gpt.md
     - stable_diffussion: stable_diffusion.md
     - Model Analysis: wandb.md
-    - ssh: ssh.md
     - Samba: smb.md
     - Samba_ubuntu: smb2.md
     - MkDocs: mkdocs.md
