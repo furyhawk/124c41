@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>llmama2 - 124c41</title>
+    <title>mqtt - 124c41</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "llmama2";
-        var mkdocs_page_input_path = "llama2.md";
+        var mkdocs_page_name = "mqtt";
+        var mkdocs_page_input_path = "mqtt.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -80,12 +80,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../llm/">llm</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">llmama2</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#models">models</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../llama2/">llmama2</a>
                 </li>
               </ul>
               <ul>
@@ -132,8 +128,14 @@
                 <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../mqtt/">mqtt</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">mqtt</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#rabbitmq">RabbitMQ</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hivemq">HiveMQ</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -202,7 +204,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>llmama2</li>
+      <li>mqtt</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -211,18 +213,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="llama2">llama2</h1>
-<h2 id="models">models</h2>
-<pre><code class="language-sh">python3 convert.py models/llama-2-7b-chat
-./quantize ./models/llama-2-7b-chat/ggml-model-f16.gguf ./models/llama-2-7b-chat/ggml-model-q4_0.gguf q4_0
-./main -m ./models/llama-2-7b-chat/ggml-model-q4_0.gguf -n 128
+                <h1 id="mqtt">MQTT</h1>
+<p>https://github.com/furyhawk/scratchpad/tree/main/mtqq</p>
+<h2 id="rabbitmq">RabbitMQ</h2>
+<pre><code class="language-bash"># latest RabbitMQ 3.12
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management
 </code></pre>
+<h2 id="hivemq">HiveMQ</h2>
+<p>```bash
+docker run --name hivemq-edge -d -p 1883:1883 -p 8080:8080 hivemq/hivemq-edge
+``````</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../llm/" class="btn btn-neutral float-left" title="llm"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../rag/" class="btn btn-neutral float-right" title="rag">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../docker/" class="btn btn-neutral float-left" title="Docker"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../jetson/" class="btn btn-neutral float-right" title="jetson">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -245,10 +251,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../llm/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../docker/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../rag/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../jetson/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
