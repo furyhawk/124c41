@@ -4,6 +4,7 @@ nav:
     - Resume: resume.md
     - Conda: conda.md
     - venv: venv.md
+    - poetry: poetry.md
     - git: git.md
     - ssh: ssh.md
     - softwarearchitecture: softwarearchitecture.md
