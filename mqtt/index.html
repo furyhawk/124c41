@@ -138,6 +138,14 @@
     <li class="toctree-l2"><a class="reference internal" href="#rabbitmq">RabbitMQ</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#hivemq">HiveMQ</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-setup-mosquitto-mqtt-broker-using-docker">How to setup Mosquitto MQTT Broker using docker</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-install-docker">1. Install docker</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-create-base-folder-for-mqtt-configuration">2. Create base folder for mqtt configuration</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#3-create-mosquitto-config-file-mosquittoconf">3. Create Mosquitto config file - mosquitto.conf</a>
     </li>
@@ -257,22 +265,16 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-ma
 </code></pre>
 <h2 id="hivemq">HiveMQ</h2>
 <pre><code class="language-bash">docker run --name hivemq-edge -d -p 1883:1883 -p 8080:8080 hivemq/hivemq-edge
-``````
-
-## How to setup Mosquitto MQTT Broker using docker 
-These instructions will work on any Debian based OS including Ubuntu, RaspberryPi, WSL2 etc...  
-(For non-Debian distros, commands for installation need to be tweaked)  
-_By default the config allows only to use local connections for security reasons but since authentication is enabled below, that's not the case._
-
-### 1. Install docker
-
-Latest instructions are [here](https://docs.docker.com/engine/install/ubuntu/) on docker website.  
-You can also use this script - [install-docker.sh](/install-docker.sh)
-
-## 2. Create base folder for mqtt configuration
-
-```bash
-
+</code></pre>
+<h2 id="how-to-setup-mosquitto-mqtt-broker-using-docker">How to setup Mosquitto MQTT Broker using docker</h2>
+<p>These instructions will work on any Debian based OS including Ubuntu, RaspberryPi, WSL2 etc...<br />
+(For non-Debian distros, commands for installation need to be tweaked)<br />
+<em>By default the config allows only to use local connections for security reasons but since authentication is enabled below, that's not the case.</em></p>
+<h3 id="1-install-docker">1. Install docker</h3>
+<p>Latest instructions are <a href="https://docs.docker.com/engine/install/ubuntu/">here</a> on docker website.<br />
+You can also use this script - <a href="/install-docker.sh">install-docker.sh</a></p>
+<h2 id="2-create-base-folder-for-mqtt-configuration">2. Create base folder for mqtt configuration</h2>
+<pre><code class="language-bash">
 mkdir mqtt5
 cd mqtt5
 
