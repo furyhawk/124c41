@@ -138,6 +138,38 @@
     <li class="toctree-l2"><a class="reference internal" href="#rabbitmq">RabbitMQ</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#hivemq">HiveMQ</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#3-create-mosquitto-config-file-mosquittoconf">3. Create Mosquitto config file - mosquitto.conf</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-create-mosquitto-password-file-pwfile">4. Create Mosquitto password file - pwfile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-create-docker-compose-file-called-docker-composeyml">5. Create docker-compose file called 'docker-compose.yml'</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-create-and-run-docker-container-for-mqtt">6. Create and run docker container for MQTT</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#check-if-the-container-is-up-and-working-note-down-container-id">Check if the container is up and working (note down container-id)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-create-a-userpassword-in-the-pwfile">7. Create a user/password in the pwfile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-time-to-test">8. Time to test !!!</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#install-mosquitto-client-tools-for-testing">Install mosquitto client tools for testing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#let-us-start-subscriber-now-topic-name-hellotopic">Let us start Subscriber now - topic name =&gt; 'hello/topic'</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#let-us-start-publising-to-that-topic">Let us start Publising to that topic</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#you-can-find-cc-code-for-mosquitto-client">You can find C/C++ code for mosquitto client</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#you-can-also-install-a-nice-mqtt-web-client">You can also install a nice MQTT Web Client</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sourcereference-for-mosquitto">Source/Reference for Mosquitto</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -224,9 +256,144 @@
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management
 </code></pre>
 <h2 id="hivemq">HiveMQ</h2>
-<p>```bash
-docker run --name hivemq-edge -d -p 1883:1883 -p 8080:8080 hivemq/hivemq-edge
-``````</p>
+<pre><code class="language-bash">docker run --name hivemq-edge -d -p 1883:1883 -p 8080:8080 hivemq/hivemq-edge
+``````
+
+## How to setup Mosquitto MQTT Broker using docker 
+These instructions will work on any Debian based OS including Ubuntu, RaspberryPi, WSL2 etc...  
+(For non-Debian distros, commands for installation need to be tweaked)  
+_By default the config allows only to use local connections for security reasons but since authentication is enabled below, that's not the case._
+
+### 1. Install docker
+
+Latest instructions are [here](https://docs.docker.com/engine/install/ubuntu/) on docker website.  
+You can also use this script - [install-docker.sh](/install-docker.sh)
+
+## 2. Create base folder for mqtt configuration
+
+```bash
+
+mkdir mqtt5
+cd mqtt5
+
+# for storing mosquitto.conf and pwfile (for password)
+mkdir config
+
+</code></pre>
+<h3 id="3-create-mosquitto-config-file-mosquittoconf">3. Create Mosquitto config file - mosquitto.conf</h3>
+<pre><code class="language-bash">nano config/mosquitto.conf
+</code></pre>
+<p>Basic configuration file content below including websocket config</p>
+<pre><code>allow_anonymous false
+listener 1883
+listener 9001
+protocol websockets
+persistence true
+password_file /mosquitto/config/pwfile
+persistence_file mosquitto.db
+persistence_location /mosquitto/data/
+</code></pre>
+<h3 id="4-create-mosquitto-password-file-pwfile">4. Create Mosquitto password file - pwfile</h3>
+<pre><code class="language-bash">touch config/pwfile
+</code></pre>
+<h3 id="5-create-docker-compose-file-called-docker-composeyml">5. Create docker-compose file called 'docker-compose.yml'</h3>
+<pre><code class="language-yml">
+version: &quot;3.7&quot;
+services:
+  # mqtt5 eclipse-mosquitto
+  mqtt5:
+    image: eclipse-mosquitto
+    container_name: mqtt5
+    ports:
+      - &quot;1883:1883&quot; #default mqtt port
+      - &quot;9001:9001&quot; #default mqtt port for websockets
+    volumes:
+      - ./config:/mosquitto/config:rw
+      - ./data:/mosquitto/data:rw
+      - ./log:/mosquitto/log:rw
+    restart: unless-stopped
+
+# volumes for mapping data,config and log
+volumes:
+  config:
+  data:
+  log:
+
+networks:
+  default:
+    name: mqtt5-network
+
+</code></pre>
+<h2 id="6-create-and-run-docker-container-for-mqtt">6. Create and run docker container for MQTT</h2>
+<pre><code class="language-bash"># In case you don't have docker-compose you can install it
+sudo apt install docker-compose
+
+# Run the docker container for mqtt
+sudo docker-compose -p mqtt5 up -d
+
+</code></pre>
+<h4 id="check-if-the-container-is-up-and-working-note-down-container-id">Check if the container is up and working (note down container-id)</h4>
+<pre><code class="language-bash">
+sudo docker ps
+
+</code></pre>
+<h3 id="7-create-a-userpassword-in-the-pwfile">7. Create a user/password in the pwfile</h3>
+<pre><code class="language-bash">
+# login interactively into the mqtt container
+sudo docker exec -it &lt;container-id&gt; sh
+
+# add user and it will prompt for password
+mosquitto_passwd -c /mosquitto/config/pwfile user1
+
+# delete user command format
+mosquitto_passwd -D /mosquitto/config/pwfile &lt;user-name-to-delete&gt;
+
+# type 'exit' to exit out of docker container prompt
+
+</code></pre>
+<p>Then restart the container </p>
+<pre><code class="language-bash">sudo docker restart &lt;container-id&gt;
+</code></pre>
+<h3 id="8-time-to-test">8. Time to test !!!</h3>
+<h4 id="install-mosquitto-client-tools-for-testing">Install mosquitto client tools for testing</h4>
+<pre><code class="language-bash">
+sudo apt install mosquitto-clients
+
+</code></pre>
+<h4 id="let-us-start-subscriber-now-topic-name-hellotopic">Let us start Subscriber now - topic name =&gt; 'hello/topic'</h4>
+<pre><code class="language-bash">
+# Without authentication
+mosquitto_sub -v -t 'hello/topic'
+
+# With authentication
+mosquitto_sub -v -t 'hello/topic' -u user1 -P &lt;password&gt;
+
+# Alternate way in url format
+# Format =&gt; mqtt(s)://[username[:password]@]host[:port]/topic
+mosquitto_sub -v -L mqtt://user1:abc123@localhost/test/topic
+
+</code></pre>
+<h4 id="let-us-start-publising-to-that-topic">Let us start Publising to that topic</h4>
+<pre><code class="language-bash">
+# Without authentication
+mosquitto_pub -t 'hello/topic' -m 'hello MQTT'
+
+# With authentication
+mosquitto_pub -t 'hello/topic' -m 'hello MQTT' -u user1 -P &lt;password&gt;
+
+# Alternate way in url format 
+# Format =&gt; mqtt(s)://[username[:password]@]host[:port]/topic
+mosquitto_pub -L mqtt://user1:abc123@localhost/test/topic -m 'hello MQTT'
+
+</code></pre>
+<h3 id="you-can-find-cc-code-for-mosquitto-client">You can find C/C++ code for mosquitto client</h3>
+<p>Check <a href="main.cpp">main.cpp</a> for the mosquitto client code.</p>
+<h3 id="you-can-also-install-a-nice-mqtt-web-client">You can also install a nice MQTT Web Client</h3>
+<p>Read more about it here =&gt; https://mqttx.app/  </p>
+<pre><code class="language-bash">sudo docker run -d --name mqttx-web -p 80:80 emqx/mqttx-web
+</code></pre>
+<h3 id="sourcereference-for-mosquitto">Source/Reference for Mosquitto</h3>
+<p>Github =&gt; https://github.com/eclipse/mosquitto</p>
               
             </div>
           </div><footer>
