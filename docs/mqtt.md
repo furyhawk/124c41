@@ -14,7 +14,7 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-ma
 
 ```bash
 docker run --name hivemq-edge -d -p 1883:1883 -p 8080:8080 hivemq/hivemq-edge
-``````
+```
 
 ## How to setup Mosquitto MQTT Broker using docker 
 These instructions will work on any Debian based OS including Ubuntu, RaspberryPi, WSL2 etc...  
