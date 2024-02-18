@@ -96,10 +96,10 @@ networks:
 
 ```bash
 # In case you don't have docker-compose you can install it
-sudo apt install docker-compose
+# sudo apt install docker-compose
 
 # Run the docker container for mqtt
-sudo docker-compose -p mqtt5 up -d
+sudo docker compose -p mqtt5 up -d
 
 ```
 
