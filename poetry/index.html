@@ -232,6 +232,8 @@ poetry run pytest --cov=src --cov-report=html &amp;&amp; open htmlcov/index.html
 # Fix poetry shell not activating virtualenv
 source &quot;$( poetry env list --full-path | grep Activated | cut -d' ' -f1 )/bin/activate&quot;
 
+# Add from requirements.txt
+poetry add $(cat requirements.txt)
 
 </code></pre>
               

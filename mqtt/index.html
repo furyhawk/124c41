@@ -331,18 +331,18 @@ networks:
 # sudo apt install docker-compose
 
 # Run the docker container for mqtt
-sudo docker compose -p mqtt5 up -d
+docker compose -p mqtt5 up -d
 
 </code></pre>
 <h4 id="check-if-the-container-is-up-and-working-note-down-container-id">Check if the container is up and working (note down container-id)</h4>
 <pre><code class="language-bash">
-sudo docker ps
+docker ps
 
 </code></pre>
 <h3 id="7-create-a-userpassword-in-the-pwfile">7. Create a user/password in the pwfile</h3>
 <pre><code class="language-bash">
 # login interactively into the mqtt container
-sudo docker exec -it &lt;container-id&gt; sh
+docker exec -it &lt;container-id&gt; sh
 
 # add user and it will prompt for password
 mosquitto_passwd -c /mosquitto/config/pwfile user1
@@ -354,7 +354,7 @@ mosquitto_passwd -D /mosquitto/config/pwfile &lt;user-name-to-delete&gt;
 
 </code></pre>
 <p>Then restart the container </p>
-<pre><code class="language-bash">sudo docker restart &lt;container-id&gt;
+<pre><code class="language-bash">docker restart &lt;container-id&gt;
 </code></pre>
 <h3 id="8-time-to-test">8. Time to test !!!</h3>
 <h4 id="install-mosquitto-client-tools-for-testing">Install mosquitto client tools for testing</h4>
