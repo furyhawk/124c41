@@ -99,7 +99,7 @@ networks:
 # sudo apt install docker-compose
 
 # Run the docker container for mqtt
-sudo docker compose -p mqtt5 up -d
+docker compose -p mqtt5 up -d
 
 ```
 
@@ -107,7 +107,7 @@ sudo docker compose -p mqtt5 up -d
 
 ```bash
 
-sudo docker ps
+docker ps
 
 ```
 
@@ -116,7 +116,7 @@ sudo docker ps
 ```bash
 
 # login interactively into the mqtt container
-sudo docker exec -it <container-id> sh
+docker exec -it <container-id> sh
 
 # add user and it will prompt for password
 mosquitto_passwd -c /mosquitto/config/pwfile user1
@@ -129,7 +129,7 @@ mosquitto_passwd -D /mosquitto/config/pwfile <user-name-to-delete>
 ```
 Then restart the container 
 ```bash
-sudo docker restart <container-id>
+docker restart <container-id>
 ```
 
 ### 8. Time to test !!!
