@@ -131,6 +131,426 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Docker</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the-compose-specification">The Compose Specification</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#status-of-this-document">Status of this document</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#requirements-and-optional-attributes">Requirements and optional attributes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-compose-application-model">The Compose application model</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#illustrative-example">Illustrative example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#compose-file">Compose file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-and-name-top-level-elements">Version and name top-level elements</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#version-top-level-element">Version top-level element</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#name-top-level-element">Name top-level element</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#services-top-level-element">Services top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#attach">attach</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#build">build</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#blkio_config">blkio_config</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#device_read_bps-device_write_bps">device_read_bps, device_write_bps</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#device_read_iops-device_write_iops">device_read_iops, device_write_iops</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#weight">weight</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#weight_device">weight_device</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_count">cpu_count</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_percent">cpu_percent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_shares">cpu_shares</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_period">cpu_period</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_quota">cpu_quota</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_rt_runtime">cpu_rt_runtime</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_rt_period">cpu_rt_period</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpus">cpus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpuset">cpuset</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cap_add">cap_add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cap_drop">cap_drop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cgroup">cgroup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cgroup_parent">cgroup_parent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#command">command</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configs">configs</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#container_name">container_name</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#credential_spec">credential_spec</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#example-gmsa-configuration">Example gMSA configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depends_on">depends_on</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_1">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_1">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deploy">deploy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#develop">develop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#device_cgroup_rules">device_cgroup_rules</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#devices">devices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dns">dns</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dns_opt">dns_opt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dns_search">dns_search</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domainname">domainname</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#entrypoint">entrypoint</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#env_file">env_file</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#env_file-format">Env_file format</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#environment">environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#expose">expose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#extends">extends</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#restrictions">Restrictions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#finding-referenced-service">Finding referenced service</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#merging-service-definitions">Merging service definitions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#annotations">annotations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#external_links">external_links</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#extra_hosts">extra_hosts</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_2">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_2">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#group_add">group_add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#healthcheck">healthcheck</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hostname">hostname</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#image">image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#init">init</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ipc">ipc</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#uts">uts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#isolation">isolation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#labels">labels</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#links">links</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logging">logging</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#network_mode">network_mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#networks">networks</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#aliases">aliases</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ipv4_address-ipv6_address">ipv4_address, ipv6_address</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#link_local_ips">link_local_ips</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mac_address">mac_address</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#priority">priority</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mac_address_1">mac_address</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mem_limit">mem_limit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mem_reservation">mem_reservation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mem_swappiness">mem_swappiness</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#memswap_limit">memswap_limit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#oom_kill_disable">oom_kill_disable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#oom_score_adj">oom_score_adj</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pid">pid</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pids_limit">pids_limit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#platform">platform</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ports">ports</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_3">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_3">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#privileged">privileged</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#profiles">profiles</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pull_policy">pull_policy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#read_only">read_only</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#restart">restart</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#runtime">runtime</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scale">scale</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#secrets">secrets</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_4">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_4">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security_opt">security_opt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#shm_size">shm_size</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stdin_open">stdin_open</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stop_grace_period">stop_grace_period</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stop_signal">stop_signal</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage_opt">storage_opt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sysctls">sysctls</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tmpfs">tmpfs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tty">tty</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ulimits">ulimits</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user">user</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#userns_mode">userns_mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#volumes">volumes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_5">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_5">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#volumes_from">volumes_from</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#working_dir">working_dir</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#networks-top-level-element">Networks top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-example">Basic example</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#advanced-example">Advanced example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#attributes">Attributes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#driver">driver</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#driver_opts">driver_opts</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attachable">attachable</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#enable_ipv6">enable_ipv6</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#external">external</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ipam">ipam</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#internal">internal</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#labels_1">labels</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#name">name</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#volumes-top-level-element">Volumes top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#attributes_1">Attributes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#driver_1">driver</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#driver_opts_1">driver_opts</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#external_1">external</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#labels_2">labels</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#name_1">name</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configs-top-level-element">Configs top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1">Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2">Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3">Example 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#secrets-top-level-element">Secrets top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1_1">Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2_1">Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3_1">Example 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fragments">Fragments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1_2">Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2_2">Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3_2">Example 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-4">Example 4</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#extension">Extension</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1_3">Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2_3">Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3_3">Example 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-4_1">Example 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#informative-historical-notes">Informative Historical Notes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#specifying-byte-values">Specifying byte values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#specifying-durations">Specifying durations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interpolation">Interpolation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#merge-and-override">Merge and override</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mapping">Mapping</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sequence">Sequence</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exceptions">Exceptions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#shell-commands">Shell commands</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#unique-resources">Unique resources</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reset-value">Reset value</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#replace-value">Replace value</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#include">Include</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#short-syntax_6">Short syntax</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#long-syntax_6">Long syntax</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#path">path</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#project_directory">project_directory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#env_file_1">env_file</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#profiles_1">Profiles</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#illustrative-example_1">Illustrative example</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -236,15 +656,15 @@ sudo rm -rf /var/lib/docker
 This file is generated, changes will be overwritten or CI specification check will fail
 All changes should be done in the markdown files located in the spec directory
 -->
-<h1 id="the-compose-specification">The Compose Specification</h1>
+<h2 id="the-compose-specification">The Compose Specification</h2>
 <p>{:.no_toc}</p>
 <ul>
 <li>ToC
   {:toc}</li>
 </ul>
-<h1 id="status-of-this-document">Status of this document</h1>
+<h2 id="status-of-this-document">Status of this document</h2>
 <p>This document specifies the Compose file format used to define multi-containers applications. Distribution of this document is unlimited.</p>
-<h2 id="requirements-and-optional-attributes">Requirements and optional attributes</h2>
+<h3 id="requirements-and-optional-attributes">Requirements and optional attributes</h3>
 <p>The Compose specification includes properties designed to target a local <a href="https://opencontainers.org/">OCI</a> container runtime,
 exposing Linux kernel specific configuration options, but also some Windows container specific properties. It is also designed for cloud platform features related to resource placement on a cluster, replicated application distribution, and scalability.</p>
 <p>We acknowledge that no Compose implementation is expected to support all attributes, and that support for some properties
@@ -260,7 +680,7 @@ to support those running modes:</p>
 <li>Loose: ignore unsupported attributes AND unknown attributes (that were not defined by the spec by the time implementation was created)</li>
 </ul>
 <p>From this point onwards, references made to 'Compose' can be interpreted as 'a Compose implementation'. </p>
-<h1 id="the-compose-application-model">The Compose application model</h1>
+<h2 id="the-compose-application-model">The Compose application model</h2>
 <p>The Compose Specification lets you define a platform-agnostic container based application. Such an application is designed as a set of containers which have to both run together with adequate shared resources and communication channels.</p>
 <p>Computing components of an application are defined as <a href="05-services.md">services</a>. A service is an abstract concept implemented on platforms by running the same container image, and configuration, one or more times.</p>
 <p>Services communicate with each other through <a href="06-networks.md">networks</a>. In the Compose Specification, a network is a platform capability abstraction to establish an IP route between containers within services connected together. Low-level, platform-specific networking options are grouped into the Network definition and may be partially implemented on some platforms.</p>
@@ -276,7 +696,7 @@ resources together and isolate them from other applications or other installatio
 set the label <code>com.docker.compose.project</code>.</p>
 <p>Compose offers a way for users to set a custom project name and override this name, so that the same <code>compose.yaml</code> file can be deployed twice on the same infrastructure, without changes, by just passing a distinct name.</p>
 <p>Project names must contain only lowercase letters, decimal digits, dashes, and underscores, and must begin with a lowercase letter or decimal digit.</p>
-<h2 id="illustrative-example">Illustrative example</h2>
+<h3 id="illustrative-example">Illustrative example</h3>
 <p>The following example illustrates the Compose Specification concepts outlined above. The example is non-normative.</p>
 <p>Consider an application split into a frontend web application and a backend service.</p>
 <p>The frontend is configured at runtime with an HTTP configuration file managed by infrastructure, providing an external domain name, and an HTTPS server certificate injected by the platform's secured secret store.</p>
@@ -358,7 +778,7 @@ secrets:
     external: true
 
 networks:
-  # The presence of these objects is sufficient to define them
+  ## The presence of these objects is sufficient to define them
   front-tier: {}
   back-tier: {}
 </code></pre>
@@ -367,7 +787,7 @@ to service containers as mounted files or directories, only a volume can be conf
 Secrets and configs are read-only. The volume configuration allows you to select a volume driver and pass driver options
 to tweak volume management according to the actual infrastructure. Configs and secrets rely on platform services,
 and are declared <code>external</code> as they are not managed as part of the application lifecycle. Compose uses a platform-specific lookup mechanism to retrieve runtime values.</p>
-<h1 id="compose-file">Compose file</h1>
+<h2 id="compose-file">Compose file</h2>
 <p>The Compose file is a <a href="http://yaml.org/">YAML</a> file defining:
 - <a href="04-version-and-name.md">Version</a> (Optional)
 - <a href="05-services.md">Services</a> (Required)
@@ -385,14 +805,14 @@ paths are resolved based on the first Compose file's parent folder, whenever com
 merged are hosted in other folders. As some Compose file elements can both be expressed as single strings or complex objects, merges apply to
 the expanded form.</p>
 <p>If you want to reuse other Compose files, or factor out parts of you application model into separate Compose files, you can also use <a href="14-include.md"><code>include</code></a>. This is useful if your Compose application is dependent on another application which is managed by a different team, or needs to be shared with others.</p>
-<h1 id="version-and-name-top-level-elements">Version and name top-level elements</h1>
-<h2 id="version-top-level-element">Version top-level element</h2>
+<h2 id="version-and-name-top-level-elements">Version and name top-level elements</h2>
+<h3 id="version-top-level-element">Version top-level element</h3>
 <p>The top-level <code>version</code> property is defined by the Compose Specification for backward compatibility. It is only informative.</p>
 <p>Compose doesn't use <code>version</code> to select an exact schema to validate the Compose file, but
 prefers the most recent schema when it's implemented.</p>
 <p>Compose validates whether it can fully parse the Compose file. If some fields are unknown, typically
 because the Compose file was written with fields defined by a newer version of the Specification, you'll receive a warning message. Compose offers options to ignore unknown fields (as defined by <a href="01-status.md#requirements-and-optional-attributes">"loose"</a> mode).</p>
-<h2 id="name-top-level-element">Name top-level element</h2>
+<h3 id="name-top-level-element">Name top-level element</h3>
 <p>The top-level <code>name</code> property is defined by the Specification as the project name to be used if you don't set one explicitly.
 Compose offers a way for you to override this name, and sets a
 default project name to be used if the top-level <code>name</code> element is not set.</p>
@@ -405,7 +825,7 @@ default project name to be used if the top-level <code>name</code> element is no
       - COMPOSE_PROJECT_NAME
     command: echo &quot;I'm running ${COMPOSE_PROJECT_NAME}&quot;
 </code></pre>
-<h1 id="services-top-level-element">Services top-level element</h1>
+<h2 id="services-top-level-element">Services top-level element</h2>
 <p>A service is an abstract definition of a computing resource within an application which can be scaled or replaced
 independently from other components. Services are backed by a set of containers, run by the platform
 according to replication requirements and placement constraints. As services are backed by containers, they are defined
@@ -422,13 +842,13 @@ these constraints and allows the platform to adjust the deployment strategy to b
 available resources. Deploy support is an optional aspect of the Compose Specification, and is
 described in detail in the <a href="deploy.md">Compose Deploy Specification</a> documentation.
 If not implemented the <code>deploy</code> section is ignored and the Compose file is still considered valid.</p>
-<h2 id="attach">attach</h2>
+<h3 id="attach">attach</h3>
 <p>When <code>attach</code> is defined and set to <code>false</code> Compose does not collect service logs,
 until you explicitly request it to.</p>
 <p>The default service configuration is <code>attach: true</code>.</p>
-<h2 id="build">build</h2>
+<h3 id="build">build</h3>
 <p><code>build</code> specifies the build configuration for creating a container image from source, as defined in the <a href="build.md">Compose Build Specification</a>.</p>
-<h2 id="blkio_config">blkio_config</h2>
+<h3 id="blkio_config">blkio_config</h3>
 <p><code>blkio_config</code> defines a set of configuration options to set block IO limits for a service.</p>
 <pre><code class="language-yml">services:
   foo:
@@ -451,84 +871,84 @@ until you explicitly request it to.</p>
          - path: /dev/sdb
            rate: 30
 </code></pre>
-<h3 id="device_read_bps-device_write_bps">device_read_bps, device_write_bps</h3>
+<h4 id="device_read_bps-device_write_bps">device_read_bps, device_write_bps</h4>
 <p>Set a limit in bytes per second for read / write operations on a given device.
 Each item in the list must have two keys:</p>
 <ul>
 <li><code>path</code>: Defines the symbolic path to the affected device.</li>
 <li><code>rate</code>: Either as an integer value representing the number of bytes or as a string expressing a byte value.</li>
 </ul>
-<h3 id="device_read_iops-device_write_iops">device_read_iops, device_write_iops</h3>
+<h4 id="device_read_iops-device_write_iops">device_read_iops, device_write_iops</h4>
 <p>Set a limit in operations per second for read / write operations on a given device.
 Each item in the list must have two keys:</p>
 <ul>
 <li><code>path</code>: Defines the symbolic path to the affected device.</li>
 <li><code>rate</code>: As an integer value representing the permitted number of operations per second.</li>
 </ul>
-<h3 id="weight">weight</h3>
+<h4 id="weight">weight</h4>
 <p>Modify the proportion of bandwidth allocated to a service relative to other services.
 Takes an integer value between 10 and 1000, with 500 being the default.</p>
-<h3 id="weight_device">weight_device</h3>
+<h4 id="weight_device">weight_device</h4>
 <p>Fine-tune bandwidth allocation by device. Each item in the list must have two keys:</p>
 <ul>
 <li><code>path</code>: Defines the symbolic path to the affected device.</li>
 <li><code>weight</code>: An integer value between 10 and 1000.</li>
 </ul>
-<h2 id="cpu_count">cpu_count</h2>
+<h3 id="cpu_count">cpu_count</h3>
 <p><code>cpu_count</code> defines the number of usable CPUs for service container.</p>
-<h2 id="cpu_percent">cpu_percent</h2>
+<h3 id="cpu_percent">cpu_percent</h3>
 <p><code>cpu_percent</code> defines the usable percentage of the available CPUs.</p>
-<h2 id="cpu_shares">cpu_shares</h2>
+<h3 id="cpu_shares">cpu_shares</h3>
 <p><code>cpu_shares</code> defines, as integer value, a service container's relative CPU weight versus other containers.</p>
-<h2 id="cpu_period">cpu_period</h2>
+<h3 id="cpu_period">cpu_period</h3>
 <p><code>cpu_period</code> configures CPU CFS (Completely Fair Scheduler) period when a platform is based
 on Linux kernel.</p>
-<h2 id="cpu_quota">cpu_quota</h2>
+<h3 id="cpu_quota">cpu_quota</h3>
 <p><code>cpu_quota</code> configures CPU CFS (Completely Fair Scheduler) quota when a platform is based
 on Linux kernel.</p>
-<h2 id="cpu_rt_runtime">cpu_rt_runtime</h2>
+<h3 id="cpu_rt_runtime">cpu_rt_runtime</h3>
 <p><code>cpu_rt_runtime</code> configures CPU allocation parameters for platforms with support for realtime scheduler. It can be either
 an integer value using microseconds as unit or a <a href="11-extension.md#specifying-durations">duration</a>.</p>
 <pre><code class="language-yml"> cpu_rt_runtime: '400ms'
  cpu_rt_runtime: 95000`
 </code></pre>
-<h2 id="cpu_rt_period">cpu_rt_period</h2>
+<h3 id="cpu_rt_period">cpu_rt_period</h3>
 <p><code>cpu_rt_period</code> configures CPU allocation parameters for platforms with support for realtime scheduler. It can be either
 an integer value using microseconds as unit or a <a href="11-extension.md#specifying-durations">duration</a>.</p>
 <pre><code class="language-yml"> cpu_rt_period: '1400us'
  cpu_rt_period: 11000`
 </code></pre>
-<h2 id="cpus">cpus</h2>
+<h3 id="cpus">cpus</h3>
 <p><em>DEPRECATED: use <a href="deploy.md#cpus">deploy.limits.cpus</a></em></p>
 <p><code>cpus</code> define the number of (potentially virtual) CPUs to allocate to service containers. This is a fractional number.
 <code>0.000</code> means no limit.</p>
-<h2 id="cpuset">cpuset</h2>
+<h3 id="cpuset">cpuset</h3>
 <p><code>cpuset</code> defines the explicit CPUs in which to allow execution. Can be a range <code>0-3</code> or a list <code>0,1</code></p>
-<h2 id="cap_add">cap_add</h2>
+<h3 id="cap_add">cap_add</h3>
 <p><code>cap_add</code> specifies additional container <a href="https://man7.org/linux/man-pages/man7/capabilities.7.html">capabilities</a>
 as strings.</p>
 <pre><code class="language-yaml">cap_add:
   - ALL
 </code></pre>
-<h2 id="cap_drop">cap_drop</h2>
+<h3 id="cap_drop">cap_drop</h3>
 <p><code>cap_drop</code> specifies container <a href="https://man7.org/linux/man-pages/man7/capabilities.7.html">capabilities</a> to drop
 as strings.</p>
 <pre><code class="language-yaml">cap_drop:
   - NET_ADMIN
   - SYS_ADMIN
 </code></pre>
-<h2 id="cgroup">cgroup</h2>
+<h3 id="cgroup">cgroup</h3>
 <p><code>cgroup</code> specifies the cgroup namespace to join. When unset, it is the container runtime's decision to
 select which cgroup namespace to use, if supported.</p>
 <ul>
 <li><code>host</code>: Runs the container in the Container runtime cgroup namespace.</li>
 <li><code>private</code>: Runs the container in its own private cgroup namespace.</li>
 </ul>
-<h2 id="cgroup_parent">cgroup_parent</h2>
+<h3 id="cgroup_parent">cgroup_parent</h3>
 <p><code>cgroup_parent</code> specifies an optional parent <a href="https://man7.org/linux/man-pages/man7/cgroups.7.html">cgroup</a> for the container.</p>
 <pre><code class="language-yaml">cgroup_parent: m-executor-abcd
 </code></pre>
-<h2 id="command">command</h2>
+<h3 id="command">command</h3>
 <p><code>command</code> overrides the default command declared by the container image, for example by Dockerfile's <code>CMD</code>.</p>
 <pre><code class="language-yaml">command: bundle exec thin -p 3000
 </code></pre>
@@ -538,7 +958,7 @@ select which cgroup namespace to use, if supported.</p>
 <p>If the value is <code>null</code>, the default command from the image is used.</p>
 <p>If the value is <code>[]</code> (empty list) or <code>''</code> (empty string), the default command declared by the image is ignored,
 i.e. overridden to be empty.</p>
-<h2 id="configs">configs</h2>
+<h3 id="configs">configs</h3>
 <p>Configs allow services to adapt their behaviour without the need to rebuild a Docker image. 
 Services can only access configs when explicitly granted by the <code>configs</code> attribute. Two different syntax variants are supported.</p>
 <p>Compose reports an error if <code>config</code> doesn't exist on the platform or isn't defined in the
@@ -546,7 +966,7 @@ Services can only access configs when explicitly granted by the <code>configs</c
 <p>There are two syntaxes defined for configs. To remain compliant to this specification, an implementation
 must support both syntaxes. Implementations must allow use of both short and long syntaxes within the same document.</p>
 <p>You can grant a service access to multiple configs, and you can mix long and short syntax.</p>
-<h3 id="short-syntax">Short syntax</h3>
+<h4 id="short-syntax">Short syntax</h4>
 <p>The short syntax variant only specifies the config name. This grants the
 container access to the config and mounts it as files into a service’s container’s filesystem. The location of the mount point within the container defaults to <code>/&lt;config_name&gt;</code> in Linux containers, and <code>C:\&lt;config-name&gt;</code> in Windows containers. </p>
 <p>The following example uses the short syntax to grant the <code>redis</code> service
@@ -567,7 +987,7 @@ configs:
   my_other_config:
     external: true
 </code></pre>
-<h3 id="long-syntax">Long syntax</h3>
+<h4 id="long-syntax">Long syntax</h4>
 <p>The long syntax provides more granularity in how the config is created within the service's task containers.</p>
 <ul>
 <li><code>source</code>: The name of the config as it exists in the platform.</li>
@@ -598,14 +1018,14 @@ configs:
   my_other_config:
     external: true
 </code></pre>
-<h2 id="container_name">container_name</h2>
+<h3 id="container_name">container_name</h3>
 <p><code>container_name</code> is a string that specifies a custom container name, rather than a name generated by default.</p>
 <pre><code class="language-yml">container_name: my-web-container
 </code></pre>
 <p>Compose does not scale a service beyond one container if the Compose file specifies a
 <code>container_name</code>. Attempting to do so results in an error.</p>
 <p><code>container_name</code> follows the regex format of <code>[a-zA-Z0-9][a-zA-Z0-9_.-]+</code></p>
-<h2 id="credential_spec">credential_spec</h2>
+<h3 id="credential_spec">credential_spec</h3>
 <p><code>credential_spec</code> configures the credential spec for a managed service account.</p>
 <p>If you have services that use Windows containers, you can use <code>file:</code> and
 <code>registry:</code> protocols for <code>credential_spec</code>. Compose also supports additional
@@ -623,7 +1043,7 @@ in the registry:</p>
 <pre><code class="language-yml">credential_spec:
   registry: my-credential-spec
 </code></pre>
-<h3 id="example-gmsa-configuration">Example gMSA configuration</h3>
+<h4 id="example-gmsa-configuration">Example gMSA configuration</h4>
 <p>When configuring a gMSA credential spec for a service, you only need
 to specify a credential spec with <code>config</code>, as shown in the following example:</p>
 <pre><code class="language-yml">services:
@@ -636,9 +1056,9 @@ configs:
   my_credentials_spec:
     file: ./my-credential-spec.json|
 </code></pre>
-<h2 id="depends_on">depends_on</h2>
+<h3 id="depends_on">depends_on</h3>
 <p><code>depends_on</code> expresses startup and shutdown dependencies between services.</p>
-<h3 id="short-syntax_1">Short syntax</h3>
+<h4 id="short-syntax_1">Short syntax</h4>
 <p>The short syntax variant only specifies service names of the dependencies.
 Service dependencies cause the following behaviors:</p>
 <ul>
@@ -667,7 +1087,7 @@ Service dependencies cause the following behaviors:</p>
 starting a dependent service.
 Compose waits for dependency services to be "ready" before
 starting a dependent service.</p>
-<h3 id="long-syntax_1">Long syntax</h3>
+<h4 id="long-syntax_1">Long syntax</h4>
 <p>The long form syntax enables the configuration of additional fields that can't be
 expressed in the short form.</p>
 <ul>
@@ -722,11 +1142,11 @@ expressed in the short form.</p>
 starting a dependent service.
 Compose guarantees dependency services marked with
 <code>service_healthy</code> are "healthy" before starting a dependent service.</p>
-<h2 id="deploy">deploy</h2>
+<h3 id="deploy">deploy</h3>
 <p><code>deploy</code> specifies the configuration for the deployment and lifecycle of services, as defined <a href="deploy.md">in the Compose Deploy Specification</a>.</p>
-<h2 id="develop">develop</h2>
+<h3 id="develop">develop</h3>
 <p><code>develop</code> specifies the development configuration for maintaining a container in sync with source, as defined in the <a href="develop.md">Development Section</a>.</p>
-<h2 id="device_cgroup_rules">device_cgroup_rules</h2>
+<h3 id="device_cgroup_rules">device_cgroup_rules</h3>
 <p><code>device_cgroup_rules</code> defines a list of device cgroup rules for this container.
 The format is the same format the Linux kernel specifies in the <a href="https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/devices.html">Control Groups
 Device Whitelist Controller</a>.</p>
@@ -734,14 +1154,14 @@ Device Whitelist Controller</a>.</p>
   - 'c 1:3 mr'
   - 'a 7:* rmw'
 </code></pre>
-<h2 id="devices">devices</h2>
+<h3 id="devices">devices</h3>
 <p><code>devices</code> defines a list of device mappings for created containers in the form of
 <code>HOST_PATH:CONTAINER_PATH[:CGROUP_PERMISSIONS]</code>.</p>
 <pre><code class="language-yml">devices:
   - &quot;/dev/ttyUSB0:/dev/ttyUSB0&quot;
   - &quot;/dev/sda:/dev/xvda:rwm&quot;
 </code></pre>
-<h2 id="dns">dns</h2>
+<h3 id="dns">dns</h3>
 <p><code>dns</code> defines custom DNS servers to set on the container network interface configuration. It can be a single value or a list.</p>
 <pre><code class="language-yml">dns: 8.8.8.8
 </code></pre>
@@ -749,13 +1169,13 @@ Device Whitelist Controller</a>.</p>
   - 8.8.8.8
   - 9.9.9.9
 </code></pre>
-<h2 id="dns_opt">dns_opt</h2>
+<h3 id="dns_opt">dns_opt</h3>
 <p><code>dns_opt</code> list custom DNS options to be passed to the container’s DNS resolver (<code>/etc/resolv.conf</code> file on Linux).</p>
 <pre><code class="language-yml">dns_opt:
   - use-vc
   - no-tld-query
 </code></pre>
-<h2 id="dns_search">dns_search</h2>
+<h3 id="dns_search">dns_search</h3>
 <p><code>dns_search</code> defines custom DNS search domains to set on container network interface configuration. It can be a single value or a list.</p>
 <pre><code class="language-yml">dns_search: example.com
 </code></pre>
@@ -763,9 +1183,9 @@ Device Whitelist Controller</a>.</p>
   - dc1.example.com
   - dc2.example.com
 </code></pre>
-<h2 id="domainname">domainname</h2>
+<h3 id="domainname">domainname</h3>
 <p><code>domainname</code> declares a custom domain name to use for the service container. It must be a valid RFC 1123 hostname.</p>
-<h2 id="entrypoint">entrypoint</h2>
+<h3 id="entrypoint">entrypoint</h3>
 <p><code>entrypoint</code> declares the default entrypoint for the service container.
 This overrides the <code>ENTRYPOINT</code> instruction from the service's Dockerfile.</p>
 <p>If <code>entrypoint</code> is non-null, Compose ignores any default command from the image, for example the <code>CMD</code>
@@ -787,7 +1207,7 @@ instruction in the Dockerfile.</p>
 <p>If the value is <code>null</code>, the default entrypoint from the image is used.</p>
 <p>If the value is <code>[]</code> (empty list) or <code>''</code> (empty string), the default entrypoint declared by the image is ignored,
 i.e. overridden to be empty.</p>
-<h2 id="env_file">env_file</h2>
+<h3 id="env_file">env_file</h3>
 <p><code>env_file</code> adds environment variables to the container based on the file content.</p>
 <pre><code class="language-yml">env_file: .env
 </code></pre>
@@ -802,7 +1222,7 @@ attribute <code>required</code>. This defaults to <code>true</code>. When <code>
 Compose silently ignores the entry.</p>
 <pre><code class="language-yml">env_file:
   - path: ./default.env
-    required: true # default
+    required: true ## default
   - path: ./override.env
     required: false
 </code></pre>
@@ -810,7 +1230,7 @@ Compose silently ignores the entry.</p>
 file from being portable, Compose warns you when such a path is used to set <code>env_file</code>.</p>
 <p>Environment variables declared in the <a href="#environment">environment</a> section override these values. This holds true even if those values are
 empty or undefined.</p>
-<h3 id="env_file-format">Env_file format</h3>
+<h4 id="env_file-format">Env_file format</h4>
 <p>Each line in an <code>.env</code> file must be in <code>VAR[=[VAL]]</code> format. The following syntax rules apply:</p>
 <ul>
 <li>Lines beginning with <code>#</code> are processed as comments and ignored.</li>
@@ -821,11 +1241,11 @@ empty or undefined.</p>
 <li><code>VAR="VAL"</code> -&gt; <code>VAL</code></li>
 <li><code>VAR='VAL'</code> -&gt; <code>VAL</code></li>
 <li>Inline comments for unquoted values must be preceded with a space.</li>
-<li><code>VAR=VAL # comment</code> -&gt; <code>VAL</code></li>
-<li><code>VAR=VAL# not a comment</code> -&gt; <code>VAL# not a comment</code></li>
+<li><code>VAR=VAL ## comment</code> -&gt; <code>VAL</code></li>
+<li><code>VAR=VAL## not a comment</code> -&gt; <code>VAL## not a comment</code></li>
 <li>Inline comments for quoted values must follow the closing quote.</li>
-<li><code>VAR="VAL # not a comment"</code> -&gt; <code>VAL # not a comment</code></li>
-<li><code>VAR="VAL" # comment</code> -&gt; <code>VAL</code></li>
+<li><code>VAR="VAL ## not a comment"</code> -&gt; <code>VAL ## not a comment</code></li>
+<li><code>VAR="VAL" ## comment</code> -&gt; <code>VAL</code></li>
 <li>Single-quoted (<code>'</code>) values are used literally.</li>
 <li><code>VAR='$OTHER'</code> -&gt; <code>$OTHER</code></li>
 <li><code>VAR='${OTHER}'</code> -&gt; <code>${OTHER}</code></li>
@@ -839,11 +1259,11 @@ empty or undefined.</p>
 </ul>
 <p><code>VAL</code> may be omitted, in such cases the variable value is an empty string.
 <code>=VAL</code> may be omitted, in such cases the variable is unset.</p>
-<pre><code class="language-bash"># Set Rails/Rack environment
+<pre><code class="language-bash">## Set Rails/Rack environment
 RACK_ENV=development
 VAR=&quot;quoted&quot;
 </code></pre>
-<h2 id="environment">environment</h2>
+<h3 id="environment">environment</h3>
 <p><code>environment</code> defines environment variables set in the container. <code>environment</code> can use either an array or a
 map. Any boolean values; true, false, yes, no, should be enclosed in quotes to ensure
 they are not converted to True or False by the YAML parser.</p>
@@ -863,7 +1283,7 @@ is unset and is removed from the service container environment.</p>
   - USER_INPUT
 </code></pre>
 <p>When both <code>env_file</code> and <code>environment</code> are set for a service, values set by <code>environment</code> have precedence.</p>
-<h2 id="expose">expose</h2>
+<h3 id="expose">expose</h3>
 <p><code>expose</code> defines the (incoming) port or a range of ports that Compose exposes from the container. These ports must be
 accessible to linked services and should not be published to the host machine. Only the internal container
 ports can be specified.</p>
@@ -878,7 +1298,7 @@ When not explicitly set, <code>tcp</code> protocol is used.</p>
 <p><strong>Note</strong></p>
 <p>If the Dockerfile for the image already exposes ports, it is visible to other containers on the network even if <code>expose</code> is not set in your Compose file. </p>
 </blockquote>
-<h2 id="extends">extends</h2>
+<h3 id="extends">extends</h3>
 <p><code>extends</code> lets you share common configurations among different files, or even different projects entirely. With <code>extends</code> you can define a common set of service options in one place and refer to it from anywhere. You can refer to another Compose file and select a service you want to also use in your own application, with the ability to override some attributes for your own needs.</p>
 <p>You can use <code>extends</code> on any service together with other configuration keys. The <code>extends</code> value must be a mapping
 defined with a required <code>service</code> and an optional <code>file</code> key.</p>
@@ -890,7 +1310,7 @@ defined with a required <code>service</code> and an optional <code>file</code> k
 <li><code>service</code>: Defines the name of the service being referenced as a base, for example <code>web</code> or <code>database</code>.</li>
 <li><code>file</code>: The location of a Compose configuration file defining that service.</li>
 </ul>
-<h3 id="restrictions">Restrictions</h3>
+<h4 id="restrictions">Restrictions</h4>
 <p>The following restrictions apply to the service being referenced:</p>
 <ul>
 <li>Services that have dependencies on other services cannot be used as a base. Therefore, any key
@@ -900,7 +1320,7 @@ defined with a required <code>service</code> and an optional <code>file</code> k
 <li>Services cannot have circular references with <code>extends</code>.</li>
 </ul>
 <p>Compose returns an error in all of these cases.</p>
-<h3 id="finding-referenced-service">Finding referenced service</h3>
+<h4 id="finding-referenced-service">Finding referenced service</h4>
 <p><code>file</code> value can be:</p>
 <ul>
 <li>Not present.
@@ -916,7 +1336,7 @@ Compose returns an error if:</p>
 <li>The service denoted by <code>service</code> is not found.</li>
 <li>The Compose file denoted by <code>file</code> is not found.</li>
 </ul>
-<h3 id="merging-service-definitions">Merging service definitions</h3>
+<h4 id="merging-service-definitions">Merging service definitions</h4>
 <p>Two service definitions, the main one in the current Compose file and the referenced one
 specified by <code>extends</code>, are merged in the following way:</p>
 <ul>
@@ -927,7 +1347,7 @@ specified by <code>extends</code>, are merged in the following way:</p>
 <li>Scalars: Keys in the main service definition take precedence over keys in the
   referenced one.</li>
 </ul>
-<h4 id="mappings">Mappings</h4>
+<h5 id="mappings">Mappings</h5>
 <p>The following keys should be treated as mappings: <code>annotations</code>, <code>build.args</code>, <code>build.labels</code>,
 <code>build.extra_hosts</code>, <code>deploy.labels</code>, <code>deploy.update_config</code>, <code>deploy.rollback_config</code>,
 <code>deploy.restart_policy</code>, <code>deploy.resources.limits</code>, <code>environment</code>, <code>healthcheck</code>,
@@ -998,7 +1418,7 @@ service.</p>
 <pre><code class="language-yaml">image: busybox
 user: root
 </code></pre>
-<h4 id="sequences">Sequences</h4>
+<h5 id="sequences">Sequences</h5>
 <p>The following keys should be treated as sequences: <code>cap_add</code>, <code>cap_drop</code>, <code>configs</code>,
 <code>deploy.placement.constraints</code>, <code>deploy.placement.preferences</code>,
 <code>deploy.reservations.generic_resources</code>, <code>device_cgroup_rules</code>, <code>expose</code>,
@@ -1026,9 +1446,9 @@ security_opt:
 <p>In case list syntax is used, the following keys should also be treated as sequences:
 <code>dns</code>, <code>dns_search</code>, <code>env_file</code>, <code>tmpfs</code>. Unlike sequence fields mentioned above,
 duplicates resulting from the merge are not removed.</p>
-<h4 id="scalars">Scalars</h4>
+<h5 id="scalars">Scalars</h5>
 <p>Any other allowed keys in the service definition should be treated as scalars.</p>
-<h2 id="annotations">annotations</h2>
+<h3 id="annotations">annotations</h3>
 <p><code>annotations</code> defines annotations for the container. <code>annotations</code> can use either an array or a map.</p>
 <pre><code class="language-yml">annotations:
   com.example.foo: bar
@@ -1036,7 +1456,7 @@ duplicates resulting from the merge are not removed.</p>
 <pre><code class="language-yml">annotations:
   - com.example.foo=bar
 </code></pre>
-<h2 id="external_links">external_links</h2>
+<h3 id="external_links">external_links</h3>
 <p><code>external_links</code> link service containers to services managed outside of your Compose application.
 <code>external_links</code> define the name of an existing service to retrieve using the platform lookup mechanism.
 An alias of the form <code>SERVICE:ALIAS</code> can be specified.</p>
@@ -1045,9 +1465,9 @@ An alias of the form <code>SERVICE:ALIAS</code> can be specified.</p>
   - database:mysql
   - database:postgresql
 </code></pre>
-<h2 id="extra_hosts">extra_hosts</h2>
+<h3 id="extra_hosts">extra_hosts</h3>
 <p><code>extra_hosts</code> adds hostname mappings to the container network interface configuration (<code>/etc/hosts</code> for Linux).</p>
-<h3 id="short-syntax_2">Short syntax</h3>
+<h4 id="short-syntax_2">Short syntax</h4>
 <p>Short syntax uses plain strings in a list. Values must set hostname and IP address for additional hosts in the form of <code>HOSTNAME=IP</code>.</p>
 <pre><code class="language-yml">extra_hosts:
   - &quot;somehost=162.242.195.82&quot;
@@ -1063,7 +1483,7 @@ An alias of the form <code>SERVICE:ALIAS</code> can be specified.</p>
   - &quot;somehost:162.242.195.82&quot;
   - &quot;myhostv6:::1&quot;
 </code></pre>
-<h3 id="long-syntax_2">Long syntax</h3>
+<h4 id="long-syntax_2">Long syntax</h4>
 <p>Alternatively, <code>extra_hosts</code> can be set as a mapping between hostname(s) and IP(s)</p>
 <pre><code class="language-yml">extra_hosts:
   somehost: &quot;162.242.195.82&quot;
@@ -1076,7 +1496,7 @@ configuration, which means for Linux <code>/etc/hosts</code> get extra lines:</p
 50.31.209.229   otherhost
 ::1             myhostv6
 </code></pre>
-<h2 id="group_add">group_add</h2>
+<h3 id="group_add">group_add</h3>
 <p><code>group_add</code> specifies additional groups, by name or number, which the user inside the container must be a member of.</p>
 <p>An example of where this is useful is when multiple containers (running as different users) need to all read or write
 the same file on a shared volume. That file can be owned by a group shared by all the containers, and specified in
@@ -1089,7 +1509,7 @@ the same file on a shared volume. That file can be owned by a group shared by al
 </code></pre>
 <p>Running <code>id</code> inside the created container must show that the user belongs to the <code>mail</code> group, which would not have
 been the case if <code>group_add</code> were not declared.</p>
-<h2 id="healthcheck">healthcheck</h2>
+<h3 id="healthcheck">healthcheck</h3>
 <p><code>healthcheck</code> declares a check that's run to determine whether or not the service containers are "healthy". It works in the same way, and has the same default values, as the
 <a href="https://docs.docker.com/engine/reference/builder/#healthcheck">HEALTHCHECK Dockerfile instruction</a>
 set by the service's Docker image. Your Compose file can override the values set in the Dockerfile. </p>
@@ -1105,7 +1525,7 @@ set by the service's Docker image. Your Compose file can override the values set
 <p><code>test</code> defines the command Compose runs to check container health. It can be
 either a string or a list. If it's a list, the first item must be either <code>NONE</code>, <code>CMD</code> or <code>CMD-SHELL</code>.
 If it's a string, it's equivalent to specifying <code>CMD-SHELL</code> followed by that string.</p>
-<pre><code class="language-yml"># Hit the local web app
+<pre><code class="language-yml">## Hit the local web app
 test: [&quot;CMD&quot;, &quot;curl&quot;, &quot;-f&quot;, &quot;http://localhost&quot;]
 </code></pre>
 <p>Using <code>CMD-SHELL</code> runs the command configured as a string using the container's default shell
@@ -1119,9 +1539,9 @@ the healthcheck set by the image can be disabled by setting <code>disable: true<
 <pre><code class="language-yml">healthcheck:
   disable: true
 </code></pre>
-<h2 id="hostname">hostname</h2>
+<h3 id="hostname">hostname</h3>
 <p><code>hostname</code> declares a custom host name to use for the service container. It must be a valid RFC 1123 hostname.</p>
-<h2 id="image">image</h2>
+<h3 id="image">image</h3>
 <p><code>image</code> specifies the image to start the container from. <code>image</code> must follow the Open Container Specification
 <a href="https://github.com/opencontainers/org/blob/master/docs/docs/introduction/digests.md">addressable image format</a>,
 as <code>[&lt;registry&gt;/][&lt;project&gt;/]&lt;image&gt;[:&lt;tag&gt;|@&lt;digest&gt;]</code>.</p>
@@ -1136,7 +1556,7 @@ as <code>[&lt;registry&gt;/][&lt;project&gt;/]&lt;image&gt;[:&lt;tag&gt;|@&lt;di
 If you are also using the <a href="build.md">Compose Build Specification</a>, there are alternative options for controlling the precedence of
 pull over building the image from source, however pulling the image is the default behavior.</p>
 <p><code>image</code> may be omitted from a Compose file as long as a <code>build</code> section is declared. If you are not using the Compose Build Specification, Compose won't work if <code>image</code> is missing from the Compose file.</p>
-<h2 id="init">init</h2>
+<h3 id="init">init</h3>
 <p><code>init</code> runs an init process (PID 1) inside the container that forwards signals and reaps processes.
 Set this option to <code>true</code> to enable this feature for the service.</p>
 <pre><code class="language-yml">services:
@@ -1145,7 +1565,7 @@ Set this option to <code>true</code> to enable this feature for the service.</p>
     init: true
 </code></pre>
 <p>The init binary that is used is platform specific.</p>
-<h2 id="ipc">ipc</h2>
+<h3 id="ipc">ipc</h3>
 <p><code>ipc</code> configures the IPC isolation mode set by the service container. Available
 values are platform specific, but Compose defines specific values
 which must be implemented as described if supported:</p>
@@ -1158,7 +1578,7 @@ which must be implemented as described if supported:</p>
 <pre><code class="language-yml">    ipc: &quot;shareable&quot;
     ipc: &quot;service:[service name]&quot;
 </code></pre>
-<h2 id="uts">uts</h2>
+<h3 id="uts">uts</h3>
 <p><code>uts</code> configures the UTS namespace mode set for the service container. When unspecified
 it is the runtime's decision to assign a UTS namespace, if supported. Available values are:</p>
 <ul>
@@ -1166,9 +1586,9 @@ it is the runtime's decision to assign a UTS namespace, if supported. Available 
 </ul>
 <pre><code class="language-yml">    uts: &quot;host&quot;
 </code></pre>
-<h2 id="isolation">isolation</h2>
+<h3 id="isolation">isolation</h3>
 <p><code>isolation</code> specifies a container’s isolation technology. Supported values are platform specific.</p>
-<h2 id="labels">labels</h2>
+<h3 id="labels">labels</h3>
 <p><code>labels</code> add metadata to containers. You can use either an array or a map.</p>
 <p>It's recommended that you use reverse-DNS notation to prevent your labels from conflicting with
 those used by other software.</p>
@@ -1189,7 +1609,7 @@ those used by other software.</p>
 </ul>
 <p>The <code>com.docker.compose</code> label prefix is reserved. Specifying labels with this prefix in the Compose file
 results in a runtime error.</p>
-<h2 id="links">links</h2>
+<h3 id="links">links</h3>
 <blockquote>
 <p><strong>Note</strong></p>
 <p>Availability of the <code>links</code> attribute is implementation specific.</p>
@@ -1210,7 +1630,7 @@ do declare networks they are attached to, <code>links</code> does not override t
 attached to a shared network are not be able to communicate. Compose doesn't warn you about a configuration mismatch.</p>
 <p>Links also express implicit dependency between services in the same way as
 <a href="#depends_on">depends_on</a>, so they determine the order of service startup.</p>
-<h2 id="logging">logging</h2>
+<h3 id="logging">logging</h3>
 <p><code>logging</code> defines the logging configuration for the service.</p>
 <pre><code class="language-yml">logging:
   driver: syslog
@@ -1219,7 +1639,7 @@ attached to a shared network are not be able to communicate. Compose doesn't war
 </code></pre>
 <p>The <code>driver</code> name specifies a logging driver for the service's containers. The default and available values
 are platform specific. Driver specific options can be set with <code>options</code> as key-value pairs.</p>
-<h2 id="network_mode">network_mode</h2>
+<h3 id="network_mode">network_mode</h3>
 <p><code>network_mode</code> sets a service container's network mode. Available values are platform specific, but Compose defines specific values which must be implemented as described if supported:</p>
 <ul>
 <li><code>none</code>: Turns off all container networking.</li>
@@ -1232,7 +1652,7 @@ are platform specific. Driver specific options can be set with <code>options</co
 </code></pre>
 <p>When set, the <a href="#networks"><code>networks</code></a> attribute is not allowed and Compose rejects any
 Compose file containing both attributes.</p>
-<h2 id="networks">networks</h2>
+<h3 id="networks">networks</h3>
 <p><code>networks</code> defines the networks that service containers are attached to, referencing entries under the
 <a href="06-networks.md">top-level <code>networks</code> key</a>.</p>
 <pre><code class="language-yml">services:
@@ -1241,7 +1661,7 @@ Compose file containing both attributes.</p>
       - some-network
       - other-network
 </code></pre>
-<h3 id="aliases">aliases</h3>
+<h4 id="aliases">aliases</h4>
 <p><code>aliases</code> declares alternative hostnames for the service on the network. Other containers on the same
 network can use either the service name or an alias to connect to one of the service's containers.</p>
 <p>Since <code>aliases</code> are network-scoped, the same service can have different aliases on different networks.</p>
@@ -1291,7 +1711,7 @@ networks:
   back-tier:
   admin:
 </code></pre>
-<h3 id="ipv4_address-ipv6_address">ipv4_address, ipv6_address</h3>
+<h4 id="ipv4_address-ipv6_address">ipv4_address, ipv6_address</h4>
 <p>Specify a static IP address for a service container when joining the network.</p>
 <p>The corresponding network configuration in the <a href="06-networks.md">top-level networks section</a> must have an
 <code>ipam</code> attribute with subnet configurations covering each static address.</p>
@@ -1311,7 +1731,7 @@ networks:
         - subnet: &quot;172.16.238.0/24&quot;
         - subnet: &quot;2001:3984:3989::/64&quot;
 </code></pre>
-<h3 id="link_local_ips">link_local_ips</h3>
+<h4 id="link_local_ips">link_local_ips</h4>
 <p><code>link_local_ips</code> specifies a list of link-local IPs. Link-local IPs are special IPs which belong to a well
 known subnet and are purely managed by the operator, usually dependent on the architecture where they are
 deployed. Implementation is platform specific.</p>
@@ -1329,9 +1749,9 @@ networks:
   app_net:
     driver: bridge
 </code></pre>
-<h3 id="mac_address">mac_address</h3>
+<h4 id="mac_address">mac_address</h4>
 <p><code>mac_address</code> sets the MAC address used by the service container when connecting to this particular network.</p>
-<h3 id="priority">priority</h3>
+<h4 id="priority">priority</h4>
 <p><code>priority</code> indicates in which order Compose connects the service’s containers to its
 networks. If unspecified, the default value is 0.</p>
 <p>In the following example, the app service connects to <code>app_net_1</code> first as it has the highest priority. It then connects to <code>app_net_3</code>, then <code>app_net_2</code>, which uses the default priority value of 0.</p>
@@ -1351,17 +1771,17 @@ networks:
   app_net_2:
   app_net_3:
 </code></pre>
-<h2 id="mac_address_1">mac_address</h2>
+<h3 id="mac_address_1">mac_address</h3>
 <p><code>mac_address</code> sets a MAC address for the service container.</p>
 <blockquote>
 <p><strong>Note</strong>
 Container runtimes might reject this value (ie. Docker Engine &gt;= v25.0). In that case, you should use <a href="#mac_address">networks.mac_address</a> instead.</p>
 </blockquote>
-<h2 id="mem_limit">mem_limit</h2>
+<h3 id="mem_limit">mem_limit</h3>
 <p><em>DEPRECATED: use <a href="deploy.md#memory">deploy.limits.memory</a></em></p>
-<h2 id="mem_reservation">mem_reservation</h2>
+<h3 id="mem_reservation">mem_reservation</h3>
 <p><em>DEPRECATED: use <a href="deploy.md#memory">deploy.reservations.memory</a></em></p>
-<h2 id="mem_swappiness">mem_swappiness</h2>
+<h3 id="mem_swappiness">mem_swappiness</h3>
 <p><code>mem_swappiness</code> defines as a percentage, a value between 0 and 100, for the host kernel to swap out
 anonymous memory pages used by a container.</p>
 <ul>
@@ -1369,7 +1789,7 @@ anonymous memory pages used by a container.</p>
 <li><code>100</code>: Sets all anonymous pages as swappable.</li>
 </ul>
 <p>The default value is platform specific.</p>
-<h2 id="memswap_limit">memswap_limit</h2>
+<h3 id="memswap_limit">memswap_limit</h3>
 <p><code>memswap_limit</code> defines the amount of memory the container is allowed to swap to disk. This is a modifier
 attribute that only has meaning if <a href="deploy.md#memory"><code>memory</code></a> is also set. Using swap lets the container write excess
 memory requirements to disk when the container has exhausted all the memory that is available to it.
@@ -1381,21 +1801,21 @@ There is a performance penalty for applications that swap memory to disk often.<
 <li>If <code>memswap_limit</code> is unset, and <code>memory</code> is set, the container can use as much swap as the <code>memory</code> setting, if the host container has swap memory configured. For instance, if <code>memory</code>="300m" and <code>memswap_limit</code> is not set, the container can use 600m in total of memory and swap.</li>
 <li>If <code>memswap_limit</code> is explicitly set to -1, the container is allowed to use unlimited swap, up to the amount available on the host system.</li>
 </ul>
-<h2 id="oom_kill_disable">oom_kill_disable</h2>
+<h3 id="oom_kill_disable">oom_kill_disable</h3>
 <p>If <code>oom_kill_disable</code> is set, Compose configures the platform so it won't kill the container in case
 of memory starvation.</p>
-<h2 id="oom_score_adj">oom_score_adj</h2>
+<h3 id="oom_score_adj">oom_score_adj</h3>
 <p><code>oom_score_adj</code> tunes the preference for containers to be killed by platform in case of memory starvation. Value must
 be within [-1000,1000] range.</p>
-<h2 id="pid">pid</h2>
+<h3 id="pid">pid</h3>
 <p><code>pid</code> sets the PID mode for container created by Compose.
 Supported values are platform specific.</p>
-<h2 id="pids_limit">pids_limit</h2>
+<h3 id="pids_limit">pids_limit</h3>
 <p><em>DEPRECATED: use <a href="deploy.md#pids">deploy.resources.limits.pids</a></em></p>
 <p><code>pids_limit</code> tunes a container’s PIDs limit. Set to -1 for unlimited PIDs.</p>
 <pre><code class="language-yml">pids_limit: 10
 </code></pre>
-<h2 id="platform">platform</h2>
+<h3 id="platform">platform</h3>
 <p><code>platform</code> defines the target platform the containers for the service run on. It uses the <code>os[/arch[/variant]]</code> syntax.</p>
 <p>The values of <code>os</code>, <code>arch</code>, and <code>variant</code> must conform to the convention used by the <a href="https://github.com/opencontainers/image-spec/blob/v1.0.2/image-index.md">OCI Image Spec</a>.</p>
 <p>Compose uses this attribute to determine which version of the image is pulled
@@ -1404,13 +1824,13 @@ and/or on which platform the service’s build is performed.</p>
 platform: windows/amd64
 platform: linux/arm64/v8
 </code></pre>
-<h2 id="ports">ports</h2>
+<h3 id="ports">ports</h3>
 <p>Exposes container ports.</p>
 <blockquote>
 <p><strong>Note</strong></p>
 <p>Port mapping must not be used with <code>network_mode: host</code> otherwise a runtime error occurs.</p>
 </blockquote>
-<h3 id="short-syntax_3">Short syntax</h3>
+<h4 id="short-syntax_3">Short syntax</h4>
 <p>The short syntax is a colon-separated string to set the host IP, host port, and container port
 in the form:</p>
 <p><code>[HOST:]CONTAINER[/PROTOCOL]</code> where:</p>
@@ -1443,7 +1863,7 @@ with <a href="https://yaml.org/type/float.html">yaml base-60 float</a>.</p>
 <p>If Host IP mapping is not supported by a container engine, Compose rejects
 the Compose file and ignores the specified host IP.</p>
 </blockquote>
-<h3 id="long-syntax_3">Long syntax</h3>
+<h4 id="long-syntax_3">Long syntax</h4>
 <p>The long form syntax allows the configuration of additional fields that can't be
 expressed in the short form.</p>
 <ul>
@@ -1469,9 +1889,9 @@ expressed in the short form.</p>
     protocol: tcp
     mode: host
 </code></pre>
-<h2 id="privileged">privileged</h2>
+<h3 id="privileged">privileged</h3>
 <p><code>privileged</code> configures the service container to run with elevated privileges. Support and actual impacts are platform specific.</p>
-<h2 id="profiles">profiles</h2>
+<h3 id="profiles">profiles</h3>
 <p><code>profiles</code> defines a list of named profiles for the service to be enabled under. If unassigned, the service is always started but if assigned, it is only started if the profile is activated.</p>
 <p>If present, <code>profiles</code> follow the regex format of <code>[a-zA-Z0-9][a-zA-Z0-9_.-]+</code>.</p>
 <pre><code class="language-yaml">services:
@@ -1486,7 +1906,7 @@ expressed in the short form.</p>
     profiles:
       - debug
 </code></pre>
-<h2 id="pull_policy">pull_policy</h2>
+<h3 id="pull_policy">pull_policy</h3>
 <p><code>pull_policy</code> defines the decisions Compose makes when it starts to pull images. Possible values are:</p>
 <ul>
 <li><code>always</code>: Compose always pulls the image from the registry.</li>
@@ -1497,9 +1917,9 @@ expressed in the short form.</p>
   <code>if_not_present</code> is considered an alias for this value for backward compatibility.</li>
 <li><code>build</code>: Compose builds the image. Compose rebuilds the image if it's already present.</li>
 </ul>
-<h2 id="read_only">read_only</h2>
+<h3 id="read_only">read_only</h3>
 <p><code>read_only</code> configures the service container to be created with a read-only filesystem.</p>
-<h2 id="restart">restart</h2>
+<h3 id="restart">restart</h3>
 <p><code>restart</code> defines the policy that the platform applies on container termination.</p>
 <ul>
 <li><code>no</code>: The default restart policy. It does not restart the container under any circumstances.</li>
@@ -1513,7 +1933,7 @@ expressed in the short form.</p>
     restart: on-failure
     restart: unless-stopped
 </code></pre>
-<h2 id="runtime">runtime</h2>
+<h3 id="runtime">runtime</h3>
 <p><code>runtime</code> specifies which runtime to use for the service’s containers.</p>
 <p>The value of <code>runtime</code> is specific to the implementation.
 For example, <code>runtime</code> can be the name of <a href="https://github.com/opencontainers/runtime-spec/blob/master/implementations.md">an implementation of OCI Runtime Spec</a>, such as "runc".</p>
@@ -1522,10 +1942,10 @@ For example, <code>runtime</code> can be the name of <a href="https://github.com
   command: true
   runtime: runc
 </code></pre>
-<h2 id="scale">scale</h2>
+<h3 id="scale">scale</h3>
 <p><code>scale</code> specifies the default number of containers to deploy for this service.
 When both are set, <code>scale</code> must be consistent with the <code>replicas</code> attribute in the <a href="deploy.md#replicas">Deploy Specification</a>.</p>
-<h2 id="secrets">secrets</h2>
+<h3 id="secrets">secrets</h3>
 <p><code>secrets</code> grants access to sensitive data defined by <a href="09-secrets.md">secrets</a> on a per-service basis. Two
 different syntax variants are supported; the short syntax and the long syntax.</p>
 <p>Compose reports an error if the secret doesn't exist on the platform or isn't defined in the
@@ -1533,7 +1953,7 @@ different syntax variants are supported; the short syntax and the long syntax.</
 <p>Services can be granted access to multiple secrets. Long and short syntax for secrets may be used in the
 same Compose file. Defining a secret in the top-level <code>secrets</code> must not imply granting any service access to it.
 Such grant must be explicit within service specification as <a href="09-secrets.md">secrets</a> service element.</p>
-<h3 id="short-syntax_4">Short syntax</h3>
+<h4 id="short-syntax_4">Short syntax</h4>
 <p>The short syntax variant only specifies the secret name. This grants the
 container access to the secret and mounts it as read-only to <code>/run/secrets/&lt;secret_name&gt;</code>
 within the container. The source name and destination mountpoint are both set
@@ -1550,7 +1970,7 @@ secrets:
   server-certificate:
     file: ./server.cert
 </code></pre>
-<h3 id="long-syntax_4">Long syntax</h3>
+<h4 id="long-syntax_4">Long syntax</h4>
 <p>The long syntax provides more granularity in how the secret is created within
 the service's containers.</p>
 <ul>
@@ -1582,19 +2002,19 @@ secrets:
   server-certificate:
     external: true
 </code></pre>
-<h2 id="security_opt">security_opt</h2>
+<h3 id="security_opt">security_opt</h3>
 <p><code>security_opt</code> overrides the default labeling scheme for each container.</p>
 <pre><code class="language-yml">security_opt:
   - label:user:USER
   - label:role:ROLE
 </code></pre>
 <p>For further default labeling schemes you can override, see <a href="https://docs.docker.com/engine/reference/run/#security-configuration">Security configuration</a>.</p>
-<h2 id="shm_size">shm_size</h2>
+<h3 id="shm_size">shm_size</h3>
 <p><code>shm_size</code> configures the size of the shared memory (<code>/dev/shm</code> partition on Linux) allowed by the service container.
 It's specified as a <a href="11-extension.md#specifying-byte-values">byte value</a>.</p>
-<h2 id="stdin_open">stdin_open</h2>
+<h3 id="stdin_open">stdin_open</h3>
 <p><code>stdin_open</code> configures a service containers to run with an allocated stdin.</p>
-<h2 id="stop_grace_period">stop_grace_period</h2>
+<h3 id="stop_grace_period">stop_grace_period</h3>
 <p><code>stop_grace_period</code> specifies how long Compose must wait when attempting to stop a container if it doesn't
 handle SIGTERM (or whichever stop signal has been specified with
 <a href="#stop_signal"><code>stop_signal</code></a>), before sending SIGKILL. It's specified
@@ -1603,17 +2023,17 @@ as a <a href="11-extension.md#specifying-durations">duration</a>.</p>
     stop_grace_period: 1m30s
 </code></pre>
 <p>Default value is 10 seconds for the container to exit before sending SIGKILL.</p>
-<h2 id="stop_signal">stop_signal</h2>
+<h3 id="stop_signal">stop_signal</h3>
 <p><code>stop_signal</code> defines the signal that Compose uses to stop the service containers.
 If unset containers are stopped by Compose by sending <code>SIGTERM</code>.</p>
 <pre><code class="language-yml">stop_signal: SIGUSR1
 </code></pre>
-<h2 id="storage_opt">storage_opt</h2>
+<h3 id="storage_opt">storage_opt</h3>
 <p><code>storage_opt</code> defines storage driver options for a service.</p>
 <pre><code class="language-yml">storage_opt:
   size: '1G'
 </code></pre>
-<h2 id="sysctls">sysctls</h2>
+<h3 id="sysctls">sysctls</h3>
 <p><code>sysctls</code> defines kernel parameters to set in the container. <code>sysctls</code> can use either an array or a map.</p>
 <pre><code class="language-yml">sysctls:
   net.core.somaxconn: 1024
@@ -1627,7 +2047,7 @@ If unset containers are stopped by Compose by sending <code>SIGTERM</code>.</p>
 support changing sysctls inside a container that also modify the host system.
 For an overview of supported sysctls, refer to <a href="https://docs.docker.com/engine/reference/commandline/run/#sysctl">configure namespaced kernel
 parameters (sysctls) at runtime</a>.</p>
-<h2 id="tmpfs">tmpfs</h2>
+<h3 id="tmpfs">tmpfs</h3>
 <p><code>tmpfs</code> mounts a temporary file system inside the container. It can be a single value or a list.</p>
 <pre><code class="language-yml">tmpfs: /run
 </code></pre>
@@ -1635,9 +2055,9 @@ parameters (sysctls) at runtime</a>.</p>
   - /run
   - /tmp
 </code></pre>
-<h2 id="tty">tty</h2>
+<h3 id="tty">tty</h3>
 <p><code>tty</code> configures service container to run with a TTY.</p>
-<h2 id="ulimits">ulimits</h2>
+<h3 id="ulimits">ulimits</h3>
 <p><code>ulimits</code> overrides the default ulimits for a container. It's specified either as an integer for a single limit
 or as mapping for soft/hard limits.</p>
 <pre><code class="language-yml">ulimits:
@@ -1646,14 +2066,14 @@ or as mapping for soft/hard limits.</p>
     soft: 20000
     hard: 40000
 </code></pre>
-<h2 id="user">user</h2>
+<h3 id="user">user</h3>
 <p><code>user</code> overrides the user used to run the container process. The default is set by the image (i.e. Dockerfile <code>USER</code>). If it's not set, then <code>root</code>.</p>
-<h2 id="userns_mode">userns_mode</h2>
+<h3 id="userns_mode">userns_mode</h3>
 <p><code>userns_mode</code> sets the user namespace for the service. Supported values are platform specific and may depend
 on platform configuration.</p>
 <pre><code class="language-yml">userns_mode: &quot;host&quot;
 </code></pre>
-<h2 id="volumes">volumes</h2>
+<h3 id="volumes">volumes</h3>
 <p><code>volumes</code> define mount host paths or named volumes that are accessible by service containers. You can use <code>volumes</code> to define multiple types of mounts; <code>volume</code>, <code>bind</code>, <code>tmpfs</code>, or <code>npipe</code>. </p>
 <p>If the mount is a host path and is only used by a single service, it can be declared as part of the service
 definition. To reuse a volume across multiple services, a named
@@ -1676,7 +2096,7 @@ and a bind mount defined for a single service.</p>
 volumes:
   db-data:
 </code></pre>
-<h3 id="short-syntax_5">Short syntax</h3>
+<h4 id="short-syntax_5">Short syntax</h4>
 <p>The short syntax uses a single string with colon-separated values to specify a volume mount
 (<code>VOLUME:CONTAINER_PATH</code>), or an access mode (<code>VOLUME:CONTAINER_PATH:ACCESS_MODE</code>).</p>
 <ul>
@@ -1698,7 +2118,7 @@ directory which is only applicable in the local case. When Compose deploys to a 
 platform it rejects Compose files which use relative host paths with an error. To avoid ambiguities
 with named volumes, relative paths should always begin with <code>.</code> or <code>..</code>.</p>
 </blockquote>
-<h3 id="long-syntax_5">Long syntax</h3>
+<h4 id="long-syntax_5">Long syntax</h4>
 <p>The long form syntax allows the configuration of additional fields that can't be
 expressed in the short form.</p>
 <ul>
@@ -1721,7 +2141,7 @@ expressed in the short form.</p>
 <li><code>mode</code>: The file mode for the tmpfs mount as Unix permission bits as an octal number.</li>
 <li><code>consistency</code>: The consistency requirements of the mount. Available values are platform specific.</li>
 </ul>
-<h2 id="volumes_from">volumes_from</h2>
+<h3 id="volumes_from">volumes_from</h3>
 <p><code>volumes_from</code> mounts all of the volumes from another service or container. You can optionally specify
 read-only access <code>ro</code> or read-write <code>rw</code>. If no access level is specified, then read-write access is used.</p>
 <p>You can also mount volumes from a container that is not managed by Compose by using the <code>container:</code> prefix.</p>
@@ -1731,13 +2151,13 @@ read-only access <code>ro</code> or read-write <code>rw</code>. If no access lev
   - container:container_name
   - container:container_name:rw
 </code></pre>
-<h2 id="working_dir">working_dir</h2>
+<h3 id="working_dir">working_dir</h3>
 <p><code>working_dir</code> overrides the container's working directory which is specified by the image, for example Dockerfile's <code>WORKDIR</code>.</p>
-<h1 id="networks-top-level-element">Networks top-level element</h1>
+<h2 id="networks-top-level-element">Networks top-level element</h2>
 <p>Networks are the layer that allow services to communicate with each other.</p>
 <p>The top-level <code>networks</code> element lets you configure named networks that can be reused across multiple services. To use a network across multiple services, you must explicitly grant each service access by using the <a href="05-services.md">networks</a> attribute within the <code>services</code> top-level element. The <code>networks</code> top-level element has additional syntax that provides more granular control.</p>
-<h2 id="examples">Examples</h2>
-<h3 id="basic-example">Basic example</h3>
+<h3 id="examples">Examples</h3>
+<h4 id="basic-example">Basic example</h4>
 <p>In the following example, at runtime, networks <code>front-tier</code> and <code>back-tier</code> are created and the <code>frontend</code> service
 is connected to <code>front-tier</code> and <code>back-tier</code> networks.</p>
 <pre><code class="language-yml">services:
@@ -1751,7 +2171,7 @@ networks:
   front-tier:
   back-tier:
 </code></pre>
-<h3 id="advanced-example">Advanced example</h3>
+<h4 id="advanced-example">Advanced example</h4>
 <pre><code class="language-yml">services:
   proxy:
     build: ./proxy
@@ -1769,18 +2189,18 @@ networks:
 
 networks:
   frontend:
-    # Use a custom driver
+    ## Use a custom driver
     driver: custom-driver-1
   backend:
-    # Use a custom driver which takes special options
+    ## Use a custom driver which takes special options
     driver: custom-driver-2
     driver_opts:
       foo: &quot;1&quot;
       bar: &quot;2&quot;
 </code></pre>
 <p>The advanced example shows a Compose file which defines two custom networks. The <code>proxy</code> service is isolated from the <code>db</code> service, because they do not share a network in common. Only <code>app</code> can talk to both.</p>
-<h2 id="attributes">Attributes</h2>
-<h3 id="driver">driver</h3>
+<h3 id="attributes">Attributes</h3>
+<h4 id="driver">driver</h4>
 <p><code>driver</code> specifies which driver should be used for this network. Compose returns an error if the
 driver is not available on the platform.</p>
 <pre><code class="language-yml">networks:
@@ -1793,7 +2213,7 @@ driver is not available on the platform.</p>
 <li><code>host</code>: Use the host's networking stack.</li>
 <li><code>none</code>: Turn off networking.</li>
 </ul>
-<h4 id="host-or-none">host or none</h4>
+<h5 id="host-or-none">host or none</h5>
 <p>The syntax for using built-in networks such as <code>host</code> and <code>none</code> is different, as such networks implicitly exist outside
 the scope of Compose. To use them, you must define an external network with the name <code>host</code> or <code>none</code> and
 an alias that Compose can use (<code>hostnet</code> and <code>nonet</code> in the following example), then grant the service
@@ -1819,7 +2239,7 @@ networks:
     external: true
     name: none
 </code></pre>
-<h3 id="driver_opts">driver_opts</h3>
+<h4 id="driver_opts">driver_opts</h4>
 <p><code>driver_opts</code> specifies a list of options as key-value pairs to pass to the driver. These options are
 driver-dependent. Consult the driver's documentation for more information. </p>
 <pre><code class="language-yml">networks:
@@ -1828,7 +2248,7 @@ driver-dependent. Consult the driver's documentation for more information. </p>
       foo: &quot;bar&quot;
       baz: 1
 </code></pre>
-<h3 id="attachable">attachable</h3>
+<h4 id="attachable">attachable</h4>
 <p>If <code>attachable</code> is set to <code>true</code>, then standalone containers should be able to attach to this network, in addition to services.
 If a standalone container attaches to the network, it can communicate with services and other standalone containers
 that are also attached to the network.</p>
@@ -1837,9 +2257,9 @@ that are also attached to the network.</p>
     driver: overlay
     attachable: true
 </code></pre>
-<h3 id="enable_ipv6">enable_ipv6</h3>
+<h4 id="enable_ipv6">enable_ipv6</h4>
 <p><code>enable_ipv6</code> enables IPv6 networking. For an example, see step four of <a href="https://docs.docker.com/config/daemon/ipv6/">Create an IPv6 network</a>.</p>
-<h2 id="external">external</h2>
+<h3 id="external">external</h3>
 <p>If set to <code>true</code>:
  - <code>external</code> specifies that this network’s lifecycle is maintained outside of that of the application.
 Compose doesn't attempt to create these networks, and returns an error if one doesn't exist.
@@ -1863,7 +2283,7 @@ networks:
   outside:
     external: true
 </code></pre>
-<h3 id="ipam">ipam</h3>
+<h4 id="ipam">ipam</h4>
 <p><code>ipam</code> specifies a custom IPAM configuration. This is an object with several properties, each of which is optional:</p>
 <ul>
 <li><code>driver</code>: Custom IPAM driver, instead of the default.</li>
@@ -1890,10 +2310,10 @@ networks:
         foo: bar
         baz: &quot;0&quot;
 </code></pre>
-<h2 id="internal">internal</h2>
+<h3 id="internal">internal</h3>
 <p>By default, Compose provides external connectivity to networks. <code>internal</code>, when set to <code>true</code>, allows you to
 create an externally isolated network.</p>
-<h2 id="labels_1">labels</h2>
+<h3 id="labels_1">labels</h3>
 <p>Add metadata to containers using <code>labels</code>. You can use either an array or a dictionary.</p>
 <p>It is recommended that you use reverse-DNS notation to prevent labels from conflicting with those used by other software.</p>
 <pre><code class="language-yml">networks:
@@ -1911,7 +2331,7 @@ create an externally isolated network.</p>
       - &quot;com.example.label-with-empty-value&quot;
 </code></pre>
 <p>Compose sets <code>com.docker.compose.project</code> and <code>com.docker.compose.network</code> labels.</p>
-<h2 id="name">name</h2>
+<h3 id="name">name</h3>
 <p><code>name</code> sets a custom name for the network. The name field can be used to reference networks which contain special characters.
 The name is used as is and is not scoped with the project name.</p>
 <pre><code class="language-yml">networks:
@@ -1925,10 +2345,10 @@ should retrieve, typically by using a parameter so the Compose file doesn't need
     external: true
     name: &quot;${NETWORK_ID}&quot;
 </code></pre>
-<h1 id="volumes-top-level-element">Volumes top-level element</h1>
+<h2 id="volumes-top-level-element">Volumes top-level element</h2>
 <p>Volumes are persistent data stores implemented by the container engine. Compose offers a neutral way for services to mount volumes, and configuration parameters to allocate them to infrastructure.</p>
 <p>The top-level <code>volumes</code> declaration lets you configure named volumes that can be reused across multiple services. To use a volume across multiple services, you must explicitly grant each service access by using the <a href="05-services.md#volumes">volumes</a> attribute within the <code>services</code> top-level element. The <code>volumes</code> attribute has additional syntax that provides more granular control.</p>
-<h2 id="example">Example</h2>
+<h3 id="example">Example</h3>
 <p>The following example shows a two-service setup where a database's data directory is shared with another service as a volume, named
 <code>db-data</code>, so that it can be periodically backed up.</p>
 <pre><code class="language-yml">services:
@@ -1947,16 +2367,16 @@ volumes:
 </code></pre>
 <p>The <code>db-data</code> volume is mounted at the <code>/var/lib/backup/data</code> and <code>/etc/data</code> container paths for backup and backend respectively.</p>
 <p>Running <code>docker compose up</code> creates the volume if it doesn't already exist. Otherwise, the existing volume is used and is recreated if it's manually deleted outside of Compose.</p>
-<h2 id="attributes_1">Attributes</h2>
+<h3 id="attributes_1">Attributes</h3>
 <p>An entry under the top-level <code>volumes</code> section can be empty, in which case it uses the container engine's default configuration for
 creating a volume. Optionally, you can configure it with the following keys:</p>
-<h3 id="driver_1">driver</h3>
+<h4 id="driver_1">driver</h4>
 <p>Specifies which volume driver should be used. Default and available values are platform specific. If the driver is not available, Compose returns an error and doesn't deploy the application.</p>
 <pre><code class="language-yml">volumes:
   db-data:
     driver: foobar
 </code></pre>
-<h3 id="driver_opts_1">driver_opts</h3>
+<h4 id="driver_opts_1">driver_opts</h4>
 <p><code>driver_opts</code> specifies a list of options as key-value pairs to pass to the driver for this volume. The options are driver-dependent.</p>
 <pre><code class="language-yml">volumes:
   example:
@@ -1965,7 +2385,7 @@ creating a volume. Optionally, you can configure it with the following keys:</p>
       o: &quot;addr=10.40.0.199,nolock,soft,rw&quot;
       device: &quot;:/docker/example&quot;
 </code></pre>
-<h3 id="external_1">external</h3>
+<h4 id="external_1">external</h4>
 <p>If set to <code>true</code>:
  - <code>external</code> specifies that this volume already exists on the platform and its lifecycle is managed outside
 of that of the application. Compose doesn't then create the volume, and returns an error if the volume doesn't  exist.
@@ -1983,7 +2403,7 @@ volumes:
   db-data:
     external: true
 </code></pre>
-<h3 id="labels_2">labels</h3>
+<h4 id="labels_2">labels</h4>
 <p><code>labels</code> are used to add metadata to volumes. You can use either an array or a dictionary.</p>
 <p>It's recommended that you use reverse-DNS notation to prevent your labels from conflicting with those used by other software.</p>
 <pre><code class="language-yml">volumes:
@@ -2001,7 +2421,7 @@ volumes:
       - &quot;com.example.label-with-empty-value&quot;
 </code></pre>
 <p>Compose sets <code>com.docker.compose.project</code> and <code>com.docker.compose.volume</code> labels.</p>
-<h3 id="name_1">name</h3>
+<h4 id="name_1">name</h4>
 <p><code>name</code> sets a custom name for a volume. The name field can be used to reference volumes that contain special
 characters. The name is used as is and is not scoped with the stack name.</p>
 <pre><code class="language-yml">volumes:
@@ -2021,7 +2441,7 @@ characters. The name is used as is and is not scoped with the stack name.</p>
     external:
       name: actual-name-of-volume
 </code></pre>
-<h1 id="configs-top-level-element">Configs top-level element</h1>
+<h2 id="configs-top-level-element">Configs top-level element</h2>
 <p>Configs allow services to adapt their behaviour without the need to rebuild a Docker image.</p>
 <p>Services can only access configs when explicitly granted by a <a href="05-services.md#configs"><code>configs</code></a> attribute within the <code>services</code> top-level element.</p>
 <p>As with volumes, configs are mounted as files into a service's container's filesystem. The location of the mount point within the container defaults to <code>/&lt;config-name&gt;</code> in Linux containers and <code>C:\&lt;config-name&gt;</code> in Windows containers. </p>
@@ -2039,7 +2459,7 @@ characters. The name is used as is and is not scoped with the stack name.</p>
   reference configs that contain special characters. The name is used as is
   and will <strong>not</strong> be scoped with the project name.</li>
 </ul>
-<h2 id="example-1">Example 1</h2>
+<h3 id="example-1">Example 1</h3>
 <p><code>&lt;project_name&gt;_http_config</code> is created when the application is deployed,
 by registering the content of the <code>httpd.conf</code> as the configuration data.</p>
 <pre><code class="language-yml">configs:
@@ -2051,7 +2471,7 @@ by registering the content of the <code>httpd.conf</code> as the configuration d
   http_config:
     external: true
 </code></pre>
-<h2 id="example-2">Example 2</h2>
+<h3 id="example-2">Example 2</h3>
 <p><code>&lt;project_name&gt;_app_config</code> is created when the application is deployed,
 by registering the inlined content as the configuration data. This comes with the
 benefits Compose will infer variables when creating the config, which allows to
@@ -2063,7 +2483,7 @@ adjust content according to service configuration:</p>
       spring.application.admin.enabled=${DEBUG}
       spring.application.name=${COMPOSE_PROJECT_NAME}
 </code></pre>
-<h2 id="example-3">Example 3</h2>
+<h3 id="example-3">Example 3</h3>
 <p>External configs lookup can also use a distinct key by specifying a <code>name</code>. </p>
 <p>The following
 example modifies the previous one to look up a config using the parameter <code>HTTP_CONFIG_KEY</code>. The
@@ -2075,7 +2495,7 @@ variables, but exposed to containers as hard-coded ID <code>http_config</code>.<
     name: &quot;${HTTP_CONFIG_KEY}&quot;
 </code></pre>
 <p>If <code>external</code> is set to <code>true</code>, all other attributes apart from <code>name</code> are irrelevant. If Compose detecs any other attribute, it rejects the Compose file as invalid.</p>
-<h1 id="secrets-top-level-element">Secrets top-level element</h1>
+<h2 id="secrets-top-level-element">Secrets top-level element</h2>
 <p>Secrets are a flavor of <a href="08-configs.md">Configs</a> focusing on sensitive data, with specific constraint for this usage. </p>
 <p>Services can only access secrets when explicitly granted by a <a href="05-services.md#secrets"><code>secrets</code></a> attribute within the <code>services</code> top-level element.</p>
 <p>The top-level <code>secrets</code> declaration defines or references sensitive data that is granted to the services in your Compose
@@ -2089,14 +2509,14 @@ application. The source of the secret is either <code>file</code> or <code>envir
   reference secrets that contain special characters. The name is used as is
   and isn't scoped with the project name.</li>
 </ul>
-<h2 id="example-1_1">Example 1</h2>
+<h3 id="example-1_1">Example 1</h3>
 <p><code>server-certificate</code> secret is created as <code>&lt;project_name&gt;_server-certificate</code> when the application is deployed,
 by registering content of the <code>server.cert</code> as a platform secret.</p>
 <pre><code class="language-yml">secrets:
   server-certificate:
     file: ./server.cert
 </code></pre>
-<h2 id="example-2_1">Example 2</h2>
+<h3 id="example-2_1">Example 2</h3>
 <p><code>token</code> secret  is created as <code>&lt;project_name&gt;_token</code> when the application is deployed,
 by registering the content of the <code>OAUTH_TOKEN</code> environment variable as a platform secret.</p>
 <pre><code class="language-yml">secrets:
@@ -2108,7 +2528,7 @@ by registering the content of the <code>OAUTH_TOKEN</code> environment variable 
   server-certificate:
     external: true
 </code></pre>
-<h2 id="example-3_1">Example 3</h2>
+<h3 id="example-3_1">Example 3</h3>
 <p>External secrets lookup can also use a distinct key by specifying a <code>name</code>. </p>
 <p>The following example modifies the previous example to look up a secret using the name <code>CERTIFICATE_KEY</code>. The actual lookup key is set at deployment time by the <a href="12-interpolation.md">interpolation</a> of
 variables, but exposed to containers as hard-coded ID <code>server-certificate</code>.</p>
@@ -2119,11 +2539,11 @@ variables, but exposed to containers as hard-coded ID <code>server-certificate</
 </code></pre>
 <p>If <code>external</code> is set to <code>true</code>, all other attributes apart from <code>name</code> are irrelevant. If Compose detects any other attribute, it rejects the Compose file as invalid.</p>
 <p>Your Compose file needs to explicitly grant access to the secrets to relevant services in your application.</p>
-<h1 id="fragments">Fragments</h1>
+<h2 id="fragments">Fragments</h2>
 <p>With Compose, you can use built-in <a href="https://www.yaml.org/spec/1.2/spec.html#id2765878">YAML</a> features to make your Compose file neater and more efficient. Anchors and aliases let you create re-usable blocks. This is useful if you start to find common configurations that span multiple services. Having re-usable blocks minimizes potential mistakes.</p>
 <p>Anchors are created using the <code>&amp;</code> sign. The sign is followed by an alias name. You can use this alias with the <code>*</code> sign later to reference the value following the anchor. Make sure there is no space between the <code>&amp;</code> and the <code>*</code> characters and the following alias name. </p>
 <p>You can use more than one anchor and alias in a single Compose file.</p>
-<h2 id="example-1_2">Example 1</h2>
+<h3 id="example-1_2">Example 1</h3>
 <pre><code class="language-yml">volumes:
   db-data: &amp;default-volume
     driver: default
@@ -2131,7 +2551,7 @@ variables, but exposed to containers as hard-coded ID <code>server-certificate</
 </code></pre>
 <p>In the example above, a <code>default-volume</code> anchor is created based on the <code>db-data</code> volume. It is later reused by the alias <code>*default-volume</code> to define the <code>metrics</code> volume. </p>
 <p>Anchor resolution takes place before <a href="12-interpolation.md">variables interpolation</a>, so variables can't be used to set anchors or aliases.</p>
-<h2 id="example-2_2">Example 2</h2>
+<h3 id="example-2_2">Example 2</h3>
 <pre><code class="language-yml">services:
   first:
     image: my-image:latest
@@ -2144,7 +2564,7 @@ variables, but exposed to containers as hard-coded ID <code>server-certificate</
     environment: *env
 </code></pre>
 <p>If you have an anchor that you want to use in more than one service, use it in conjunction with an <a href="11-extension.md">extension</a> to make your Compose file easier to maintain.</p>
-<h2 id="example-3_2">Example 3</h2>
+<h3 id="example-3_2">Example 3</h3>
 <p>You may want to partially override values. Compose follows the rule outlined by <a href="https://yaml.org/type/merge.html">YAML merge type</a>. </p>
 <p>In the following example, <code>metrics</code> volume specification uses alias
 to avoid repetition but overrides <code>name</code> attribute:</p>
@@ -2163,7 +2583,7 @@ volumes:
     &lt;&lt;: *default-volume
     name: &quot;metrics&quot;
 </code></pre>
-<h2 id="example-4">Example 4</h2>
+<h3 id="example-4">Example 4</h3>
 <p>You can also extend the anchor to add additional values.</p>
 <pre><code class="language-yml">services:
   first:
@@ -2182,13 +2602,13 @@ volumes:
 <p><a href="https://yaml.org/type/merge.html">YAML merge</a> only applies to mappings, and can't be used with sequences. </p>
 </blockquote>
 <p>In example above, the environment variables must be declared using the <code>FOO: BAR</code> mapping syntax, while the sequence syntax <code>- FOO=BAR</code> is only valid when no fragments are involved. </p>
-<h1 id="extension">Extension</h1>
+<h2 id="extension">Extension</h2>
 <p>As with <a href="10-fragments.md">Fragments</a>, Extensions can be used to make your Compose file more efficient and easier to maintain. Extensions can also be used with <a href="10-fragments.md">anchors and aliases</a>.</p>
 <p>Use the prefix <code>x-</code> as a top-level element to modularize configurations that you want to reuse. 
 Compose ignores any fields that start with <code>x-</code>, this is the sole exception where Compose silently ignores unrecognized fields.</p>
 <p>They also can be used within any structure in a Compose file where user-defined keys are not expected. 
 Compose use those to enable experimental features, the same way browsers add support for <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#vendor-keywords">custom CSS features</a></p>
-<h2 id="example-1_3">Example 1</h2>
+<h3 id="example-1_3">Example 1</h3>
 <pre><code class="language-yml">x-custom:
   foo:
     - bar
@@ -2207,7 +2627,7 @@ services:
         x-aws-region: &quot;eu-west-3&quot;
         x-azure-region: &quot;france-central&quot;
 </code></pre>
-<h2 id="example-2_3">Example 2</h2>
+<h3 id="example-2_3">Example 2</h3>
 <pre><code class="language-yml">x-env: &amp;env
   environment:
     - CONFIG_KEY
@@ -2223,7 +2643,7 @@ services:
 </code></pre>
 <p>In this example, the environment variables do not belong to either of the services. They’ve been lifted out completely into the <code>x-env</code> extension field.
 This defines a new node which contains the environment field. The <code>&amp;env</code> YAML anchor is used so both services can reference the extension field’s value as <code>*env</code>.</p>
-<h2 id="example-3_3">Example 3</h2>
+<h3 id="example-3_3">Example 3</h3>
 <pre><code class="language-yml">x-function: &amp;function
  labels:
    function: &quot;true&quot;
@@ -2236,14 +2656,14 @@ This defines a new node which contains the environment field. The <code>&amp;env
      constraints:
        - 'node.platform.os == linux'
 services:
- # Node.js gives OS info about the node (Host)
+ ## Node.js gives OS info about the node (Host)
  nodeinfo:
    &lt;&lt;: *function
    image: functions/nodeinfo:latest
    environment:
      no_proxy: &quot;gateway&quot;
      https_proxy: $https_proxy
- # Uses `cat` to echo back response, fastest function to execute.
+ ## Uses `cat` to echo back response, fastest function to execute.
  echoit:
    &lt;&lt;: *function
    image: functions/alpine:health
@@ -2253,7 +2673,7 @@ services:
      https_proxy: $https_proxy
 </code></pre>
 <p>The <code>nodeinfo</code> and <code>echoit</code> services both include the <code>x-function</code> extension via the <code>&amp;function</code> anchor, then set their specific image and environment. </p>
-<h2 id="example-4_1">Example 4</h2>
+<h3 id="example-4_1">Example 4</h3>
 <p>Using <a href="https://yaml.org/type/merge.html">YAML merge</a> it is also possible to use multiple extensions and share
 and override additional attributes for specific needs:</p>
 <pre><code class="language-yml">x-environment: &amp;default-environment
@@ -2273,7 +2693,7 @@ services:
 <p><a href="https://yaml.org/type/merge.html">YAML merge</a> only applies to mappings, and can't be used with sequences. </p>
 <p>In the example above, the environment variables are declared using the <code>FOO: BAR</code> mapping syntax, while the sequence syntax <code>- FOO=BAR</code> is only valid when no fragments are involved.</p>
 </blockquote>
-<h2 id="informative-historical-notes">Informative Historical Notes</h2>
+<h3 id="informative-historical-notes">Informative Historical Notes</h3>
 <p>This section is informative. At the time of writing, the following prefixes are known to exist:</p>
 <table>
 <thead>
@@ -2293,7 +2713,7 @@ services:
 </tr>
 </tbody>
 </table>
-<h2 id="specifying-byte-values">Specifying byte values</h2>
+<h3 id="specifying-byte-values">Specifying byte values</h3>
 <p>Values express a byte value as a string in <code>{amount}{byte unit}</code> format:
 The supported units are <code>b</code> (bytes), <code>k</code> or <code>kb</code> (kilo bytes), <code>m</code> or <code>mb</code> (mega bytes) and <code>g</code> or <code>gb</code> (giga bytes).</p>
 <pre><code>    2b
@@ -2302,7 +2722,7 @@ The supported units are <code>b</code> (bytes), <code>k</code> or <code>kb</code
     300m
     1gb
 </code></pre>
-<h2 id="specifying-durations">Specifying durations</h2>
+<h3 id="specifying-durations">Specifying durations</h3>
 <p>Values express a duration as a string in the form of <code>{value}{unit}</code>.
 The supported units are <code>us</code> (microseconds), <code>ms</code> (milliseconds), <code>s</code> (seconds), <code>m</code> (minutes) and <code>h</code> (hours).
 Values can combine multiple values without separator.</p>
@@ -2311,7 +2731,7 @@ Values can combine multiple values without separator.</p>
   1m30s
   1h5m30s20ms
 </code></pre>
-<h1 id="interpolation">Interpolation</h1>
+<h2 id="interpolation">Interpolation</h2>
 <p>Values in a Compose file can be set by variables and interpolated at runtime. Compose files use a Bash-like
 syntax <code>${VARIABLE}</code>.</p>
 <p>Both <code>$VARIABLE</code> and <code>${VARIABLE}</code> syntax is supported. Default values can be defined inline using typical shell syntax:</p>
@@ -2360,10 +2780,10 @@ must be used for interpolation to apply. For example:</p>
     labels:
       - &quot;$VAR_INTERPOLATED_BY_COMPOSE=BAR&quot;
 </code></pre>
-<h1 id="merge-and-override">Merge and override</h1>
+<h2 id="merge-and-override">Merge and override</h2>
 <p>Compose lets you define a Compose application model through <a href="https://docs.docker.com/compose/multiple-compose-files/">multiple Compose files</a>. 
 When doing so, Compose follows the rules declared in this section to merge Compose files.</p>
-<h2 id="mapping">Mapping</h2>
+<h3 id="mapping">Mapping</h3>
 <p>A YAML <code>mapping</code> gets merged by adding missing entries and merging the conflicting ones.</p>
 <p>Merging the following example YAML trees:</p>
 <pre><code class="language-yaml">services:
@@ -2383,7 +2803,7 @@ When doing so, Compose follows the rules declared in this section to merge Compo
     key2: VALUE
     key3: value3
 </code></pre>
-<h2 id="sequence">Sequence</h2>
+<h3 id="sequence">Sequence</h3>
 <p>A YAML <code>sequence</code> is merged by appending values from the overriding Compose file to the previous one.</p>
 <p>Merging the following example YAML trees:</p>
 <pre><code class="language-yaml">services:
@@ -2403,8 +2823,8 @@ When doing so, Compose follows the rules declared in this section to merge Compo
       - 1.1.1.1
       - 8.8.8.8
 </code></pre>
-<h2 id="exceptions">Exceptions</h2>
-<h3 id="shell-commands">Shell commands</h3>
+<h3 id="exceptions">Exceptions</h3>
+<h4 id="shell-commands">Shell commands</h4>
 <p>When merging Compose files that use the services attributes <a href="05-services.md#command">command</a>, <a href="05-services.md#entrypoint">entrypoint</a> and <a href="05-services.md#healthcheck">healthcheck: <code>test</code></a>, the value is overridden by the latest Compose file, and not appended.</p>
 <p>Merging the following example YAML trees:</p>
 <pre><code class="language-yaml">services:
@@ -2420,7 +2840,7 @@ When doing so, Compose follows the rules declared in this section to merge Compo
   foo:
     command: [&quot;echo&quot;, &quot;bar&quot;]
 </code></pre>
-<h3 id="unique-resources">Unique resources</h3>
+<h4 id="unique-resources">Unique resources</h4>
 <p>Applies to the <a href="05-services.md#ports">ports</a>, <a href="05-services.md#volumes">volumes</a>, <a href="05-services.md#secrets">secrets</a> and <a href="05-services.md#configs">configs</a> services attributes.
 While these types are modeled in a Compose file as a sequence, they have special uniqueness requirements:</p>
 <table>
@@ -2467,7 +2887,7 @@ While these types are modeled in a Compose file as a sequence, they have special
     volumes:
       - bar:/work
 </code></pre>
-<h3 id="reset-value">Reset value</h3>
+<h4 id="reset-value">Reset value</h4>
 <p>In addition to the previously described mechanism, an override Compose file can also be used to remove elements from your application model.
 For this purpose, the custom <a href="https://yaml.org/spec/1.2.2/#24-tags">YAML tag</a> <code>!reset</code> can be set to
 override a value set by the overriden Compose file. A valid value for attribute must be provided,
@@ -2497,7 +2917,7 @@ app:
   app:
     image: myapp
 </code></pre>
-<h3 id="replace-value">Replace value</h3>
+<h4 id="replace-value">Replace value</h4>
 <p>While <code>!reset</code> can be used to remove a declaration from a Compose file using an override file, <code>!override</code> allows
 you to fully replace an attribute, bypassing the standard merge rules. A typical example is to fully replace a 
 resource definition, to rely on a distinct model but using the same name.</p>
@@ -2522,7 +2942,7 @@ app:
       - &quot;8443:443&quot; 
 </code></pre>
 <p>If <code>!override</code> had not been used, both <code>8080:80</code> and <code>8443:443</code> would be exposed as per the <a href="#sequence">merging rules outlined above</a>. </p>
-<h1 id="include">Include</h1>
+<h2 id="include">Include</h2>
 <p>A Compose application can declare dependency on another Compose application. This is useful if:
 - You want to reuse other Compose files.
 - You need to factor out parts of your application model into separate Compose files so they can be managed separately or shared with others.
@@ -2548,7 +2968,7 @@ services:
 <pre><code class="language-text">include:
   -${INCLUDE_PATH:?FOO}/compose.yaml
 </code></pre>
-<h2 id="short-syntax_6">Short syntax</h2>
+<h3 id="short-syntax_6">Short syntax</h3>
 <p>The short syntax only defines paths to other Compose files. The file is loaded with the parent
 folder as the project directory, and an optional <code>.env</code> file that is loaded to define any variables' default values
 by interpolation. The local project's environment can override those values. </p>
@@ -2559,21 +2979,21 @@ by interpolation. The local project's environment can override those values. </p
 services:
   webapp:
     depends_on:
-      - included-service # defined by another_domain
+      - included-service ## defined by another_domain
 </code></pre>
 <p>In the above example, both <code>../commons/compose.yaml</code> and 
 <code>../another_domain/compose.yaml</code> are loaded as individual Compose projects. Relative paths 
 in Compose files being referred by <code>include</code> are resolved relative to their own Compose 
 file path, not based on the local project's directory. Variables are interpolated using values set in the optional
 <code>.env</code> file in same folder, and is overridden by the local project's environment.</p>
-<h2 id="long-syntax_6">Long syntax</h2>
+<h3 id="long-syntax_6">Long syntax</h3>
 <p>The long syntax offers more control over the sub-project parsing:</p>
 <pre><code class="language-yaml">include:
    - path: ../commons/compose.yaml
      project_directory: ..
      env_file: ../another/.env
 </code></pre>
-<h3 id="path">path</h3>
+<h4 id="path">path</h4>
 <p><code>path</code> is required and defines the location of the Compose file(s) to be parsed and included into the
 local Compose model. <code>path</code> can be set either to a string when a single Compose file is involved,
 or to a list of strings when multiple Compose files need to be <a href="13-merge.md">merged together</a> to
@@ -2583,10 +3003,10 @@ define the Compose model to be included in the local application.</p>
        - ../commons/compose.yaml
        - ./commons-override.yaml
 </code></pre>
-<h3 id="project_directory">project_directory</h3>
+<h4 id="project_directory">project_directory</h4>
 <p><code>project_directory</code> defines a base path to resolve relative paths set in the Compose file. It defaults to 
 the directory of the included Compose file.</p>
-<h3 id="env_file_1">env_file</h3>
+<h4 id="env_file_1">env_file</h4>
 <p><code>env_file</code> defines an environment file(s) to use to define default values when interpolating variables
 in the Compose file being parsed. It defaults to <code>.env</code> file in the <code>project_directory</code> for the Compose 
 file being parsed. </p>
@@ -2600,7 +3020,7 @@ to define a project environment.</p>
 </code></pre>
 <p>The local project's environment has precedence over the values set by the Compose file, so that the local project can
 override values for customization.</p>
-<h1 id="profiles_1">Profiles</h1>
+<h2 id="profiles_1">Profiles</h2>
 <p>With profiles you can define a set of active profiles so your Compose application model is adjusted for various usages and environments.
 The exact mechanism is implementation specific and may include command line flags, environment variables, etc.</p>
 <p>The <a href="05-services.md">services</a> top-level element supports a <code>profiles</code> attribute to define a list of named profiles. 
@@ -2614,7 +3034,7 @@ explicitly targeted by a command. In that case its profile is added to the set o
 <p>References to other services (by <code>links</code>, <code>extends</code> or shared resource syntax <code>service:xxx</code>) do not
 automatically enable a component that would otherwise have been ignored by active profiles. Instead
 Compose returns an error.</p>
-<h2 id="illustrative-example_1">Illustrative example</h2>
+<h3 id="illustrative-example_1">Illustrative example</h3>
 <pre><code class="language-yaml">services:
   foo:
     image: foo
