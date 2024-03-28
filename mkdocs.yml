@@ -12,6 +12,7 @@ nav:
     - machine_learning: machine_learning.md
     - llm: llm.md
     - llmama2: llama2.md
+    - ollama: ollama.md
     - rag: rag.md
     - Framework: framework.md
     - database: db.md
