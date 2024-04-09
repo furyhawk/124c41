@@ -86,6 +86,8 @@ sudo apt install microsoft-edge-stable
 ## zsh
 
 ```sh
+sudo apt install zsh
+chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 autoload predict-on
