@@ -24,6 +24,37 @@ sudo apt-get purge docker-ce-cli
 sudo rm -rf /var/lib/docker
 ```
 
+rootless
+```sh
+sudo apt install -y dbus-user-session
+sudo apt install -y fuse-overlayfs
+sudo apt install -y fuse-overlayfs
+sudo systemctl disable --now docker.service docker.socket
+sudo rm -rf /var/lib/docker
+sudo apt-get purge docker-ce docker-ce-cli containerd.io
+sudo apt-get purge docker-ce docker-ce-cli containerd.io
+apt-get install -y uidmap
+curl -fsSL https://get.docker.com/rootless | sh
+
+nano .zshrc
+export PATH=/home/furyhawk/bin:$PATH
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
+systemctl --user enable docker
+sudo loginctl enable-linger $(whoami)
+docker context use rootless
+
+sudo setcap cap_net_bind_service=ep $(which rootlesskit)
+systemctl --user restart docker
+#sudo apt-get install -y docker-ce-rootless-extras
+
+dockerd-rootless-setuptool.sh uninstall
+cd ~/bin
+rm -f containerd containerd-shim containerd-shim-runc-v2 ctr docker docker-init docker-proxy dockerd dockerd-rootless-setuptool.sh dockerd-rootless.sh rootlesskit rootlesskit-docker-proxy runc vpnkit
+
+netstat -ltup
+```
+
 <!---
 This file is generated, changes will be overwritten or CI specification check will fail
 All changes should be done in the markdown files located in the spec directory
