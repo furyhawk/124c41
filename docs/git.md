@@ -47,3 +47,27 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo apt update \
 && sudo apt install gh -y
 ```
+
+reset to last working commit:
+```sh
+git reset --hard <last_working_commit_id>
+git push --force
+```
+
+working with submodules:
+```sh
+git submodule update --init --recursive
+
+There are four steps involved when you delete a submodule.
+
+# 1. deinit the submodule
+git submodule deinit <submodule_directory>
+# 2. Remove the submodule directory from Git
+git rm <submodule_directory>
+# 3. Remove the submodule directory from .git/modules/
+rm -rf .git/modules/<submodule_directory>
+# 4. commit and push the changes
+# add submodule and define the master branch as the one you want to track
+git submodule add -b master [URL to Git repo] 
+git submodule init 
+```
