@@ -21,5 +21,7 @@ source "$( poetry env list --full-path | grep Activated | cut -d' ' -f1 )/bin/ac
 
 # Add from requirements.txt
 poetry add $(cat requirements.txt)
+# or
+cat requirements.txt | xargs poetry add
 
 ```
