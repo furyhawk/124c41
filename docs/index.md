@@ -18,6 +18,20 @@ type: short summary
 - 1 Human decide to learn computing skills.
 - NSFW content accessed.
 
+## Home Server
+
+- [Chat](https://chat.furyhawk.lol/): Chat with AI.
+- [Stock Analysis Assistant](https://fin.furyhawk.lol/): AI assistant using GROQ and llama3.
+- [Redlib](https://redlib.furyhawk.lol/): Reddit libre.
+- [Blog](https://info.furyhawk.lol/)
+- [Beyond All Information](https://bai.furyhawk.lol/): analyse your [Beyond All Reason](https://www.beyondallreason.info/) games.
+- [CheatSheets](https://cheat.furyhawk.lol/): Collection of cheatsheets.
+- [Forum](https://forum.furyhawk.lol/): Host your own forum.
+- [Neural Network Playground](https://furyhawk.github.io/playground): Understand neural network visually.
+- [Note](https://note.furyhawk.lol/): Notepad Online.
+- [pastebin](https://bin.furyhawk.lol/): Pastebin.
+- [Home server](https://github.com/furyhawk/cloudy): Build for ARM64 platform
+
 ## Team Fight Tactics Strategy Application
 
 http://tftchamp.duckdns.org:3000/
