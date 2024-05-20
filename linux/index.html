@@ -309,6 +309,17 @@ predict-on
 <pre><code class="language-sh">uname -a
 netstat -ltup
 </code></pre>
+<p>This puts folder A into folder B:</p>
+<pre><code class="language-sh">rsync -avu --delete &quot;/home/user/A&quot; &quot;/home/user/B&quot;
+</code></pre>
+<p>If you want the contents of folders A and B to be the same, put /home/user/A/ (with the slash) as the source. This takes not the folder A but all of its content and puts it into folder B. Like this:</p>
+<pre><code class="language-sh">rsync -avu --delete &quot;/home/user/A/&quot; &quot;/home/user/B&quot;
+</code></pre>
+<pre><code>- -a archive mode; equals -rlptgoD (no -H, -A, -X)
+- -v run verbosely
+- -u only copy files with a newer modification time (or size difference if the times are equal)
+- --delete delete the files in target folder that do not exist in the source
+</code></pre>
               
             </div>
           </div><footer>
