@@ -238,6 +238,8 @@ source &quot;$( poetry env list --full-path | grep Activated | cut -d' ' -f1 )/b
 
 # Add from requirements.txt
 poetry add $(cat requirements.txt)
+# or
+cat requirements.txt | xargs poetry add
 
 </code></pre>
               
