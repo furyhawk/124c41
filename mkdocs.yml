@@ -11,6 +11,7 @@ nav:
     - vscode: code.md
     - machine_learning: machine_learning.md
     - llm: llm.md
+    - embedding: embedding.md
     - llmama2: llama2.md
     - ollama: ollama.md
     - rag: rag.md
