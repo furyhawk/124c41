@@ -1,6 +1,7 @@
 # linux
 
 ## misc
+
 ```shell
 ln -s original symlink
 ```
@@ -20,14 +21,17 @@ bash ./scripts/check_type.sh
 [Docker+Wasm (Beta) | Docker Documentation](https://docs.docker.com/desktop/wasm/)
 
 ## brew
+
 ```sh
 brew upgrade --cask --greedy
 ```
 
 ## QEMU
+
 stty cols 120 rows 80
 
 ## DockSTARTer
+
 ```sh
 sudo pacman -Sy curl docker git
 bash -c "$(curl -fsSL https://get.dockstarter.com)"
@@ -41,6 +45,7 @@ passwd archie
 ```
 
 ## Enabling sudo
+
 After installing and logging in, you will find that the default user does not have sudo privileges. Open a terminal and use the following commands to enable it.
 
 ```sh
@@ -50,6 +55,7 @@ su -p
 ```
 
 https://wiki.archlinux.org/title/sudo
+
 ## sway
 
 ```sh
@@ -59,18 +65,19 @@ pacman -S spice-vdagent
 set $menu bemenu-run --no-exec | xargs swaymsg exec --
 ```
 
-
 ```sh
 sudo apt-get install ubuntu-desktop
 sudo systemctl set-default graphical.target
 ```
 
 ## WSL time not updated
+
 ```sh
 apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update
 ```
 
 ## find largest file in directory recursively using find
+
 ```sh
 sudo du -a / | sort -n -r | head -n 20
 ```
@@ -95,13 +102,13 @@ predict-on
 
 ```
 
-
 ```sh
 uname -a
 netstat -ltup
 ```
 
 This puts folder A into folder B:
+
 ```sh
 rsync -avu --delete "/home/user/A" "/home/user/B"
 ```
@@ -117,4 +124,9 @@ rsync -avu --delete "/home/user/A/" "/home/user/B"
     - -u only copy files with a newer modification time (or size difference if the times are equal)
     - --delete delete the files in target folder that do not exist in the source
 
+## zip individual files in a directory
 
+```sh
+for f in *.nes; do zip -r "${f%%.*}.zip" "$f"; done
+find . -name '*.nes' -delete
+```
