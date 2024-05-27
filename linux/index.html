@@ -150,9 +150,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#zsh">zsh</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#zip-individual-files-in-a-directory">zip individual files in a directory</a>
+    <li class="toctree-l2"><a class="reference internal" href="#misc_1">misc</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsync">rsync</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#rsync-push">rsync push</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zip-individual-files-in-a-directory">zip individual files in a directory</a>
     </li>
     </ul>
                 </li>
@@ -310,13 +314,15 @@ sudo apt install microsoft-edge-stable
 chsh -s $(which zsh)
 sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
 
-autoload predict-on
-predict-on
+# autoload predict-on
+# predict-on
 
 </code></pre>
+<h2 id="misc_1">misc</h2>
 <pre><code class="language-sh">uname -a
 netstat -ltup
 </code></pre>
+<h2 id="rsync">rsync</h2>
 <p>This puts folder A into folder B:</p>
 <pre><code class="language-sh">rsync -avu --delete &quot;/home/user/A&quot; &quot;/home/user/B&quot;
 </code></pre>
@@ -327,15 +333,19 @@ netstat -ltup
 - -v run verbosely
 - -u only copy files with a newer modification time (or size difference if the times are equal)
 - --delete delete the files in target folder that do not exist in the source
+- -z compress file data during the transfer
+- -e specify the remote shell to use
+- -P same as --partial --progress
+- -c skip based on checksum, not mod-time &amp; size
+</code></pre>
+<h2 id="rsync-push">rsync push</h2>
+<pre><code>```sh
+rsync -avuz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
+```
 </code></pre>
 <h2 id="zip-individual-files-in-a-directory">zip individual files in a directory</h2>
 <pre><code class="language-sh">for f in *.nes; do zip -r &quot;${f%%.*}.zip&quot; &quot;$f&quot;; done
 find . -name '*.nes' -delete
-</code></pre>
-<h2 id="rsync-push">rsync push</h2>
-<pre><code>```sh
-rsync -avz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
-```
 </code></pre>
               
             </div>
