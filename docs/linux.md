@@ -97,16 +97,18 @@ sudo apt install zsh
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-autoload predict-on
-predict-on
+# autoload predict-on
+# predict-on
 
 ```
 
+## misc
 ```sh
 uname -a
 netstat -ltup
 ```
 
+## rsync
 This puts folder A into folder B:
 
 ```sh
@@ -123,6 +125,16 @@ rsync -avu --delete "/home/user/A/" "/home/user/B"
     - -v run verbosely
     - -u only copy files with a newer modification time (or size difference if the times are equal)
     - --delete delete the files in target folder that do not exist in the source
+    - -z compress file data during the transfer
+    - -e specify the remote shell to use
+    - -P same as --partial --progress
+    - -c skip based on checksum, not mod-time & size
+
+## rsync push
+    
+    ```sh
+    rsync -avuz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
+    ```
 
 ## zip individual files in a directory
 
@@ -130,9 +142,3 @@ rsync -avu --delete "/home/user/A/" "/home/user/B"
 for f in *.nes; do zip -r "${f%%.*}.zip" "$f"; done
 find . -name '*.nes' -delete
 ```
-
-## rsync push
-    
-    ```sh
-    rsync -avz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
-    ```
