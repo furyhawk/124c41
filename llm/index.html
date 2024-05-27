@@ -84,6 +84,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#agi">AGI</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prompting">Prompting</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#llmchain">LLMChain</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#optimizing-inference-on-large-language-models-with-nvidia-tensorrt-llm">Optimizing Inference on Large Language Models with NVIDIA TensorRT-LLM</a>
@@ -235,6 +237,149 @@
 <ul>
 <li>transformers cannot be used in AGI because it cannot learn and infer new tokens from unseen data. It generalize better from large datasets, and cannot generalize far from unexplored data.</li>
 </ul>
+<h2 id="prompting">Prompting</h2>
+<table>
+<thead>
+<tr>
+<th>#Principle</th>
+<th>Prompt Principle for Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>If you prefer more concise answers, no need to be polite with LLM so there is no need to add phrases like "please", "if you don't mind", "thank you", "I would like to", etc., and get straight to the point.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Integrate the intended audience in the prompt, e.g., the audience is an expert in the field.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Break down complex tasks into a sequence of simpler prompts in an interactive conversation.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Employ affirmative directives such as 'do', while steering clear of negative language like 'don't'.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>When you need clarity or a deeper understanding of a topic, idea, or any piece of information, utilize the following prompts:</td>
+</tr>
+<tr>
+<td></td>
+<td>o Explain [insert specific topic] in simple terms.</td>
+</tr>
+<tr>
+<td></td>
+<td>o Explain to me like I'm 11 years old.</td>
+</tr>
+<tr>
+<td></td>
+<td>o Explain to me as if I'm a beginner in [field].</td>
+</tr>
+<tr>
+<td></td>
+<td>o Write the [essay/text/paragraph] using simple English like you're explaining something to a 5-year-old.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Add "I'm going to tip $$xx for a better solution!"</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Implement example-driven prompting (Use few-shot prompting).</td>
+</tr>
+<tr>
+<td>8</td>
+<td>When formatting your prompt, start with "###Instruction###", followed by '###Example###' or '###Question###' if relevant. Subsequently, present your content. Use one or more line breaks to separate instructions, examples, questions, context, and input data.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Incorporate the following phrases: "Your task is" and "You MUST".</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Incorporate the following phrases: "You will be penalized".</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Use the phrase "Answer a question given in a natural, human-like manner" in your prompts.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Use leading words like writing "think step by step".</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Add to your prompt the following phrase "Ensure that your answer is unbiased and avoids relying on stereotypes."</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Allow the model to elicit precise details and requirements from you by asking you questions until he has enough information to provide the needed output (for example, "From now on, I would like you to ask me questions to ...").</td>
+</tr>
+<tr>
+<td>15</td>
+<td>To inquire about a specific topic or idea or any information and you want to test your understanding, you can use the following phrase: "Teach me any [theorem/topic/rule name] and include a test at the end, and let me know if my answers are correct after I respond, without providing the answers beforehand."</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Assign a role to the large language models.</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Use Delimiters.</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Repeat a specific word or phrase multiple times within a prompt.</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Combine Chain-of-thought (CoT) with few-Shot prompts.</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Use output primers, which involve concluding your prompt with the beginning of the desired output. Utilize output primers by ending your prompt with the start of the anticipated response.</td>
+</tr>
+<tr>
+<td>21</td>
+<td>To write an essay /text /paragraph /article or any type of text that should be detailed: "Write a detailed [essay/text /paragraph] for me on [topic] in detail by adding all the information necessary".</td>
+</tr>
+<tr>
+<td>22</td>
+<td>To correct/change specific text without changing its style: "Try to revise every paragraph sent by users. You should only improve the user's grammar and vocabulary and make sure it sounds natural. You should maintain the original writing style, ensuring that a formal paragraph remains formal."</td>
+</tr>
+<tr>
+<td>23</td>
+<td>When you have a complex coding prompt that may be in different files: "From now and on whenever you generate code that spans more than one file, generate a [programming language] script that can be run to automatically create the specified files or make changes to existing files to insert the generated code. [your question]".</td>
+</tr>
+<tr>
+<td>24</td>
+<td>When you want to initiate or continue a text using specific words, phrases, or sentences, utilize the following prompt:</td>
+</tr>
+<tr>
+<td></td>
+<td>o I'm providing you with the beginning [song lyrics/story/paragraph/essay...]: [Insert lyrics/words/sentence].</td>
+</tr>
+<tr>
+<td></td>
+<td>Finish it based on the words provided. Keep the flow consistent.</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Clearly state the requirements that the model must follow in order to produce content, in the form of the keywords, regulations, hint, or instructions</td>
+</tr>
+<tr>
+<td>26</td>
+<td>To write any text, such as an essay or paragraph, that is intended to be similar to a provided sample, include the following instructions:</td>
+</tr>
+<tr>
+<td></td>
+<td>o Use the same language based on the provided paragraph/title/text/essay/answer.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="llmchain">LLMChain</h2>
 <pre><code class="language-python">from langchain import PromptTemplate
 from langchain.chains import LLMChain
