@@ -339,9 +339,7 @@ netstat -ltup
 - -c skip based on checksum, not mod-time &amp; size
 </code></pre>
 <h2 id="rsync-push">rsync push</h2>
-<pre><code>```sh
-rsync -avuz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
-```
+<pre><code class="language-sh">rsync -avuz -e &quot;ssh -p 22&quot; /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
 </code></pre>
 <h2 id="zip-individual-files-in-a-directory">zip individual files in a directory</h2>
 <pre><code class="language-sh">for f in *.nes; do zip -r &quot;${f%%.*}.zip&quot; &quot;$f&quot;; done
