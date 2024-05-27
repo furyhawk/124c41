@@ -132,9 +132,9 @@ rsync -avu --delete "/home/user/A/" "/home/user/B"
 
 ## rsync push
     
-    ```sh
-    rsync -avuz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
-    ```
+```sh
+rsync -avuz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
+```
 
 ## zip individual files in a directory
 
