@@ -130,3 +130,9 @@ rsync -avu --delete "/home/user/A/" "/home/user/B"
 for f in *.nes; do zip -r "${f%%.*}.zip" "$f"; done
 find . -name '*.nes' -delete
 ```
+
+## rsync push
+    
+    ```sh
+    rsync -avz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
+    ```
