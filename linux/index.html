@@ -152,6 +152,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#zip-individual-files-in-a-directory">zip individual files in a directory</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsync-push">rsync push</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -329,6 +331,11 @@ netstat -ltup
 <h2 id="zip-individual-files-in-a-directory">zip individual files in a directory</h2>
 <pre><code class="language-sh">for f in *.nes; do zip -r &quot;${f%%.*}.zip&quot; &quot;$f&quot;; done
 find . -name '*.nes' -delete
+</code></pre>
+<h2 id="rsync-push">rsync push</h2>
+<pre><code>```sh
+rsync -avz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remote/folder/
+```
 </code></pre>
               
             </div>
