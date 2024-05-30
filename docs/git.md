@@ -10,8 +10,9 @@
 [https://github.com/furyhawk](https://github.com/furyhawk)
 
 ```sh
-$ git config --global user.name "furyhawk"
-$ git config --global user.email furyx@hotmail.com
+git config --global user.name "furyhawk"
+git config --global user.email furyx@hotmail.com
+git config pull.rebase true
 ```
 
 ## commit msg
