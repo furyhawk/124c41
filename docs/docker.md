@@ -15,17 +15,16 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZS
 	
 	`nano ~/.zshrc`
 	
- -  Find the line which says `plugins=(git)`.
+ - ZSH_THEME="custom"
+
+ - Find the line which says `plugins=(git)`.
 	
- -  Replace that line with
+ - Replace that line with
 	`plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)`
-```
-ZSH_THEME="custom"
-```
+
 
 touch .zprofile
 nano .zprofile
-```
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
@@ -42,18 +41,18 @@ export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
 export EMAIL=furyx@hotmail.com
 export DOMAIN=furyhawk.lol
 
-```
-
 sudo nano /etc/fstab
 touch .credentials
 nano .credentials
 
 sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 # sudo groupadd docker
@@ -64,7 +63,7 @@ systemctl list-units --type=service --state=active
 cd /etc/docker
 sudo touch daemon.json
 sudo nano daemon.json
-```json
+
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -72,9 +71,9 @@ sudo nano daemon.json
     "max-file": "3"
   }
 }
-```
 
-docker swarm join --token SWMTKN-1-0ouvuy74xyh1lq3iwyyf3rsdihaava0bhu1ukrd2j9ph0b6fo9-1m99gdgos67cj0dbips28r6ft 192.168.50.114:2377
+
+docker swarm join --token SWMTKN-1-xxx 192.168.50.114:2377
 
 docker node update --availability drain node
 docker node update --availability Active node
@@ -89,7 +88,7 @@ mkdir -p /etc/ceph
 sudo ./cephadm bootstrap --mon-ip 192.168.65.19
 URL: https://debian.local:8443/
 	    User: admin
-	Password: 3ldaf5m20n
+	Password: 12345678
 
 You can access the Ceph CLI with:
 
