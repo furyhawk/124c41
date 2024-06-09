@@ -22,9 +22,10 @@ nav:
   - anomaly_detection: anomaly_detection.md
   - Hydra: hydra.md
   - Linux: linux.md
+  - Docker: docker.md
+  - ceph: ceph.md
   - macos: macos.md
   - sway: sway.md
-  - Docker: docker.md
   - mqtt: mqtt.md
   - jetson: jetson.md
   - yolox: yolox.md

@@ -1,6 +1,132 @@
 # Docker
 
 ```sh
+sudo apt update && sudo apt upgrade -y
+sudo apt install git curl htop mc rsync zsh-autosuggestions
+sudo apt install zsh
+chsh -s $(which zsh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+rsync -avuPz ./.oh-my-zsh/custom/themes/custom.zsh-theme furyhawk@arm:/home/furyhawk/.oh-my-zsh/custom/themes/custom.zsh-theme
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+## Enable plugins by adding them to .zshrc.
+ - Open .zshrc
+	
+	`nano ~/.zshrc`
+	
+ -  Find the line which says `plugins=(git)`.
+	
+ -  Replace that line with
+	`plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)`
+```
+ZSH_THEME="custom"
+```
+
+touch .zprofile
+nano .zprofile
+```
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+export TZ=Asia/Singapore
+export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
+export EMAIL=furyx@hotmail.com
+export DOMAIN=furyhawk.lol
+
+```
+
+sudo nano /etc/fstab
+touch .credentials
+nano .credentials
+
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+systemctl list-units --type=service --state=active
+cd /etc/docker
+sudo touch daemon.json
+sudo nano daemon.json
+```json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
+}
+```
+
+docker swarm join --token SWMTKN-1-0ouvuy74xyh1lq3iwyyf3rsdihaava0bhu1ukrd2j9ph0b6fo9-1m99gdgos67cj0dbips28r6ft 192.168.50.114:2377
+
+docker node update --availability drain node
+docker node update --availability Active node
+
+curl --silent --remote-name --location https://github.com/ceph/ceph/raw/octopus/src/cephadm/cephadm
+chmod +x cephadm
+sudo ./cephadm add-repo --release octopus
+sudo ./cephadm install
+cephadm install ceph-common
+mkdir -p /etc/ceph
+
+sudo ./cephadm bootstrap --mon-ip 192.168.65.19
+URL: https://debian.local:8443/
+	    User: admin
+	Password: 3ldaf5m20n
+
+You can access the Ceph CLI with:
+
+	sudo ./cephadm shell --fsid 8ad7deb6-265a-11ef-9e81-c2d0c41fc7e0 -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+
+Please consider enabling telemetry to help improve Ceph:
+
+	ceph telemetry on
+
+For more information see:
+
+	https://docs.ceph.com/docs/master/mgr/telemetry/
+
+alias ceph='./cephadm shell -- ceph'
+sudo ceph -v
+ceph version 16.2.11 (3cf40e2dca667f68c6ce3ff5cd94f01e711af894) pacific (stable)
+sudo ceph orch host label add debian mon
+Added label mon to host debian
+sudo ceph orch apply mon debian
+Scheduled mon update...
+sudo ceph orch host ls
+
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-2
+ssh-copy-id -f -i /etc/ceph/ceph.pub osd1
+ssh-copy-id -f -i /etc/ceph/ceph.pub osd2
+ssh-copy-id -f -i /etc/ceph/ceph.pub osd3
+sudo ceph orch host add osd1
+sudo ceph orch host add osd2
+sudo ceph orch host add osd3
+
+sudo ceph orch apply osd --all-available-devices
+sudo ceph status
+
+sudo find / -iname 'cephadm*' 2>/dev/null
+```
+
+```sh
 systemctl --user start docker-desktop
 sudo groupadd docker
 sudo usermod -aG docker $USER
