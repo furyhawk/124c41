@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>vscode - 124c41</title>
+    <title>ceph - 124c41</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "vscode";
-        var mkdocs_page_input_path = "code.md";
+        var mkdocs_page_name = "ceph";
+        var mkdocs_page_input_path = "ceph.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -71,12 +71,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../softwarearchitecture/">softwarearchitecture</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">vscode</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#install-vscode">install vscode</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">vscode</a>
                 </li>
               </ul>
               <ul>
@@ -135,8 +131,20 @@
                 <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ceph/">ceph</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">ceph</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#fetching-software">Fetching software.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configure-node-1">Configure node 1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-more-nodes">Setting up more nodes.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-storage">Adding storage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#post-configuration">Post configuration</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -221,7 +229,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">vscode</li>
+      <li class="breadcrumb-item active">ceph</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -230,20 +238,108 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="code">code</h1>
-<h2 id="install-vscode">install vscode</h2>
-<pre><code class="language-sh">git clone https://AUR.archlinux.org/visual-studio-code-bin.git
-cd visual-studio-code-bin
-makepkg -s
-sudo pacman -U *code-bin-*.pkg.tar.zst
-cd ../ &amp;&amp; sudo rm -rfv visual-studio-code-bin/
+                <h1 id="manual-install-of-a-ceph-cluster">Manual install of a Ceph Cluster.</h1>
+<h3 id="fetching-software">Fetching software.</h3>
+<p>First of I want to check that I have all the latest packages in my debian system.</p>
+<pre><code>apt update
+apt upgrade
+</code></pre>
+<p>Next we fetch the keys and ceph packages, in this case we download the pacific packages for buster.</p>
+<pre><code>wget -q -O- 'https://download.ceph.com/keys/release.asc' | sudo apt-key add -
+echo deb https://download.ceph.com/debian-pacific/ buster main | sudo tee /etc/apt/sources.list.d/ceph.list
+apt update
+apt install ceph ceph-common
+</code></pre>
+<p>Last we need to download the smartmontools for our nodes. This is so we can monitor our hard drives for hardware issues.</p>
+<pre><code>echo deb http://deb.debian.org/debian buster-backports main &gt;&gt; /etc/apt/sources.list
+apt update
+apt install smartmontools/buster-backports
+</code></pre>
+<p>A reboot when you have installed packages is always a good thing and if you need to do some extra hardware changes this is a good place to do so.</p>
+<pre><code>shutdown -r now
+</code></pre>
+<h3 id="configure-node-1">Configure node 1</h3>
+<p>First we will create a ceph configuration file.</p>
+<pre><code>sudo vi /etc/ceph/ceph.conf
+</code></pre>
+<p>The most important things to specify is the id and ips of your cluster monitors. A unique cluster id that you will reuse for all your nodes. And lastly a public network range that you want your monitors to be available over. The cluster network is a good addition if you have the resources to route the recovery traffic on a backbone network.</p>
+<pre><code>[global]
+fsid = {cluster uuid}
+mon initial members = {id1}, {id2}, {id2}
+mon host = {ip1}, {ip2}, {ip3}
+public network = {network range for your public network}
+cluster network = {network range for your cluster network}
+auth cluster required = cephx
+auth service required = cephx
+auth client required = cephx
+</code></pre>
+<p>Next we create keys for admin, monitors and boostrapping our drives. These keys will then be merged with the monitor key so the initial setup will have the keys used for other operations.</p>
+<pre><code>sudo ceph-authtool --create-keyring /tmp/monkey --gen-key -n mon. --cap mon 'allow *'
+sudo ceph-authtool --create-keyring /etc/ceph/ceph.client.admin.keyring --gen-key -n client.admin --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow *' --cap mgr 'allow *'
+sudo ceph-authtool --create-keyring /var/lib/ceph/bootstrap-osd/ceph.keyring --gen-key -n client.bootstrap-osd --cap mon 'profile bootstrap-osd'
+sudo ceph-authtool /tmp/monkey --import-keyring /etc/ceph/ceph.client.admin.keyring
+sudo ceph-authtool /tmp/monkey --import-keyring /var/lib/ceph/bootstrap-osd/ceph.keyring
+</code></pre>
+<p>Make the monitor key available to the ceph user so we don't get an permission error when we start our services.</p>
+<pre><code>sudo chown ceph:ceph /tmp/monkey
+</code></pre>
+<p>Next up we create a monitor map so the monitors will know of each other. The monitors keeps track on other resources but for high availability the monitors needs to know who is in charge.</p>
+<pre><code>monmaptool --create --add {node1-id} {node1-ip} --fsid {cluster uuid} /tmp/monmap
+monmaptool --add {node2-id} {node2-ip} --fsid {cluster uuid} /tmp/monmap
+monmaptool --add {node3-id} {node3-ip} --fsid {cluster uuid} /tmp/monmap
+</code></pre>
+<p>Starting a new monitor is as easy as creating a new directory, creating the filesystem for and starting the service.</p>
+<pre><code>sudo -u ceph mkdir /var/lib/ceph/mon/ceph-{node1-id}
+sudo -u ceph ceph-mon --mkfs -i {node1-id} --monmap /tmp/monmap --keyring /tmp/monkey
+sudo systemctl start ceph-mon@{node1-id}
+</code></pre>
+<p>Next up we need a manager so we could configure and monitor our cluster through a visual dashboard. First we create a new key, put that key in a newly created directory and start the service. Enabling a dashboard is as easy as running the command for enabling, creating / assigning a certificate and creating a new admin user.</p>
+<pre><code>sudo ceph auth get-or-create mgr.{node1-id} mon 'allow profile mgr' osd 'allow *' mds 'allow *'
+sudo -u ceph mkdir /var/lib/ceph/mgr/ceph-{node1-id}
+sudo -u ceph vi /var/lib/ceph/mgr/ceph-{node1-id}/keyring
+sudo systemctl start ceph-mgr@{node1-id}
+sudo ceph mgr module enable dashboard
+sudo ceph dashboard create-self-signed-cert
+sudo ceph dashboard ac-user-create admin -i passwd administrator
+</code></pre>
+<h3 id="setting-up-more-nodes">Setting up more nodes.</h3>
+<p>First of we need to copy over the configuration, monitor map and all the keys over to our new host.</p>
+<pre><code>sudo scp {user}@{server}:/etc/ceph/ceph.conf /etc/ceph/ceph.conf
+sudo scp {user}@{server}:/etc/ceph/ceph.client.admin.keyring /etc/ceph/ceph.client.admin.keyring
+sudo scp {user}@{server}:/var/lib/ceph/bootstrap-osd/ceph.keyring /var/lib/ceph/bootstrap-osd/ceph.keyring
+sudo scp {user}@{server}:/tmp/monmap /tmp/monmap
+sudo scp {user}@{server}:/tmp/monkey /tmp/monkey
+</code></pre>
+<p>Next up we setup the monitor node exactly as we did with the first node.</p>
+<pre><code>sudo -u ceph mkdir /var/lib/ceph/mon/ceph-{node2-id}
+sudo -u ceph ceph-mon --mkfs -i {node2-id} --monmap /tmp/monmap --keyring /tmp/monkey
+sudo systemctl start ceph-mon@{node2-id}
+sudo ceph -s
+sudo ceph mon enable-msgr2
+</code></pre>
+<p>Then we setup the manager node exactly as we did with the first node.</p>
+<pre><code>sudo ceph auth get-or-create mgr.{node2-id} mon 'allow profile mgr' osd 'allow *' mds 'allow *'
+sudo -u ceph mkdir /var/lib/ceph/mgr/ceph-{node2-id}
+sudo -u ceph vi /var/lib/ceph/mgr/ceph-{node2-id}/keyring
+sudo systemctl start ceph-mgr@{node2-id}
+</code></pre>
+<h3 id="adding-storage">Adding storage</h3>
+<p>When the cluster is up and running and all monitors are in qourum you could add storage services. This is easily done via the volume command. First prepare a disk so it will be known by the cluster and have the keys and configuration copied to the management directory. Next up you activate the service so your storage nodes will be ready to use. This will be done for all the harddrives you want to add to your network.</p>
+<pre><code>sudo ceph-volume lvm prepare --data /dev/sdb 
+sudo ceph-volume lvm activate {osd-number} {osd-uuid}
+</code></pre>
+<h3 id="post-configuration">Post configuration</h3>
+<p>Last but not least you want to ensure that all the services starts after a reboot. In debian you do that by enabling the services.</p>
+<pre><code>sudo systemctl enable ceph-mon@{node-id}
+sudo systemctl enable ceph-mgr@{node-id}
+sudo systemctl enable ceph-osd@{osd-number}
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../softwarearchitecture/" class="btn btn-neutral float-left" title="softwarearchitecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../machine_learning/" class="btn btn-neutral float-right" title="machine_learning">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../docker/" class="btn btn-neutral float-left" title="Docker"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../macos/" class="btn btn-neutral float-right" title="macos">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -266,10 +362,10 @@ cd ../ &amp;&amp; sudo rm -rfv visual-studio-code-bin/
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../softwarearchitecture/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../docker/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../machine_learning/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../macos/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
