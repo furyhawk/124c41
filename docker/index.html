@@ -130,6 +130,426 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Docker</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the-compose-specification">The Compose Specification</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#status-of-this-document">Status of this document</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#requirements-and-optional-attributes">Requirements and optional attributes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-compose-application-model">The Compose application model</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#illustrative-example">Illustrative example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#compose-file">Compose file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-and-name-top-level-elements">Version and name top-level elements</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#version-top-level-element">Version top-level element</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#name-top-level-element">Name top-level element</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#services-top-level-element">Services top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#attach">attach</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#build">build</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#blkio_config">blkio_config</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#device_read_bps-device_write_bps">device_read_bps, device_write_bps</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#device_read_iops-device_write_iops">device_read_iops, device_write_iops</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#weight">weight</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#weight_device">weight_device</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_count">cpu_count</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_percent">cpu_percent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_shares">cpu_shares</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_period">cpu_period</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_quota">cpu_quota</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_rt_runtime">cpu_rt_runtime</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpu_rt_period">cpu_rt_period</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpus">cpus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cpuset">cpuset</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cap_add">cap_add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cap_drop">cap_drop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cgroup">cgroup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cgroup_parent">cgroup_parent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#command">command</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configs">configs</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#container_name">container_name</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#credential_spec">credential_spec</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#example-gmsa-configuration">Example gMSA configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depends_on">depends_on</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_1">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_1">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deploy">deploy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#develop">develop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#device_cgroup_rules">device_cgroup_rules</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#devices">devices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dns">dns</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dns_opt">dns_opt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dns_search">dns_search</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domainname">domainname</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#entrypoint">entrypoint</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#env_file">env_file</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#env_file-format">Env_file format</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#environment">environment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#expose">expose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#extends">extends</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#restrictions">Restrictions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#finding-referenced-service">Finding referenced service</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#merging-service-definitions">Merging service definitions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#annotations">annotations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#external_links">external_links</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#extra_hosts">extra_hosts</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_2">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_2">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#group_add">group_add</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#healthcheck">healthcheck</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hostname">hostname</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#image">image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#init">init</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ipc">ipc</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#uts">uts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#isolation">isolation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#labels">labels</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#links">links</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logging">logging</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#network_mode">network_mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#networks">networks</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#aliases">aliases</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ipv4_address-ipv6_address">ipv4_address, ipv6_address</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#link_local_ips">link_local_ips</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mac_address">mac_address</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#priority">priority</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mac_address_1">mac_address</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mem_limit">mem_limit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mem_reservation">mem_reservation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mem_swappiness">mem_swappiness</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#memswap_limit">memswap_limit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#oom_kill_disable">oom_kill_disable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#oom_score_adj">oom_score_adj</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pid">pid</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pids_limit">pids_limit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#platform">platform</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ports">ports</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_3">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_3">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#privileged">privileged</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#profiles">profiles</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pull_policy">pull_policy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#read_only">read_only</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#restart">restart</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#runtime">runtime</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scale">scale</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#secrets">secrets</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_4">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_4">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security_opt">security_opt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#shm_size">shm_size</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stdin_open">stdin_open</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stop_grace_period">stop_grace_period</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stop_signal">stop_signal</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage_opt">storage_opt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sysctls">sysctls</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tmpfs">tmpfs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tty">tty</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ulimits">ulimits</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user">user</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#userns_mode">userns_mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#volumes">volumes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_5">Short syntax</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_5">Long syntax</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#volumes_from">volumes_from</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#working_dir">working_dir</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#networks-top-level-element">Networks top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-example">Basic example</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#advanced-example">Advanced example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#attributes">Attributes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#driver">driver</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#driver_opts">driver_opts</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attachable">attachable</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#enable_ipv6">enable_ipv6</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#external">external</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ipam">ipam</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#internal">internal</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#labels_1">labels</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#name">name</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#volumes-top-level-element">Volumes top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#attributes_1">Attributes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#driver_1">driver</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#driver_opts_1">driver_opts</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#external_1">external</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#labels_2">labels</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#name_1">name</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configs-top-level-element">Configs top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1">Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2">Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3">Example 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#secrets-top-level-element">Secrets top-level element</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1_1">Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2_1">Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3_1">Example 3</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fragments">Fragments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1_2">Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2_2">Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3_2">Example 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-4">Example 4</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#extension">Extension</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1_3">Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2_3">Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3_3">Example 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-4_1">Example 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#informative-historical-notes">Informative Historical Notes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#specifying-byte-values">Specifying byte values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#specifying-durations">Specifying durations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interpolation">Interpolation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#merge-and-override">Merge and override</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mapping">Mapping</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sequence">Sequence</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exceptions">Exceptions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#shell-commands">Shell commands</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#unique-resources">Unique resources</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reset-value">Reset value</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#replace-value">Replace value</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#include">Include</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#short-syntax_6">Short syntax</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#long-syntax_6">Long syntax</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#path">path</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#project_directory">project_directory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#env_file_1">env_file</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#profiles_1">Profiles</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#illustrative-example_1">Illustrative example</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -243,39 +663,44 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZS
 
     `nano ~/.zshrc`
 
- -  Find the line which says `plugins=(git)`.
+ - ZSH_THEME=&quot;custom&quot;
 
- -  Replace that line with
+ - Find the line which says `plugins=(git)`.
+
+ - Replace that line with
     `plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)`
-</code></pre>
-<p>ZSH_THEME="custom"</p>
-<pre><code>
+
+
 touch .zprofile
 nano .zprofile
-</code></pre>
-<h1 id="set-path-so-it-includes-users-private-bin-if-it-exists">set PATH so it includes user's private bin if it exists</h1>
-<p>if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi</p>
-<h1 id="set-path-so-it-includes-users-private-bin-if-it-exists_1">set PATH so it includes user's private bin if it exists</h1>
-<p>if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi</p>
-<p>export TZ=Asia/Singapore
+
+# set PATH so it includes user's private bin if it exists
+if [ -d &quot;$HOME/bin&quot; ] ; then
+    PATH=&quot;$HOME/bin:$PATH&quot;
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d &quot;$HOME/.local/bin&quot; ] ; then
+    PATH=&quot;$HOME/.local/bin:$PATH&quot;
+fi
+
+export TZ=Asia/Singapore
 export NODE_ID=$(docker info -f '{{.Swarm.NodeID}}')
 export EMAIL=furyx@hotmail.com
-export DOMAIN=furyhawk.lol</p>
-<pre><code>
+export DOMAIN=furyhawk.lol
+
 sudo nano /etc/fstab
 touch .credentials
 nano .credentials
 
 sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 echo \
   &quot;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
   $(. /etc/os-release &amp;&amp; echo &quot;$VERSION_CODENAME&quot;) stable&quot; | \
   sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 # sudo groupadd docker
@@ -286,7 +711,7 @@ systemctl list-units --type=service --state=active
 cd /etc/docker
 sudo touch daemon.json
 sudo nano daemon.json
-```json
+
 {
   &quot;log-driver&quot;: &quot;json-file&quot;,
   &quot;log-opts&quot;: {
@@ -294,50 +719,60 @@ sudo nano daemon.json
     &quot;max-file&quot;: &quot;3&quot;
   }
 }
-</code></pre>
-<p>docker swarm join --token SWMTKN-1-0ouvuy74xyh1lq3iwyyf3rsdihaava0bhu1ukrd2j9ph0b6fo9-1m99gdgos67cj0dbips28r6ft 192.168.50.114:2377</p>
-<p>docker node update --availability drain node
-docker node update --availability Active node</p>
-<p>curl --silent --remote-name --location https://github.com/ceph/ceph/raw/octopus/src/cephadm/cephadm
+
+
+docker swarm join --token SWMTKN-1-xxx 192.168.50.114:2377
+
+docker node update --availability drain node
+docker node update --availability Active node
+
+curl --silent --remote-name --location https://github.com/ceph/ceph/raw/octopus/src/cephadm/cephadm
 chmod +x cephadm
 sudo ./cephadm add-repo --release octopus
 sudo ./cephadm install
 cephadm install ceph-common
-mkdir -p /etc/ceph</p>
-<p>sudo ./cephadm bootstrap --mon-ip 192.168.65.19
+mkdir -p /etc/ceph
+
+sudo ./cephadm bootstrap --mon-ip 192.168.65.19
 URL: https://debian.local:8443/
         User: admin
-    Password: 3ldaf5m20n</p>
-<p>You can access the Ceph CLI with:</p>
-<pre><code>sudo ./cephadm shell --fsid 8ad7deb6-265a-11ef-9e81-c2d0c41fc7e0 -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
-</code></pre>
-<p>Please consider enabling telemetry to help improve Ceph:</p>
-<pre><code>ceph telemetry on
-</code></pre>
-<p>For more information see:</p>
-<pre><code>https://docs.ceph.com/docs/master/mgr/telemetry/
-</code></pre>
-<p>alias ceph='./cephadm shell -- ceph'
+    Password: 12345678
+
+You can access the Ceph CLI with:
+
+    sudo ./cephadm shell --fsid 8ad7deb6-265a-11ef-9e81-c2d0c41fc7e0 -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+
+Please consider enabling telemetry to help improve Ceph:
+
+    ceph telemetry on
+
+For more information see:
+
+    https://docs.ceph.com/docs/master/mgr/telemetry/
+
+alias ceph='./cephadm shell -- ceph'
 sudo ceph -v
 ceph version 16.2.11 (3cf40e2dca667f68c6ce3ff5cd94f01e711af894) pacific (stable)
 sudo ceph orch host label add debian mon
 Added label mon to host debian
 sudo ceph orch apply mon debian
 Scheduled mon update...
-sudo ceph orch host ls</p>
-<p>ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-2
+sudo ceph orch host ls
+
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph-2
 ssh-copy-id -f -i /etc/ceph/ceph.pub osd1
 ssh-copy-id -f -i /etc/ceph/ceph.pub osd2
 ssh-copy-id -f -i /etc/ceph/ceph.pub osd3
 sudo ceph orch host add osd1
 sudo ceph orch host add osd2
-sudo ceph orch host add osd3</p>
-<p>sudo ceph orch apply osd --all-available-devices
-sudo ceph status</p>
-<p>sudo find / -iname 'cephadm*' 2&gt;/dev/null</p>
-<pre><code>
-```sh
-systemctl --user start docker-desktop
+sudo ceph orch host add osd3
+
+sudo ceph orch apply osd --all-available-devices
+sudo ceph status
+
+sudo find / -iname 'cephadm*' 2&gt;/dev/null
+</code></pre>
+<pre><code class="language-sh">systemctl --user start docker-desktop
 sudo groupadd docker
 sudo usermod -aG docker $USER
 groups ${USER}
