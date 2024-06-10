@@ -20,7 +20,8 @@ type: short summary
 
 ## Home Server
 
-- [Chat](https://chat.furyhawk.lol/): Chat with AI.
+- [Chat](https://chat.furyhawk.lol/): Chat with AI, RAG chatbot. 
+- [Bot](https://bot.furyhawk.lol/): AI assistant using GROQ, llama3 70B, RAG and web search.
 - [Stock Analysis Assistant](https://fin.furyhawk.lol/): AI assistant using GROQ and llama3.
 - ~~[Redlib](https://redlib.furyhawk.lol/): Reddit libre.~~ (killed by bots)
 - [Blog](https://info.furyhawk.lol/)
