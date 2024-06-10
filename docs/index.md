@@ -34,6 +34,7 @@ type: short summary
 - [pastebin](https://bin.furyhawk.lol/): text/file Pastebin.
 - [speedtest](https://speed.furyhawk.lol/): Speedtest.
 - [Home server](https://github.com/furyhawk/cloudy): Build for ARM64 platform using Docker swarm mode.
+- [Team Fight Tactics ML](https://github.com/furyhawk/tftchamp): Analyse the current meta.
 
 ## Team Fight Tactics Strategy Application
 
