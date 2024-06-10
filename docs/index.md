@@ -22,14 +22,16 @@ type: short summary
 
 - [Chat](https://chat.furyhawk.lol/): Chat with AI.
 - [Stock Analysis Assistant](https://fin.furyhawk.lol/): AI assistant using GROQ and llama3.
-- [Redlib](https://redlib.furyhawk.lol/): Reddit libre.
+- ~~[Redlib](https://redlib.furyhawk.lol/): Reddit libre.~~ (killed by bots)
 - [Blog](https://info.furyhawk.lol/)
 - [Beyond All Information](https://bai.furyhawk.lol/): analyse your [Beyond All Reason](https://www.beyondallreason.info/) games.
 - [CheatSheets](https://cheat.furyhawk.lol/): Collection of cheatsheets.
-- [Forum](https://forum.furyhawk.lol/): Host your own forum.
+- [Cookbook](https://cook.furyhawk.lol/): Collection of tech recipes.
+- ~~[Forum](https://forum.furyhawk.lol/): Host your own forum.~~ (deprecated)
 - [Neural Network Playground](https://furyhawk.github.io/playground): Understand neural network visually.
-- [Note](https://note.furyhawk.lol/): Notepad Online.
-- [pastebin](https://bin.furyhawk.lol/): Pastebin.
+- [Note](https://note.furyhawk.lol/): Notepad Online. Use cookie storage only.
+- [linx](https://linx.furyhawk.lol/): Image pastebin.
+- [pastebin](https://bin.furyhawk.lol/): text/file Pastebin.
 - [Home server](https://github.com/furyhawk/cloudy): Build for ARM64 platform
 
 ## Team Fight Tactics Strategy Application
