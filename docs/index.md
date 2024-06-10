@@ -32,7 +32,8 @@ type: short summary
 - [Note](https://note.furyhawk.lol/): Notepad Online. Use cookie storage only.
 - [linx](https://linx.furyhawk.lol/): Image pastebin.
 - [pastebin](https://bin.furyhawk.lol/): text/file Pastebin.
-- [Home server](https://github.com/furyhawk/cloudy): Build for ARM64 platform
+- [speedtest](https://speed.furyhawk.lol/): Speedtest.
+- [Home server](https://github.com/furyhawk/cloudy): Build for ARM64 platform using Docker swarm mode.
 
 ## Team Fight Tactics Strategy Application
 
