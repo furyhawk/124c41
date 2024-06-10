@@ -25,6 +25,7 @@ type: short summary
 - [Stock Analysis Assistant](https://fin.furyhawk.lol/): AI assistant using GROQ and llama3.
 - ~~[Redlib](https://redlib.furyhawk.lol/): Reddit libre.~~ (killed by bots)
 - [Blog](https://info.furyhawk.lol/)
+- [Ghost](https://ghost.furyhawk.lol/): Ghost blog.
 - [Beyond All Information](https://bai.furyhawk.lol/): analyse your [Beyond All Reason](https://www.beyondallreason.info/) games.
 - [CheatSheets](https://cheat.furyhawk.lol/): Collection of cheatsheets.
 - [Cookbook](https://cook.furyhawk.lol/): Collection of tech recipes.
