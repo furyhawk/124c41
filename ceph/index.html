@@ -134,15 +134,65 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">ceph</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#fetching-software">Fetching software.</a>
+    <li class="toctree-l2"><a class="reference internal" href="#daemon-container">Daemon container</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#configure-node-1">Configure node 1</a>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#setting-up-more-nodes">Setting up more nodes.</a>
+    <li class="toctree-l2"><a class="reference internal" href="#selinux">SELinux</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#adding-storage">Adding storage</a>
+    <li class="toctree-l2"><a class="reference internal" href="#kv-backends">KV backends</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#post-configuration">Post configuration</a>
+    <li class="toctree-l2"><a class="reference internal" href="#populate-key-value-store">Populate Key Value store</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zap-a-device">Zap a device</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploy-a-monitor">Deploy a monitor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploy-a-manager-daemon">Deploy a Manager daemon</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploy-an-osd">Deploy an OSD</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#without-osd_type">Without OSD_TYPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ceph-disk">Ceph disk</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ceph-disk-activate">Ceph disk activate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ceph-osd-directory">Ceph OSD directory</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#multiple-osds">Multiple OSDs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ceph-osd-directory-single">Ceph OSD directory single</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#btrfs-and-journal">BTRFS and journal</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#note">Note</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploy-a-mds">Deploy a MDS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploy-a-rados-gateway">Deploy a Rados Gateway</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploy-a-rest-api">Deploy a REST API</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploy-a-rbd-mirror">Deploy a RBD mirror</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#fetching-software">Fetching software.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configure-node-1">Configure node 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#setting-up-more-nodes">Setting up more nodes.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-storage">Adding storage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post-configuration">Post configuration</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -239,6 +289,370 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="manual-install-of-a-ceph-cluster">Manual install of a Ceph Cluster.</h1>
+<h2 id="daemon-container">Daemon container</h2>
+<p>This Dockerfile may be used to bootstrap a Ceph cluster with all the Ceph daemons running. To run a certain type of daemon, simply use the name of the daemon as <code>$1</code>. Valid values are:</p>
+<ul>
+<li><code>mon</code> deploys a Ceph monitor</li>
+<li><code>osd</code> deploys an OSD using the method specified by <code>OSD_TYPE</code></li>
+<li><code>osd_directory</code> deploys <strong>one or multiple OSDs in a single container</strong> using a prepared directory (used in scenario where the operator doesn't want to use <code>--privileged=true</code>)</li>
+<li><code>osd_directory_single</code> deploys an <strong>single OSD per container</strong> using a prepared directory (used in scenario where the operator doesn't want to use <code>--privileged=true</code>)</li>
+<li><code>osd_ceph_disk</code> deploys an OSD using ceph-disk, so you have to provide a whole device (ie: /dev/sdb)</li>
+<li><code>mds</code> deploys a MDS</li>
+<li><code>rgw</code> deploys a Rados Gateway</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>You can use this container to bootstrap any Ceph daemon.</p>
+<ul>
+<li><code>CLUSTER</code> is the name of the cluster (DEFAULT: ceph)</li>
+</ul>
+<h2 id="selinux">SELinux</h2>
+<p>If SELinux is enabled, run the following commands:</p>
+<pre><code>sudo chcon -Rt svirt_sandbox_file_t /etc/ceph
+sudo chcon -Rt svirt_sandbox_file_t /var/lib/ceph
+</code></pre>
+<h2 id="kv-backends">KV backends</h2>
+<p>We currently support one KV backend to store our configuration flags, keys and maps: etcd.</p>
+<p>There is a <code>ceph.defaults</code> config file in the image that is used for defaults to bootstrap daemons. It will add the keys if they are not already present. You can either pre-populate the KV store with your own settings, or provide a ceph.defaults config file. To supply your own defaults, make sure to mount the /etc/ceph/ volume and place your ceph.defaults file there.</p>
+<p>Important variables in <code>ceph.defaults</code> to add/change when you bootstrap an OSD:</p>
+<ul>
+<li><code>/osd/osd_journal_size</code></li>
+<li><code>/osd/cluster_network</code></li>
+<li><code>/osd/public_network</code></li>
+</ul>
+<p>Note: <code>cluster_network</code> and <code>public_network</code> are currently not populated in the defaults, but can be passed as environment variables with <code>-e CEPH_PUBLIC_NETWORK=...</code> for more flexibility</p>
+<h2 id="populate-key-value-store">Populate Key Value store</h2>
+<pre><code>docker run -d --net=host \
+-e KV_TYPE=etcd \
+-e KV_IP=127.0.0.1 \
+-e KV_PORT=2379 \
+ceph/daemon populate_kvstore
+</code></pre>
+<h2 id="zap-a-device">Zap a device</h2>
+<p>Sometimes you might want to destroy partition tables from a disk. For this you can use the <code>zap_device</code> scenario that works as follow:</p>
+<pre><code>docker run -d --privileged=true \
+-v /dev/:/dev/ \
+-e OSD_DEVICE=/dev/sdd \
+ceph/daemon zap_device
+</code></pre>
+<h2 id="deploy-a-monitor">Deploy a monitor</h2>
+<p>A monitor requires some persistent storage for the docker container. If a KV store is used, <code>/etc/ceph</code> will be auto-generated from data kept in the KV store. <code>/var/lib/ceph</code>, however, <em>must</em> be provided by a docker volume. The ceph mon will periodically store data into <code>/var/lib/ceph</code>, including the latest copy of the CRUSH map. If a mon restarts, it will attempt to download the latest monmap and CRUSH map from other peer monitors. However, if all mon daemons have gone down, monitors must be able to recover their previous maps. The docker volume used for <code>/var/lib/ceph</code> should be backed by some durable storage, and must be able to survive container and node restarts.</p>
+<p>Without KV store, run:</p>
+<pre><code>docker run -d --net=host \
+-v /etc/ceph:/etc/ceph \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+-e MON_IP=192.168.0.20 \
+-e CEPH_PUBLIC_NETWORK=192.168.0.0/24 \
+ceph/daemon mon
+</code></pre>
+<p>With KV store, run:</p>
+<pre><code>docker run -d --net=host \
+-v /var/lib/ceph:/var/lib/ceph \
+-e MON_IP=192.168.0.20 \
+-e CEPH_PUBLIC_NETWORK=192.168.0.0/24 \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+ceph/daemon mon
+</code></pre>
+<p>List of available options:</p>
+<ul>
+<li><code>MON_NAME</code>: name of the monitor (default to hostname)</li>
+<li><code>CEPH_PUBLIC_NETWORK</code>: CIDR of the host running Docker, it should be in the same network as the <code>MON_IP</code></li>
+<li><code>CEPH_CLUSTER_NETWORK</code>: CIDR of a secondary interface of the host running Docker. Used for the OSD replication traffic</li>
+<li><code>MON_IP</code>: IP address of the host running Docker</li>
+<li><code>NETWORK_AUTO_DETECT</code>: Whether and how to attempt IP and network autodetection. Meant to be used without <code>--net=host</code>.</li>
+<li>
+<p><code>NEW_USER_KEYRING</code>: if specified, it will be imported to keyrings. Works in demo mode only.</p>
+</li>
+<li>
+<p>0 = Do not detect (default)</p>
+</li>
+<li>1 = Detect IPv6, fallback to IPv4 (if no globally-routable IPv6 address detected)</li>
+<li>4 = Detect IPv4 only</li>
+<li>6 = Detect IPv6 only</li>
+</ul>
+<h2 id="deploy-a-manager-daemon">Deploy a Manager daemon</h2>
+<p>Since luminous, a manager daemon is mandatory, see <a href="https://docs.ceph.com/en/latest/mgr/">docs</a></p>
+<p>Without KV store, run:</p>
+<pre><code>docker run -d --net=host \
+-v /etc/ceph:/etc/ceph \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+ceph/daemon mgr
+</code></pre>
+<p>With KV store, run:</p>
+<pre><code>docker run -d --net=host \
+-v /var/lib/ceph:/var/lib/ceph \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+ceph/daemon mgr
+</code></pre>
+<h2 id="deploy-an-osd">Deploy an OSD</h2>
+<p>There are four available <code>OSD_TYPE</code> values:</p>
+<ul>
+<li><code>&lt;none&gt;</code> - if no <code>OSD_TYPE</code> is set; one of <code>disk</code>, <code>activate</code> or <code>directory</code> will be used based on autodetection of the current OSD bootstrap state</li>
+<li><code>activate</code> - the daemon expects to be passed a block device of a <code>ceph-disk</code>-prepared disk (via the <code>OSD_DEVICE</code> environment variable); no bootstrapping will be performed</li>
+<li><code>directory</code> - the daemon expects to find the OSD filesystem(s) already mounted in <code>/var/lib/ceph/osd/</code></li>
+<li><code>disk</code> - the daemon expects to be passed a block device via the <code>OSD_DEVICE</code> environment variable</li>
+<li><code>prepare</code> - the daemon expects to be passed a block device and run <code>ceph-disk</code> prepare to bootstrap the disk (via the <code>OSD_DEVICE</code> environment variable)</li>
+</ul>
+<p>Options for OSDs (TODO: consolidate these options between the types):</p>
+<ul>
+<li><code>JOURNAL_DIR</code> - if provided, new OSDs will be bootstrapped to use the specified directory as a common journal area. This is usually used to store the journals for more than one OSD on a common, separate disk. This currently only applies to the <code>directory</code> OSD type.</li>
+<li><code>JOURNAL</code> - if provided, the new OSD will be bootstrapped to use the specified journal file (if you do not wish to use the default). This is currently only supported by the <code>directory</code> OSD type</li>
+<li><code>OSD_DEVICE</code> - mandatory for <code>activate</code> and <code>disk</code> OSD types; this specifies which block device to use as the OSD</li>
+<li><code>OSD_JOURNAL</code> - optional override of the OSD journal file. this only applies to the <code>activate</code> and <code>disk</code> OSD types</li>
+<li><code>OSD_FORCE_EXT4</code> - in case the osd data on ext4 is not automatically recognized (i.e. hidden by overlayfs) you can force them by settings this to <code>yes</code>.</li>
+</ul>
+<h3 id="without-osd_type">Without OSD_TYPE</h3>
+<p>If the operator does not specify an <code>OSD_TYPE</code> autodetection happens:</p>
+<ul>
+<li><code>disk</code> is used if no bootstrapped OSD is found.</li>
+<li><code>activate</code> is used if a bootstrapped OSD is found and <code>OSD_DEVICE</code> is also provided.</li>
+<li><code>directory</code> is used if a bootstrapped OSD is found and no <code>OSD_DEVICE</code> is provided.</li>
+</ul>
+<p>Without KV backend:</p>
+<pre><code>docker run -d --net=host \
+--pid=host \
+--privileged=true \
+-v /etc/ceph:/etc/ceph \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+ceph/daemon osd
+</code></pre>
+<p>With KV backend:</p>
+<pre><code>docker run -d --net=host \
+--privileged=true \
+--pid=host \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+ceph/daemon osd
+</code></pre>
+<h3 id="ceph-disk">Ceph disk</h3>
+<p>Without KV backend:</p>
+<pre><code>docker run -d --net=host \
+--privileged=true \
+--pid=host \
+-v /etc/ceph:/etc/ceph \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+-e OSD_TYPE=disk \
+ceph/daemon osd
+</code></pre>
+<p>Using bluestore:</p>
+<pre><code>docker run -d --net=host \
+--privileged=true \
+--pid=host \
+-v /etc/ceph:/etc/ceph \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+-e OSD_TYPE=disk \
+-e OSD_BLUESTORE=1 \
+ceph/daemon osd
+</code></pre>
+<p>Using dmcrypt:</p>
+<pre><code>docker run -d --net=host \
+--privileged=true \
+--pid=host \
+-v /etc/ceph:/etc/ceph \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+-e OSD_TYPE=disk \
+-e OSD_DMCRYPT=1 \
+ceph/daemon osd
+</code></pre>
+<p>With KV backend:</p>
+<pre><code>docker run -d --net=host \
+--privileged=true \
+--pid=host \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+-e OSD_TYPE=disk \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+ceph/daemon osd
+</code></pre>
+<p>Using bluestore with KV backend:</p>
+<pre><code>docker run -d --net=host \
+--privileged=true \
+--pid=host \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+-e OSD_TYPE=disk \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+-e OSD_BLUESTORE=1 \
+ceph/daemon osd
+</code></pre>
+<p>Using dmcrypt with KV backend:</p>
+<pre><code>docker run -d --net=host \
+--privileged=true \
+--pid=host \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+-e OSD_TYPE=disk \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+-e OSD_DMCRYPT=1 \
+ceph/daemon osd
+</code></pre>
+<p>List of available options:</p>
+<ul>
+<li><code>OSD_DEVICE</code> is the OSD device</li>
+<li><code>OSD_JOURNAL</code> is the journal for a given OSD</li>
+<li><code>HOSTNAME</code> is used to place the OSD in the CRUSH map</li>
+</ul>
+<p>If you do not want to use <code>--privileged=true</code>, please fall back on the second example.</p>
+<h3 id="ceph-disk-activate">Ceph disk activate</h3>
+<p>This function is balance between ceph-disk and osd directory where the operator can use ceph-disk outside of the container (directly on the host) to prepare the devices. Devices will be prepared with <code>ceph-disk prepare</code>, then they will get activated inside the container. A priviledged container is still required as ceph-disk needs to access /dev/. So this has minimum value compare to the ceph-disk but might fit some use cases where the operators want to prepare their devices outside of a container.</p>
+<pre><code>docker run -d --net=host \
+--privileged=true \
+--pid=host \
+-v /etc/ceph:/etc/ceph \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+-v /dev/:/dev/ \
+-v /run/udev/:/run/udev/ \
+-e OSD_DEVICE=/dev/vdd \
+-e OSD_TYPE=activate \
+ceph/daemon osd
+</code></pre>
+<h3 id="ceph-osd-directory">Ceph OSD directory</h3>
+<p>There are a number of environment variables which are used to configure the execution of the OSD:</p>
+<ul>
+<li><code>CLUSTER</code> is the name of the ceph cluster (defaults to <code>ceph</code>)</li>
+</ul>
+<p>If the OSD is not already created (key, configuration, OSD data), the following environment variables will control its creation:</p>
+<ul>
+<li><code>WEIGHT</code> is the of the OSD when it is added to the CRUSH map (default is <code>1.0</code>)</li>
+<li><code>JOURNAL</code> is the location of the journal (default is the <code>journal</code> file inside the OSD data directory)</li>
+<li><code>HOSTNAME</code> is the name of the host; it is used as a flag when adding the OSD to the CRUSH map</li>
+</ul>
+<p>The old option <code>OSD_ID</code> is now unused. Instead, the script will scan for each directory in <code>/var/lib/ceph/osd</code> of the form <code>&lt;cluster&gt;-&lt;osd_id&gt;</code>.</p>
+<p>To create your OSDs simply run the following command:</p>
+<p><code>docker exec &lt;mon-container-id&gt; ceph osd create</code>.</p>
+<p>Note that we now default to dropping root privileges, so it is important to set the proper ownership for your OSD directories. The Ceph OSD runs as UID:167, GID:167, so:</p>
+<p><code>chown -R 167:167 /var/lib/ceph/osd/</code></p>
+<h4 id="multiple-osds">Multiple OSDs</h4>
+<p>There is a problem when attempting run run multiple OSD containers on a single docker host. See issue #19.</p>
+<p>There are two workarounds, at present:</p>
+<ul>
+<li>Run each OSD with the <code>--pid=host</code> option</li>
+<li>Run multiple OSDs within the same container</li>
+</ul>
+<p>To run multiple OSDs within the same container, simply bind-mount each OSD datastore directory:</p>
+<ul>
+<li><code>docker run -v /osds/1:/var/lib/ceph/osd/ceph-1 -v /osds/2:/var/lib/ceph/osd/ceph-2</code></li>
+</ul>
+<h3 id="ceph-osd-directory-single">Ceph OSD directory single</h3>
+<p>Ceph OSD directory single has a similar design to Ceph OSD directory since they both aim to run OSD processes from an already bootstrapped directory. So we assume the OSD directory has been populated already. The major different is that Ceph OSD directory single has a much simpler implementation since it only runs a single OSD process per container. It doesn't do anything with the journal as it assumes journal's symlink was provided during the initialization sequence of the OSD.</p>
+<p>This scenario goes through the OSD directory (<code>/var/lib/ceph/osd</code>) and looks for OSDs that don't have a lock held by any other OSD. If no lock is found, the OSD process starts. If all the OSDs are already running, we gently exit 0 and explain that all the OSDs are already running.</p>
+<p><strong>Important note</strong>: if you are aiming at running multiple OSD containers on a same machine (things that you will likely do with Ceph anyway), you must enable <code>--pid=host</code>. However if you are running Docker 1.12 (based on <a href="https://github.com/docker/docker/pull/22481">https://github.com/docker/docker/pull/22481</a>), you can just share the same PID namespace for the OSD containers only using: <code>--pid=container:&lt;id&gt;</code>.</p>
+<h4 id="btrfs-and-journal">BTRFS and journal</h4>
+<p>If your OSD is BTRFS and you want to use PARALLEL journal mode, you will need to run this container with <code>--privileged</code> set to true. Otherwise, <code>ceph-osd</code> will have insufficient permissions and it will revert to the slower WRITEAHEAD mode.</p>
+<h4 id="note">Note</h4>
+<p>Re: [<a href="https://github.com/Ulexus/docker-ceph/issues/5">https://github.com/Ulexus/docker-ceph/issues/5</a>]</p>
+<p>A user has reported a consterning (and difficult to diagnose) problem wherein the OSD crashes frequently due to Docker running out of sufficient open file handles. This is understandable, as the OSDs use a great many ports during periods of high traffic. It is, therefore, recommended that you increase the number of open file handles available to Docker.</p>
+<p>On CoreOS (and probably other systemd-based systems), you can do this by creating the a file named <code>/etc/systemd/system/docker.service.d/limits.conf</code> with content something like:</p>
+<pre><code>[Service]
+LimitNOFILE=4096
+</code></pre>
+<h2 id="deploy-a-mds">Deploy a MDS</h2>
+<p>By default, the MDS does <em>NOT</em> create a ceph filesystem. If you wish to have this MDS create a ceph filesystem (it will only do this if the specified <code>CEPHFS_NAME</code> does not already exist), you <em>must</em> set, at a minimum, <code>CEPHFS_CREATE=1</code>. It is strongly recommended that you read the rest of this section, as well.</p>
+<p>For most people, the defaults for the following optional environment variables are fine, but if you wish to customize the data and metadata pools in which your CephFS is stored, you may override the following as you wish:</p>
+<ul>
+<li><code>CEPHFS_CREATE</code>: Whether to create the ceph filesystem (0 = no / 1 = yes), if it doesn't exist. Defaults to 0 (no)</li>
+<li><code>CEPHFS_NAME</code>: The name of the new ceph filesystem and the basis on which the later variables are created. Defaults to <code>cephfs</code></li>
+<li><code>CEPHFS_DATA_POOL</code>: The name of the data pool for the ceph filesystem. If it does not exist, it will be created. Defaults to <code>${CEPHFS_NAME}_data</code></li>
+<li><code>CEPHFS_DATA_POOL_PG</code>: The number of placement groups for the data pool. Defaults to <code>8</code></li>
+<li><code>CEPHFS_METADATA_POOL</code>: The name of the metadata pool for the ceph filesystem. If it does not exist, it will be created. Defaults to <code>${CEPHFS_NAME}_metadata</code></li>
+<li><code>CEPHFS_METADATA_POOL_PG</code>: The number of placement groups for the metadata pool. Defaults to <code>8</code></li>
+</ul>
+<p>Without KV backend, run:</p>
+<pre><code>docker run -d --net=host \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+-v /etc/ceph:/etc/ceph \
+-e CEPHFS_CREATE=1 \
+ceph/daemon mds
+</code></pre>
+<p>With KV backend, run:</p>
+<pre><code>docker run -d --net=host \
+-e CEPHFS_CREATE=1 \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+ceph/daemon mds
+</code></pre>
+<p>List of available options:</p>
+<ul>
+<li><code>MDS_NAME</code> is the name the MDS server (DEFAULT: mds-$(hostname)). One thing to note is that metadata servers are not machine-restricted. They are not bound by their data directories and can move around the cluster. As a result, you can run more than one MDS on a single machine. If you plan to do so, you better set this variable and do something like: <code>mds-$(hostname)-a</code>, <code>mds-$(hostname)-b</code>etc...</li>
+</ul>
+<h2 id="deploy-a-rados-gateway">Deploy a Rados Gateway</h2>
+<p>For the Rados Gateway, we deploy it with <code>civetweb</code> enabled by default. However it is possible to use different CGI frontends by simply giving remote address and port.</p>
+<p>Without kv backend, run:</p>
+<pre><code>docker run -d --net=host \
+-v /var/lib/ceph/:/var/lib/ceph/ \
+-v /etc/ceph:/etc/ceph \
+ceph/daemon rgw
+</code></pre>
+<p>With kv backend, run:</p>
+<pre><code>docker run -d --net=host \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+ceph/daemon rgw
+</code></pre>
+<p>List of available options:</p>
+<ul>
+<li><code>RGW_CIVETWEB_PORT</code> is the port to which civetweb is listening on (DEFAULT: 8080)</li>
+<li><code>RGW_NAME</code>: default to hostname</li>
+</ul>
+<p>Administration via <a href="https://docs.ceph.com/en/latest/man/8/radosgw-admin/">radosgw-admin</a> from the Docker host if the <code>RGW_NAME</code> variable hasn't been supplied:</p>
+<p><code>docker exec &lt;containerId&gt; radosgw-admin -n client.rgw.$(hostname) -k /var/lib/ceph/radosgw/$(hostname)/keyring &lt;commands&gt;</code></p>
+<p>If otherwise, <code>$(hostname)</code> has to be replaced by the value of <code>RGW_NAME</code>.</p>
+<p>To enable an external CGI interface instead of civetweb set:</p>
+<ul>
+<li><code>RGW_REMOTE_CGI=1</code></li>
+<li><code>RGW_REMOTE_CGI_HOST=192.168.0.1</code></li>
+<li><code>RGW_REMOTE_CGI_PORT=9000</code></li>
+</ul>
+<p>And run the container like this <code>docker run -d -v /etc/ceph:/etc/ceph -v /var/lib/ceph/:/var/lib/ceph -e CEPH_DAEMON=RGW -e RGW_NAME=myrgw -p 9000:9000 -e RGW_REMOTE_CGI=1 -e RGW_REMOTE_CGI_HOST=192.168.0.1 -e RGW_REMOTE_CGI_PORT=9000 ceph/daemon</code></p>
+<h2 id="deploy-a-rest-api">Deploy a REST API</h2>
+<p>This is pretty straightforward. The <code>--net=host</code> is not mandatory, if you don't use it do not forget to expose the <code>RESTAPI_PORT</code>.
+Only available in luminous.</p>
+<pre><code>docker run -d --net=host \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+ceph/daemon restapi
+</code></pre>
+<p>List of available options:</p>
+<ul>
+<li><code>RESTAPI_IP</code> is the IP address to listen on (DEFAULT: 0.0.0.0)</li>
+<li><code>RESTAPI_PORT</code> is the listening port of the REST API (DEFAULT: 5000)</li>
+<li><code>RESTAPI_BASE_URL</code> is the base URL of the API (DEFAULT: /api/v0.1)</li>
+<li><code>RESTAPI_LOG_LEVEL</code> is the log level of the API (DEFAULT: warning)</li>
+<li><code>RESTAPI_LOG_FILE</code> is the location of the log file (DEFAULT: /var/log/ceph/ceph-restapi.log)</li>
+</ul>
+<h2 id="deploy-a-rbd-mirror">Deploy a RBD mirror</h2>
+<p>This is pretty straightforward. The <code>--net=host</code> is not mandatory, with KV we do:</p>
+<pre><code>docker run -d --net=host \
+-e KV_TYPE=etcd \
+-e KV_IP=192.168.0.20 \
+ceph/daemon rbd_mirror
+</code></pre>
+<p>Without KV we do:</p>
+<pre><code>docker run -d --net=host \
+ceph/daemon rbd_mirror
+</code></pre>
 <h3 id="fetching-software">Fetching software.</h3>
 <p>First of I want to check that I have all the latest packages in my debian system.</p>
 <pre><code>apt update
