@@ -142,3 +142,8 @@ rsync -avuz -e "ssh -p 22" /path/to/local/folder/ user@remotehost:/path/to/remot
 for f in *.nes; do zip -r "${f%%.*}.zip" "$f"; done
 find . -name '*.nes' -delete
 ```
+
+## fedora server ignore laptop lip close suspend
+```sh
+sudo mkdir -p '/etc/systemd/logind.conf.d' && echo -e "[Login]\nHandleLidSwitch=ignore" | sudo tee '/etc/systemd/logind.conf.d/99-laptop-server.conf' > '/dev/null'
+```
