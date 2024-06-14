@@ -158,6 +158,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#zip-individual-files-in-a-directory">zip individual files in a directory</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fedora-server-ignore-laptop-lip-close-suspend">fedora server ignore laptop lip close suspend</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -348,6 +350,9 @@ netstat -ltup
 <h2 id="zip-individual-files-in-a-directory">zip individual files in a directory</h2>
 <pre><code class="language-sh">for f in *.nes; do zip -r &quot;${f%%.*}.zip&quot; &quot;$f&quot;; done
 find . -name '*.nes' -delete
+</code></pre>
+<h2 id="fedora-server-ignore-laptop-lip-close-suspend">fedora server ignore laptop lip close suspend</h2>
+<pre><code class="language-sh">sudo mkdir -p '/etc/systemd/logind.conf.d' &amp;&amp; echo -e &quot;[Login]\nHandleLidSwitch=ignore&quot; | sudo tee '/etc/systemd/logind.conf.d/99-laptop-server.conf' &gt; '/dev/null'
 </code></pre>
               
             </div>
