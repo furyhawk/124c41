@@ -23,6 +23,7 @@ nav:
   - Hydra: hydra.md
   - Linux: linux.md
   - Docker: docker.md
+  - Kubernetes: k8s.md
   - ceph: ceph.md
   - macos: macos.md
   - sway: sway.md

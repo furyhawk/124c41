@@ -38,7 +38,8 @@
 
 | Period    | Employer     | Positions             | Responsibilities             |
 | --------- | ------------ | --------------------- | ---------------------------- |
-| 2022-     | AI Singapore | Associate AI Engineer | MLOps                        |
+| 2023-2024 | UParcel      | AI Engineer           | Software Engineering         |
+| 2022-2023 | AI Singapore | Associate AI Engineer | MLOps                        |
 | 2020-2021 | NCS          | Fiori developer       | SAP Edge Implementation      |
 | 2019-2020 | BHP          | Developer             | Fiori Project Implementation |
 | 2006-2019 | NCS          | Senior Consultant     | SAP Consultant/ABAP/Fiori    |
@@ -56,9 +57,18 @@
     </tbody>
 </table> -->
 
-![](assets/ai_singapore.jpg)
+![](assets/uparcel.png)
+### UParcel : 2023 - present
+*AI Engineer*
 
-### AI Singapore : 2022 - present
+- Optimize the delivery route for UParcel using large data analysis and parameter fine tuning of heuristic algorithm. Achieved 20% increase in driver acceptance rate of listed jobs.
+
+- Intergrate optimized last mile delivery to Malaysia and India market.
+
+- Project management of CD/CI pipeline for UParcel.
+
+![](assets/ai_singapore.jpg)
+### AI Singapore : 2022 - 2023
 
 *Associate AI Engineer*
 
