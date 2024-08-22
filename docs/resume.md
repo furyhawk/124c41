@@ -61,50 +61,47 @@
 ### UParcel : 2023 - present
 *AI Engineer*
 
-- Optimize the delivery route for UParcel using large data analysis and parameter fine tuning of heuristic algorithm. Achieved 20% increase in driver acceptance rate of listed jobs.
-
-- Roll out optimized last mile delivery to Malaysia market.
-
-- Project management of CD/CI pipeline for UParcel using **AWS** techstack **CDK**.
+* **Route Optimization**: Improved delivery efficiency by optimizing routes using large-scale data analysis and heuristic algorithm parameter fine-tuning, resulting in a **20% increase** in driver acceptance rates for listed jobs.
+* **Market Launch**: Successfully launched optimized last-mile delivery solutions in the Malaysian market, expanding UParcel's presence and capabilities.
+* **CD/CI Pipeline Management**: Managed the project pipeline for UParcel's Continuous Deployment/Continuous Integration (CD/CI) using AWS tech stack **CDK**, ensuring seamless and efficient development operations and maintaining a high degree of reliability and scalability.
 
 ![https://aisingapore.org/](assets/ai_singapore.jpg)
 ### AI Singapore : 2022 - 2023 : *1 yrs*
 *Associate AI Engineer*
 
-- Scoping requirements for ***content generation*** of event planning for a government agency using ***Langchain*** with ***prompt engineering***.
-
-- Implement ***MLOps*** using ***Pytorch*** and ***Tensorflow*** framework. Easy configurable(***Hydra***) ML pipeline for tasks like `Image Classification` and `Object Detection` using **SOLID** engineering principles. [https://github.com/aisingapore/PeekingDuck](https://github.com/aisingapore/PeekingDuck)
-
-- Research and design industrial defect detection POC for American multinational company using **OpenVINO**. Deploying to Nvidia Jetson Xavier NX Developer kit.
-
-- Mentor batch 12 and 13 on **Computer Vision**.
+* **Content Generation**: Scoped requirements for event planning for a government agency using **Langchain** and **prompt engineering**.
+* **MLOps**: Implemented MLOps using **Pytorch** and **Tensorflow** frameworks, developing a highly configurable ML pipeline with **Hydra** for tasks such as image classification and object detection, adhering to **SOLID** engineering principles. ([PeekingDuck](https://github.com/aisingapore/PeekingDuck))
+* **Industrial Defect Detection**: Designed and researched an industrial defect detection proof-of-concept for an American multinational company using **OpenVINO**, deploying it on the **Nvidia Jetson Xavier NX Developer kit**.
+* **Mentorship**: Mentored batches 12 and 13 on **Computer Vision**.
 
 *AI Apprentice*
 
-- Out of hundreds applicants, one of the selected 19 in **batch 11**. 2 months of deepskilling in AI Engineering and 7 months of on-the-job training on a real-world AI problem from the industry.
+**(Batch 11, 2 months + 7 months on-the-job training)**
 
-- Deploy scalable distributed container platforms using **Kubernetes** in **GCP**.
+* **Competitive Selection**: Selected as one of the top 19 candidates out of hundreds of applicants, demonstrating exceptional potential in AI engineering.
+* **Intensive Training**: Completed an immersive 2-month deepskilling program in AI engineering, followed by 7 months of hands-on on-the-job training on a real-world industry AI problem.
+* **Cloud Architecture**: Successfully deployed scalable distributed container platforms using **Kubernetes** in **GCP**, showcasing expertise in cloud-native architecture.
 
 ### Career transition : 2021 - 2022 : *1 yrs*
 
-- Self-hosted applications and api services on [https://furyhawk.lol/] using **Docker Swarm** on 3 Raspberry Pi.
+* **Self-Hosting**: Successfully self-hosted applications and API services on a personal domain ([https://furyhawk.lol/](https://furyhawk.lol/)) using **Docker Swarm** on 3 Raspberry Pi devices, demonstrating expertise in containerization and orchestration.
+* **Cloud-Native Migration**: Transitioning hosted applications and API services to **Kubernetes** using **Talos** and **Proxmox**, showcasing ability to adapt to new technologies and architectures.
 
-- Transitioning hosted applications and api services to **Kubernetes** on using **Talos** and **Proxmox**.
-
-*Team Fight Tactics Strategy Application*
+**Team Fight Tactics Strategy Application**
+-----------------------------------------
 
 [github.com/furyhawk/tftchamp](https://github.com/furyhawk/tftchamp)
 
-- Dockerized application to show gamers meta of current patch using feature importances.
-
-- Frontend implemented using **React** and **Zustand**.
+* **Dockerization**: Containerized the application to showcase gamers' meta of current patch using feature importances, utilizing Docker to ensure scalability and reliability.
+* **Frontend Development**: Implemented the frontend using **React** and **Zustand**, demonstrating proficiency in building responsive and efficient user interfaces.
 
 ![https://www.ncs.co/en-sg/](assets/ncs.jpg)
 ### NCS : 2020 - 2021 : *1 yrs*
 
 *Fiori developer*
 
-- Implement *SAP Edge* applications using *Agile* methodology. *Maintenance Dashboard* for Singapore Air force **F16/Apache** Squadron on *Edge* devices to improve turnaround reliability.
+* **SAP Edge Development**: Implemented SAP Edge applications using Agile methodology, demonstrating ability to work iteratively and deliver results in a fast-paced environment.
+* **Maintenance Dashboard**: Developed a Maintenance Dashboard for the Singapore Air Force **F16/Apache** Squadron on Edge devices, improving turnaround reliability and showcasing expertise in building tailored solutions for complex industries.
 
 <p style="page-break-after: always;"> </p>
 ![https://www.bhp.com/](assets/bhp.jpg) 
@@ -112,7 +109,8 @@
 
 *Developer*
 
-- Global implementation of *Resource Scheduler* application that allows for mass scheduling of work to personnel, taking into account work restrictions and capacity availability. Decrease *Resource Scheduler* **Time-on-task**, **User Error Rate** and bolstered safety compliance.
+* **Global Rollout**: Successfully implemented the Resource Scheduler application globally, enabling mass scheduling of work to personnel while considering work restrictions and capacity availability.
+* **Process Improvement**: Achieved significant reductions in **Time-on-task**, **User Error Rate**, and improved safety compliance, demonstrating ability to develop solutions that drive business value and enhance operational efficiency.
 
 ![https://www.ncs.co/en-sg/](assets/ncs.jpg)
 
@@ -120,15 +118,11 @@
 
 *Senior Consultant*
 
-- Successfully implemented **11** cycles of end to end ***Enterprise Resource Planning***(*SAP*) projects, total worth over 100 millions dollars in wide range of business domains(Material Planning, Procurement, Logistics, Finance and Control, Human Resource and Plant Maintenance).
-
-- Bolstered productivity and add value after each project cycles using *Software Engineering* **best practice**.
-
-- Expertise in implementing projects using **Frontend**(*Fiori*) and **Backend**(*ABAP*) frameworks.
-
-- Spearheaded **Agile Scrum** methodology to project team members.
-
-- Restored critical production database outage under time pressure applying root **cause analysis techniques**.
+* **ERP Implementation**: Successfully led 11 cycles of end-to-end **Enterprise Resource Planning (SAP)** projects, totaling over $100 million in value, across various business domains (Material Planning, Procurement, Logistics, Finance and Control, Human Resource, and Plant Maintenance).
+* **Productivity Excellence**: Consistently improved productivity and added value after each project cycle by applying **best practices** in Software Engineering.
+* **Technical Expertise**: Demonstrated proficiency in implementing projects using both **Frontend (Fiori)** and **Backend (ABAP)** frameworks, showcasing versatility in SAP development.
+* **Agile Leadership**: Spearheaded **Agile Scrum** methodology adoption among project team members, fostering collaborative and iterative development.
+* **Crisis Management**: Successfully restored a critical production database outage under time pressure by applying **root cause analysis techniques**, ensuring business continuity and minimizing downtime.
 
 ![](assets/creative.jpg)
 
@@ -136,7 +130,7 @@
 
 *Associate Engineer*
 
-- Software/Hardware Quality Assurance for world first mp3 devices.
+* **Pioneering QA**: Contributed to the development of the world's first MP3 devices, ensuring high-quality software and hardware through rigorous Quality Assurance processes.
 
 <p style="page-break-after: always;"> </p>
 
