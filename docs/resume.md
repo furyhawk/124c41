@@ -68,17 +68,16 @@
 - Project management of CD/CI pipeline for UParcel using **AWS** techstack **CDK**.
 
 ![https://aisingapore.org/](assets/ai_singapore.jpg)
-### AI Singapore : 2022 - 2023
-
+### AI Singapore : 2022 - 2023 : *1 yrs*
 *Associate AI Engineer*
 
 - Scoping requirements for ***content generation*** of event planning for a government agency using ***Langchain*** with ***prompt engineering***.
 
 - Implement ***MLOps*** using ***Pytorch*** and ***Tensorflow*** framework. Easy configurable(***Hydra***) ML pipeline for tasks like `Image Classification` and `Object Detection` using **SOLID** engineering principles. [https://github.com/aisingapore/PeekingDuck](https://github.com/aisingapore/PeekingDuck)
 
-- Research and design industrial defect detection POC for American multinational company using OpenVINO. Deploying to Nvidia Jetson Xavier NX Developer kit.
+- Research and design industrial defect detection POC for American multinational company using **OpenVINO**. Deploying to Nvidia Jetson Xavier NX Developer kit.
 
-- Mentor batch 12 and 13 on Computer Vision.
+- Mentor batch 12 and 13 on **Computer Vision**.
 
 *AI Apprentice*
 
@@ -86,7 +85,6 @@
 
 - Deploy scalable distributed container platforms using **Kubernetes** in **GCP**.
 
-![https://www.ncs.co/en-sg/](assets/ncs.jpg)
 ### Career transition : 2021 - 2022 : *1 yrs*
 
 - Self-hosted applications and api services on [https://furyhawk.lol/] using **Docker Swarm** on 3 Raspberry Pi.
@@ -101,7 +99,7 @@
 
 - Frontend implemented using **React** and **Zustand**.
 
-![https://www.bhp.com/](assets/bhp.jpg) 
+![https://www.ncs.co/en-sg/](assets/ncs.jpg)
 ### NCS : 2020 - 2021 : *1 yrs*
 
 *Fiori developer*
@@ -109,6 +107,7 @@
 - Implement *SAP Edge* applications using *Agile* methodology. *Maintenance Dashboard* for Singapore Air force **F16/Apache** Squadron on *Edge* devices to improve turnaround reliability.
 
 <p style="page-break-after: always;"> </p>
+![https://www.bhp.com/](assets/bhp.jpg) 
 ### BHP : 2019 - 2020 : *1 yr 2 mos*
 
 *Developer*
