@@ -57,17 +57,17 @@
     </tbody>
 </table> -->
 
-![](assets/uparcel.png)
+![https://www.uparcel.sg/](assets/uparcel.png)
 ### UParcel : 2023 - present
 *AI Engineer*
 
 - Optimize the delivery route for UParcel using large data analysis and parameter fine tuning of heuristic algorithm. Achieved 20% increase in driver acceptance rate of listed jobs.
 
-- Intergrate optimized last mile delivery to Malaysia and India market.
+- Roll out optimized last mile delivery to Malaysia market.
 
 - Project management of CD/CI pipeline for UParcel.
 
-![](assets/ai_singapore.jpg)
+![https://aisingapore.org/](assets/ai_singapore.jpg)
 ### AI Singapore : 2022 - 2023
 
 *Associate AI Engineer*
@@ -87,8 +87,10 @@
 - Deploy scalable distributed container platforms using **Kubernetes** in **GCP**.
 
 ![](assets/ncs.jpg)
-
 ### Career transition : 2021 - 2022 : *1 yrs*
+
+- Self-hosted applications and api services on [https://furyhawk.lol/] using **Docker Swarm** on 3 Raspberry Pi.
+- Transitioning hosted applications and api services to **Kubernetes** on using **Talos** and **Proxmox**.
 
 *Team Fight Tactics Strategy Application*
 
@@ -97,13 +99,13 @@
 - Dockerized application to show gamers meta of current patch using feature importances.
 - Frontend implemented using **React** and **Zustand**.
 
+![https://www.bhp.com/](assets/bhp.jpg) 
 ### NCS : 2020 - 2021 : *1 yrs*
 
 *Fiori developer*
 
 - Implement *SAP Edge* applications using *Agile* methodology. *Maintenance Dashboard* for Singapore Air force **F16/Apache** Squadron on *Edge* devices to improve turnaround reliability.
 
-![](assets/bhp.jpg) 
 <p style="page-break-after: always;"> </p>
 ### BHP : 2019 - 2020 : *1 yr 2 mos*
 
