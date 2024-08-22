@@ -86,7 +86,7 @@
 
 - Deploy scalable distributed container platforms using **Kubernetes** in **GCP**.
 
-![](assets/ncs.jpg)
+![https://www.ncs.co/en-sg/](assets/ncs.jpg)
 ### Career transition : 2021 - 2022 : *1 yrs*
 
 - Self-hosted applications and api services on [https://furyhawk.lol/] using **Docker Swarm** on 3 Raspberry Pi.
@@ -113,7 +113,7 @@
 
 - Global implementation of *Resource Scheduler* application that allows for mass scheduling of work to personnel, taking into account work restrictions and capacity availability. Decrease *Resource Scheduler* **Time-on-task**, **User Error Rate** and bolstered safety compliance.
 
-![](assets/ncs.jpg)
+![https://www.ncs.co/en-sg/](assets/ncs.jpg)
 
 ### NCS : 2008 - 2019 : *10 yrs 7 mos*
 
