@@ -65,7 +65,7 @@
 
 - Roll out optimized last mile delivery to Malaysia market.
 
-- Project management of CD/CI pipeline for UParcel.
+- Project management of CD/CI pipeline for UParcel using **AWS** techstack **CDK**.
 
 ![https://aisingapore.org/](assets/ai_singapore.jpg)
 ### AI Singapore : 2022 - 2023
@@ -90,6 +90,7 @@
 ### Career transition : 2021 - 2022 : *1 yrs*
 
 - Self-hosted applications and api services on [https://furyhawk.lol/] using **Docker Swarm** on 3 Raspberry Pi.
+
 - Transitioning hosted applications and api services to **Kubernetes** on using **Talos** and **Proxmox**.
 
 *Team Fight Tactics Strategy Application*
@@ -97,6 +98,7 @@
 [github.com/furyhawk/tftchamp](https://github.com/furyhawk/tftchamp)
 
 - Dockerized application to show gamers meta of current patch using feature importances.
+
 - Frontend implemented using **React** and **Zustand**.
 
 ![https://www.bhp.com/](assets/bhp.jpg) 
