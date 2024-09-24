@@ -80,7 +80,6 @@
 
 * **Competitive Selection**: Selected as one of the top 19 candidates out of hundreds of applicants, demonstrating exceptional potential in AI engineering.
 * **Intensive Training**: Completed an immersive 2-month deepskilling program in AI engineering, followed by 7 months of hands-on on-the-job training on a real-world industry AI problem.
-* **Cloud Architecture**: Successfully deployed scalable distributed container platforms using **Kubernetes** in **GCP**, showcasing expertise in cloud-native architecture.
 
 ### Career transition : 2021 - 2022 : *1 yrs*
 
