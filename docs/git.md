@@ -36,6 +36,10 @@ git pull --all
 install and authenticate with the github cli:
 ```sh
 pacman -S github-cli
+brew install gh
+sudo apt update
+sudo apt install gh
+
 gh auth login
 ```
 
