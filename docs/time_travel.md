@@ -1,4 +1,9 @@
-# The first time travel
+# Time travel
+
+by furyhawk
+
+## The first time travel
+
 
 The first time travel machine was built in the past to replicate embedded state from the future into a stateless machine built in the past.
 
