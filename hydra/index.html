@@ -1,443 +1,244 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-        <title>Hydra - 124c41</title>
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         
         
         
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Hydra - 124c41</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" disabled>
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="../assets/css/darcula-highlight.min.css">
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">124c41</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../assets/css/dracula-ui.min.css">
-        <link rel="stylesheet" href="../assets/css/mkdocs.min.css">
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../resume/" class="nav-link">Resume</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../conda/" class="nav-link">Conda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../venv/" class="nav-link">venv</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../poetry/" class="nav-link">poetry</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../git/" class="nav-link">git</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../ssh/" class="nav-link">ssh</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../softwarearchitecture/" class="nav-link">softwarearchitecture</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../code/" class="nav-link">vscode</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../machine_learning/" class="nav-link">machine_learning</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../llm/" class="nav-link">llm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../embedding/" class="nav-link">embedding</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../llama2/" class="nav-link">llmama2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../ollama/" class="nav-link">ollama</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../rag/" class="nav-link">rag</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../framework/" class="nav-link">Framework</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../db/" class="nav-link">database</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../dataframe/" class="nav-link">Dataframe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../chart/" class="nav-link">Chart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../anomaly_detection/" class="nav-link">anomaly_detection</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Hydra</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../linux/" class="nav-link">Linux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../docker/" class="nav-link">Docker</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../k8s/" class="nav-link">Kubernetes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../ceph/" class="nav-link">ceph</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../macos/" class="nav-link">macos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../sway/" class="nav-link">sway</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../mqtt/" class="nav-link">mqtt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../jetson/" class="nav-link">jetson</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../yolox/" class="nav-link">yolox</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../gpt/" class="nav-link">gpt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../stable_diffusion/" class="nav-link">stable_diffussion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../wandb/" class="nav-link">Model Analysis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../smb/" class="nav-link">Samba</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../smb2/" class="nav-link">Samba_ubuntu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../mkdocs/" class="nav-link">MkDocs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../mypy/" class="nav-link">mypy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../literatures/" class="nav-link">Literatures</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../scrape_pad/" class="nav-link">scrape_pad</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../nes/" class="nav-link">nes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../time_travel/" class="nav-link">time_travel</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../random/" class="nav-link">random</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
 
-        
-            <link  rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-                <script>hljs.initHighlightingOnLoad();</script>
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../anomaly_detection/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../linux/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                              <button id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme" class="nav-link dropdown-toggle">
+                                <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                <span class="d-lg-none ms-2">Toggle theme</span>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                                    <i class="fa-solid fa-sun fa-fw"></i>
+                                    <span class="ms-2">Light</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                                    <i class="fa-solid fa-moon fa-fw"></i>
+                                    <span class="ms-2">Dark</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="true">
+                                    <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                    <span class="ms-2">Auto</span>
+                                    <i class="fa-solid fa-check ms-auto"></i>
+                                  </button>
+                                </li>
+                              </ul>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="../js/darkmode.js"></script>
 
-</head>
-
-<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
-
-    <main class="d-flex">
-
-        <!-- block sidebar -->
-            <nav id="sidebar" class="sidebar drac-bg-black">
-    <div class="custom-menu">
-        <button type="button" id="sidebarCollapse" class="btn btn-primary">
-            <i class="fa fa-bars"></i>
-            <span class="sr-only">Menu</span>
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
-    <div class="p-4">
-        
-
-        <div class="drac-text-center">
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
             
-                <span class="drac-text drac-line-height drac-text-white">124c41</span>
-            
-        </div>
-
-        <div class="drac-box flex-column">
-            <ul class="dot-ul">
-                <li><div class="dot-li drac-bg-cyan"></div></li>
-                <li><div class="dot-li drac-bg-green"></div></li>
-                <li><div class="dot-li drac-bg-orange"></div></li>
-                <li><div class="dot-li drac-bg-pink"></div></li>
-                <li><div class="dot-li drac-bg-purple"></div></li>
-                <li><div class="dot-li drac-bg-red"></div></li>
-                <li><div class="dot-li drac-bg-yellow"></div></li>
-            </ul>
-        </div>
-
-        <hr class="drac-divider" />
-
-        <!-- block menu -->
-        <ul class="mb-5 drac-list drac-list-none">
-            
-            <li class="drac-box">
-                <a href=".."
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Home
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../resume/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Resume
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../conda/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Conda
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../venv/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    venv
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../poetry/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    poetry
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../git/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    git
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../ssh/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    ssh
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../softwarearchitecture/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    softwarearchitecture
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../code/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    vscode
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../machine_learning/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    machine_learning
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../llm/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    llm
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../embedding/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    embedding
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../llama2/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    llmama2
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../ollama/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    ollama
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../rag/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    rag
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../framework/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Framework
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../db/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    database
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../dataframe/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Dataframe
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../chart/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Chart
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../anomaly_detection/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    anomaly_detection
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="./"
-                    class=" active 
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Hydra
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../linux/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Linux
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../docker/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Docker
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../k8s/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Kubernetes
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../ceph/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    ceph
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../macos/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    macos
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../sway/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    sway
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../mqtt/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    mqtt
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../jetson/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    jetson
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../yolox/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    yolox
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../gpt/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    gpt
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../stable_diffusion/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    stable_diffussion
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../wandb/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Model Analysis
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../smb/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Samba
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../smb2/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Samba_ubuntu
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../mkdocs/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    MkDocs
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../mypy/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    mypy
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../literatures/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    Literatures
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../scrape_pad/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    scrape_pad
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../nes/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    nes
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../time_travel/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    time_travel
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../random/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    random
-                </a>
-            </li>
-            <li class="drac-box">
-                <a href="../about/"
-                    class="
-                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
-                    About
-                </a>
+            <li class="nav-item" data-bs-level="1"><a href="#hydra" class="nav-link">Hydra</a>
+              <ul class="nav flex-column">
+              </ul>
             </li>
         </ul>
-        <!-- endblock -->
     </div>
-</nav>
-        <!-- endblock -->
+</div></div>
+                    <div class="col-md-9" role="main">
 
-        <nav class="divider drac-bg-purple-cyan"></nav>
-
-        <div class="content">
-            <!-- block header -->
-                <header>
-    <nav class="navbar navbar-expand-xl drac-bg-purple">
-        <div class="container-fluid">
-            
-            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
-                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
-                <ul class="navbar-nav text-md-center">
-
-                    <!-- block preview -->
-                    <li class="nav-item">
-                            
-        <div class="container">
-            <div class="row row-preview">
-                <div class="col">
-                    <a href="../anomaly_detection/"
-                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="../linux/"
-                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
-                        Next <i class="fa fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-                    </li>
-                    <!--  endblock -->
-
-                    <!-- block search -->
-                    <li class="nav-item"><div role="search" class="search-box">
-	<form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
-		placeholder="Search docs" title="Type search term here" />
-	</form>
-</div>
-                    </li>
-                    <!--  endblock -->
-
-                    <!-- block source -->
-                    <li class="nav-item">
-                        
-                    </li>
-                    <!--  endblock -->
-
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-</header>
-            <!-- endblock -->
-
-            <!-- block content -->
-                <section class="p-md-5 section-content">
-    <article>
-        <p><h1 id="hydra">Hydra</h1>
+<h1 id="hydra">Hydra</h1>
 <pre><code class="language-python">
 import logging
 
@@ -465,31 +266,82 @@ with initialize(version_base=None, config_path=&quot;configs&quot;):
 </code></pre>
 <p>To check current defaults</p>
 <pre><code class="language-sh">python my_app.py --info defaults-tree
-</code></pre></p>
-    </article>
-</section>
-            <!-- endblock -->
-
-            <!-- block footer -->
-                <footer>
-    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
-        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
-            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
-            Made with Dracula Theme for MkDocs
-        </a>
-    </div>
-</footer>
-            <!-- endblock -->
+</code></pre></div>
+            </div>
         </div>
 
-    </main>
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
-        <script>var base_url = '..';</script>
-        <script src="../assets/js/jquery-3.3.1.slim.min.js"></script>
-        <script src="../assets/js/bootstrap.bundle.min.js"></script>
-        <script src="../assets/js/mkdocs.js"></script>
-			<script src="../search/main.js" defer></script>
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
-</body>
-
+    </body>
 </html>
