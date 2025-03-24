@@ -2,3 +2,5 @@ ipykernel
 nbformat
 black
 mkdocs
+mkdocs-material
+mkdocs-dracula-theme
