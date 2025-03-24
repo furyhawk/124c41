@@ -1,4 +1,8 @@
+<img src="assets/logo.png" alt="logo" width="20%">
+
 # Welcome to 124c41
+
+
 
 type: short summary
 
