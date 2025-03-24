@@ -1,662 +1,4872 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Docker - 124c41</title>
-    <link rel="stylesheet" href="../css/theme.css" />
-    <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Docker";
-        var mkdocs_page_input_path = "docker.md";
-        var mkdocs_page_url = null;
-      </script>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../linux/">
+      
+      
+        <link rel="next" href="../k8s/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
-    <!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
-</head>
+    
+      
+        <title>Docker - 124c41</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> 124c41
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../resume/">Resume</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../conda/">Conda</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../venv/">venv</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../poetry/">poetry</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../git/">git</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ssh/">ssh</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../softwarearchitecture/">softwarearchitecture</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../code/">vscode</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../machine_learning/">machine_learning</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../llm/">llm</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../embedding/">embedding</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../llama2/">llmama2</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ollama/">ollama</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../rag/">rag</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../framework/">Framework</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../db/">database</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../dataframe/">Dataframe</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../chart/">Chart</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../anomaly_detection/">anomaly_detection</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../hydra/">Hydra</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../linux/">Linux</a>
-                </li>
-              </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Docker</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#the-compose-specification">The Compose Specification</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#status-of-this-document">Status of this document</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#requirements-and-optional-attributes">Requirements and optional attributes</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#the-compose-application-model">The Compose application model</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#illustrative-example">Illustrative example</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#compose-file">Compose file</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#version-and-name-top-level-elements">Version and name top-level elements</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#version-top-level-element">Version top-level element</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#name-top-level-element">Name top-level element</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#services-top-level-element">Services top-level element</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#attach">attach</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#build">build</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#blkio_config">blkio_config</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#device_read_bps-device_write_bps">device_read_bps, device_write_bps</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#device_read_iops-device_write_iops">device_read_iops, device_write_iops</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#weight">weight</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#weight_device">weight_device</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpu_count">cpu_count</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpu_percent">cpu_percent</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpu_shares">cpu_shares</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpu_period">cpu_period</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpu_quota">cpu_quota</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpu_rt_runtime">cpu_rt_runtime</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpu_rt_period">cpu_rt_period</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpus">cpus</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cpuset">cpuset</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cap_add">cap_add</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cap_drop">cap_drop</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cgroup">cgroup</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cgroup_parent">cgroup_parent</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#command">command</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#configs">configs</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#short-syntax">Short syntax</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#long-syntax">Long syntax</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#container_name">container_name</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#credential_spec">credential_spec</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#example-gmsa-configuration">Example gMSA configuration</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#depends_on">depends_on</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_1">Short syntax</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_1">Long syntax</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#deploy">deploy</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#develop">develop</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#device_cgroup_rules">device_cgroup_rules</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#devices">devices</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#dns">dns</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#dns_opt">dns_opt</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#dns_search">dns_search</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#domainname">domainname</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#entrypoint">entrypoint</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#env_file">env_file</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#env_file-format">Env_file format</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#environment">environment</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#expose">expose</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#extends">extends</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#restrictions">Restrictions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#finding-referenced-service">Finding referenced service</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#merging-service-definitions">Merging service definitions</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#annotations">annotations</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#external_links">external_links</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#extra_hosts">extra_hosts</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_2">Short syntax</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_2">Long syntax</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#group_add">group_add</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#healthcheck">healthcheck</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#hostname">hostname</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#image">image</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#init">init</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ipc">ipc</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#uts">uts</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#isolation">isolation</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#labels">labels</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#links">links</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#logging">logging</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#network_mode">network_mode</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#networks">networks</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#aliases">aliases</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#ipv4_address-ipv6_address">ipv4_address, ipv6_address</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#link_local_ips">link_local_ips</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#mac_address">mac_address</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#priority">priority</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mac_address_1">mac_address</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mem_limit">mem_limit</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mem_reservation">mem_reservation</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mem_swappiness">mem_swappiness</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#memswap_limit">memswap_limit</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#oom_kill_disable">oom_kill_disable</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#oom_score_adj">oom_score_adj</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#pid">pid</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#pids_limit">pids_limit</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#platform">platform</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ports">ports</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_3">Short syntax</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_3">Long syntax</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#privileged">privileged</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#profiles">profiles</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#pull_policy">pull_policy</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#read_only">read_only</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#restart">restart</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#runtime">runtime</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scale">scale</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#secrets">secrets</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_4">Short syntax</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_4">Long syntax</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#security_opt">security_opt</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#shm_size">shm_size</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#stdin_open">stdin_open</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#stop_grace_period">stop_grace_period</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#stop_signal">stop_signal</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#storage_opt">storage_opt</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#sysctls">sysctls</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#tmpfs">tmpfs</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#tty">tty</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ulimits">ulimits</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#user">user</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#userns_mode">userns_mode</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#volumes">volumes</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#short-syntax_5">Short syntax</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#long-syntax_5">Long syntax</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#volumes_from">volumes_from</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#working_dir">working_dir</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#networks-top-level-element">Networks top-level element</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#basic-example">Basic example</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#advanced-example">Advanced example</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#attributes">Attributes</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#driver">driver</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#driver_opts">driver_opts</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#attachable">attachable</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#enable_ipv6">enable_ipv6</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#external">external</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#ipam">ipam</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#internal">internal</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#labels_1">labels</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#name">name</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#volumes-top-level-element">Volumes top-level element</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#attributes_1">Attributes</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#driver_1">driver</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#driver_opts_1">driver_opts</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#external_1">external</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#labels_2">labels</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#name_1">name</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#configs-top-level-element">Configs top-level element</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#example-1">Example 1</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-2">Example 2</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-3">Example 3</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#secrets-top-level-element">Secrets top-level element</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#example-1_1">Example 1</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-2_1">Example 2</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-3_1">Example 3</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#fragments">Fragments</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#example-1_2">Example 1</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-2_2">Example 2</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-3_2">Example 3</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-4">Example 4</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#extension">Extension</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#example-1_3">Example 1</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-2_3">Example 2</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-3_3">Example 3</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#example-4_1">Example 4</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#informative-historical-notes">Informative Historical Notes</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#specifying-byte-values">Specifying byte values</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#specifying-durations">Specifying durations</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#interpolation">Interpolation</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#merge-and-override">Merge and override</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#mapping">Mapping</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#sequence">Sequence</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#exceptions">Exceptions</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#shell-commands">Shell commands</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#unique-resources">Unique resources</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#reset-value">Reset value</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#replace-value">Replace value</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#include">Include</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#short-syntax_6">Short syntax</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#long-syntax_6">Long syntax</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#path">path</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#project_directory">project_directory</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#env_file_1">env_file</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#profiles_1">Profiles</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#illustrative-example_1">Illustrative example</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../k8s/">Kubernetes</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ceph/">ceph</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../macos/">macos</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../sway/">sway</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../mqtt/">mqtt</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../jetson/">jetson</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../yolox/">yolox</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../gpt/">gpt</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../stable_diffusion/">stable_diffussion</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../wandb/">Model Analysis</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../smb/">Samba</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../smb2/">Samba_ubuntu</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../mkdocs/">MkDocs</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../mypy/">mypy</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../literatures/">Literatures</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../scrape_pad/">scrape_pad</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../nes/">nes</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../time_travel/">time_travel</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../random/">random</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
-                </li>
-              </ul>
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="124c41" class="md-header__button md-logo" aria-label="124c41" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            124c41
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docker
+            
+          </span>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">124c41</a>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
         
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
       </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Docker</li>
-    <li class="wy-breadcrumbs-aside">
-    </li>
-  </ul>
-  <hr/>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
               
-                <h1 id="docker">Docker</h1>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="124c41" class="md-nav__button md-logo" aria-label="124c41" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    124c41
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resume/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resume
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../venv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    venv
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../poetry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    poetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ssh
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../softwarearchitecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    softwarearchitecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vscode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../machine_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    machine_learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    llm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llama2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    llmama2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ollama/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ollama
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../framework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Framework
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../db/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataframe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataframe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anomaly_detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    anomaly_detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hydra/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hydra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-compose-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Compose Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-of-this-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status of this document
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Status of this document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-and-optional-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements and optional attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-compose-application-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Compose application model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Compose application model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#illustrative-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Illustrative example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compose-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compose file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-and-name-top-level-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version and name top-level elements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version and name top-level elements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version top-level element
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Name top-level element
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Services top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attach" class="md-nav__link">
+    <span class="md-ellipsis">
+      attach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blkio_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      blkio_config
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="blkio_config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device_read_bps-device_write_bps" class="md-nav__link">
+    <span class="md-ellipsis">
+      device_read_bps, device_write_bps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device_read_iops-device_write_iops" class="md-nav__link">
+    <span class="md-ellipsis">
+      device_read_iops, device_write_iops
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      weight
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight_device" class="md-nav__link">
+    <span class="md-ellipsis">
+      weight_device
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_percent" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_percent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_shares" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_shares
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_quota" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_quota
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_rt_runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_rt_runtime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_rt_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_rt_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpuset" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpuset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cap_add" class="md-nav__link">
+    <span class="md-ellipsis">
+      cap_add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cap_drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      cap_drop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgroup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgroup_parent" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgroup_parent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command" class="md-nav__link">
+    <span class="md-ellipsis">
+      command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configs" class="md-nav__link">
+    <span class="md-ellipsis">
+      configs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="configs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      container_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credential_spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      credential_spec
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="credential_spec">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-gmsa-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example gMSA configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#depends_on" class="md-nav__link">
+    <span class="md-ellipsis">
+      depends_on
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="depends_on">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#develop" class="md-nav__link">
+    <span class="md-ellipsis">
+      develop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device_cgroup_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      device_cgroup_rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      devices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      dns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns_opt" class="md-nav__link">
+    <span class="md-ellipsis">
+      dns_opt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns_search" class="md-nav__link">
+    <span class="md-ellipsis">
+      dns_search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domainname" class="md-nav__link">
+    <span class="md-ellipsis">
+      domainname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrypoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      entrypoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      env_file
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="env_file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#env_file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Env_file format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose" class="md-nav__link">
+    <span class="md-ellipsis">
+      expose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extends" class="md-nav__link">
+    <span class="md-ellipsis">
+      extends
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="extends">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restrictions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-referenced-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding referenced service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merging-service-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merging service definitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merging service definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mappings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalars" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalars
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      annotations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external_links" class="md-nav__link">
+    <span class="md-ellipsis">
+      external_links
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extra_hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      extra_hosts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="extra_hosts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group_add" class="md-nav__link">
+    <span class="md-ellipsis">
+      group_add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#healthcheck" class="md-nav__link">
+    <span class="md-ellipsis">
+      healthcheck
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hostname" class="md-nav__link">
+    <span class="md-ellipsis">
+      hostname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    <span class="md-ellipsis">
+      image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    <span class="md-ellipsis">
+      init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      ipc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uts" class="md-nav__link">
+    <span class="md-ellipsis">
+      uts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      isolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      links
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      network_mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      networks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      aliases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv4_address-ipv6_address" class="md-nav__link">
+    <span class="md-ellipsis">
+      ipv4_address, ipv6_address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link_local_ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      link_local_ips
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mac_address" class="md-nav__link">
+    <span class="md-ellipsis">
+      mac_address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      priority
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mac_address_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      mac_address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mem_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      mem_limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mem_reservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      mem_reservation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mem_swappiness" class="md-nav__link">
+    <span class="md-ellipsis">
+      mem_swappiness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memswap_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      memswap_limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oom_kill_disable" class="md-nav__link">
+    <span class="md-ellipsis">
+      oom_kill_disable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oom_score_adj" class="md-nav__link">
+    <span class="md-ellipsis">
+      oom_score_adj
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      pid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pids_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      pids_limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      platform
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      ports
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privileged" class="md-nav__link">
+    <span class="md-ellipsis">
+      privileged
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      profiles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull_policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      pull_policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_only" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      restart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      runtime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      scale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      secrets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="secrets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security_opt" class="md-nav__link">
+    <span class="md-ellipsis">
+      security_opt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shm_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      shm_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stdin_open" class="md-nav__link">
+    <span class="md-ellipsis">
+      stdin_open
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop_grace_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      stop_grace_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop_signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      stop_signal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_opt" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_opt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysctls" class="md-nav__link">
+    <span class="md-ellipsis">
+      sysctls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmpfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      tmpfs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tty" class="md-nav__link">
+    <span class="md-ellipsis">
+      tty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ulimits" class="md-nav__link">
+    <span class="md-ellipsis">
+      ulimits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      user
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userns_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      userns_mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      volumes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes_from" class="md-nav__link">
+    <span class="md-ellipsis">
+      volumes_from
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      working_dir
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networks-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networks top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Networks top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      driver
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="driver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-or-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      host or none
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver_opts" class="md-nav__link">
+    <span class="md-ellipsis">
+      driver_opts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachable" class="md-nav__link">
+    <span class="md-ellipsis">
+      attachable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable_ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable_ipv6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external" class="md-nav__link">
+    <span class="md-ellipsis">
+      external
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="external">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ipam" class="md-nav__link">
+    <span class="md-ellipsis">
+      ipam
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      internal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labels_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volumes-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volumes top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volumes top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      driver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver_opts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      driver_opts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      external
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labels_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configs-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configs top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configs top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Secrets top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fragments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fragments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fragments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 4
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#informative-historical-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Informative Historical Notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-byte-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying byte values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-durations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying durations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge-and-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge and override
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merge and override">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shell commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unique resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reset value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replace-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replace value
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include" class="md-nav__link">
+    <span class="md-ellipsis">
+      Include
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Include">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Long syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    <span class="md-ellipsis">
+      path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project_directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      project_directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env_file_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      env_file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiles_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#illustrative-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Illustrative example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ceph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ceph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mqtt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mqtt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jetson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jetson
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yolox/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    yolox
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gpt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stable_diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stable_diffussion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wandb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Samba
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smb2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Samba_ubuntu
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mypy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mypy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../literatures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Literatures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scrape_pad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scrape_pad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../time_travel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time_travel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../random/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    random
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-compose-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Compose Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-of-this-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status of this document
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Status of this document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-and-optional-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements and optional attributes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-compose-application-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Compose application model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Compose application model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#illustrative-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Illustrative example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compose-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compose file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-and-name-top-level-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version and name top-level elements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version and name top-level elements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version top-level element
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Name top-level element
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Services top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attach" class="md-nav__link">
+    <span class="md-ellipsis">
+      attach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blkio_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      blkio_config
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="blkio_config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device_read_bps-device_write_bps" class="md-nav__link">
+    <span class="md-ellipsis">
+      device_read_bps, device_write_bps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device_read_iops-device_write_iops" class="md-nav__link">
+    <span class="md-ellipsis">
+      device_read_iops, device_write_iops
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      weight
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight_device" class="md-nav__link">
+    <span class="md-ellipsis">
+      weight_device
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_percent" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_percent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_shares" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_shares
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_quota" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_quota
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_rt_runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_rt_runtime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_rt_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpu_rt_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpuset" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpuset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cap_add" class="md-nav__link">
+    <span class="md-ellipsis">
+      cap_add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cap_drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      cap_drop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgroup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cgroup_parent" class="md-nav__link">
+    <span class="md-ellipsis">
+      cgroup_parent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command" class="md-nav__link">
+    <span class="md-ellipsis">
+      command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configs" class="md-nav__link">
+    <span class="md-ellipsis">
+      configs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="configs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      container_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credential_spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      credential_spec
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="credential_spec">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-gmsa-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example gMSA configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#depends_on" class="md-nav__link">
+    <span class="md-ellipsis">
+      depends_on
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="depends_on">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#develop" class="md-nav__link">
+    <span class="md-ellipsis">
+      develop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device_cgroup_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      device_cgroup_rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      devices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      dns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns_opt" class="md-nav__link">
+    <span class="md-ellipsis">
+      dns_opt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns_search" class="md-nav__link">
+    <span class="md-ellipsis">
+      dns_search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domainname" class="md-nav__link">
+    <span class="md-ellipsis">
+      domainname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrypoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      entrypoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      env_file
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="env_file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#env_file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Env_file format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose" class="md-nav__link">
+    <span class="md-ellipsis">
+      expose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extends" class="md-nav__link">
+    <span class="md-ellipsis">
+      extends
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="extends">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restrictions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-referenced-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding referenced service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merging-service-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merging service definitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merging service definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mappings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalars" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalars
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      annotations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external_links" class="md-nav__link">
+    <span class="md-ellipsis">
+      external_links
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extra_hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      extra_hosts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="extra_hosts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group_add" class="md-nav__link">
+    <span class="md-ellipsis">
+      group_add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#healthcheck" class="md-nav__link">
+    <span class="md-ellipsis">
+      healthcheck
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hostname" class="md-nav__link">
+    <span class="md-ellipsis">
+      hostname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    <span class="md-ellipsis">
+      image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    <span class="md-ellipsis">
+      init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      ipc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uts" class="md-nav__link">
+    <span class="md-ellipsis">
+      uts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      isolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      links
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      network_mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      networks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      aliases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv4_address-ipv6_address" class="md-nav__link">
+    <span class="md-ellipsis">
+      ipv4_address, ipv6_address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link_local_ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      link_local_ips
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mac_address" class="md-nav__link">
+    <span class="md-ellipsis">
+      mac_address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      priority
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mac_address_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      mac_address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mem_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      mem_limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mem_reservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      mem_reservation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mem_swappiness" class="md-nav__link">
+    <span class="md-ellipsis">
+      mem_swappiness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memswap_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      memswap_limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oom_kill_disable" class="md-nav__link">
+    <span class="md-ellipsis">
+      oom_kill_disable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oom_score_adj" class="md-nav__link">
+    <span class="md-ellipsis">
+      oom_score_adj
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      pid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pids_limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      pids_limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      platform
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      ports
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privileged" class="md-nav__link">
+    <span class="md-ellipsis">
+      privileged
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      profiles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull_policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      pull_policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_only" class="md-nav__link">
+    <span class="md-ellipsis">
+      read_only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      restart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      runtime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      scale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      secrets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="secrets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security_opt" class="md-nav__link">
+    <span class="md-ellipsis">
+      security_opt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shm_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      shm_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stdin_open" class="md-nav__link">
+    <span class="md-ellipsis">
+      stdin_open
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop_grace_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      stop_grace_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop_signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      stop_signal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage_opt" class="md-nav__link">
+    <span class="md-ellipsis">
+      storage_opt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysctls" class="md-nav__link">
+    <span class="md-ellipsis">
+      sysctls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmpfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      tmpfs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tty" class="md-nav__link">
+    <span class="md-ellipsis">
+      tty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ulimits" class="md-nav__link">
+    <span class="md-ellipsis">
+      ulimits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      user
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userns_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      userns_mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      volumes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes_from" class="md-nav__link">
+    <span class="md-ellipsis">
+      volumes_from
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      working_dir
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networks-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networks top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Networks top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      driver
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="driver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-or-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      host or none
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver_opts" class="md-nav__link">
+    <span class="md-ellipsis">
+      driver_opts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachable" class="md-nav__link">
+    <span class="md-ellipsis">
+      attachable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable_ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      enable_ipv6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external" class="md-nav__link">
+    <span class="md-ellipsis">
+      external
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="external">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ipam" class="md-nav__link">
+    <span class="md-ellipsis">
+      ipam
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      internal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labels_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volumes-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volumes top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volumes top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      driver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver_opts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      driver_opts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      external
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labels_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configs-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configs top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configs top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-top-level-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets top-level element
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Secrets top-level element">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fragments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fragments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fragments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 4
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#informative-historical-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Informative Historical Notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-byte-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying byte values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-durations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying durations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge-and-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge and override
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merge and override">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exceptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shell commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unique resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reset value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replace-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replace value
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include" class="md-nav__link">
+    <span class="md-ellipsis">
+      Include
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Include">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-syntax_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Short syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-syntax_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long syntax
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Long syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    <span class="md-ellipsis">
+      path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project_directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      project_directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env_file_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      env_file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiles_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#illustrative-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Illustrative example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="docker">Docker</h1>
 <pre><code class="language-sh">sudo apt update &amp;&amp; sudo apt upgrade -y
 sudo apt install git curl htop mc rsync zsh-autosuggestions
 sudo apt install zsh
@@ -3249,51 +7459,57 @@ Compose returns an error.</p>
   services <code>zot</code> and <code>bar</code>.</li>
 </ul>
 <p>See how you can use <code>profiles</code> in <a href="https://docs.docker.com/compose/profiles/">Docker Compose</a>.</p>
-              
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../linux/" class="btn btn-neutral float-left" title="Linux"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../k8s/" class="btn btn-neutral float-right" title="Kubernetes">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-  </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
           
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href="../linux/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../k8s/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
-        jQuery(function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        });
-    </script>
-
-</body>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
 </html>
