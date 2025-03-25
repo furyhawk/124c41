@@ -29,6 +29,7 @@ nav:
   - anomaly_detection: anomaly_detection.md
   - Hydra: hydra.md
   - Linux: linux.md
+  - Ubuntu: ubuntu.md
   - Docker: docker.md
   - Kubernetes: k8s.md
   - ceph: ceph.md
