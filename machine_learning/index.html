@@ -1829,7 +1829,7 @@ x = layers.Activation(&quot;relu&quot;)(x)    # place activation after BatchNorm
 <p>Without modifying the network, one can call <code>model.forward_features(input)</code> on any model instead of the usual <code>model(input)</code>. This will bypass the head classifier and global pooling for networks.</p>
 <p>If one wants to explicitly modify the network to return unpooled features, they can either create the model without a classifier and pooling, or remove it later. Both paths remove the parameters associated with the classifier from the network.</p>
 <h5 id="forward_features">forward_features()</h5>
-<pre><code class="language-python">import torch
+<pre><code class="language-python" hl_lines="[3, 6]">import torch
 import timm
 m = timm.create_model('xception41', pretrained=True)
 o = m(torch.randn(2, 3, 299, 299))
@@ -1842,7 +1842,7 @@ print(f'Unpooled shape: {o.shape}')
 Unpooled shape: torch.Size([2, 2048, 10, 10])
 </code></pre>
 <h5 id="create-with-no-classifier-and-pooling">Create with no classifier and pooling</h5>
-<pre><code class="language-python">import torch
+<pre><code class="language-python" hl_lines="[3]">import torch
 import timm
 m = timm.create_model('resnet50', pretrained=True, num_classes=0, global_pool='')
 o = m(torch.randn(2, 3, 224, 224))
@@ -1852,7 +1852,7 @@ print(f'Unpooled shape: {o.shape}')
 <pre><code class="language-text">Unpooled shape: torch.Size([2, 2048, 7, 7])
 </code></pre>
 <h5 id="remove-it-later">Remove it later</h5>
-<pre><code class="language-python">import torch
+<pre><code class="language-python" hl_lines="[3, 6]">import torch
 import timm
 m = timm.create_model('densenet121', pretrained=True)
 o = m(torch.randn(2, 3, 224, 224))
@@ -1868,7 +1868,7 @@ Unpooled shape: torch.Size([2, 1024, 7, 7])
 <h4 id="pooled">Pooled</h4>
 <p>To modify the network to return pooled features, one can use <code>forward_features()</code> and pool/flatten the result themselves, or modify the network like above but keep pooling intact. </p>
 <h5 id="create-with-no-classifier">Create with no classifier</h5>
-<pre><code class="language-python">import torch
+<pre><code class="language-python" hl_lines="[3]">import torch
 import timm
 m = timm.create_model('resnet50', pretrained=True, num_classes=0)
 o = m(torch.randn(2, 3, 224, 224))
@@ -1878,7 +1878,7 @@ print(f'Pooled shape: {o.shape}')
 <pre><code class="language-text">Pooled shape: torch.Size([2, 2048])
 </code></pre>
 <h5 id="remove-it-later_1">Remove it later</h5>
-<pre><code class="language-python">import torch
+<pre><code class="language-python" hl_lines="[3, 6]">import torch
 import timm
 m = timm.create_model('ese_vovnet19b_dw', pretrained=True)
 o = m(torch.randn(2, 3, 224, 224))
@@ -1896,7 +1896,7 @@ Pooled shape: torch.Size([2, 1024])
 <p><code>timm</code> allows a consistent interface for creating any of the included models as feature backbones that output feature maps for selected levels. </p>
 <p>A feature backbone can be created by adding the argument <code>features_only=True</code> to any <code>create_model</code> call. By default 5 strides will be output from most models (not all have that many), with the first starting at 2 (some start at 1 or 4).</p>
 <h4 id="create-a-feature-map-extraction-model">Create a feature map extraction model</h4>
-<pre><code class="language-python">import torch
+<pre><code class="language-python" hl_lines="[3]">import torch
 import timm
 m = timm.create_model('resnest26d', features_only=True, pretrained=True)
 o = m(torch.randn(2, 3, 224, 224))
@@ -1912,7 +1912,7 @@ torch.Size([2, 2048, 7, 7])
 </code></pre>
 <h4 id="query-the-feature-information">Query the feature information</h4>
 <p>After a feature backbone has been created, it can be queried to provide channel or resolution reduction information to the downstream heads without requiring static config or hardcoded constants. The <code>.feature_info</code> attribute is a class encapsulating the information about the feature extraction points.</p>
-<pre><code class="language-python">import torch
+<pre><code class="language-python" hl_lines="[3, 4]">import torch
 import timm
 m = timm.create_model('regnety_032', features_only=True, pretrained=True)
 print(f'Feature channels: {m.feature_info.channels()}')
@@ -1936,7 +1936,7 @@ torch.Size([2, 1512, 7, 7])
 </ul>
 <p><code>out_indices</code> is supported by all models, but not all models have the same index to feature stride mapping. Look at the code or check feature_info to compare. The out indices generally correspond to the <code>C(i+1)th</code> feature level (a <code>2^(i+1)</code> reduction). For most models, index 0 is the stride 2 features, and index 4 is stride 32.</p>
 <p><code>output_stride</code> is achieved by converting layers to use dilated convolutions. Doing so is not always straightforward, some networks only support <code>output_stride=32</code>.</p>
-<pre><code class="language-python">import torch
+<pre><code class="language-python" hl_lines="[3, 4, 5]">import torch
 import timm
 m = timm.create_model('ecaresnet101d', features_only=True, output_stride=8, out_indices=(2, 4), pretrained=True)
 print(f'Feature channels: {m.feature_info.channels()}')
