@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../db/">
+        <link rel="prev" href="../linux/">
       
       
-        <link rel="next" href="../chart/">
+        <link rel="next" href="../docker/">
       
       
       <link rel="icon" href="../assets/logo.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Dataframe - 124c41</title>
+        <title>Ubuntu - 124c41</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dataframe" class="md-skip">
+        <a href="#ubuntu" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Dataframe
+              Ubuntu
             
           </span>
         </div>
@@ -593,31 +593,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Dataframe
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../dataframe/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -627,35 +606,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#rows-of-a-pandas-dataframe-df" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rows of a pandas dataframe df
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -748,10 +698,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../ubuntu/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -761,6 +720,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1226,23 +1186,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#rows-of-a-pandas-dataframe-df" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rows of a pandas dataframe df
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1257,25 +1200,136 @@
 
 
 
-<h1 id="dataframe">Dataframe</h1>
-<p><code>df["cancer"].value_counts().plot(kind='barh')</code>
-<code>df[["patient_id", "image_id"]].astype(str).apply(lambda x: 'data/rsna/'+'/'.join(x)+'.png', axis=1)</code>
-<code>list(mapping.keys())[list(mapping.values()).index(x)]</code>
-``</p>
-<p>import logging
-from configs import LOGGER_NAME</p>
-<p>logger = logging.getLogger(LOGGER_NAME)  # pylint: disable=invalid-name</p>
-<p>logger.info</p>
-<h2 id="rows-of-a-pandas-dataframe-df">Rows of a pandas dataframe df</h2>
-<pre><code class="language-py">def __len__(self) -&gt; int:
-        &quot;&quot;&quot;Return the length of the dataset.&quot;&quot;&quot;
-        return len(self.df.index)
-</code></pre>
-<pre><code class="language-sh">In [7]: timeit len(df.index)
-1000000 loops, best of 3: 248 ns per loop
+<h1 id="ubuntu">Ubuntu</h1>
+<pre><code>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+google-chrome
 
-In [8]: timeit len(df)
-1000000 loops, best of 3: 573 ns per loop
+
+/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)&quot;
+
+sudo apt install zsh
+
+sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+
+git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+
+curl https://pyenv.run | bash
+# Load pyenv automatically by appending
+# the following to 
+# ~/.bash_profile if it exists, otherwise ~/.profile (for login shells)
+# and ~/.bashrc (for interactive shells) :
+
+export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
+[[ -d $PYENV_ROOT/bin ]] &amp;&amp; export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;
+eval &quot;$(pyenv init - bash)&quot;
+
+# Restart your shell for the changes to take effect.
+
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.bashrc:
+
+eval &quot;$(pyenv virtualenv-init -)&quot;
+
+sudo apt install build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl git \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+sudo apt install zlib1g zlib1g-dev libssl-dev libbz2-dev libsqlite3-dev
+
+
+sudo apt install pipx
+pipx ensurepath
+sudo pipx ensurepath --global # optional to allow pipx actions with --global argument
+
+pipx install poetry
+pipx upgrade poetry
+# poetry completions zsh &gt; ~/.zfunc/_poetry
+mkdir $ZSH_CUSTOM/plugins/poetry
+poetry completions zsh &gt; $ZSH_CUSTOM/plugins/poetry/_poetry
+
+
+
+echo &quot;code code/add-microsoft-repo boolean true&quot; | sudo debconf-set-selections
+
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+echo &quot;deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main&quot; |sudo tee /etc/apt/sources.list.d/vscode.list &gt; /dev/null
+rm -f packages.microsoft.gpg
+
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code # or code-insiders
+
+//flutter
+echo 'export PATH=&quot;$HOME/flutter/bin:$PATH&quot;' &gt;&gt; ~/.bash_profile
+
+sudo apt-get install \
+      clang cmake git \
+      ninja-build pkg-config \
+      libgtk-3-dev liblzma-dev \
+      libstdc++-12-dev
+
+# Ubuntu 20.10 and newer
+sudo apt-get update
+sudo apt-get -y install podman
+
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  &amp;&amp; curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+nvidia-ctk cdi list
+podman run --rm --device nvidia.com/gpu=all --security-opt=label=disable ubuntu nvidia-smi -L
+The CDI specification also contains references to individual GPUs or MIG devices. You can request these by specifying their names when launching a container, such as the following example:
+
+podman run --rm \
+    --device nvidia.com/gpu=0 \
+    --device nvidia.com/gpu=1:0 \
+    --security-opt=label=disable \
+    ubuntu nvidia-smi -L
+
+
+
+
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+
+
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo &quot;deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main&quot; &gt; /etc/apt/sources.list.d/microsoft-edge-dev.list'
+sudo rm microsoft.gpg
+sudo apt update
+sudo apt install microsoft-edge-stable
+
+
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+echo &quot;deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main&quot; |sudo tee /etc/apt/sources.list.d/vscode.list &gt; /dev/null
+rm -f packages.microsoft.gpg
+
+
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code # or code-insiders
+
+
+
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub io.podman_desktop.PodmanDesktop
+
+
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/docker-specialized.html
 </code></pre>
 
 
