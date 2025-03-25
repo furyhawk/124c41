@@ -2,6 +2,9 @@ site_name: 124c41
 site_description: programming, machine learning, software architecture, and more
 site_author: furyhawk
 copyright: Copyright 2025
+plugins:
+  - search
+  - tags
 
 nav:
   - Home: index.md

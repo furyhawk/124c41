@@ -36,14 +36,15 @@
 
 ### Employment history : *20+ years Software Engineering*
 
-| Period    | Employer     | Positions             | Responsibilities             |
-| --------- | ------------ | --------------------- | ---------------------------- |
-| 2023-2024 | UParcel      | AI Engineer           | Software Engineering         |
-| 2022-2023 | AI Singapore | Associate AI Engineer | MLOps                        |
-| 2020-2021 | NCS          | Fiori developer       | SAP Edge Implementation      |
-| 2019-2020 | BHP          | Developer             | Fiori Project Implementation |
-| 2006-2019 | NCS          | Senior Consultant     | SAP Consultant/ABAP/Fiori    |
-| 2000-2006 | Creative     | Associate Engineer    | Software QA                  |
+| Period    | Employer      | Positions             | Responsibilities             |
+| --------- | ------------- | --------------------- | ---------------------------- |
+| 2025-     | ST Engineering| AI Principal Engineer | Kinectics Training Solutions |
+| 2023-2024 | UParcel       | AI Engineer           | Software Engineering         |
+| 2022-2023 | AI Singapore  | Associate AI Engineer | MLOps                        |
+| 2020-2021 | NCS           | Fiori developer       | SAP Edge Implementation      |
+| 2019-2020 | BHP           | Developer             | Fiori Project Implementation |
+| 2006-2019 | NCS           | Senior Consultant     | SAP Consultant/ABAP/Fiori    |
+| 2000-2006 | Creative      | Associate Engineer    | Software QA                  |
 
 <p style="page-break-after: always;"> </p>
 
@@ -57,8 +58,19 @@
     </tbody>
 </table> -->
 
+![https://stengg.com/](assets/stengg.jpg)
+### ST Engineering : 2025 - present
+*Machine Learning Principal Engineer*
+
+* **Platform Development**: Lead the design and development of a scalable AI platform, ensuring high performance and reliability.
+* **MLOps**: Implement and optimize MLOps practices to streamline the machine learning lifecycle, from development to deployment and monitoring.
+* **Standardization**: Establish and enforce best practices for machine learning model development, testing, and deployment.
+* **Collaboration**: Work closely with data scientists, software engineers, and platform engineers to deliver high-quality AI solutions.
+* **Innovation**: Stay abreast of the latest advancements in AI and machine learning, and apply this knowledge to improve our platform and processes.
+* **Mentorship**: Provide technical guidance and mentorship to junior engineers and team members.
+
 ![https://www.uparcel.sg/](assets/uparcel.png)
-### UParcel : 2023 - present
+### UParcel : 2023 - 2024
 *AI Engineer*
 
 * **Route Optimization**: Improved delivery efficiency by optimizing routes using large-scale data analysis and heuristic algorithm parameter fine-tuning, resulting in a **20% increase** in driver acceptance rates for listed jobs.
