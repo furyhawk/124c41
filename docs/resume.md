@@ -65,9 +65,10 @@
 * **Platform Development**: Lead the design and development of a scalable AI platform, ensuring high performance and reliability.
 * **MLOps**: Implement and optimize MLOps practices to streamline the machine learning lifecycle, from development to deployment and monitoring.
 * **Standardization**: Establish and enforce best practices for machine learning model development, testing, and deployment.
-* **Collaboration**: Work closely with data scientists, software engineers, and platform engineers to deliver high-quality AI solutions.
+* **Collaboration**: Collaborate with cross-functional teams to integrate AI systems into products or services.
 * **Innovation**: Stay abreast of the latest advancements in AI and machine learning, and apply this knowledge to improve our platform and processes.
 * **Mentorship**: Provide technical guidance and mentorship to junior engineers and team members.
+* Develop technical proposal and presentations to potential clients.
 
 ![https://www.uparcel.sg/](assets/uparcel.png)
 ### UParcel : 2023 - 2024
