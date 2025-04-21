@@ -9,9 +9,10 @@ plugins:
 nav:
   - Home: index.md
   - Resume: resume.md
-  - Conda: conda.md
+  - uv: uv.md
   - venv: venv.md
   - poetry: poetry.md
+  - Conda: conda.md
   - git: git.md
   - ssh: ssh.md
   - softwarearchitecture: softwarearchitecture.md
