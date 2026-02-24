@@ -44,7 +44,7 @@ type: short summary
 
 ## Team Fight Tactics Strategy Application
 
---http://tftchamp.duckdns.org:3000/--
+~~http://tftchamp.duckdns.org:3000/~~
 
 ### Datasets
 
