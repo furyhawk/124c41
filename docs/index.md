@@ -2,7 +2,7 @@
 
 # Welcome to 124c41
 
-
+First vision of the greater good.
 
 type: short summary
 
