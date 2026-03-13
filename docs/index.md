@@ -4,6 +4,10 @@
 
 First vision 先知 of the greater good.
 
+The internet era force the analog world to be digitised.
+The AI era force the digital world to be analoged.
+
+
 type: short summary
 
   │            │
