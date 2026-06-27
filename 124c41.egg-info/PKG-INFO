@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: 124c41
+Version: 0.1.0
+Author: furyhawk
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: ipykernel>=6.29.2
+Requires-Dist: nbformat>=5.9.2
+Requires-Dist: black>=24.2.0
+Requires-Dist: mkdocs>=1.6.1
+Requires-Dist: mkdocs-material>=9.6.9
+
+# 124c41
+[https://furyhawk.github.io/124c41/](https://furyhawk.github.io/124c41/)
+
+```sh
+mkdocs gh-deploy
+```
+
+```sh
+mkdocs build
+scp -r ./site user@host:/path/to/server/root
+```
