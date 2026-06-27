@@ -1,7 +1,7 @@
 nav:
   - Home: index.md
   - Resume: resume.md
-  - Architecting Agentic AI Solutions: A Comprehensive Guide: agent.md
+  - "Architecting Agentic AI Solutions: A Comprehensive Guide": agent.md
   - uv: uv.md
   - venv: venv.md
   - poetry: poetry.md

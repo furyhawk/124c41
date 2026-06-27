@@ -21,14 +21,16 @@ def parse_pages(path: Path) -> tuple[list[tuple[str | None, str]], set[str]]:
     entries: list[tuple[str | None, str]] = []
     listed_files: set[str] = set()
     in_nav = False
-    nav_pattern = re.compile(r"^\s*-\s+(?:(.+?):\s+)?(.+\.md)$")
+    unquoted_pat = re.compile(r"^\s*-\s+(?:(.+?):\s+)?([a-zA-Z0-9_]+\.md)$")
+    quoted_pat = re.compile(r'^\s*-\s+"(.+?)":\s+([a-zA-Z0-9_]+\.md)$')
 
     for line in path.read_text().splitlines():
         if line.strip() == "nav:":
             in_nav = True
             continue
         if in_nav:
-            if m := nav_pattern.match(line):
+            m = quoted_pat.match(line) or unquoted_pat.match(line)
+            if m:
                 title = m.group(1).strip() if m.group(1) else None
                 fname = m.group(2)
                 entries.append((title, fname))
@@ -42,12 +44,27 @@ def parse_pages(path: Path) -> tuple[list[tuple[str | None, str]], set[str]]:
     return entries, listed_files
 
 
+def extract_title(fname: str) -> str:
+    """Extract the first H1 heading from a markdown file as the title."""
+    path = DOCS_DIR / fname
+    if path.exists():
+        for line in path.read_text().splitlines():
+            if m := re.match(r"^#\s+(.+)$", line):
+                return m.group(1).strip()
+    # Fallback: filename without extension
+    return fname.removesuffix(".md")
+
+
 def generate_pages_content(entries: list[tuple[str | None, str]]) -> str:
     """Generate .pages YAML content from entries."""
     lines = ["nav:"]
     for title, fname in entries:
         if title:
-            lines.append(f"  - {title}: {fname}")
+            # Quote title if it contains characters that could break YAML parsing
+            if ":" in title or "#" in title or "{" in title:
+                lines.append(f'  - "{title}": {fname}')
+            else:
+                lines.append(f"  - {title}: {fname}")
         else:
             lines.append(f"  - {fname}")
     return "\n".join(lines) + "\n"
@@ -71,10 +88,6 @@ def main():
     listed_files = {f for _, f in entries}
     new_files = sorted(all_md - listed_files)
 
-    if not new_files and not removed:
-        print("All markdown files already listed in .pages")
-        return 0
-
     # Add new files before the About entry (or at end if About not found)
     about_idx = -1
     for i, (_, fname) in enumerate(entries):
@@ -83,14 +96,19 @@ def main():
             break
 
     for fname in new_files:
-        title = fname.removesuffix(".md")
+        title = extract_title(fname)
         entries.insert(about_idx if about_idx >= 0 else len(entries), (title, fname))
         if about_idx >= 0:
             about_idx += 1
         print(f"  Added: {title} ({fname})")
 
-    PAGES_FILE.write_text(generate_pages_content(entries))
-    print(f"\nUpdated {PAGES_FILE}")
+    # Always rewrite to ensure proper formatting (e.g. quoting titles with colons)
+    new_content = generate_pages_content(entries)
+    if new_content != PAGES_FILE.read_text() or new_files or removed:
+        PAGES_FILE.write_text(new_content)
+        print(f"\nUpdated {PAGES_FILE}")
+    else:
+        print("All markdown files already listed in .pages")
     return 0
 
 
