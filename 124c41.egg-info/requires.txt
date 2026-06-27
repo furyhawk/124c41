@@ -3,3 +3,4 @@ nbformat>=5.9.2
 black>=24.2.0
 mkdocs>=1.6.1
 mkdocs-material>=9.6.9
+mkdocs-awesome-pages-plugin>=2.10.1

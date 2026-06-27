@@ -5,53 +5,7 @@ copyright: Copyright 2025
 plugins:
   - search
   - tags
-
-nav:
-  - Home: index.md
-  - Resume: resume.md
-  - uv: uv.md
-  - venv: venv.md
-  - poetry: poetry.md
-  - Conda: conda.md
-  - git: git.md
-  - ssh: ssh.md
-  - softwarearchitecture: softwarearchitecture.md
-  - vscode: code.md
-  - machine_learning: machine_learning.md
-  - llm: llm.md
-  - embedding: embedding.md
-  - llmama2: llama2.md
-  - ollama: ollama.md
-  - rag: rag.md
-  - Framework: framework.md
-  - database: db.md
-  - Dataframe: dataframe.md
-  - Chart: chart.md
-  - anomaly_detection: anomaly_detection.md
-  - Hydra: hydra.md
-  - Linux: linux.md
-  - Ubuntu: ubuntu.md
-  - Docker: docker.md
-  - Kubernetes: k8s.md
-  - ceph: ceph.md
-  - macos: macos.md
-  - sway: sway.md
-  - mqtt: mqtt.md
-  - jetson: jetson.md
-  - yolox: yolox.md
-  - gpt: gpt.md
-  - stable_diffussion: stable_diffusion.md
-  - Model Analysis: wandb.md
-  - Samba: smb.md
-  - Samba_ubuntu: smb2.md
-  - MkDocs: mkdocs.md
-  - mypy: mypy.md
-  - Literatures: literatures.md
-  - scrape_pad: scrape_pad.md
-  - nes: nes.md
-  - time_travel: time_travel.md
-  - random: random.md
-  - About: about.md
+  - awesome-pages
 
 theme:
   name: material

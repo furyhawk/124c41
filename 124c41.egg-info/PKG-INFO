@@ -9,6 +9,7 @@ Requires-Dist: nbformat>=5.9.2
 Requires-Dist: black>=24.2.0
 Requires-Dist: mkdocs>=1.6.1
 Requires-Dist: mkdocs-material>=9.6.9
+Requires-Dist: mkdocs-awesome-pages-plugin>=2.10.1
 
 # 124c41
 [https://furyhawk.github.io/124c41/](https://furyhawk.github.io/124c41/)
