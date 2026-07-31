@@ -72,9 +72,9 @@
 ### AI Singapore : 2022 - 2023 : *1 yr*
 *Associate AI Engineer*
 
-* **Content Generation**: Scoped and implemented event planning requirements for a government agency using **LangChain** and **prompt engineering**.
-* **MLOps**: Implemented [MLOps](training_pipeline.md) using **PyTorch** and **TensorFlow** frameworks, developing a highly configurable ML pipeline with [Hydra](hydra.md) for tasks such as image classification and object detection, adhering to SOLID engineering principles. ([PeekingDuck](https://github.com/aisingapore/PeekingDuck))
-* **Industrial Defect Detection**: Designed and researched an industrial defect detection proof-of-concept for an American multinational company using **OpenVINO**, deploying it on the [Nvidia Jetson Xavier NX Developer Kit](jetson.md).
+* **Content Generation**: Scoped and implemented event planning requirements for a government agency using [LangChain](https://python.langchain.com/) and **prompt engineering**.
+* **MLOps**: Implemented [MLOps](training_pipeline.md) using [PyTorch](https://pytorch.org/) and [TensorFlow](https://www.tensorflow.org/) frameworks, developing a highly configurable ML pipeline with [Hydra](hydra.md) for tasks such as image classification and object detection, adhering to SOLID engineering principles. ([PeekingDuck](https://github.com/aisingapore/PeekingDuck))
+* **Industrial Defect Detection**: Designed and researched an industrial defect detection proof-of-concept for an American multinational company using [OpenVINO](https://docs.openvino.ai/), deploying it on the [Nvidia Jetson Xavier NX Developer Kit](jetson.md).
 * **Mentorship**: Mentored Batches 12 and 13 on [Computer Vision](yolox.md).
 
 *AI Apprentice*
@@ -95,7 +95,7 @@
 [github.com/furyhawk/tftchamp](https://github.com/furyhawk/tftchamp)
 
 * **Dockerization**: Containerized the application to showcase the current patch's gamer meta using feature importances, utilizing Docker to ensure scalability and reliability.
-* **Frontend Development**: Implemented the frontend using **React** and **Zustand**, demonstrating proficiency in building responsive and efficient user interfaces.
+* **Frontend Development**: Implemented the frontend using [React](https://react.dev/) and [Zustand](https://zustand.docs.pmnd.rs/), demonstrating proficiency in building responsive and efficient user interfaces.
 
 ![https://www.ncs.co/en-sg/](assets/ncs.jpg)
 ### NCS : 2020 - 2021 : *1 yr*
