@@ -1,4 +1,4 @@
-<img src="assets/b512216fda154653823fd2f72461c3fc.png" alt="logo" width="20%">
+<img src="assets/9cd3421aa95841b4b1ca45487081af9f.png" alt="logo" width="20%">
 
 # Welcome to 124c41
 
