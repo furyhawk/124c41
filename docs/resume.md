@@ -53,10 +53,10 @@
 *AI Principal Engineer*
 
 * **Platform Development**: Lead the design and development of a scalable AI platform, ensuring high performance and reliability.
-* **MLOps**: Implement and optimize MLOps practices to streamline the machine learning lifecycle, from development to deployment and monitoring.
+* **MLOps**: Implement and optimize [MLOps](training_pipeline.md) practices to streamline the [machine learning](machine_learning.md) lifecycle, from development to deployment and monitoring.
 * **Standardization**: Establish and enforce best practices for machine learning model development, testing, and deployment.
-* **Collaboration**: Collaborate with cross-functional teams to integrate AI systems into products and services.
-* **Innovation**: Stay abreast of the latest advancements in AI and machine learning, applying this knowledge to improve platform capabilities and processes.
+* **Collaboration**: Collaborate with cross-functional teams to integrate [AI](gpt.md) systems into products and services.
+* **Innovation**: Stay abreast of the latest advancements in [AI](gpt.md) and [machine learning](machine_learning.md), applying this knowledge to improve platform capabilities and processes.
 * **Mentorship**: Provide technical guidance and mentorship to junior engineers and team members.
 * **Client Engagement**: Develop technical proposals and presentations for potential clients.
 
@@ -66,16 +66,16 @@
 
 * **Route Optimization**: Improved delivery efficiency by optimizing routes using large-scale data analysis and heuristic algorithm parameter fine-tuning, resulting in a **20% increase** in driver acceptance rates for listed jobs.
 * **Market Launch**: Successfully launched optimized last-mile delivery solutions in the Malaysian market, expanding UParcel's presence and capabilities.
-* **CI/CD Pipeline Management**: Managed the project pipeline for UParcel's Continuous Integration/Continuous Deployment (CI/CD) using the AWS tech stack (**CDK**), ensuring seamless and efficient development operations while maintaining a high degree of reliability and scalability.
+* **CI/CD Pipeline Management**: Managed the project pipeline for UParcel's Continuous Integration/Continuous Deployment (CI/CD) using the AWS tech stack (CDK), ensuring seamless and efficient development operations while maintaining a high degree of reliability and scalability.
 
 ![https://aisingapore.org/](assets/ai_singapore.jpg)
 ### AI Singapore : 2022 - 2023 : *1 yr*
 *Associate AI Engineer*
 
 * **Content Generation**: Scoped and implemented event planning requirements for a government agency using **LangChain** and **prompt engineering**.
-* **MLOps**: Implemented MLOps using **PyTorch** and **TensorFlow** frameworks, developing a highly configurable ML pipeline with **Hydra** for tasks such as image classification and object detection, adhering to **SOLID** engineering principles. ([PeekingDuck](https://github.com/aisingapore/PeekingDuck))
-* **Industrial Defect Detection**: Designed and researched an industrial defect detection proof-of-concept for an American multinational company using **OpenVINO**, deploying it on the **Nvidia Jetson Xavier NX Developer Kit**.
-* **Mentorship**: Mentored Batches 12 and 13 on **Computer Vision**.
+* **MLOps**: Implemented [MLOps](training_pipeline.md) using **PyTorch** and **TensorFlow** frameworks, developing a highly configurable ML pipeline with [Hydra](hydra.md) for tasks such as image classification and object detection, adhering to SOLID engineering principles. ([PeekingDuck](https://github.com/aisingapore/PeekingDuck))
+* **Industrial Defect Detection**: Designed and researched an industrial defect detection proof-of-concept for an American multinational company using **OpenVINO**, deploying it on the [Nvidia Jetson Xavier NX Developer Kit](jetson.md).
+* **Mentorship**: Mentored Batches 12 and 13 on [Computer Vision](yolox.md).
 
 *AI Apprentice*
 
@@ -86,8 +86,8 @@
 
 ### Career Transition & Independent Projects : 2021 - 2022 : *1 yr*
 
-* **Self-Hosting**: Successfully self-hosted applications and API services on a personal domain ([https://furyhawk.lol/](https://furyhawk.lol/)) using **Docker Swarm** on 3 Raspberry Pi devices, demonstrating expertise in containerization and orchestration.
-* **Cloud-Native Migration**: Transitioned hosted applications and API services to **Kubernetes** using **Talos** and **Proxmox**, showcasing the ability to adapt to new technologies and architectures.
+* **Self-Hosting**: Successfully self-hosted applications and API services on a personal domain ([https://furyhawk.lol/](https://furyhawk.lol/)) using [Docker Swarm](docker.md) on 3 Raspberry Pi devices, demonstrating expertise in containerization and orchestration.
+* **Cloud-Native Migration**: Transitioned hosted applications and API services to [Kubernetes](k8s.md) using **Talos** and **Proxmox**, showcasing the ability to adapt to new technologies and architectures.
 
 **Team Fight Tactics Strategy Application**
 -----------------------------------------
@@ -121,10 +121,10 @@
 
 *Senior Consultant*
 
-* **ERP Implementation**: Successfully led 11 cycles of end-to-end **Enterprise Resource Planning (SAP)** projects, totaling over $100 million in value, across various business domains (Material Planning, Procurement, Logistics, Finance and Control, Human Resources, and Plant Maintenance).
+* **ERP Implementation**: Successfully led 11 cycles of end-to-end [Enterprise Resource Planning](softwarearchitecture.md) (SAP) projects, totaling over $100 million in value, across various business domains (Material Planning, Procurement, Logistics, Finance and Control, Human Resources, and Plant Maintenance).
 * **Productivity Excellence**: Consistently improved productivity and added value after each project cycle by applying **best practices** in Software Engineering.
-* **Technical Expertise**: Demonstrated proficiency in implementing projects using both **Frontend (Fiori)** and **Backend (ABAP)** frameworks, showcasing versatility in SAP development.
-* **Agile Leadership**: Spearheaded **Agile Scrum** methodology adoption among project team members, fostering collaborative and iterative development.
+* **Technical Expertise**: Demonstrated proficiency in implementing projects using both Frontend (Fiori) and Backend (ABAP) frameworks, showcasing versatility in SAP development.
+* **Agile Leadership**: Spearheaded [Agile Scrum](sprint.md) methodology adoption among project team members, fostering collaborative and iterative development.
 * **Crisis Management**: Successfully restored a critical production database outage under time pressure by applying **root cause analysis techniques**, ensuring business continuity and minimizing downtime.
 
 ![](assets/creative.jpg)
@@ -155,3 +155,14 @@
 ## Interests & Open Source
 
 - [Active contributor to **Open Source Projects**.](https://github.com/furyhawk)
+
+*[AI]: Artificial Intelligence
+*[MLOps]: Machine Learning Operations
+*[CI/CD]: Continuous Integration and Continuous Deployment
+*[CDK]: AWS Cloud Development Kit
+*[ML]: Machine Learning
+*[SOLID]: Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+*[ERP]: Enterprise Resource Planning
+*[SAP]: Systems, Applications, and Products in Data Processing
+*[ABAP]: Advanced Business Application Programming
+*[QA]: Quality Assurance

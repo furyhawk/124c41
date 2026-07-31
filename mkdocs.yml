@@ -7,6 +7,10 @@ plugins:
   - tags
   - awesome-pages
 
+markdown_extensions:
+  - abbr
+  - attr_list
+
 theme:
   name: material
   logo: assets/logo.png
