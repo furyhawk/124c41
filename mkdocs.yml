@@ -13,8 +13,8 @@ markdown_extensions:
 
 theme:
   name: material
-  logo: assets/logo.png
-  favicon: assets/logo.png
+  logo: assets/docs/assets/b512216fda154653823fd2f72461c3fc.png
+  favicon: assets/docs/assets/b512216fda154653823fd2f72461c3fc.png
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
