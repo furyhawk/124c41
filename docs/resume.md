@@ -8,7 +8,7 @@
  ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪·▀▀▀▀      ▀▀▀  ▀▀▀ ·▀▀▀ ·▀  ▀    ▀▀  █▪▀▀▀ ▀▀▀ ▀▀ █▪·▀▀▀▀ 
 ```
 
-<mark>*20 years of software engineering experience. Adept at reverse engineering code with a strong drive for continuous learning and technical innovation.*</mark>
+<mark>*20+ years of software engineering experience. Adept at reverse engineering code with a strong drive for continuous learning and technical innovation.*</mark>
 
 ## Particulars
 
@@ -38,9 +38,10 @@
 
 | Period       | Employer      | Position              | Responsibilities             |
 | ------------ | ------------- | --------------------- | ---------------------------- |
-| 2025-Present | ST Engineering| AI Principal Engineer | Kinetics Training Solutions  |
+| 2025-Present | ST Engineering | AI Principal Engineer | AI Systems                  |
 | 2023-2024    | UParcel       | AI Engineer           | Software Engineering         |
 | 2022-2023    | AI Singapore  | Associate AI Engineer | MLOps                        |
+| 2021-2022    | —             | Independent Projects  | Self-Hosted Infrastructure   |
 | 2020-2021    | NCS           | Fiori Developer       | SAP Edge Implementation      |
 | 2019-2020    | BHP           | Developer             | Fiori Project Implementation |
 | 2008-2019    | NCS           | Senior Consultant     | SAP Consultant/ABAP/Fiori    |
@@ -48,27 +49,28 @@
 
 <p style="page-break-after: always;"> </p>
 
-![https://stengg.com/](assets/stengg.jpg)
+![ST Engineering](assets/stengg.jpg)
 ### ST Engineering : 2025 - Present
 *AI Principal Engineer*
 
-* **Platform Development**: Lead the design and development of a scalable AI platform, ensuring high performance and reliability.
+* **Platform Development**: Lead the design and development of scalable AI systems, ensuring high performance and reliability.
 * **MLOps**: Implement and optimize [MLOps](training_pipeline.md) practices to streamline the [machine learning](machine_learning.md) lifecycle, from development to deployment and monitoring.
-* **Standardization**: Establish and enforce best practices for machine learning model development, testing, and deployment.
-* **Collaboration**: Collaborate with cross-functional teams to integrate [AI](gpt.md) systems into products and services.
-* **Innovation**: Stay abreast of the latest advancements in [AI](gpt.md) and [machine learning](machine_learning.md), applying this knowledge to improve platform capabilities and processes.
+* **Standardization**: Establish and enforce best practices for AI systems development, testing, and deployment.
+* **Collaboration**: Collaborate with cross-functional teams to integrate [AI](gpt.md) systems into Maintenance, Repair and Overhaul (MRO) workflows.
+* **Innovation**: Stay abreast of the latest advancements in [AI](gpt.md), applying this knowledge to improve platform capabilities and processes.
 * **Mentorship**: Provide technical guidance and mentorship to junior engineers and team members.
-* **Client Engagement**: Develop technical proposals and presentations for potential clients.
+* **Client Engagement**: Develop technical proposals and architecture presentations for the MRO operations team.
+* **AI Champions**: Champion AI adoption across Lines of Business.
 
-![https://www.uparcel.sg/](assets/uparcel.png)
+![UParcel](assets/uparcel.png)
 ### UParcel : 2023 - 2024
 *AI Engineer*
 
 * **Route Optimization**: Improved delivery efficiency by optimizing routes using large-scale data analysis and heuristic algorithm parameter fine-tuning, resulting in a **20% increase** in driver acceptance rates for listed jobs.
-* **Market Launch**: Successfully launched optimized last-mile delivery solutions in the Malaysian market, expanding UParcel's presence and capabilities.
+* **Market Launch**: Successfully launched optimized last-mile delivery solutions in the Singapore/Malaysian market, expanding UParcel's presence and capabilities.
 * **CI/CD Pipeline Management**: Managed the project pipeline for UParcel's Continuous Integration/Continuous Deployment (CI/CD) using the AWS tech stack (CDK), ensuring seamless and efficient development operations while maintaining a high degree of reliability and scalability.
 
-![https://aisingapore.org/](assets/ai_singapore.jpg)
+![AI Singapore](assets/ai_singapore.jpg)
 ### AI Singapore : 2022 - 2023 : *1 yr*
 *Associate AI Engineer*
 
@@ -77,7 +79,7 @@
 * **Industrial Defect Detection**: Designed and researched an industrial defect detection proof-of-concept for an American multinational company using [OpenVINO](https://docs.openvino.ai/), deploying it on the [Nvidia Jetson Xavier NX Developer Kit](jetson.md).
 * **Mentorship**: Mentored Batches 12 and 13 on [Computer Vision](yolox.md).
 
-*AI Apprentice*
+#### AI Apprentice
 
 **(Batch 11, 2 months intensive + 7 months on-the-job training)**
 
@@ -89,15 +91,14 @@
 * **Self-Hosting**: Successfully self-hosted applications and API services on a personal domain ([https://furyhawk.lol/](https://furyhawk.lol/)) using [Docker Swarm](docker.md) on 3 Raspberry Pi devices, demonstrating expertise in containerization and orchestration.
 * **Cloud-Native Migration**: Transitioned hosted applications and API services to [Kubernetes](k8s.md) using **Talos** and **Proxmox**, showcasing the ability to adapt to new technologies and architectures.
 
-**Team Fight Tactics Strategy Application**
------------------------------------------
+### Team Fight Tactics Strategy Application
 
 [github.com/furyhawk/tftchamp](https://github.com/furyhawk/tftchamp)
 
 * **Dockerization**: Containerized the application to showcase the current patch's gamer meta using feature importances, utilizing Docker to ensure scalability and reliability.
 * **Frontend Development**: Implemented the frontend using [React](https://react.dev/) and [Zustand](https://zustand.docs.pmnd.rs/), demonstrating proficiency in building responsive and efficient user interfaces.
 
-![https://www.ncs.co/en-sg/](assets/ncs.jpg)
+![NCS](assets/ncs.jpg)
 ### NCS : 2020 - 2021 : *1 yr*
 
 *Fiori Developer*
@@ -107,7 +108,7 @@
 
 <p style="page-break-after: always;"> </p>
 
-![https://www.bhp.com/](assets/bhp.jpg) 
+![BHP](assets/bhp.jpg)
 ### BHP : 2019 - 2020 : *1 yr 2 mos*
 
 *Developer*
@@ -115,7 +116,7 @@
 * **Global Rollout**: Successfully implemented the Resource Scheduler application globally, enabling mass scheduling of work to personnel while considering work restrictions and capacity availability.
 * **Process Improvement**: Achieved significant reductions in **Time-on-Task** and **User Error Rate**, and improved safety compliance, demonstrating the ability to develop solutions that drive business value and enhance operational efficiency.
 
-![https://www.ncs.co/en-sg/](assets/ncs.jpg)
+![NCS](assets/ncs.jpg)
 
 ### NCS : 2008 - 2019 : *10 yrs 7 mos*
 
@@ -127,7 +128,7 @@
 * **Agile Leadership**: Spearheaded [Agile Scrum](sprint.md) methodology adoption among project team members, fostering collaborative and iterative development.
 * **Crisis Management**: Successfully restored a critical production database outage under time pressure by applying **root cause analysis techniques**, ensuring business continuity and minimizing downtime.
 
-![](assets/creative.jpg)
+![Creative](assets/creative.jpg)
 
 ### Creative : 2001 - 2008 : *7 yrs 1 mo*
 
@@ -160,7 +161,7 @@
 *[MLOps]: Machine Learning Operations
 *[CI/CD]: Continuous Integration and Continuous Deployment
 *[CDK]: AWS Cloud Development Kit
-*[ML]: Machine Learning
+*[MRO]: Maintenance, Repair and Overhaul
 *[SOLID]: Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
 *[ERP]: Enterprise Resource Planning
 *[SAP]: Systems, Applications, and Products in Data Processing
