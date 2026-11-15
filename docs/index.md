@@ -28,18 +28,24 @@ type: short summary
 
 ## Home Server
 
-- [Chat](https://chat.furyhawk.lol/): Chat with AI, RAG chatbot. 
+- [Nearby Bus](https://bus.furyhawk.lol/): Nearby bus App.
+- [https://git.furyhawk.lol/](https://git.furyhawk.lol/): git repo
+- [https://cinder.furyhawk.lol/](https://cinder.furyhawk.lol/): A browser-based twin-stick shooter vertical slice set in the Foundry. Move, aim, fire, and Surge through escalating enemy waves in a shape-shifting arena, then defeat the Warden boss.
+- [https://github.com/furyhawk/opengw.git](https://github.com/furyhawk/opengw.git): Trigonometry Wars is an open-source, twin-stick arena shooter inspired by Geometry Wars. Control a small neon ship on a vector-style grid, dodge swarms of enemies, survive as long as you can and chase the high score.
+- ~~[Chat](https://chat.furyhawk.lol/): Chat with AI, RAG chatbot.~~
 - [Bot](https://bot.furyhawk.lol/): AI assistant using GROQ, llama3 70B, RAG and web search.
 - [Stock Analysis Assistant](https://fin.furyhawk.lol/): AI assistant using GROQ and llama3.
+- [Whisper-web](https://whisper.furyhawk.lol/): ML-powered speech recognition directly in your browser.
 - ~~[Redlib](https://redlib.furyhawk.lol/): Reddit libre.~~ (killed by bots)
 - [Blog](https://info.furyhawk.lol/)
-- [Ghost](https://ghost.furyhawk.lol/): Ghost blog.
+- ~~[Ghost](https://ghost.furyhawk.lol/): Ghost blog.~~
 - [Beyond All Information](https://bai.furyhawk.lol/): analyse your [Beyond All Reason](https://www.beyondallreason.info/) games.
 - [CheatSheets](https://cheat.furyhawk.lol/): Collection of cheatsheets.
 - [Cookbook](https://cook.furyhawk.lol/): Collection of tech recipes.
 - ~~[Forum](https://forum.furyhawk.lol/): Host your own forum.~~ (deprecated)
 - [Neural Network Playground](https://furyhawk.github.io/playground): Understand neural network visually.
 - [Note](https://note.furyhawk.lol/): Notepad Online. Use cookie storage only.
+- [Pad](https://pad.furyhawk.lol/): Nodepad With AI Online. Use cookie storage only.
 - [linx](https://linx.furyhawk.lol/): Image pastebin.
 - [pastebin](https://bin.furyhawk.lol/): text/file Pastebin.
 - [speedtest](https://speed.furyhawk.lol/): Speedtest.
