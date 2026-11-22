@@ -1,97 +1,218 @@
 <img src="assets/9cd3421aa95841b4b1ca45487081af9f.png" alt="logo" width="20%">
 
-# Welcome to 124c41
+# 先知 (First Vision) - 124c41
 
-First vision 先知 of the greater good.
+> *First vision of the greater good.*
 
-The internet era force the analog world to be digitised.
-The AI era force the digital world to be analoged.
+The internet era forced the analog world to be digitised. The AI era forces the digital world to be analoged. Division of labour decided by AI.
 
+---
 
-type: short summary
+## 📚 Table of Contents
 
-  │            │
+- [Vision](#-vision)
+- [Projects](#-projects)
+  - [Games & Entertainment](#games--entertainment)
+  - [AI Assistants](#ai-assistants)
+  - [Productivity & Utilities](#productivity--utilities)
+  - [Data Analysis & Research](#data-analysis--research)
+  - [Knowledge Management](#knowledge-management)
+  - [Learning & Visualization](#learning--visualization)
+  - [Infrastructure](#infrastructure)
+- [Contribution Guidelines](#-contribution-guidelines)
 
-  │            └─⫸ Summary in present tense. Not capitalized.
+---
 
-  │
+## 🎯 Vision
 
-  └─⫸ Commit Type: build|cicd|docs|feat|fix|node|refactor|test
+As AGI approaches, society faces a critical inflection point:
 
-## AGI
+- **The Problem**: As humanity achieves AGI, basic computing skills are lost
+- **The Challenge**: Everyone defaults to digital convenience, but NSFW content is filtered for all
+- **The Opportunity**: 1 human decides to learn computing skills and breaks free
 
-- Humanity achieve AGI.
-- Basic computing skills lost.
-- NSFW content filtered for everyone.
-- 1 Human decide to learn computing skills.
-- NSFW content accessed.
+This portfolio explores how individual initiative and technical mastery can reclaim agency in an AI-dominated world.
 
-## Home Server
+---
 
-- [Nearby Bus](https://bus.furyhawk.lol/): Nearby bus App.
-- [https://git.furyhawk.lol/](https://git.furyhawk.lol/): git repo
-- [https://cinder.furyhawk.lol/](https://cinder.furyhawk.lol/): A browser-based twin-stick shooter vertical slice set in the Foundry. Move, aim, fire, and Surge through escalating enemy waves in a shape-shifting arena, then defeat the Warden boss.
-- [https://github.com/furyhawk/opengw.git](https://github.com/furyhawk/opengw.git): Trigonometry Wars is an open-source, twin-stick arena shooter inspired by Geometry Wars. Control a small neon ship on a vector-style grid, dodge swarms of enemies, survive as long as you can and chase the high score.
-- ~~[Chat](https://chat.furyhawk.lol/): Chat with AI, RAG chatbot.~~
-- [Bot](https://bot.furyhawk.lol/): AI assistant using GROQ, llama3 70B, RAG and web search.
-- [Stock Analysis Assistant](https://fin.furyhawk.lol/): AI assistant using GROQ and llama3.
-- [Whisper-web](https://whisper.furyhawk.lol/): ML-powered speech recognition directly in your browser.
-- ~~[Redlib](https://redlib.furyhawk.lol/): Reddit libre.~~ (killed by bots)
-- [Blog](https://info.furyhawk.lol/)
-- ~~[Ghost](https://ghost.furyhawk.lol/): Ghost blog.~~
-- [Beyond All Information](https://bai.furyhawk.lol/): analyse your [Beyond All Reason](https://www.beyondallreason.info/) games.
-- [CheatSheets](https://cheat.furyhawk.lol/): Collection of cheatsheets.
-- [Cookbook](https://cook.furyhawk.lol/): Collection of tech recipes.
-- ~~[Forum](https://forum.furyhawk.lol/): Host your own forum.~~ (deprecated)
-- [Neural Network Playground](https://furyhawk.github.io/playground): Understand neural network visually.
-- [Note](https://note.furyhawk.lol/): Notepad Online. Use cookie storage only.
-- [Pad](https://pad.furyhawk.lol/): Nodepad With AI Online. Use cookie storage only.
-- [linx](https://linx.furyhawk.lol/): Image pastebin.
-- [pastebin](https://bin.furyhawk.lol/): text/file Pastebin.
-- [speedtest](https://speed.furyhawk.lol/): Speedtest.
-- [Home server](https://github.com/furyhawk/cloudy): Build for ARM64 platform using Docker swarm mode.
-- [Team Fight Tactics ML](https://github.com/furyhawk/tftchamp): Analyse the current meta.
+## 🚀 Projects
 
-## Team Fight Tactics Strategy Application
+### Games & Entertainment
 
-~~http://tftchamp.duckdns.org:3000/~~
+| Project | Link | Status | Description | Tech Stack |
+|---------|------|--------|-------------|-----------|
+| **Cinder** | [🔗 cinder.furyhawk.lol](https://cinder.furyhawk.lol/) | 🟢 Active | Browser-based twin-stick shooter vertical slice set in the Foundry. Move, aim, fire, and Surge through escalating enemy waves in a shape-shifting arena, then defeat the Warden boss. | Web/Canvas, TypeScript |
+| **Trigonometry Wars** | [🔗 GitHub](https://github.com/furyhawk/opengw.git) | 🟢 Active | Open-source twin-stick arena shooter inspired by Geometry Wars. Control a neon ship, dodge enemies, chase the high score. | Rust/WASM, Web |
+| **Beyond All Information** | [🔗 bai.furyhawk.lol](https://bai.furyhawk.lol/) | 🟢 Active | Analyze your [Beyond All Reason](https://www.beyondallreason.info/) RTS games with detailed statistics and meta insights. | Python, ML |
 
-### Datasets
+### AI Assistants
 
-publish @ https://www.kaggle.com/datasets/teckmengwong/team-fight-tactics-matches
+| Project | Link | Status | Description | Tech Stack |
+|---------|------|--------|-------------|-----------|
+| **LLaMA Bot** | [🔗 bot.furyhawk.lol](https://bot.furyhawk.lol/) | 🟢 Active | Multi-capability AI assistant with RAG, web search, and local knowledge base integration. Uses GROQ API + LLaMA 70B for fast inference. | Python, GROQ API, RAG |
+| **Stock Analysis Assistant** | [🔗 fin.furyhawk.lol](https://fin.furyhawk.lol/) | 🟢 Active | Financial analysis assistant for stock research and market insights powered by LLaMA 3. | Python, GROQ, LLaMA 3 |
+| **Whisper Web** | [🔗 whisper.furyhawk.lol](https://whisper.furyhawk.lol/) | 🟢 Active | Browser-native speech-to-text using OpenAI's Whisper model. No server required—processing happens client-side. | WASM, Whisper, Web |
+| **Chat** | ~~[chat.furyhawk.lol](https://chat.furyhawk.lol/)~~ | 🔴 Archived | RAG-powered conversational AI | Python, RAG |
 
-![tftfi00](https://github.com/furyhawk/tftchamp/raw/master/assets/XGBRegressor_feature_importances.png)
+### Productivity & Utilities
 
-[furyhawk/tftchamp: teamfight-tactics Data Analysis (github.com)](https://github.com/furyhawk/tftchamp)
+| Project | Link | Status | Description | Tech Stack |
+|---------|------|--------|-------------|-----------|
+| **Nearby Bus** | [🔗 bus.furyhawk.lol](https://bus.furyhawk.lol/) | 🟢 Active | Real-time nearby bus arrival app for public transit navigation. | Web App |
+| **Note** | [🔗 note.furyhawk.lol](https://note.furyhawk.lol/) | 🟢 Active | Simple online notepad with cookie-based storage (no server backend). | Vue.js |
+| **Pad** | [🔗 pad.furyhawk.lol](https://pad.furyhawk.lol/) | 🟢 Active | Notepad with integrated AI assistance and cookie storage. | Vue.js, LLaMA |
+| **Pastebin** | [🔗 bin.furyhawk.lol](https://bin.furyhawk.lol/) | 🟢 Active | Text and file pastebin for quick code/note sharing. | Node.js |
+| **Linx** | [🔗 linx.furyhawk.lol](https://linx.furyhawk.lol/) | 🟢 Active | Image pastebin for quick image sharing and hosting. | Go, Linx |
+| **SpeedTest** | [🔗 speed.furyhawk.lol](https://speed.furyhawk.lol/) | 🟢 Active | Network speed test utility. | Web App |
 
-#### About this dataset
+### Data Analysis & Research
 
-Team Fight Tactics highest ELO challengers games scrape by https://github.com/furyhawk/tftchamp.
+| Project | Link | Status | Description | Tech Stack |
+|---------|------|--------|-------------|-----------|
+| **Team Fight Tactics ML** | [🔗 GitHub](https://github.com/furyhawk/tftchamp) | 🟢 Active | Competitive TFT strategy assistant analyzing challenger-level games to predict placement and meta trends. See [Datasets](#team-fight-tactics-datasets) below. | Python, XGBoost, Riot API |
+| **Git Server** | [🔗 git.furyhawk.lol](https://git.furyhawk.lol/) | 🟢 Active | Self-hosted Git repository server for version control. | Gitea |
 
-Using https://developer.riotgames.com/ API.
+### Knowledge Management
 
-- 8 players FFA in one game.
+| Project | Link | Status | Description | Tech Stack |
+|---------|------|--------|-------------|-----------|
+| **Blog** | [🔗 info.furyhawk.lol](https://info.furyhawk.lol/) | 🟢 Active | Long-form writing, tutorials, and insights. | Markdown, Static Site |
+| **CheatSheets** | [🔗 cheat.furyhawk.lol](https://cheat.furyhawk.lol/) | 🟢 Active | Quick-reference guides for tools, languages, and frameworks. | Markdown, Static Site |
+| **Cookbook** | [🔗 cook.furyhawk.lol](https://cook.furyhawk.lol/) | 🟢 Active | Collection of tested technical recipes and solutions. | Markdown, Static Site |
+| **Ghost Blog** | ~~[ghost.furyhawk.lol](https://ghost.furyhawk.lol/)~~ | 🔴 Archived | Full-featured blog platform | Ghost CMS |
 
-- **Target Label**: *placement*
+### Learning & Visualization
 
-- 1 is best. Lower is better.
+| Project | Link | Status | Description | Tech Stack |
+|---------|------|--------|-------------|-----------|
+| **Neural Network Playground** | [🔗 GitHub Pages](https://furyhawk.github.io/playground) | 🟢 Active | Interactive visualization to understand neural networks, backpropagation, and deep learning concepts. | JavaScript, D3.js, TensorFlow.js |
 
-- Top 4 placement is a Win.
+### Infrastructure
 
-- Alternative prediction is to group Top 4 placement as Binary Win, bottom 4 as Binary Lost.
+| Project | Link | Status | Description | Tech Stack |
+|---------|------|--------|-------------|-----------|
+| **Home Server (Cloudy)** | [🔗 GitHub](https://github.com/furyhawk/cloudy) | 🟢 Active | Complete self-hosted infrastructure stack built for ARM64 using Docker Swarm mode. Orchestrates all services listed above. | Docker Swarm, Kubernetes, ARM64 |
+| **Forum** | ~~[forum.furyhawk.lol](https://forum.furyhawk.lol/)~~ | 🔴 Deprecated | Community forum platform | Discourse |
+| **Redlib** | ~~[redlib.furyhawk.lol](https://redlib.furyhawk.lol/)~~ | 🔴 Killed | Reddit alternative frontend | Redlib |
 
-- Only team traits and augments/items chosen included in datasets.
+---
 
-- Stats like *game_length*, *players_eliminated* are excluded. This is to prevent the model from learning obvious predictor.
+## 📊 Featured Research: Team Fight Tactics Strategy
 
-```sh
+### Overview
+
+Competitive Team Fight Tactics (TFT) strategy assistant built on challenger-level gameplay analysis. This project combines web scraping, feature engineering, and machine learning to unlock meta patterns.
+
+### Dataset
+
+**Published**: [Kaggle - Team Fight Tactics Matches](https://www.kaggle.com/datasets/teckmengwong/team-fight-tactics-matches)
+
+- **Source**: Highest ELO challenger games via [Riot API](https://developer.riotgames.com/)
+- **Game Format**: 8-player FFA
+- **Target Label**: Game placement (1 = best, lower is better)
+  - Win: Top 4 placement
+  - Loss: Bottom 4 placement (optional binary grouping)
+- **Features**: Team compositions, traits, augments, items
+- **Exclusions**: game_length, players_eliminated (to prevent learning obvious predictors)
+
+**Feature Importances** (XGBoost):
+
+![TFT Feature Importances](https://github.com/furyhawk/tftchamp/raw/master/assets/XGBRegressor_feature_importances.png)
+
+### Running the Pipeline
+
+```bash
 sudo ./scripts/run_pipeline.sh -nrci
 ```
 
-## Web Scraping With Python
+**Repository**: [furyhawk/tftchamp](https://github.com/furyhawk/tftchamp)
 
-### Objective
+---
 
-This tutorial aims to show how to use the Python programming language to web scrape a website. Specifically, we will use the `requests` and `Beautiful Soup` libraries to scrape and parse data from [companiesmarketcap.com](https://companiesmarketcap.com/) and retrieve the “*Largest Companies by Market Cap*”. Finance details are scrape and parse from [finance.yahoo.com](https://finance.yahoo.com/quote/).
+## 🛠️ Contribution Guidelines
 
-We will learn how to scale the web scraping process by first retrieving the first company/row of the table, then all companies on the website’s first page, and finally, all 6024 companies from multiple pages. Once the scraping process is complete, we will preprocess the dataset and transform it into a more readable format before using `matplotlib` to visualise the most important information.
+### Commit Message Format
+
+Follow this structure for clear commit history:
+
+```
+<type>: <summary>
+
+<body>
+
+<footer>
+```
+
+**Type Options**: `build` | `cicd` | `docs` | `feat` | `fix` | `node` | `refactor` | `test`
+
+**Summary**: Present tense, not capitalized
+- ✅ `feat: add neural network visualization`
+- ❌ `feat: Added neural network visualization`
+
+### Development Setup
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Or using uv (faster)
+uv sync
+```
+
+### Deployment
+
+**MkDocs Build & Deploy**:
+
+```bash
+# Local preview
+mkdocs serve
+
+# Deploy to GitHub Pages
+mkdocs gh-deploy
+```
+
+**Manual Deployment**:
+
+```bash
+mkdocs build
+scp -r ./site user@host:/path/to/server/root
+```
+
+---
+
+## 📚 Tutorials
+
+### Web Scraping with Python
+
+**Objective**: Learn how to ethically scrape and analyze web data at scale.
+
+**Topics Covered**:
+- Using `requests` and `Beautiful Soup` for web scraping
+- Parsing company data from [companiesmarketcap.com](https://companiesmarketcap.com/)
+- Fetching financial details from [finance.yahoo.com](https://finance.yahoo.com/)
+- Scaling from single row → full page → multi-page scraping (6000+ companies)
+- Data preprocessing and transformation
+- Visualization with `matplotlib`
+
+**Skills Gained**: HTTP requests, HTML parsing, data wrangling, visualization
+
+---
+
+## 🌐 Self-Hosted Infrastructure
+
+All services run on **personal infrastructure** using Docker Swarm on ARM64 hardware. This setup provides:
+
+- **Reliability**: Self-hosted means no dependency on third-party platforms
+- **Privacy**: Your data stays in your control
+- **Customization**: Full control over features and integrations
+- **Learning**: Deep understanding of DevOps and system architecture
+
+---
+
+## 📄 License & Attribution
+
+Each project maintains its own license. See individual repositories for details.
+
+**Repository**: [furyhawk/124c41](https://github.com/furyhawk/124c41)
+
+**Documentation**: [furyhawk.github.io/124c41](https://furyhawk.github.io/124c41/)
